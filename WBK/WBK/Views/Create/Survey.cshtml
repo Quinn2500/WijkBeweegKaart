@@ -2,6 +2,8 @@
     Layout = "";
 }
 
+@model WBK.Models.Create.CreateSurveyViewModel
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +13,10 @@
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <link href="~/lib/jqeury-ui/jquery-ui.css" rel="stylesheet" />
+    <script src="~/lib/jqeury-ui/jquery-ui.min.js"></script>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -25,7 +31,79 @@
 </head>
 
 <body class="p-0">
+<div class="container">
+    
 
+    <div class="row">
+
+        <div class="col">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="">
+                    <div>
+                        <label>Titel:</label>
+                        @Html.TextBoxFor(x => x.Title)
+                        @Html.ValidationMessageFor(x => x.Title)
+                    </div>
+                    <div>
+                        <label>Beschrijving:</label>
+                        @Html.TextAreaFor(x => x.Description)
+                        @Html.ValidationMessageFor(x => x.Description)
+                    </div>
+                    <div>
+                        <label>Eind Datum:</label>
+                            @Html.TextBoxFor(model => model.EndDate)
+                            @Html.ValidationMessageFor(x => x.EndDate)
+                        </div>
+                    
+                    <div style="margin-top: 200px;">
+                    <div id="mapid" style="height: 400px; width: 400px;" class=""></div>
+                        @Html.HiddenFor(x => x.StartLocationLat)
+                        @Html.ValidationMessageFor(x => x.StartLocationLat)
+                        @Html.HiddenFor(x => x.StartLocationLong)
+                        @Html.ValidationMessageFor(x => x.StartLocationLong)
+                    </div>
+
+                    <input type="submit" name="name" value="Maak Aan!" />
+                </div>
+            }
+        </div>
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $( document ).ready(function() {
+        console.log("ready!");
+        $('#EndDate').datepicker({
+            format: 'dd/mm/yyyy',
+            uiLibrary: 'bootstrap4',
+            startDate: '+14d'
+        });;
+    });
+
+    var mymap = L.map('mapid').setView([51.47358, 5.453167], 13);
+    var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(mymap);
+
+    var marker = L.marker();
+
+    function onMapClick(e) {
+        marker
+            .setLatLng(e.latlng)
+            .bindPopup("You clicked the map at " + e.latlng.toString())
+            .addTo(mymap);
+        document.getElementsByName("StartLocationLat")[0].value = e.latlng.lat;
+        document.getElementsByName("StartLocationLong")[0].value = e.latlng.lng;
+    }
+
+    mymap.on('click', onMapClick);
+</script>
 </body>
 </html>
 

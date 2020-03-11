@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataModels
+namespace DataModels.Questions
 {
-    class MultipleChoiceQuestion
+    public class MultipleChoiceQuestion : Question
     {
+        public bool AllowMutlipleAnwsers { get; set; }
+        public List<MultipleChoiceOption> Options { get; set; }
     }
 }

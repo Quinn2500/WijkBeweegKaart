@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataModels
+namespace DataModels.Questions
 {
-    class GeoQuestion
+    public class GeoQuestion : Question
     {
+        public string TypeOfMarker { get; set; }
     }
 }

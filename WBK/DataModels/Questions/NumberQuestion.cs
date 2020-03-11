@@ -4,7 +4,9 @@ using System.Text;
 
 namespace DataModels.Questions
 {
-    class NumberQuestion
+    public class NumberQuestion : Question
     {
+        public double Minimum { get; set; }
+        public double Maximum { get; set; }
     }
 }

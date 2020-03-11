@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataModels
 {
-    class Type
+    public enum Type
     {
     }
 }

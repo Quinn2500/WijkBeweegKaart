@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataModels
 {
-    class Location
+    public class Location
     {
         public Location(double latitude, double longitude)
         {
