@@ -1,0 +1,146 @@
+﻿@{
+    Layout = "";
+}
+
+@model WBK.Models.Create.PagesViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WijkBeweegKaart</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <link href="~/lib/jqeury-ui/jquery-ui.css" rel="stylesheet" />
+    <script src="~/lib/jqeury-ui/jquery-ui.min.js"></script>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+
+<body class="p-0">
+    <div class="container">
+
+
+        <div class="row">
+
+            <div class="col">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div id="InputsWrapper">
+                        @for (var i = 0; i < Model.PagesList.Count(); i++)
+                        {
+                        <div class="pageDiv">
+                            <h3>Pagina @i</h3>
+                            @Html.TextBoxFor(x => x.PagesList[i].Title)
+                            @Html.ValidationMessageFor(x => x.PagesList[i].Title)
+
+                            @Html.TextBoxFor(x => x.PagesList[i].Description)
+                            @Html.ValidationMessageFor(x => x.PagesList[i].Description)
+
+                            @Html.Label("PageCounter", i.ToString(), new { style = "display: none;" })
+                            <a href="#" class="removeclass"></a>
+                        </div>
+                        }
+                    </div>
+
+                    <div id="AddMoreFileId">
+                        <a href="#" id="AddMoreFileBox" class="btn btn-info">Voeg Pagina Toe</a><br><br>
+                    </div>
+
+                    <input type="submit" name="name" value="Maak Aan!" />
+
+                }
+            </div>
+
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+    $( document ).ready(function() {
+        $("#slider").hide();
+        $("#geo").hide();
+        $("#number").hide();
+        $("#multipleChoice").hide();
+
+        $("#PagesList_0__Questions_0__Type").change(function () {
+            console.log(this.value);
+            console.log($('#PagesList_0__Questions_0__Type option:selected').val());
+        });
+
+        var MaxInputs       = 10; //maximum extra input boxes allowed
+        var InputsWrapper   = $("#InputsWrapper"); //Input boxes wrapper ID
+        var AddButton = $("#AddMoreFileBox"); //Add button ID
+
+        var x = InputsWrapper.length; //initlal text box count
+
+        $(AddButton).click(function (e) {
+            var currentPageCount = $('.pageDiv').length;
+            //max input box allowed
+            if(x <= MaxInputs) {
+                //add input box
+                $(InputsWrapper).append('<div class="pageDiv">' +
+                    '<h3>Pagina ' + currentPageCount + '</h3>' +
+                    '<input id="PagesList_' + currentPageCount + '__Title" name="PagesList[' + currentPageCount + '].Title" type="text" value="" /><span class="field-validation-valid" data-valmsg-for="PagesList[' + currentPageCount + '].Title" data-valmsg-replace="true"></span>' +
+                    '<input id="PagesList_' + currentPageCount + '__Description" name="PagesList[' + currentPageCount + '].Description" type="text" value="" /><span class="field-validation-valid" data-valmsg-for="PagesList[' + currentPageCount + '].Description" data-valmsg-replace="true"></span>' +
+                    '<a href="#" class="removeclass">Verwijderen</a>' +
+                    '<label for="PageCounter" style="display: none;">' + currentPageCount + '</label> ' +
+                    '</div>');
+                x++; //text box increment
+            
+                $("#AddMoreFileId").show();
+            
+                $('AddMoreFileBox').html("Add field");
+            
+                if (x == MaxInputs) {
+                    $("#AddMoreFileId").hide();
+                }
+            }
+            return false;
+        });
+
+        $("body").on("click",
+            ".removeclass",
+            function(e) { //user click on remove text
+                if (x > 1) {
+                    $(this).parent('div').remove(); //remove text box
+                    x--; //decrement textbox
+
+                    var i;
+                    var pages = $('.pageDiv').toArray();
+                    var counters = $('.pageDiv label').toArray();
+                    for (i = 0; i < pages.length; i++) {
+                        var currentNumber = counters[i].innerHTML;
+                        var htmlString = pages[i].innerHTML;
+                        var re = new RegExp(currentNumber, "g");
+                        var updatedHtml = htmlString.replace(re, i);
+                        pages[i].innerHTML = updatedHtml;
+                    };
+
+                    $("#AddMoreFileId").show();
+
+                    // Adds the "add" link again when a field is removed.
+                    $('AddMoreFileBox').html("Add field");
+                }
+                return false;
+            });
+    });
+    </script>
+</body>
+</html>
+

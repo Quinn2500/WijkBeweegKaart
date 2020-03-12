@@ -4,7 +4,10 @@ using System.Text;
 
 namespace DataModels
 {
-    public enum Type
+    public enum CategoryEnum
     {
+        Profiel,
+        Locatie,
+        Gezondheid
     }
 }

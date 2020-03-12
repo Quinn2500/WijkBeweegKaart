@@ -9,7 +9,7 @@ namespace DataModels
         public int Id { get; set; }
         public string Value { get; set; }
         public string Description { get; set; }
-        public Type Type { get; set; }
-        public Category Category { get; set; }
+        public TypeEnum Type { get; set; }
+        public CategoryEnum Category { get; set; }
     }
 }

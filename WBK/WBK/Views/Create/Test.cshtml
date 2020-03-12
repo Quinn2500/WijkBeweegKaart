@@ -1,0 +1,103 @@
+﻿
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WijkBeweegKaart</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+
+    <script src="/lib/jquery/dist/jquery.js"></script>
+    <link href="/lib/jqeury-ui/jquery-ui.css" rel="stylesheet" />
+    <script src="/lib/jqeury-ui/jquery-ui.min.js"></script>
+
+
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+
+
+</head>
+
+<body class="p-0">
+<div class="container">
+
+
+    <div class="row">
+
+        <div class="col">
+            <form action="/Create/Pages" method="post">
+                <h3>Pagina 0</h3>
+                <input id="PagesList_0__Title" name="PagesList[0].Title" type="text" value="" /><span class="field-validation-valid" data-valmsg-for="PagesList[0].Title" data-valmsg-replace="true"></span>
+                <input id="PagesList_0__Description" name="PagesList[0].Description" type="text" value="" /><span class="field-validation-valid" data-valmsg-for="PagesList[0].Description" data-valmsg-replace="true"></span>
+                <label for="PageCounter0" style="display: none;">0</label> 
+                
+                
+                <h3>Vraag 0</h3>
+                <input id="PagesList_0__Questions_0__Title" name="PagesList[0].Questions[0].Title" type="text" value="" /><span class="field-validation-valid" data-valmsg-for="PagesList[0].Questions[0].Title" data-valmsg-replace="true"></span><input id="PagesList_0__Questions_0__Description" name="PagesList[0].Questions[0].Description" type="text" value="" /><span class="field-validation-valid" data-valmsg-for="PagesList[0].Questions[0].Description" data-valmsg-replace="true"></span>
+                
+                <select data-val="true" data-val-required="The Type field is required." id="PagesList_0__Questions_0__Type" name="PagesList[0].Questions[0].Type">
+                    <option selected="selected" value="0">GeoVraag</option>
+                    <option value="1">MeerkeuzeVraag</option>
+                    <option value="2">OpenVraag</option>
+                    <option value="3">SliderVraag</option>
+                    <option value="4">NummerVraag</option>
+                </select><span class="field-validation-valid" data-valmsg-for="PagesList[0].Questions[0].Type" data-valmsg-replace="true"></span>
+                <select data-val="true" data-val-required="The Category field is required." id="PagesList_0__Questions_0__Category" name="PagesList[0].Questions[0].Category">
+                    <option selected="selected" value="0">Profiel</option>
+                    <option value="1">Locatie</option>
+                    <option value="2">Gezondheid</option>
+                </select><span class="field-validation-valid" data-valmsg-for="PagesList[0].Questions[0].Category" data-valmsg-replace="true"></span>                           
+                <div id="geo">
+                    <input id="PagesList_0__Questions_0__GeoType" name="PagesList[0].Questions[0].GeoType" type="text" value="" />
+                    <span class="field-validation-valid" data-valmsg-for="PagesList[0].Questions[0].GeoType" data-valmsg-replace="true"></span>
+                </div>
+                <div id="multipleChoice">
+                    <input id="PagesList_0__Questions_0__Options_0__Answer" name="PagesList[0].Questions[0].Options[0].Answer" type="text" value="" /><span class="field-validation-valid" data-valmsg-for="PagesList[0].Questions[0].Options[0].Answer" data-valmsg-replace="true"></span><input id="PagesList_0__Questions_0__Options_0__Description" name="PagesList[0].Questions[0].Options[0].Description" type="text" value="" /><span class="field-validation-valid" data-valmsg-for="PagesList[0].Questions[0].Options[0].Description" data-valmsg-replace="true"></span>
+                </div>
+                <div id="number">
+                    <input data-val="true" data-val-required="The MaxValue field is required." id="PagesList_0__Questions_0__MaxValue" name="PagesList[0].Questions[0].MaxValue" type="text" value="0" />
+                    <span class="field-validation-valid" data-valmsg-for="PagesList[0].Questions[0].MaxValue" data-valmsg-replace="true"></span>
+
+                    <input data-val="true" data-val-required="The MinValue field is required." id="PagesList_0__Questions_0__MinValue" name="PagesList[0].Questions[0].MinValue" type="text" value="0" />
+                    <span class="field-validation-valid" data-valmsg-for="PagesList[0].Questions[0].MinValue" data-valmsg-replace="true"></span>
+                </div>
+                <div id="slider">
+                    <input id="PagesList_0__Questions_0__SliderMaxVal" name="PagesList[0].Questions[0].SliderMaxVal" type="text" value="" />
+                    <span class="field-validation-valid" data-valmsg-for="PagesList[0].Questions[0].SliderMaxVal" data-valmsg-replace="true"></span>
+
+                    <input id="PagesList_0__Questions_0__SliderMinVal" name="PagesList[0].Questions[0].SliderMinVal" type="text" value="" />
+                    <span class="field-validation-valid" data-valmsg-for="PagesList[0].Questions[0].SliderMinVal" data-valmsg-replace="true"></span>
+
+                    <input data-val="true" data-val-required="The SliderScaleVal field is required." id="PagesList_0__Questions_0__SliderScaleVal" name="PagesList[0].Questions[0].SliderScaleVal" type="text" value="0" />
+                    <span class="field-validation-valid" data-valmsg-for="PagesList[0].Questions[0].SliderScaleVal" data-valmsg-replace="true"></span>
+                </div>
+                <label for="QuestionCounter0" style="display: none;">0</label>                    <input id="PagesList_1__Questions_1__Title" name="PagesList[1].Questions[1].Title" type="text" value="" />
+                <input type="submit" name="name" value="Maak Aan!" />
+                <input name="__RequestVerificationToken" type="hidden" value="CfDJ8LdKm73J585DmORSQpCEGeS4Qk3UPXcXgdYoylDJ2Vts8ta9DXa27siTsOeBMat78NgBl611YMsZllhtNeswZ-EFSpLpI8Vcp1hQr3WkckTPAPjaSMMV8gAYeYwgwVFMHLfg3eje7jVCoBmzLyqK51Q" />
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $( document ).ready(function() {
+        $("#slider").hide();
+        $("#geo").hide();
+        $("#number").hide();
+        $("#multipleChoice").hide();
+
+        $("#PagesList_0__Questions_0__Type").change(function () {
+            console.log(this.value);
+            console.log($('#PagesList_0__Questions_0__Type option:selected').val());
+        });
+    });
+    </script>
+</body>
+</html>
+
+1
