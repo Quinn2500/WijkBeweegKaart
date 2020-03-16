@@ -51,8 +51,11 @@
                     <option value="2">Gezondheid</option>
                 </select><span class="field-validation-valid" data-valmsg-for="PagesList[0].Questions[0].Category" data-valmsg-replace="true"></span>                           
                 <div id="geo">
-                    <input id="PagesList_0__Questions_0__GeoType" name="PagesList[0].Questions[0].GeoType" type="text" value="" />
-                    <span class="field-validation-valid" data-valmsg-for="PagesList[0].Questions[0].GeoType" data-valmsg-replace="true"></span>
+                    <select data-val="true" data-val-required="The GeoType field is required." id="PagesList_0__Questions_0__GeoType" name="PagesList[0].Questions[0].GeoType">
+                        <option selected="selected" value="0">Marker</option>
+                        <option value="1">Lijn</option>
+                        <option value="2">Vlak</option>
+                    </select>
                 </div>
                 <div id="multipleChoice">
                     <input id="PagesList_0__Questions_0__Options_0__Answer" name="PagesList[0].Questions[0].Options[0].Answer" type="text" value="" /><span class="field-validation-valid" data-valmsg-for="PagesList[0].Questions[0].Options[0].Answer" data-valmsg-replace="true"></span><input id="PagesList_0__Questions_0__Options_0__Description" name="PagesList[0].Questions[0].Options[0].Description" type="text" value="" /><span class="field-validation-valid" data-valmsg-for="PagesList[0].Questions[0].Options[0].Description" data-valmsg-replace="true"></span>

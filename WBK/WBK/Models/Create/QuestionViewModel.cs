@@ -15,9 +15,9 @@ namespace WBK.Models.Create
         public int MaxValue { get; set; }
         public int MinValue { get; set; }
         public int SliderScaleVal { get; set; }
-        public string SliderMinVal { get; set; }
-        public string SliderMaxVal { get; set; }
-        public string GeoType { get; set; }
+        public string SliderMinText { get; set; }
+        public string SliderMaxText { get; set; }
+        public GeoTypeEnum GeoType { get; set; }
         public List<MultipleChoiceOptionViewModel> Options { get; set; }
 
 
