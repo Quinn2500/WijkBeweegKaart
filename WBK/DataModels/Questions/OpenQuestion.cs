@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataModels.Questions
 {
-    class OpenQuestion
+    public class OpenQuestion : Question
     {
     }
 }

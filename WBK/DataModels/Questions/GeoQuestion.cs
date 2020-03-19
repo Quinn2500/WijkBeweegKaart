@@ -6,6 +6,6 @@ namespace DataModels.Questions
 {
     public class GeoQuestion : Question
     {
-        public string TypeOfMarker { get; set; }
+        public GeoTypeEnum TypeOfMarker { get; set; }
     }
 }

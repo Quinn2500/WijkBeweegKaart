@@ -19,6 +19,7 @@ namespace WBK.Models.Create
         public string SliderMaxText { get; set; }
         public GeoTypeEnum GeoType { get; set; }
         public List<MultipleChoiceOptionViewModel> Options { get; set; }
+        public bool AllowMultipleAnswers { get; set; }
 
 
     }

@@ -6,7 +6,7 @@ namespace DataModels.Questions
 {
     public class NumberQuestion : Question
     {
-        public double Minimum { get; set; }
-        public double Maximum { get; set; }
+        public int Minimum { get; set; }
+        public int Maximum { get; set; }
     }
 }

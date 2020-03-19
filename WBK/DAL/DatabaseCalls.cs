@@ -6,10 +6,10 @@ using MySql.Data.MySqlClient;
 
 namespace DAL
 {
-    class DatabaseCalls
+    public class DatabaseCalls
     {
 
-        private MySqlConnection _msConn = new MySqlConnection("Server=localhost; database=isocsdb; UID=root; password=; Sslmode=none;");
+        private readonly MySqlConnection _msConn = new MySqlConnection("Server=localhost; database=wbkdb; UID=root; password=; Sslmode=none;");
 
         private bool testConnection()
         {
