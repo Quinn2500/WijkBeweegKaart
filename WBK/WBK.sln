@@ -5,11 +5,13 @@ VisualStudioVersion = 15.0.28307.779
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WBK", "WBK\WBK.csproj", "{581E5669-A232-4F3F-BF57-2AB55A498459}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataModels", "DataModels\DataModels.csproj", "{AC219906-C3A3-43BE-A83E-F3D4DE1915F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataModels", "DataModels\DataModels.csproj", "{AC219906-C3A3-43BE-A83E-F3D4DE1915F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{4DC81F77-602B-4CC4-9422-4824864BE037}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{4DC81F77-602B-4CC4-9422-4824864BE037}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{457CFBE7-20EC-4614-ADA6-FCAD5C63398B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "Logic\Logic.csproj", "{457CFBE7-20EC-4614-ADA6-FCAD5C63398B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "UnitTestProject\UnitTestProject.csproj", "{36A44409-A6B7-4A01-8DB4-782334FEB4A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{457CFBE7-20EC-4614-ADA6-FCAD5C63398B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{457CFBE7-20EC-4614-ADA6-FCAD5C63398B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{457CFBE7-20EC-4614-ADA6-FCAD5C63398B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36A44409-A6B7-4A01-8DB4-782334FEB4A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36A44409-A6B7-4A01-8DB4-782334FEB4A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36A44409-A6B7-4A01-8DB4-782334FEB4A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36A44409-A6B7-4A01-8DB4-782334FEB4A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

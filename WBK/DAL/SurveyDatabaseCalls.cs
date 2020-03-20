@@ -5,6 +5,7 @@ using System.Text;
 using DataModels;
 using DataModels.Questions;
 using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
 
 namespace DAL
 {
@@ -21,7 +22,7 @@ namespace DAL
                 new MySqlParameter("@pDesc", survey.Description),
                 new MySqlParameter("@pDateCreation", survey.DateOfCreation),
                 new MySqlParameter("@pCreator", survey.Owner),
-                new MySqlParameter("@pStartLocation", survey.StartLocation),
+                new MySqlParameter("@pStartLocation", JsonConvert.SerializeObject(survey.StartLocation)),
                 new MySqlParameter("@pEnddate", survey.EndDate)
             };
 
@@ -123,7 +124,7 @@ namespace DAL
 
         public int? InsertQuestion(Question question, int? pageId)
         {
-            string query ="INSERT INTO `question`(`Question`, `Description`, `TypeId`, `PageId`, `CategoryId`) VALUES (@pQuestion,@pDesc,@pType,@pPageId,@pCategoryId)";
+            string query ="INSERT INTO `question`(`Question`, `Description`, `Type`, `PageId`, `Category`) VALUES (@pQuestion,@pDesc,@pType,@pPageId,@pCategoryId)";
             List<MySqlParameter> parameters= new List<MySqlParameter>
             {
                 new MySqlParameter("@pQuestion", question.Value),

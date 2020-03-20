@@ -9,7 +9,7 @@ namespace DAL
     public class DatabaseCalls
     {
 
-        private readonly MySqlConnection _msConn = new MySqlConnection("Server=localhost; database=wbkdb; UID=root; password=; Sslmode=none;");
+        private readonly MySqlConnection _msConn = new MySqlConnection("Server=localhost; database=wbkdb; UID=root; password=; Sslmode=none; port=3308");
 
         private bool testConnection()
         {

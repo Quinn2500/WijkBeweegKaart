@@ -13,40 +13,32 @@ namespace WBK.Controllers
 {
     public class CreateController : Controller
     {
-        private Survey surveyModel = new Survey();
         private readonly SurveyLogic _logic = new SurveyLogic();
+
         [HttpGet]
         public IActionResult Survey()
         {
             SurveyViewModel model = new SurveyViewModel();
+            model.PagesList = CreateEmptyPageModel();
             return View(model);
         }
 
         [HttpPost]
         public IActionResult Survey(SurveyViewModel model)
         {
-            surveyModel.Title = model.Title;
-            surveyModel.Description = model.Description;
-            surveyModel.Owner = "test@test.nl";
-            surveyModel.EndDate = model.EndDate;
+            Survey surveyModel = new Survey
+            {
+                Title = model.Title,
+                Description = model.Description,
+                Owner = "test@test.nl",
+                EndDate = model.EndDate
+            };
             double longitude = Convert.ToDouble(model.StartLocationLong.Replace('.', ','));
             double latitude = Convert.ToDouble(model.StartLocationLat.Replace('.', ','));
-            Location startLocation = new Location(latitude,longitude);
+            Location startLocation = new Location(latitude, longitude);
             surveyModel.StartLocation = startLocation;
             surveyModel.DateOfCreation = DateTime.Today;
-            return RedirectToAction("Pages");
-        }
 
-        [HttpGet]
-        public IActionResult Pages()
-        {
-            PagesViewModel model = CreateEmptyPageModel();
-            return View(model);
-        }
-
-        [HttpPost]
-        public IActionResult Pages(PagesViewModel model)
-        {
             List<Page> pages = new List<Page>();
             foreach (PageViewModel pageView in model.PagesList)
             {
@@ -55,7 +47,7 @@ namespace WBK.Controllers
                     Title = pageView.Title,
                     Description = pageView.Description,
                     Questions = new List<Question>()
-                    
+
                 };
 
                 foreach (QuestionViewModel questionView in pageView.Questions)
@@ -63,55 +55,65 @@ namespace WBK.Controllers
                     switch (questionView.Type)
                     {
                         case TypeEnum.GeoVraag:
-                            GeoQuestion geoQuestion = new GeoQuestion();
-                            geoQuestion.Value = questionView.Title;
-                            geoQuestion.Description = questionView.Description;
-                            geoQuestion.Category = questionView.Category;
-                            geoQuestion.Type = questionView.Type;
-                            geoQuestion.TypeOfMarker = questionView.GeoType;
+                            GeoQuestion geoQuestion = new GeoQuestion
+                            {
+                                Value = questionView.Title,
+                                Description = questionView.Description,
+                                Category = questionView.Category,
+                                Type = questionView.Type,
+                                TypeOfMarker = questionView.GeoType
+                            };
                             page.Questions.Add(geoQuestion);
                             break;
 
                         case TypeEnum.OpenVraag:
-                            OpenQuestion openQuestion = new OpenQuestion();
-                            openQuestion.Value = questionView.Title;
-                            openQuestion.Description = questionView.Description;
-                            openQuestion.Category = questionView.Category;
-                            openQuestion.Type = questionView.Type;
+                            OpenQuestion openQuestion = new OpenQuestion
+                            {
+                                Value = questionView.Title,
+                                Description = questionView.Description,
+                                Category = questionView.Category,
+                                Type = questionView.Type
+                            };
                             page.Questions.Add(openQuestion);
                             break;
 
                         case TypeEnum.NummerVraag:
-                            NumberQuestion numberQuestion = new NumberQuestion();
-                            numberQuestion.Value = questionView.Title;
-                            numberQuestion.Description = questionView.Description;
-                            numberQuestion.Category = questionView.Category;
-                            numberQuestion.Type = questionView.Type;
-                            numberQuestion.Maximum = questionView.MaxValue;
-                            numberQuestion.Minimum = questionView.MinValue;
+                            NumberQuestion numberQuestion = new NumberQuestion
+                            {
+                                Value = questionView.Title,
+                                Description = questionView.Description,
+                                Category = questionView.Category,
+                                Type = questionView.Type,
+                                Maximum = questionView.MaxValue,
+                                Minimum = questionView.MinValue
+                            };
                             page.Questions.Add(numberQuestion);
                             break;
 
                         case TypeEnum.SliderVraag:
-                            SliderQuestion sliderQuestion = new SliderQuestion();
-                            sliderQuestion.Value = questionView.Title;
-                            sliderQuestion.Description = questionView.Description;
-                            sliderQuestion.Category = questionView.Category;
-                            sliderQuestion.Type = questionView.Type;
-                            sliderQuestion.MaxValueText = questionView.SliderMaxText;
-                            sliderQuestion.MinValueText = questionView.SliderMinText;
-                            sliderQuestion.Scale = questionView.SliderScaleVal;
+                            SliderQuestion sliderQuestion = new SliderQuestion
+                            {
+                                Value = questionView.Title,
+                                Description = questionView.Description,
+                                Category = questionView.Category,
+                                Type = questionView.Type,
+                                MaxValueText = questionView.SliderMaxText,
+                                MinValueText = questionView.SliderMinText,
+                                Scale = questionView.SliderScaleVal
+                            };
                             page.Questions.Add(sliderQuestion);
                             break;
 
                         case TypeEnum.MeerkeuzeVraag:
-                            MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion();
-                            multipleChoiceQuestion.Value = questionView.Title;
-                            multipleChoiceQuestion.Description = questionView.Description;
-                            multipleChoiceQuestion.Category = questionView.Category;
-                            multipleChoiceQuestion.Type = questionView.Type;
-                            multipleChoiceQuestion.AllowMutlipleAnwsers = questionView.AllowMultipleAnswers;
-                            multipleChoiceQuestion.Options = new List<MultipleChoiceOption>();
+                            MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion
+                            {
+                                Value = questionView.Title,
+                                Description = questionView.Description,
+                                Category = questionView.Category,
+                                Type = questionView.Type,
+                                AllowMutlipleAnwsers = questionView.AllowMultipleAnswers,
+                                Options = new List<MultipleChoiceOption>()
+                            };
                             foreach (MultipleChoiceOptionViewModel optionView in questionView.Options)
                             {
                                 MultipleChoiceOption option = new MultipleChoiceOption
@@ -131,17 +133,18 @@ namespace WBK.Controllers
 
             surveyModel.Pages = pages;
             _logic.InsertSurvey(surveyModel);
+
             return View();
         }
 
-        private PagesViewModel CreateEmptyPageModel()
+        private List<PageViewModel> CreateEmptyPageModel()
         {
-            PagesViewModel model = new PagesViewModel { PagesList = new List<PageViewModel>() };
-            model.PagesList.Add(new PageViewModel());
-            model.PagesList[0].Questions = new List<QuestionViewModel>();
-            model.PagesList[0].Questions.Add(new QuestionViewModel());
-            model.PagesList[0].Questions[0].Options = new List<MultipleChoiceOptionViewModel>();
-            model.PagesList[0].Questions[0].Options.Add(new MultipleChoiceOptionViewModel());
+            List<PageViewModel> model = new List<PageViewModel>();
+            model.Add(new PageViewModel());
+            model[0].Questions = new List<QuestionViewModel>();
+            model[0].Questions.Add(new QuestionViewModel());
+            model[0].Questions[0].Options = new List<MultipleChoiceOptionViewModel>();
+            model[0].Questions[0].Options.Add(new MultipleChoiceOptionViewModel());
             return model;
         }
     }

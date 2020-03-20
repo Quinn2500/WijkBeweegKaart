@@ -13,5 +13,6 @@ namespace WBK.Models.Create
         public string StartLocationLat { get; set; }
         public string StartLocationLong { get; set; }
         public DateTime EndDate { get; set; }
+        public List<PageViewModel> PagesList { get; set; }
     }
 }
