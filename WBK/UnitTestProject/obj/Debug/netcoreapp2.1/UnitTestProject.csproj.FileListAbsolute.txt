@@ -1,0 +1,14 @@
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\UnitTestProject\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\UnitTestProject\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\UnitTestProject\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\UnitTestProject\bin\Debug\netcoreapp2.1\UnitTestProject.deps.json
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\UnitTestProject\bin\Debug\netcoreapp2.1\UnitTestProject.runtimeconfig.json
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\UnitTestProject\bin\Debug\netcoreapp2.1\UnitTestProject.runtimeconfig.dev.json
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\UnitTestProject\bin\Debug\netcoreapp2.1\UnitTestProject.dll
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\UnitTestProject\bin\Debug\netcoreapp2.1\UnitTestProject.pdb
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\UnitTestProject\obj\Debug\netcoreapp2.1\UnitTestProject.csprojAssemblyReference.cache
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\UnitTestProject\obj\Debug\netcoreapp2.1\UnitTestProject.csproj.CoreCompileInputs.cache
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\UnitTestProject\obj\Debug\netcoreapp2.1\UnitTestProject.AssemblyInfoInputs.cache
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\UnitTestProject\obj\Debug\netcoreapp2.1\UnitTestProject.AssemblyInfo.cs
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\UnitTestProject\obj\Debug\netcoreapp2.1\UnitTestProject.dll
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\UnitTestProject\obj\Debug\netcoreapp2.1\UnitTestProject.pdb

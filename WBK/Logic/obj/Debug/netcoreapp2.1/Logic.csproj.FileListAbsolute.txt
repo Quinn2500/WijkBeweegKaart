@@ -1,0 +1,16 @@
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\Logic\bin\Debug\netcoreapp2.1\Logic.deps.json
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\Logic\bin\Debug\netcoreapp2.1\Logic.dll
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\Logic\bin\Debug\netcoreapp2.1\Logic.pdb
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\Logic\obj\Debug\netcoreapp2.1\Logic.csprojAssemblyReference.cache
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\Logic\obj\Debug\netcoreapp2.1\Logic.AssemblyInfoInputs.cache
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\Logic\obj\Debug\netcoreapp2.1\Logic.AssemblyInfo.cs
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\Logic\obj\Debug\netcoreapp2.1\Logic.dll
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\Logic\obj\Debug\netcoreapp2.1\Logic.pdb
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\Logic\bin\Debug\netcoreapp2.1\DAL.dll
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\Logic\bin\Debug\netcoreapp2.1\DataModels.dll
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\Logic\bin\Debug\netcoreapp2.1\DAL.pdb
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\Logic\bin\Debug\netcoreapp2.1\DataModels.pdb
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\Logic\obj\Debug\netcoreapp2.1\Logic.csproj.CoreCompileInputs.cache
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\Logic\obj\Debug\netcoreapp2.1\Logic.csproj.CopyComplete
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\Logic\bin\Debug\netcoreapp2.1\Newtonsoft.Json.dll
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\Logic\bin\Debug\netcoreapp2.1\Newtonsoft.Json.xml

@@ -1,0 +1,14 @@
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\DAL\bin\Debug\netcoreapp2.1\DAL.deps.json
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\DAL\bin\Debug\netcoreapp2.1\DAL.dll
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\DAL\bin\Debug\netcoreapp2.1\DAL.pdb
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\DAL\obj\Debug\netcoreapp2.1\DAL.csprojAssemblyReference.cache
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\DAL\obj\Debug\netcoreapp2.1\DAL.AssemblyInfoInputs.cache
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\DAL\obj\Debug\netcoreapp2.1\DAL.AssemblyInfo.cs
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\DAL\obj\Debug\netcoreapp2.1\DAL.dll
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\DAL\obj\Debug\netcoreapp2.1\DAL.pdb
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\DAL\bin\Debug\netcoreapp2.1\DataModels.dll
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\DAL\bin\Debug\netcoreapp2.1\DataModels.pdb
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\DAL\obj\Debug\netcoreapp2.1\DAL.csproj.CoreCompileInputs.cache
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\DAL\obj\Debug\netcoreapp2.1\DAL.csproj.CopyComplete
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\DAL\bin\Debug\netcoreapp2.1\Newtonsoft.Json.dll
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\DAL\bin\Debug\netcoreapp2.1\Newtonsoft.Json.xml
