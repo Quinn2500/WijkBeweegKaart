@@ -22,28 +22,38 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+
 </head>
 
 <body class="p-0">
-    <nav class="navbar navbar-light" style="background-color: #F9A11B;">
-        <a class="navbar-brand" href="#">
-            <img src="~/images/WijkBeweegKaart Logo.png" alt="WijkBeweegKaart" style="height: 80px; width: 360px;"/>
-        </a>
+<nav class="navbar navbar-light" style="background-color: #F9A11B;">
+    <a class="navbar-brand" href="#">
+        <img src="~/images/WijkBeweegKaart Logo.png" alt="WijkBeweegKaart" style="height: 80px; width: 360px;"/>
+    </a>
         
-        <a class="btn btn-danger" asp-area="" asp-controller="Create" asp-action="Survey">Test</a>
-    </nav>
-    <div id="mapid" style="height: 908px; width: 1919px;">
-        <div style="height: 400px; width: 400px; background-color: red;"></div>
+    <a class="btn btn-danger" asp-area="" asp-controller="Create" asp-action="Survey">Test</a>
+</nav>
+
+<div class="container-fluid">
+    <div class="mapbox">
+        <div class="row" id="mapid">
+            <img src="//placehold.it/600x400">
+        </div>
+        <div class="row" style="position: absolute">
+
+        </div>
     </div>
+</div>
 
 
-    <script>
-        var mymap = L.map('mapid').setView([51.47358, 5.453167], 4);
-        var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(mymap);
-    </script>
+<script>
+    var mymap = L.map('mapid').setView([51.47358, 5.453167], 4);
+    var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(mymap);
+</script>
 </body>
 </html>
+
 
