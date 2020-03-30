@@ -2,6 +2,9 @@
     Layout = "";
 }
 
+@using DataModels
+@using DataModels.Questions
+@using WBK.Models.Create
 @model WBK.Models.Create.SurveyViewModel
 
 <!DOCTYPE html>
@@ -80,10 +83,10 @@
                     {
                         <div class="pageDiv">
                             <h3>Pagina @i</h3>
-                            @Html.TextBoxFor(x => x.PagesList[i].Title)
+                            @Html.TextBoxFor(x => x.PagesList[i].Title, new {placeholder = "Pagina " + i + " Titel"})
                             @Html.ValidationMessageFor(x => x.PagesList[i].Title)
 
-                            @Html.TextBoxFor(x => x.PagesList[i].Description)
+                            @Html.TextBoxFor(x => x.PagesList[i].Description, new { placeholder = "Pagina " + i + " Beschrijving" })
                             @Html.ValidationMessageFor(x => x.PagesList[i].Description)
 
                             @Html.Label("PageCounter", i.ToString(), new {style = "display: none;"})
@@ -99,11 +102,39 @@
 
                                         @Html.TextBoxFor(x => x.PagesList[i].Questions[j].Description)
 
-                                        @Html.DropDownListFor(x => x.PagesList[i].Questions[j].Type, Html.GetEnumSelectList(Model.PagesList[0].Questions[0].Type.GetType()))
+                                        @Html.DropDownListFor(x => x.PagesList[i].Questions[j].Type, Html.GetEnumSelectList(Model.PagesList[i].Questions[j].Type.GetType()))
 
-                                        @Html.DropDownListFor(x => x.PagesList[i].Questions[j].Category, Html.GetEnumSelectList(Model.PagesList[0].Questions[0].Category.GetType()))
+                                        @Html.DropDownListFor(x => x.PagesList[i].Questions[j].Category, Html.GetEnumSelectList(Model.PagesList[i].Questions[j].Category.GetType()))
 
                                         @Html.Label("QuestionCounter", j.ToString(), new {style = "display: none;"})
+
+                                        
+                                        @switch(Model.PagesList[i].Questions[j].Type)
+                                        {
+                                            case TypeEnum.GeoVraag:
+                                                @Html.DropDownListFor(x => x.PagesList[i].Questions[j].GeoType, Html.GetEnumSelectList(Model.PagesList[i].Questions[j].GeoType.GetType()))
+                                                break;
+                                            case TypeEnum.SliderVraag:
+                                                @Html.TextBoxFor(x => x.PagesList[i].Questions[j].SliderMinText);
+                                                @Html.TextBoxFor(x => x.PagesList[i].Questions[j].SliderMaxText);
+                                                @Html.EditorFor(x => x.PagesList[i].Questions[j].SliderScaleVal);
+                                                break;
+                                            case TypeEnum.NummerVraag:
+                                                @Html.EditorFor(x => x.PagesList[i].Questions[j].MinValue);
+                                                @Html.EditorFor(x => x.PagesList[i].Questions[j].MaxValue);
+                                                break;
+                                            case TypeEnum.MeerkeuzeVraag:
+                                                @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].AllowMultipleAnswers);
+
+                                                for (int q = 0; q < Model.PagesList[i].Questions[j].Options.Count; q++)
+                                                {
+                                                    <label>Antwoord:</label> 
+                                                    <input id="PagesList_@i+__Questions_@j+__Options_@q+__Answer" name="PagesList[@i+].Questions[@j+].Options[@q+].Answer" type="text" value="@Model.PagesList[i].Questions[j].Options[q].Answer" />
+                                                    <label>Eventuele beschrijving:</label> 
+                                                    <input id="PagesList_@i+__Questions_@j+__Options_@q+__Description" name="PagesList[@i+].Questions[@j+].Options[@q+].Description" type="text" value="@Model.PagesList[i].Questions[j].Options[q].Description" />
+                                                }
+                                                break;
+                                        }
 
                                         <a href="" class="removeQuestionClass btn btn-danger">Vraag verwijderen</a>
                                     </div>
@@ -139,10 +170,11 @@
 
 <script type="text/javascript">
     var mymap = L.map('mapid').setView([51.47358, 5.453167], 13);
-    var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        {
-            maxZoom: 19,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                                        var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                            {
+
+                                                maxZoom: 19,
+                                                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(mymap);
 
     var marker = L.marker();
@@ -308,11 +340,7 @@
                     '<h3>Pagina ' +
                     currentPageCount +
                     '</h3>' +
-                    '<input id="PagesList_' +
-                    currentPageCount +
-                    '__Title" name="PagesList[' +
-                    currentPageCount +
-                    '].Title" type="text" value="" /><span class="field-validation-valid" data-valmsg-for="PagesList[' +
+                    '<input id="PagesList_' +currentPageCount +'__Title" name="PagesList[' +currentPageCount +'].Title" type="text" value="" /><span class="field-validation-valid" data-valmsg-for="PagesList[' +
                     currentPageCount +
                     '].Title" data-valmsg-replace="true"></span>' +
                     '<input id="PagesList_' +
@@ -488,22 +516,14 @@
 
             var pageNumber = $(this).parent().parent().parent().parent().parent().children("label")[0].innerHTML;
             var questionWrapper = $(this).parent().parent().parent().parent().parent().children(".QuestionWrapper");
-            var currentQuestionCount = $(questionWrapper).children(".questionDiv").length;
+            var currentQuestionCount = $(questionWrapper).children(".questionDiv").length - 1;
 
             console.log(wrapper);
             console.log(currentQuestionCount);
 
             $(wrapper).append(
                 '<div class="MCOption">' +
-                '<label>Antwoord:</label> <input id="PagesList_' +
-                pageNumber +
-                '__Questions_' +
-                currentQuestionCount +
-                '__Options_' +
-                numberOfOptions +
-                '__Answer" name="PagesList[' +
-                pageNumber +
-                '].Questions[' +
+                '<label>Antwoord:</label> <input id="PagesList_' +pageNumber + '__Questions_' + currentQuestionCount +'__Options_' +numberOfOptions +'__Answer" name="PagesList[' + pageNumber +'].Questions[' +
                 currentQuestionCount +
                 '].Options[' +
                 numberOfOptions +

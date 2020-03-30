@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DataModels;
 using DAL;
 
@@ -10,6 +11,34 @@ namespace Logic
         public void InsertSurvey(Survey survey)
         {
             _dataBaseCalls.InsertSurvey(survey);
+        }
+
+        public Survey GetSurvey(int surveyId)
+        {
+            return _dataBaseCalls.GetSurvey(surveyId);
+        }
+
+        public Survey GetSurvey(string surveyTitle)
+        {
+            int? id = _dataBaseCalls.GetSurveyId(surveyTitle);
+            if (id != null)
+            {
+                return _dataBaseCalls.GetSurvey((int)id);
+            }
+            else
+            {
+                return new Survey();
+            }
+        }
+
+        public List<SurveyOverview> SurveyOverviewDataOfUser(string userEmail)
+        {
+            return _dataBaseCalls.SurveyOverviewDataOfUser(userEmail);
+        }
+
+        public void DeleteSurvey(string email, string title)
+        {
+            _dataBaseCalls.DeleteSurvey(email, title);
         }
     }
 }

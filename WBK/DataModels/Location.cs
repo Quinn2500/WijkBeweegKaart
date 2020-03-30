@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace DataModels
 {
@@ -11,7 +12,11 @@ namespace DataModels
             Latitude = latitude;
             Longitude = longitude;
         }
+
+        [JsonProperty("latitude")]
         public double Latitude { get; set; }
+
+        [JsonProperty("longitude")]
         public double Longitude { get; set; }
     }
 }

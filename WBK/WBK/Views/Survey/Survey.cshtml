@@ -1,0 +1,173 @@
+﻿@{
+    Layout = "";
+}
+
+@using DataModels
+@using DataModels.Questions
+@using WBK.Models.Create
+@model WBK.Models.Create.SurveyViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WijkBeweegKaart</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <link href="~/lib/jqeury-ui/jquery-ui.css" rel="stylesheet" />
+    <script src="~/lib/jqeury-ui/jquery-ui.min.js"></script>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+
+<body class="p-0" style="overflow: hidden;">
+    <nav class="navbar navbar-light" style="background-color: #F9A11B;">
+        <a class="navbar-brand" href="#">
+            <img src="~/images/WijkBeweegKaart Logo.png" alt="WijkBeweegKaart" style="height: 80px; width: 360px;" />
+        </a>
+    </nav>
+
+    <div class="container-fluid p-0">
+        <div class="wrapper" style="position: relative;">
+            <div id="mapid" style="z-index: 0; width: 2000px; height:1000px">
+            </div>
+            <div class="surveyWrapper" style="position: absolute; top: 50px; left: 50px; height: 700px; width: 500px; background-color: white; border: gray; border-width: 4px; overflow: auto;">
+                <div id="introDiv">
+                    <h1>@Model.Title</h1>
+                    <p>@Model.Description<p>
+                </div>
+                @for (int i = 0; i < Model.PagesList.Count; i++)
+                {
+                    PageViewModel pageView = Model.PagesList[i];
+                    <div class="pageDiv" style="display: none;">
+                        <div class="pageText">
+                            <h2>@pageView.Title</h2>
+                            <p>@pageView.Description</p>
+                        </div>
+
+                        <div class="questionDiv">
+                            @for (int j = 0; j < pageView.Questions.Count; j++)
+                            {
+                                QuestionViewModel questionView = pageView.Questions[j];
+                                <h3>@questionView.Title</h3>
+                                <p>@questionView.Description</p>
+                                <p>@questionView.Type</p>
+                                switch (questionView.Type)
+                                {
+                                    case TypeEnum.OpenVraag:
+                                        @Html.TextBoxFor(x => x.PagesList[i].Questions[j].TextAnswer)
+                                        break;
+                                    case TypeEnum.SliderVraag:
+                                        <label>@Model.PagesList[i].Questions[j].SliderMinText</label>
+                                        @Html.TextBoxFor(x => x.PagesList[i].Questions[j].NumberAnswer, new { @type = "range", min = 0, max = Model.PagesList[i].Questions[j].SliderScaleVal })
+                                        <label>@Model.PagesList[i].Questions[j].SliderMaxText</label>
+                                        break;
+                                    case TypeEnum.NummerVraag:
+                                        @Html.TextBoxFor(x => x.PagesList[i].Questions[j].NumberAnswer, new { type = "number", min = Model.PagesList[i].Questions[j].MinValue, max = Model.PagesList[i].Questions[j].MaxValue })
+                                        break;
+                                    case TypeEnum.MeerkeuzeVraag:
+                                        if (Model.PagesList[i].Questions[j].AllowMultipleAnswers)
+                                        {
+                                            for (int q = 0; q < Model.PagesList[i].Questions[j].Options.Count; q++)
+                                            {
+                                                @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].Options[q].Selected)
+                                                <label>@Model.PagesList[i].Questions[j].Options[q].Answer</label>
+                                                <p>@Model.PagesList[i].Questions[j].Options[q].Description</p>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <div class="oneChecboxDiv">
+                                                @for (int q = 0; q < Model.PagesList[i].Questions[j].Options.Count; q++)
+                                                {
+                                                    @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].Options[q].Selected)
+                                                    <label>@Model.PagesList[i].Questions[j].Options[q].Answer</label>
+                                                    <p>@Model.PagesList[i].Questions[j].Options[q].Description</p>
+                                                }
+                                            </div>
+                                        }
+                                        break;
+                                    case TypeEnum.GeoVraag:
+                                        @Html.TextBoxFor(x => x.PagesList[i].Questions[j].GeoCodeAnswer, new { style = "display: none;" })
+                                            switch (Model.PagesList[i].Questions[j].GeoType)
+                                            {
+                                                case GeoTypeEnum.Marker:
+                                                    break;
+                                            }
+                                            break;
+                                    }
+                                }
+                        </div>
+                    </div>
+                }
+                <button id="previousPageButton">Vorige Pagina</button>
+                <button id="nextPageButton">Volgende Pagina</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var mymap = L.map('mapid').setView([51.47358, 5.453167], 4);
+                            var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    
+
+        }).addTo(mymap);
+
+        $(document).ready(function () {
+                            });
+
+                            var pageNumber = 0;
+
+        $("#nextPageButton").click(function (e) {
+                                var pageDivs = $(this).parent().children("div");
+                                var maxNumber = pageDivs.length;
+                                if (pageNumber + 1 < maxNumber) {
+                                    pageNumber++;
+                                }
+                                for (var i = 0; i < maxNumber; i++) {
+                                    if (i == pageNumber) {
+                    $(pageDivs[i]).fadeIn();
+                                    } else {
+                    $(pageDivs[i]).hide();
+                                    }
+                                }
+                            });
+
+        $("#previousPageButton").click(function (e) {
+                                var pageDivs = $(this).parent().children("div");
+                                var maxNumber = pageDivs.length;
+                                if (pageNumber > 0) {
+                                    pageNumber--;
+                                }
+                                for (var i = 0; i < maxNumber; i++) {
+                                    if (i == pageNumber) {
+                    $(pageDivs[i]).fadeIn();
+                                    } else {
+                    $(pageDivs[i]).hide();
+                                    }
+                                }
+
+                            });
+
+        $(".oneChecboxDiv input:checkbox").change(function () {
+            $(".oneChecboxDiv input:checkbox").attr("checked", false);
+            $(this).attr("checked", true);
+                            });
+    </script>
+</body>
+</html>

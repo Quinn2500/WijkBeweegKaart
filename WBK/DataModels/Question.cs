@@ -11,5 +11,6 @@ namespace DataModels
         public string Description { get; set; }
         public TypeEnum Type { get; set; }
         public CategoryEnum Category { get; set; }
+        public Answer Answer { get; set; }
     }
 }
