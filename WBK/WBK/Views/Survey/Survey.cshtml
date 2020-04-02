@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
+
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <link href="~/lib/jqeury-ui/jquery-ui.css" rel="stylesheet" />
     <script src="~/lib/jqeury-ui/jquery-ui.min.js"></script>
@@ -42,9 +45,9 @@
 
     <div class="container-fluid p-0">
         <div class="wrapper" style="position: relative;">
-            <div id="mapid" style="z-index: 0; width: 2000px; height:1000px">
+            <div id="map" style="z-index: 0; width: 100%; height:1000px">
             </div>
-            <div class="surveyWrapper" style="position: absolute; top: 50px; left: 50px; height: 700px; width: 500px; background-color: white; border: gray; border-width: 4px; overflow: auto;">
+            <div class="surveyWrapper" style="position: absolute; top: 50px; left: 50px; height: 700px; width: 500px; background-color: white; border: gray; border-style: solid; border-width: 4px; overflow: auto;">
                 <div id="introDiv">
                     <h1>@Model.Title</h1>
                     <p>@Model.Description<p>
@@ -101,15 +104,21 @@
                                         }
                                         break;
                                     case TypeEnum.GeoVraag:
-                                        @Html.TextBoxFor(x => x.PagesList[i].Questions[j].GeoCodeAnswer, new { style = "display: none;" })
-                                            switch (Model.PagesList[i].Questions[j].GeoType)
+                                        <div id="@j" class="geoDraw">
+                                            @Html.TextBoxFor(x => x.PagesList[i].Questions[j].GeoCodeAnswer, new { style = "display: none;" })
+                                            @switch (Model.PagesList[i].Questions[j].GeoType)
                                             {
                                                 case GeoTypeEnum.Marker:
+                                                    <div class="marker">
+                                                        
+                                                    </div>
                                                     break;
                                             }
-                                            break;
+
+                                        </div>
+                                        break;
                                     }
-                                }
+                            }
                         </div>
                     </div>
                 }
@@ -120,54 +129,147 @@
     </div>
 
     <script>
-        var mymap = L.map('mapid').setView([51.47358, 5.453167], 4);
-                            var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                                maxZoom: 19,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    
+        var center = [51.47358, 5.453167];
 
-        }).addTo(mymap);
+        var map = L.map('map').setView(center, 13);
+
+        L.tileLayer(
+            'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: 'Data © <a href="http://osm.org/copyright">OpenStreetMap</a>',
+                maxZoom: 18
+            }).addTo(map);
+
+        var editableLayers = new L.FeatureGroup();
+        map.addLayer(editableLayers);
+
+        var drawPluginOptions = {
+            position: 'topright',
+            draw: {
+                polygon: {
+                    allowIntersection: false,
+                    drawError: {
+                        color: '#e1e100',
+                        message: '<strong>Oh snap!<strong> you can\'t draw that!'
+                    },
+                    shapeOptions: {
+                        color: '#97009c'
+                    }
+                },
+                polyline: true,
+                circle: false,
+                rectangle: false,
+                marker: true
+            },
+            edit: {
+                featureGroup: editableLayers,
+                remove: false
+            }
+        };
+
+        var drawControl = new L.Control.Draw(drawPluginOptions);
+        map.addControl(drawControl);
+
+        var editableLayers = new L.FeatureGroup();
+        map.addLayer(editableLayers);
+
+        var questionId;
+        var geoAnswer;
+
+        map.on('draw:created', function (e) {
+            var type = e.layerType,
+                layer = e.layer;
+
+            switch (type) {
+                case "marker":
+                    geoAnswer = layer.getLatLng();
+                    break;
+                case "polyline":
+                    geoAnswer = layer.getLatLngs();
+                    break;
+                case "polygon":
+                    geoAnswer = layer.getLatLngs();
+                    break;
+            }
+
+            editableLayers.addLayer(layer);
+            console.log(questionId);
+            $('#' + questionId).children()[0].value = geoAnswer;
+            console.log($('#' + questionId).children()[0].value);
+            $('#' + questionId).hide();
+        });
+
+        var htmlObject = drawControl.getContainer();
+        var allGeoDivs = document.getElementsByClassName("geoDraw");
+        function setParent(el, newParent)
+        {
+            newParent.appendChild(el);
+        }
+
+        for (var i = 0; i < allGeoDivs.length; i++) {
+            var containerDiv = $(allGeoDivs[i]).children()[1];
+            var buttons = $(htmlObject).children()[0].children[0].children;
+            switch ($(containerDiv).attr('class')) {
+            case "marker":
+                    $(buttons[0]).hide();
+                    $(buttons[1]).hide();
+                break;
+            case "line":
+                    $(buttons[1]).hide();
+                    $(buttons[2]).hide();
+                break;
+            case "polygon":
+                    $(buttons[0]).hide();
+                    $(buttons[2]).hide();
+                break;
+            }
+            setParent(htmlObject, containerDiv);
+        }
 
         $(document).ready(function () {
-                            });
+            $(".leaflet-draw-edit-edit.leaflet-disabled").hide();
+        });
 
-                            var pageNumber = 0;
+        $(".leaflet-draw-draw-marker").click(function (e) {
+            questionId = $(this).parent().parent().parent().parent().parent()[0].id;
+        });
+
+        var pageNumber = 0;
 
         $("#nextPageButton").click(function (e) {
-                                var pageDivs = $(this).parent().children("div");
-                                var maxNumber = pageDivs.length;
-                                if (pageNumber + 1 < maxNumber) {
-                                    pageNumber++;
-                                }
-                                for (var i = 0; i < maxNumber; i++) {
-                                    if (i == pageNumber) {
+            var pageDivs = $(this).parent().children("div");
+            var maxNumber = pageDivs.length;
+            if (pageNumber + 1 < maxNumber) {
+                pageNumber++;
+            }
+            for (var i = 0; i < maxNumber; i++) {
+                if (i == pageNumber) {
                     $(pageDivs[i]).fadeIn();
-                                    } else {
+                } else {
                     $(pageDivs[i]).hide();
-                                    }
-                                }
-                            });
+                }
+            }
+        });
 
         $("#previousPageButton").click(function (e) {
-                                var pageDivs = $(this).parent().children("div");
-                                var maxNumber = pageDivs.length;
-                                if (pageNumber > 0) {
-                                    pageNumber--;
-                                }
-                                for (var i = 0; i < maxNumber; i++) {
-                                    if (i == pageNumber) {
+            var pageDivs = $(this).parent().children("div");
+            var maxNumber = pageDivs.length;
+            if (pageNumber > 0) {
+                pageNumber--;
+            }
+            for (var i = 0; i < maxNumber; i++) {
+                if (i == pageNumber) {
                     $(pageDivs[i]).fadeIn();
-                                    } else {
+                } else {
                     $(pageDivs[i]).hide();
-                                    }
-                                }
+                }
+            }
 
-                            });
+        });
 
         $(".oneChecboxDiv input:checkbox").change(function () {
             $(".oneChecboxDiv input:checkbox").attr("checked", false);
             $(this).attr("checked", true);
-                            });
+        });
     </script>
 </body>
 </html>
