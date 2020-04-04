@@ -5,7 +5,7 @@ using DataModels.Questions;
 
 namespace DataModels.Answers
 {
-    class MultipleChoiceAnswer : Answer
+    public class MultipleChoiceAnswer : Answer
     {
         public List<MultipleChoiceOption> AnsweredOptions { get; set; }
     }

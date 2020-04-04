@@ -95,49 +95,51 @@
 
                                 @for (var j = 0; j < Model.PagesList[i].Questions.Count(); j++)
                                 {
-                                    <div class="questionDiv">
-                                        <h3>Vraag @j</h3>
+                                <div class="questionDiv">
+                                    <h3>Vraag @j</h3>
 
-                                        @Html.TextBoxFor(x => x.PagesList[i].Questions[j].Title)
+                                    @Html.TextBoxFor(x => x.PagesList[i].Questions[j].Title, new { placeholder = "Vraag " + j + " Titel" })
 
-                                        @Html.TextBoxFor(x => x.PagesList[i].Questions[j].Description)
+                                    @Html.TextBoxFor(x => x.PagesList[i].Questions[j].Description, new { placeholder = "Vraag " + j + " Beschrijving" })
 
-                                        @Html.DropDownListFor(x => x.PagesList[i].Questions[j].Type, Html.GetEnumSelectList(Model.PagesList[i].Questions[j].Type.GetType()))
+                                    @Html.DropDownListFor(x => x.PagesList[i].Questions[j].Type, Html.GetEnumSelectList(Model.PagesList[i].Questions[j].Type.GetType()))
 
-                                        @Html.DropDownListFor(x => x.PagesList[i].Questions[j].Category, Html.GetEnumSelectList(Model.PagesList[i].Questions[j].Category.GetType()))
+                                    @Html.DropDownListFor(x => x.PagesList[i].Questions[j].Category, Html.GetEnumSelectList(Model.PagesList[i].Questions[j].Category.GetType()))
 
-                                        @Html.Label("QuestionCounter", j.ToString(), new {style = "display: none;"})
+                                    @Html.Label("QuestionCounter", j.ToString(), new { style = "display: none;" })
 
-                                        
-                                        @switch(Model.PagesList[i].Questions[j].Type)
-                                        {
-                                            case TypeEnum.GeoVraag:
-                                                @Html.DropDownListFor(x => x.PagesList[i].Questions[j].GeoType, Html.GetEnumSelectList(Model.PagesList[i].Questions[j].GeoType.GetType()))
-                                                break;
-                                            case TypeEnum.SliderVraag:
-                                                @Html.TextBoxFor(x => x.PagesList[i].Questions[j].SliderMinText);
-                                                @Html.TextBoxFor(x => x.PagesList[i].Questions[j].SliderMaxText);
-                                                @Html.EditorFor(x => x.PagesList[i].Questions[j].SliderScaleVal);
-                                                break;
-                                            case TypeEnum.NummerVraag:
-                                                @Html.EditorFor(x => x.PagesList[i].Questions[j].MinValue);
-                                                @Html.EditorFor(x => x.PagesList[i].Questions[j].MaxValue);
-                                                break;
-                                            case TypeEnum.MeerkeuzeVraag:
-                                                @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].AllowMultipleAnswers);
 
-                                                for (int q = 0; q < Model.PagesList[i].Questions[j].Options.Count; q++)
-                                                {
-                                                    <label>Antwoord:</label> 
-                                                    <input id="PagesList_@i+__Questions_@j+__Options_@q+__Answer" name="PagesList[@i+].Questions[@j+].Options[@q+].Answer" type="text" value="@Model.PagesList[i].Questions[j].Options[q].Answer" />
-                                                    <label>Eventuele beschrijving:</label> 
-                                                    <input id="PagesList_@i+__Questions_@j+__Options_@q+__Description" name="PagesList[@i+].Questions[@j+].Options[@q+].Description" type="text" value="@Model.PagesList[i].Questions[j].Options[q].Description" />
-                                                }
-                                                break;
-                                        }
+                                    @switch (Model.PagesList[i].Questions[j].Type)
+                                    {
+                                        case TypeEnum.GeoVraag:
+                                            @Html.DropDownListFor(x => x.PagesList[i].Questions[j].GeoType, Html.GetEnumSelectList(Model.PagesList[i].Questions[j].GeoType.GetType()))
+                                            break;
+                                        case TypeEnum.SliderVraag:
+                                            @Html.TextBoxFor(x => x.PagesList[i].Questions[j].SliderMinText);
+                                            @Html.TextBoxFor(x => x.PagesList[i].Questions[j].SliderMaxText);
+                                            @Html.EditorFor(x => x.PagesList[i].Questions[j].SliderScaleVal);
+                                            break;
+                                        case TypeEnum.NummerVraag:
+                                            <label>Minimum waarde</label>
+                                            @Html.EditorFor(x => x.PagesList[i].Questions[j].MinValue);
+                                            <label>Maximum waarde</label>
+                                            @Html.EditorFor(x => x.PagesList[i].Questions[j].MaxValue);
+                                            break;
+                                        case TypeEnum.MeerkeuzeVraag:
+                                            @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].AllowMultipleAnswers);
 
-                                        <a href="" class="removeQuestionClass btn btn-danger">Vraag verwijderen</a>
-                                    </div>
+                                            for (int q = 0; q < Model.PagesList[i].Questions[j].Options.Count; q++)
+                                            {
+                                                <label>Antwoord:</label>
+                                                <input id="PagesList_@i+__Questions_@j+__Options_@q+__Answer" name="PagesList[@i+].Questions[@j+].Options[@q+].Answer" type="text" value="@Model.PagesList[i].Questions[j].Options[q].Answer" />
+                                                <label>Eventuele beschrijving:</label>
+                                                <input id="PagesList_@i+__Questions_@j+__Options_@q+__Description" name="PagesList[@i+].Questions[@j+].Options[@q+].Description" type="text" value="@Model.PagesList[i].Questions[j].Options[q].Description" />
+                                            }
+                                            break;
+                                    }
+
+                                    <a href="" class="removeQuestionClass btn btn-danger">Vraag verwijderen</a>
+                                </div>
 
                                 }
 

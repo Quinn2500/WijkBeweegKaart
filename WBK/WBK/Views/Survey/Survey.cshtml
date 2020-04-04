@@ -48,82 +48,101 @@
             <div id="map" style="z-index: 0; width: 100%; height:1000px">
             </div>
             <div class="surveyWrapper" style="position: absolute; top: 50px; left: 50px; height: 700px; width: 500px; background-color: white; border: gray; border-style: solid; border-width: 4px; overflow: auto;">
-                <div id="introDiv">
-                    <h1>@Model.Title</h1>
-                    <p>@Model.Description<p>
-                </div>
-                @for (int i = 0; i < Model.PagesList.Count; i++)
+                @using (Html.BeginForm())
                 {
-                    PageViewModel pageView = Model.PagesList[i];
-                    <div class="pageDiv" style="display: none;">
-                        <div class="pageText">
-                            <h2>@pageView.Title</h2>
-                            <p>@pageView.Description</p>
-                        </div>
+                    @Html.AntiForgeryToken()
 
-                        <div class="questionDiv">
-                            @for (int j = 0; j < pageView.Questions.Count; j++)
-                            {
-                                QuestionViewModel questionView = pageView.Questions[j];
-                                <h3>@questionView.Title</h3>
-                                <p>@questionView.Description</p>
-                                <p>@questionView.Type</p>
-                                switch (questionView.Type)
+                    <div id="introDiv">
+                        <h1>@Model.Title</h1>
+                        <p>@Model.Description<p>
+                    </div>
+                    for (int i = 0; i < Model.PagesList.Count; i++)
+                    {
+                        PageViewModel pageView = Model.PagesList[i];
+                        Model.PagesList[i] = pageView;
+                        <div class="pageDiv" style="display: none;">
+                            <div class="pageText">
+                                <h2>@pageView.Title</h2>
+                                <p>@pageView.Description</p>
+                            </div>
+
+                            <div class="questionDiv">
+                                @for (int j = 0; j < pageView.Questions.Count; j++)
                                 {
-                                    case TypeEnum.OpenVraag:
-                                        @Html.TextBoxFor(x => x.PagesList[i].Questions[j].TextAnswer)
-                                        break;
-                                    case TypeEnum.SliderVraag:
-                                        <label>@Model.PagesList[i].Questions[j].SliderMinText</label>
-                                        @Html.TextBoxFor(x => x.PagesList[i].Questions[j].NumberAnswer, new { @type = "range", min = 0, max = Model.PagesList[i].Questions[j].SliderScaleVal })
-                                        <label>@Model.PagesList[i].Questions[j].SliderMaxText</label>
-                                        break;
-                                    case TypeEnum.NummerVraag:
-                                        @Html.TextBoxFor(x => x.PagesList[i].Questions[j].NumberAnswer, new { type = "number", min = Model.PagesList[i].Questions[j].MinValue, max = Model.PagesList[i].Questions[j].MaxValue })
-                                        break;
-                                    case TypeEnum.MeerkeuzeVraag:
-                                        if (Model.PagesList[i].Questions[j].AllowMultipleAnswers)
-                                        {
-                                            for (int q = 0; q < Model.PagesList[i].Questions[j].Options.Count; q++)
+                                    QuestionViewModel questionView = pageView.Questions[j];
+                                    <h3 name="name">@questionView.Title</h3>
+                                    <p>@questionView.Description</p>
+                                    <p>@questionView.Type</p>
+                                    switch (questionView.Type)
+                                    {
+                                        case TypeEnum.OpenVraag:
+                                            @Html.TextBoxFor(x => x.PagesList[i].Questions[j].TextAnswer)
+                                            break;
+                                        case TypeEnum.SliderVraag:
+                                            <label>@Model.PagesList[i].Questions[j].SliderMinText</label>
+                                            @Html.TextBoxFor(x => x.PagesList[i].Questions[j].NumberAnswer, new { type = "range", min = 0, max = Model.PagesList[i].Questions[j].SliderScaleVal })
+                                            <label>@Model.PagesList[i].Questions[j].SliderMaxText</label>
+                                            break;
+                                        case TypeEnum.NummerVraag:
+                                            @Html.TextBoxFor(x => x.PagesList[i].Questions[j].NumberAnswer, new { type = "number", min = Model.PagesList[i].Questions[j].MinValue, max = Model.PagesList[i].Questions[j].MaxValue })
+                                            break;
+                                        case TypeEnum.MeerkeuzeVraag:
+                                            if (Model.PagesList[i].Questions[j].AllowMultipleAnswers)
                                             {
-                                                @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].Options[q].Selected)
-                                                <label>@Model.PagesList[i].Questions[j].Options[q].Answer</label>
-                                                <p>@Model.PagesList[i].Questions[j].Options[q].Description</p>
-                                            }
-                                        }
-                                        else
-                                        {
-                                            <div class="oneChecboxDiv">
-                                                @for (int q = 0; q < Model.PagesList[i].Questions[j].Options.Count; q++)
+                                                for (int q = 0; q < Model.PagesList[i].Questions[j].Options.Count; q++)
                                                 {
                                                     @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].Options[q].Selected)
                                                     <label>@Model.PagesList[i].Questions[j].Options[q].Answer</label>
                                                     <p>@Model.PagesList[i].Questions[j].Options[q].Description</p>
                                                 }
-                                            </div>
-                                        }
-                                        break;
-                                    case TypeEnum.GeoVraag:
-                                        <div id="@j" class="geoDraw">
-                                            @Html.TextBoxFor(x => x.PagesList[i].Questions[j].GeoCodeAnswer, new { style = "display: none;" })
-                                            @switch (Model.PagesList[i].Questions[j].GeoType)
-                                            {
-                                                case GeoTypeEnum.Marker:
-                                                    <div class="marker">
-                                                        
-                                                    </div>
-                                                    break;
                                             }
+                                            else
+                                            {
+                                                <div class="oneChecboxDiv">
+                                                    @for (int q = 0; q < Model.PagesList[i].Questions[j].Options.Count; q++)
+                                                    {
+                                                        @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].Options[q].Selected)
+                                                        <label>@Model.PagesList[i].Questions[j].Options[q].Answer</label>
+                                                        <p>@Model.PagesList[i].Questions[j].Options[q].Description</p>
+                                                    }
+                                                </div>
+                                            }
+                                            break;
+                                        case TypeEnum.GeoVraag:
+                                            <div id="@j" class="geoDraw">
+                                                @Html.TextBoxFor(x => x.PagesList[i].Questions[j].GeoCodeAnswer)
+                                                @switch (Model.PagesList[i].Questions[j].GeoType)
+                                                {
+                                                    case GeoTypeEnum.Marker:
+                                                        <div class="marker">
 
-                                        </div>
-                                        break;
+                                                        </div>
+                                                        break;
+                                                    case GeoTypeEnum.Lijn:
+                                                        <div class="polyline">
+
+                                                        </div>
+                                                        break;
+                                                    case GeoTypeEnum.Vlak:
+                                                        <div class="polygon">
+
+                                                        </div>
+                                                        break;
+                                                }
+
+
+                                            </div>
+                                            break;
                                     }
-                            }
+                                }
+                            </div>
                         </div>
-                    </div>
+                    }
+                    <button  class="btn btn-info" id="previousPageButton">Vorige Pagina</button>
+                    <button  class="btn btn-info" id="nextPageButton">Volgende Pagina</button>
+                    <input id="submitBtn" type="submit" value="Voltooi!" class="btn btn-success" />
                 }
-                <button id="previousPageButton">Vorige Pagina</button>
-                <button id="nextPageButton">Volgende Pagina</button>
+
             </div>
         </div>
     </div>
@@ -213,7 +232,7 @@
                     $(buttons[0]).hide();
                     $(buttons[1]).hide();
                 break;
-            case "line":
+                case "polyline":
                     $(buttons[1]).hide();
                     $(buttons[2]).hide();
                 break;
@@ -227,9 +246,18 @@
 
         $(document).ready(function () {
             $(".leaflet-draw-edit-edit.leaflet-disabled").hide();
+            $("#submitBtn").hide();
         });
 
         $(".leaflet-draw-draw-marker").click(function (e) {
+            questionId = $(this).parent().parent().parent().parent().parent()[0].id;
+        });
+
+        $(".leaflet-draw-draw-polyline").click(function (e) {
+            questionId = $(this).parent().parent().parent().parent().parent()[0].id;
+        });
+
+        $(".leaflet-draw-draw-polygon").click(function (e) {
             questionId = $(this).parent().parent().parent().parent().parent()[0].id;
         });
 
@@ -240,6 +268,8 @@
             var maxNumber = pageDivs.length;
             if (pageNumber + 1 < maxNumber) {
                 pageNumber++;
+                $("#submitBtn").show();
+                $(this).hide();
             }
             for (var i = 0; i < maxNumber; i++) {
                 if (i == pageNumber) {
@@ -255,6 +285,8 @@
             var maxNumber = pageDivs.length;
             if (pageNumber > 0) {
                 pageNumber--;
+                $("#nextPageButton").show();
+                $("#submitBtn").hide();
             }
             for (var i = 0; i < maxNumber; i++) {
                 if (i == pageNumber) {

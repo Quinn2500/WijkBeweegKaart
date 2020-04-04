@@ -6,5 +6,6 @@ namespace DataModels
 {
     public abstract class Answer
     {
+        public Respondant Respondant { get; set; }
     }
 }

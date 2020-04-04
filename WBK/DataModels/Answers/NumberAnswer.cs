@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataModels.Answers
 {
-    class NumberAnswer : Answer
+    public class NumberAnswer : Answer
     {
         public int NumberValue { get; set; }
     }

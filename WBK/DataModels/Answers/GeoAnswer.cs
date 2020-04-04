@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataModels.Answers
 {
-    class GeoAnswer : Answer
+    public class GeoAnswer : Answer
     {
         public string GeoData { get; set; }
     }

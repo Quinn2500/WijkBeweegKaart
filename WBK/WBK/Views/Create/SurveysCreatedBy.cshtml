@@ -45,6 +45,7 @@
         <p>@overview.Title</p>
         <a class="btn btn-danger" asp-area="" asp-route-Title="@overview.Title" asp-controller="Create" asp-action="DeleteSurvey">Delete</a>
         <a class="btn btn-info" asp-area="" asp-route-Title="@overview.Title" asp-controller="Create" asp-action="Survey">Edit</a>
+        <a class="btn btn-info" asp-area="" asp-route-Name="@overview.Title" asp-controller="Survey" asp-action="Survey">Open</a>
     }
 </div>
 

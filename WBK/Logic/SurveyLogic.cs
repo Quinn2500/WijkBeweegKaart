@@ -40,5 +40,15 @@ namespace Logic
         {
             _dataBaseCalls.DeleteSurvey(email, title);
         }
+
+        public void InserSurveyAnswers(Survey surveyWithAnswers)
+        {
+            _dataBaseCalls.InsertAnswers(surveyWithAnswers);
+        }
+
+        public Survey GetAllAnswersFromSurvey(string surveyTitle)
+        {
+            return null;
+        }
     }
 }
