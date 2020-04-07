@@ -1,0 +1,307 @@
+﻿@{
+    Layout = "";
+}
+
+@using DataModels
+@using DataModels.Questions
+@using WBK.Models.Create
+@model WBK.Models.Create.SurveyViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WijkBeweegKaart</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <link href="~/lib/jqeury-ui/jquery-ui.css" rel="stylesheet" />
+    <script src="~/lib/jqeury-ui/jquery-ui.min.js"></script>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+
+<body class="p-0" style="overflow: hidden;">
+    <nav class="navbar navbar-light" style="background-color: #F9A11B;">
+        <a class="navbar-brand" href="#">
+            <img src="~/images/WijkBeweegKaart Logo.png" alt="WijkBeweegKaart" style="height: 80px; width: 360px;" />
+        </a>
+    </nav>
+
+    <div class="container-fluid p-0">
+        <div class="wrapper" style="position: relative;">
+            <div id="map" style="z-index: 0; width: 100%; height:1000px">
+            </div>
+            <div class="surveyWrapper" style="position: absolute; top: 50px; left: 50px; height: 700px; width: 500px; background-color: white; border: gray; border-style: solid; border-width: 4px; overflow: auto;">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div id="introDiv">
+                        <h1>@Model.Title</h1>
+                        <p>@Model.Description<p>
+                    </div>
+                    for (int i = 0; i < Model.PagesList.Count; i++)
+                    {
+                        PageViewModel pageView = Model.PagesList[i];
+                        Model.PagesList[i] = pageView;
+                        <div class="pageDiv" style="display: none;">
+                            <div class="pageText">
+                                <h2>@pageView.Title</h2>
+                                <p>@pageView.Description</p>
+                            </div>
+
+                            <div class="questionDiv">
+                                @for (int j = 0; j < pageView.Questions.Count; j++)
+                                {
+                                    QuestionViewModel questionView = pageView.Questions[j];
+                                    <h3 name="name">@questionView.Title</h3>
+                                    <p>@questionView.Description</p>
+                                    <p>@questionView.Type</p>
+                                    switch (questionView.Type)
+                                    {
+                                        case TypeEnum.OpenVraag:
+                                            @Html.TextBoxFor(x => x.PagesList[i].Questions[j].TextAnswer)
+                                            break;
+                                        case TypeEnum.SliderVraag:
+                                            <label>@Model.PagesList[i].Questions[j].SliderMinText</label>
+                                            @Html.TextBoxFor(x => x.PagesList[i].Questions[j].NumberAnswer, new { type = "range", min = 0, max = Model.PagesList[i].Questions[j].SliderScaleVal })
+                                            <label>@Model.PagesList[i].Questions[j].SliderMaxText</label>
+                                            break;
+                                        case TypeEnum.NummerVraag:
+                                            @Html.TextBoxFor(x => x.PagesList[i].Questions[j].NumberAnswer, new { type = "number", min = Model.PagesList[i].Questions[j].MinValue, max = Model.PagesList[i].Questions[j].MaxValue })
+                                            break;
+                                        case TypeEnum.MeerkeuzeVraag:
+                                            if (Model.PagesList[i].Questions[j].AllowMultipleAnswers)
+                                            {
+                                                for (int q = 0; q < Model.PagesList[i].Questions[j].Options.Count; q++)
+                                                {
+                                                    @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].Options[q].Selected)
+                                                    <label>@Model.PagesList[i].Questions[j].Options[q].Answer</label>
+                                                    <p>@Model.PagesList[i].Questions[j].Options[q].Description</p>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <div class="oneChecboxDiv">
+                                                    @for (int q = 0; q < Model.PagesList[i].Questions[j].Options.Count; q++)
+                                                    {
+                                                        @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].Options[q].Selected)
+                                                        <label>@Model.PagesList[i].Questions[j].Options[q].Answer</label>
+                                                        <p>@Model.PagesList[i].Questions[j].Options[q].Description</p>
+                                                    }
+                                                </div>
+                                            }
+                                            break;
+                                        case TypeEnum.GeoVraag:
+                                            <div id="@j" class="geoDraw">
+                                                @Html.TextBoxFor(x => x.PagesList[i].Questions[j].GeoCodeAnswer)
+                                                @switch (Model.PagesList[i].Questions[j].GeoType)
+                                                {
+                                                    case GeoTypeEnum.Marker:
+                                                        <div class="marker">
+
+                                                        </div>
+                                                        break;
+                                                    case GeoTypeEnum.Lijn:
+                                                        <div class="polyline">
+
+                                                        </div>
+                                                        break;
+                                                    case GeoTypeEnum.Vlak:
+                                                        <div class="polygon">
+
+                                                        </div>
+                                                        break;
+                                                }
+
+
+                                            </div>
+                                            break;
+                                    }
+                                }
+                            </div>
+                        </div>
+                    }
+                    <button  class="btn btn-info" id="previousPageButton">Vorige Pagina</button>
+                    <button  class="btn btn-info" id="nextPageButton">Volgende Pagina</button>
+                    <input id="submitBtn" type="submit" value="Voltooi!" class="btn btn-success" />
+                }
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var center = [51.47358, 5.453167];
+
+        var map = L.map('map').setView(center, 13);
+
+        L.tileLayer(
+            'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: 'Data © <a href="http://osm.org/copyright">OpenStreetMap</a>',
+                maxZoom: 18
+            }).addTo(map);
+
+        var editableLayers = new L.FeatureGroup();
+        map.addLayer(editableLayers);
+
+        var drawPluginOptions = {
+            position: 'topright',
+            draw: {
+                polygon: {
+                    allowIntersection: false,
+                    drawError: {
+                        color: '#e1e100',
+                        message: '<strong>Oh snap!<strong> you can\'t draw that!'
+                    },
+                    shapeOptions: {
+                        color: '#97009c'
+                    }
+                },
+                polyline: true,
+                circle: false,
+                rectangle: false,
+                marker: true
+            },
+            edit: {
+                featureGroup: editableLayers,
+                remove: false
+            }
+        };
+
+        var drawControl = new L.Control.Draw(drawPluginOptions);
+        map.addControl(drawControl);
+
+        var editableLayers = new L.FeatureGroup();
+        map.addLayer(editableLayers);
+
+        var questionId;
+        var geoAnswer;
+
+        map.on('draw:created', function (e) {
+            var type = e.layerType,
+                layer = e.layer;
+
+            switch (type) {
+                case "marker":
+                    geoAnswer = layer.getLatLng();
+                    break;
+                case "polyline":
+                    geoAnswer = layer.getLatLngs();
+                    break;
+                case "polygon":
+                    geoAnswer = layer.getLatLngs();
+                    break;
+            }
+
+            editableLayers.addLayer(layer);
+            console.log(questionId);
+            $('#' + questionId).children()[0].value = geoAnswer;
+            console.log($('#' + questionId).children()[0].value);
+            $('#' + questionId).hide();
+        });
+
+        var htmlObject = drawControl.getContainer();
+        var allGeoDivs = document.getElementsByClassName("geoDraw");
+        function setParent(el, newParent)
+        {
+            newParent.appendChild(el);
+        }
+
+        for (var i = 0; i < allGeoDivs.length; i++) {
+            var containerDiv = $(allGeoDivs[i]).children()[1];
+            var buttons = $(htmlObject).children()[0].children[0].children;
+            switch ($(containerDiv).attr('class')) {
+            case "marker":
+                    $(buttons[0]).hide();
+                    $(buttons[1]).hide();
+                break;
+                case "polyline":
+                    $(buttons[1]).hide();
+                    $(buttons[2]).hide();
+                break;
+            case "polygon":
+                    $(buttons[0]).hide();
+                    $(buttons[2]).hide();
+                break;
+            }
+            setParent(htmlObject, containerDiv);
+        }
+
+        $(document).ready(function () {
+            $(".leaflet-draw-edit-edit.leaflet-disabled").hide();
+            $("#submitBtn").hide();
+        });
+
+        $(".leaflet-draw-draw-marker").click(function (e) {
+            questionId = $(this).parent().parent().parent().parent().parent()[0].id;
+        });
+
+        $(".leaflet-draw-draw-polyline").click(function (e) {
+            questionId = $(this).parent().parent().parent().parent().parent()[0].id;
+        });
+
+        $(".leaflet-draw-draw-polygon").click(function (e) {
+            questionId = $(this).parent().parent().parent().parent().parent()[0].id;
+        });
+
+        var pageNumber = 0;
+
+        $("#nextPageButton").click(function (e) {
+            var pageDivs = $(this).parent().children("div");
+            var maxNumber = pageDivs.length;
+            if (pageNumber + 1 < maxNumber) {
+                pageNumber++;
+                $("#submitBtn").show();
+                $(this).hide();
+            }
+            for (var i = 0; i < maxNumber; i++) {
+                if (i == pageNumber) {
+                    $(pageDivs[i]).fadeIn();
+                } else {
+                    $(pageDivs[i]).hide();
+                }
+            }
+        });
+
+        $("#previousPageButton").click(function (e) {
+            var pageDivs = $(this).parent().children("div");
+            var maxNumber = pageDivs.length;
+            if (pageNumber > 0) {
+                pageNumber--;
+                $("#nextPageButton").show();
+                $("#submitBtn").hide();
+            }
+            for (var i = 0; i < maxNumber; i++) {
+                if (i == pageNumber) {
+                    $(pageDivs[i]).fadeIn();
+                } else {
+                    $(pageDivs[i]).hide();
+                }
+            }
+
+        });
+
+        $(".oneChecboxDiv input:checkbox").change(function () {
+            $(".oneChecboxDiv input:checkbox").attr("checked", false);
+            $(this).attr("checked", true);
+        });
+    </script>
+</body>
+</html>

@@ -25,22 +25,22 @@
 
 </head>
 
-<body class="p-0">
-<nav class="navbar navbar-light" style="background-color: #F9A11B;">
-    <a class="navbar-brand" href="#">
-        <img src="~/images/WijkBeweegKaart Logo.png" alt="WijkBeweegKaart" style="height: 80px; width: 360px;"/>
-    </a>
-        
-    <a class="btn btn-danger" asp-area="" asp-controller="Create" asp-action="Survey">Test</a>
-</nav>
+<body class="p-0" style="overflow: hidden;">
+    <nav class="navbar navbar-light" style="background-color: #F9A11B;">
+        <a class="navbar-brand" href="#">
+            <img src="~/images/WijkBeweegKaart Logo.png" alt="WijkBeweegKaart" style="height: 80px; width: 360px;" />
+        </a>
 
-<div class="container-fluid">
-    <div class="mapbox">
-        <div class="row" id="mapid">
-            <img src="//placehold.it/600x400">
+        <a class="btn btn-danger" asp-area="" asp-controller="Create" asp-action="Survey">Test Aanmaken</a>
+        <a class="btn btn-danger" asp-area="" asp-controller="Create" asp-action="SurveysCreatedBy">Test Overzicht</a>
+    </nav>
+
+<div class="container-fluid p-0">
+    <div class="wrapper" style="position: relative;">
+        <div id="mapid" style="z-index: 0; width: 2000px; height:1000px">
         </div>
-        <div class="row" style="position: absolute">
-
+        <div style="position: absolute; top: 350px; right: 850px; height: 200px; width: 200px">
+            <img src="~/images/WijkBeweegKaart Logo.png" alt="WijkBeweegKaart" style="height: 100px; width: 460px;" />
         </div>
     </div>
 </div>
