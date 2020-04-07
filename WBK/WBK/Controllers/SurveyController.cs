@@ -78,6 +78,13 @@ namespace WBK.Controllers
             return RedirectToAction("SurveysCreatedBy","Create");
         }
 
+        [HttpGet]
+        public IActionResult AllAnswers(string surveyTitle)
+        {
+            SurveyAnswers model = _logic.GetAllAnswersFromSurvey(surveyTitle);
+            return View(model);
+        }
+
         public SurveyViewModel ConvertToViewModel(Survey survey)
         {
             SurveyViewModel viewModel = new SurveyViewModel

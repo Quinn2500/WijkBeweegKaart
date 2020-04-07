@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewData["Title"] = "AllAnswers";
+    Layout = null;
+}
+
+@using DataModels
+@using DataModels.Answers
+@using DataModels.Questions
+@model DataModels.SurveyAnswers
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WijkBeweegKaart</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+
+</head>
+
+<body class="p-0" style="overflow: hidden;">
+    <nav class="navbar navbar-light" style="background-color: #F9A11B;">
+        <a class="navbar-brand" href="#">
+            <img src="~/images/WijkBeweegKaart Logo.png" alt="WijkBeweegKaart" style="height: 80px; width: 360px;" />
+        </a>
+    </nav>
+
+<div class="container-fluid p-0">
+    <h1>@Model.SurveyTitle</h1>
+    <div>
+        <table>
+            <tr>
+                <th>Vraag</th>
+                <th>Antwoord</th>
+                <th>Respondant</th>
+            </tr>
+
+            @foreach (Question question in Model.Questions)
+            {
+
+            <tr>
+                <td> @question.Value </td>
+                @switch (question.Type)
+                {
+                    case TypeEnum.GeoVraag:
+                        var geo = question.Answer as GeoAnswer;
+                            <td>
+                               @geo.GeoData
+                            </td>
+                    break;
+
+                    case TypeEnum.NummerVraag:
+                        var number = question.Answer as NumberAnswer;
+                        <td>
+                            @number.NumberValue
+                        </td>
+                        break;
+
+                    case TypeEnum.SliderVraag:
+                        var slider = question.Answer as NumberAnswer;
+                        <td>
+                            @slider.NumberValue
+                        </td>
+                        break;
+
+                    case TypeEnum.OpenVraag:
+                        var open = question.Answer as TextAnswer;
+                        <td>
+                            @open.TextValue
+                        </td>
+                        break;
+
+                    case TypeEnum.MeerkeuzeVraag:
+                        var multipleChoiceAnswer = question.Answer as MultipleChoiceAnswer;
+                        <td>
+                            @string.Join(" ", multipleChoiceAnswer.AnsweredOptions.Select(t => t.Value ));
+                        </td>
+                        break;
+                }
+                <td> @question.Answer.Respondant.SessionId </td>
+            </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
+

@@ -37,3 +37,4 @@ D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\Razor\Views\_
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\Razor\Views\Create\Test.g.cshtml.cs
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\Razor\Views\Create\SurveysCreatedBy.g.cshtml.cs
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\Razor\Views\Survey\Survey.g.cshtml.cs
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\Razor\Views\Survey\AllAnswers.g.cshtml.cs
