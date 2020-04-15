@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewData["Title"] = "AllAnswers";
+    Layout = null;
+}
+
+@using DataModels
+@using DataModels.Answers
+@using DataModels.Questions
+@model DataModels.Survey
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WijkBeweegKaart</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+
+</head>
+
+<body class="p-0" style="overflow: hidden;">
+    <nav class="navbar navbar-light" style="background-color: #F9A11B;">
+        <a class="navbar-brand" href="#">
+            <img src="~/images/WijkBeweegKaart Logo.png" alt="WijkBeweegKaart" style="height: 80px; width: 360px;" />
+        </a>
+    </nav>
+
+<div class="container-fluid p-0">
+    <h1>@Model.Title</h1>
+    <div>
+        @foreach (Page pageModel in Model.Pages)
+        {
+            <h1>@pageModel.Title</h1>
+
+                foreach (Question question in pageModel.Questions)
+                {
+                    <table>
+                        <tr>
+                            <th>@question.Value</th>
+                        </tr>
+                        @foreach (Answer answer in question.Answers)
+                        {
+                            <tr>
+                            @switch (question.Type)
+                             {
+                                 case TypeEnum.GeoVraag:
+                                     var geo = answer as GeoAnswer;
+                                     <td>
+                                         @geo.GeoData
+                                     </td>
+                                     break;
+
+                                 case TypeEnum.NummerVraag:
+                                     var number = answer as NumberAnswer;
+                                     <td>
+                                         @number.NumberValue
+                                     </td>
+                                     break;
+
+                                 case TypeEnum.SliderVraag:
+                                     var slider = answer as NumberAnswer;
+                                     <td>
+                                         @slider.NumberValue
+                                     </td>
+                                     break;
+
+                                 case TypeEnum.OpenVraag:
+                                     var open = answer as TextAnswer;
+                                     <td>
+                                         @open.TextValue
+                                     </td>
+                                     break;
+
+                                 case TypeEnum.MeerkeuzeVraag:
+                                     var multipleChoiceAnswer = answer as MultipleChoiceAnswer;
+                                     <td>
+                                         @string.Join(" ", multipleChoiceAnswer.AnsweredOptions.Select(t => t.Value ));
+                                     </td>
+                                     break;
+                             }
+                                <td>@answer.Respondant.SessionId </td>
+                            </tr>
+                        }
+                    </table>
+                }
+
+
+        }
+    </div>
+</div>
+
+</body>
+</html>
+

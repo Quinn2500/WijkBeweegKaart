@@ -1,0 +1,192 @@
+﻿@{
+    Layout = null;
+}
+
+@model WBK.Models.Create.PageQuestionModel
+
+<div class="questionDiv">
+    <input id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Title " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Title" type="text" value="Wat is uw postcode?" />
+    <input id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Attribute " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Attribute" type="text" value="postcode" hidden />
+
+    <select data-val="true" data-val-required="The Type field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Type" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Type">
+        <option value="0">GeoVraag</option>
+        <option value="1">MeerkeuzeVraag</option>
+        <option selected="selected" value="2">OpenVraag</option>
+        <option value="3">SliderVraag</option>
+        <option value="4">NummerVraag</option>
+    </select>
+
+    <select data-val="true" data-val-required="The Category field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Category" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Category">
+        <option selected="selected" value="0">Profiel</option>
+        <option value="1">Locatie</option>
+        <option value="2">Gezondheid</option>
+    </select>
+</div>
+@{ Model.QuestionId++; }
+<div class="questionDiv">
+    <input id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Title " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Title" type="text" value="Wat is uw leeftijd?" />
+    <input id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Attribute " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Attribute" type="text" value="age" hidden />
+
+    <select data-val="true" data-val-required="The Type field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Type" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Type">
+        <option value="0">GeoVraag</option>
+        <option value="1">MeerkeuzeVraag</option>
+        <option value="2">OpenVraag</option>
+        <option value="3">SliderVraag</option>
+        <option selected="selected" value="4">NummerVraag</option>
+    </select>
+
+    <select data-val="true" data-val-required="The Category field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Category" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Category">
+        <option selected="selected" value="0">Profiel</option>
+        <option value="1">Locatie</option>
+        <option value="2">Gezondheid</option>
+    </select>
+
+    <input data-val="true" data-val-required="The MinValue field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__MinValue" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].MinValue" type="number" value="0" />
+    <input data-val="true" data-val-required="The MaxValue field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__MaxValue" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].MaxValue" type="number" value="110" />
+</div>
+@{ Model.QuestionId++; }
+<div class="questionDiv">
+    <input id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Title " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Title" type="text" value="Doet u aan sport/bewegen?" />
+    <input id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Description " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Description" type="text" value="Zo niet mag u het veld leeg laten" />
+    <input id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Attribute " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Attribute" type="text" value="sport" hidden />
+
+    <select data-val="true" data-val-required="The Type field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Type" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Type">
+        <option value="0">GeoVraag</option>
+        <option value="1">MeerkeuzeVraag</option>
+        <option selected="selected" value="2">OpenVraag</option>
+        <option value="3">SliderVraag</option>
+        <option value="4">NummerVraag</option>
+    </select>
+
+    <select data-val="true" data-val-required="The Category field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Category" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Category">
+        <option selected="selected" value="0">Profiel</option>
+        <option value="1">Locatie</option>
+        <option value="2">Gezondheid</option>
+    </select>
+</div>
+@{ Model.QuestionId++; }
+<div class="questionDiv">
+    <input id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Title " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Title" type="text" value="Wat is uw geslacht?" />
+    <input id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Attribute " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Attribute" type="text" value="gender" hidden />
+
+    <select data-val="true" data-val-required="The Type field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Type" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Type">
+        <option value="0">GeoVraag</option>
+        <option selected="selected" value="1">MeerkeuzeVraag</option>
+        <option value="2">OpenVraag</option>
+        <option value="3">SliderVraag</option>
+        <option value="4">NummerVraag</option>
+    </select>
+
+    <select data-val="true" data-val-required="The Category field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Category" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Category">
+        <option selected="selected" value="0">Profiel</option>
+        <option value="1">Locatie</option>
+        <option value="2">Gezondheid</option>
+    </select>
+
+    <div class=mcWrapper>
+        <label>Laat meerdere antwoorden toe:</label>
+        <input data-val="true" data-val-required="The AllowMultipleAnswers field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__AllowMultipleAnswers" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].AllowMultipleAnswers" type="checkbox" value="false" />
+        <div class="MCOption">
+            <label>Antwoord:</label>
+            <input id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_0__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[0].Answer" type="text" value="Man" />
+            <label for="OptionCounter" style="display: none;">0</label>
+        </div>
+
+        <div class="MCOption">
+            <label>Antwoord:</label>
+            <input id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_1__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[1].Answer" type="text" value="Vrouw" />
+            <label for="OptionCounter" style="display: none;">1</label>
+        </div>
+
+    </div>
+</div>
+@{ Model.QuestionId++; }
+<div class="questionDiv">
+    <input id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Title " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Title" type="text" value="Wat is het meest van toepassing voor u?" />
+    <input id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Attribute " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Attribute" type="text" value="profile" hidden />
+
+    <select data-val="true" data-val-required="The Type field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Type" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Type">
+        <option value="0">GeoVraag</option>
+        <option selected="selected" value="1">MeerkeuzeVraag</option>
+        <option value="2">OpenVraag</option>
+        <option value="3">SliderVraag</option>
+        <option value="4">NummerVraag</option>
+    </select>
+
+    <select data-val="true" data-val-required="The Category field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Category" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Category">
+        <option selected="selected" value="0">Profiel</option>
+        <option value="1">Locatie</option>
+        <option value="2">Gezondheid</option>
+    </select>
+
+    <div class=mcWrapper>
+        <label>Laat meerdere antwoorden toe:</label>
+        <input data-val="true" data-val-required="The AllowMultipleAnswers field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__AllowMultipleAnswers" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].AllowMultipleAnswers" type="checkbox" value="false" />
+        <div class="MCOption">
+            <label>Antwoord:</label>
+            <input id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_0__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[0].Answer" type="text" value="Studerend" />
+            <label for="OptionCounter" style="display: none;">0</label>
+        </div>
+
+        <div class="MCOption">
+            <label>Antwoord:</label>
+            <input id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_1__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[1].Answer" type="text" value="Werkend" />
+            <label for="OptionCounter" style="display: none;">1</label>
+        </div>
+
+        <div class="MCOption">
+            <label>Antwoord:</label>
+            <input id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_2__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[2].Answer" type="text" value="Voor het gezin zorgen" />
+            <label for="OptionCounter" style="display: none;">2</label>
+        </div>
+
+        <div class="MCOption">
+            <label>Antwoord:</label>
+            <input id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_3__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[3].Answer" type="text" value="Werkloos" />
+            <label for="OptionCounter" style="display: none;">3</label>
+        </div>
+
+        <div class="MCOption">
+            <label>Antwoord:</label>
+            <input id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_4__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[4].Answer" type="text" value="Gepensioneerd" />
+            <label for="OptionCounter" style="display: none;">4</label>
+        </div>
+
+    </div>
+</div>
+@{ Model.QuestionId++; }
+<div class="questionDiv">
+    <input id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Title " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Title" type="text" value="Bent u vanwege psychische of lichamelijke beperking moeilijk/niet in staat te bewegen/sporten? " />
+    <input id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Attribute " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Attribute" type="text" value="handicap" hidden />
+
+    <select data-val="true" data-val-required="The Type field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Type" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Type">
+        <option value="0">GeoVraag</option>
+        <option selected="selected" value="1">MeerkeuzeVraag</option>
+        <option value="2">OpenVraag</option>
+        <option value="3">SliderVraag</option>
+        <option value="4">NummerVraag</option>
+    </select>
+
+    <select data-val="true" data-val-required="The Category field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Category" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Category">
+        <option selected="selected" value="0">Profiel</option>
+        <option value="1">Locatie</option>
+        <option value="2">Gezondheid</option>
+    </select>
+
+    <div class=mcWrapper>
+        <label>Laat meerdere antwoorden toe:</label>
+        <input data-val="true" data-val-required="The AllowMultipleAnswers field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__AllowMultipleAnswers" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].AllowMultipleAnswers" type="checkbox" value="false" />
+        <div class="MCOption">
+            <label>Antwoord:</label>
+            <input id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_0__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[0].Answer" type="text" value="Ja" />
+            <label for="OptionCounter" style="display: none;">0</label>
+        </div>
+
+        <div class="MCOption">
+            <label>Antwoord:</label>
+            <input id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_1__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[1].Answer" type="text" value="Nee" />
+            <label for="OptionCounter" style="display: none;">1</label>
+        </div>
+
+    </div>
+</div>
