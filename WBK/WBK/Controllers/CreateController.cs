@@ -26,7 +26,7 @@ namespace WBK.Controllers
                 {
                     Title = survey.Title,
                     Description = survey.Description,
-                    EndDate = survey.EndDate,
+                    EndDate = survey.EndDate.ToString(),
                     StartLocationLat = survey.StartLocation.Latitude.ToString(),
                     StartLocationLong = survey.StartLocation.Longitude.ToString(),
                     PagesList = new List<PageViewModel>()
@@ -138,13 +138,13 @@ namespace WBK.Controllers
                 Title = model.Title,
                 Description = model.Description,
                 Owner = "test@test.nl",
-                EndDate = model.EndDate
+                EndDate = DateTime.ParseExact(model.EndDate, "MM/dd/yyyy", null),
+                DateOfCreation = DateTime.Today
             };
             double longitude = Convert.ToDouble(model.StartLocationLong.Replace('.', ','));
             double latitude = Convert.ToDouble(model.StartLocationLat.Replace('.', ','));
             Location startLocation = new Location(latitude, longitude);
             surveyModel.StartLocation = startLocation;
-            surveyModel.DateOfCreation = DateTime.Today;
 
             List<Page> pages = new List<Page>();
             foreach (PageViewModel pageView in model.PagesList)
@@ -270,5 +270,39 @@ namespace WBK.Controllers
             model[0].Questions[0].Options.Add(new MultipleChoiceOptionViewModel());
             return model;
         }
+
+        [HttpGet]
+        public IActionResult ProfileQuestions(int pageId, int questionId)
+        {
+            PageQuestionModel model = new PageQuestionModel
+            {
+                PageId = pageId,
+                QuestionId = questionId
+            };
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult NngbQuestions(int pageId, int questionId)
+        {
+            PageQuestionModel model = new PageQuestionModel
+            {
+                PageId = pageId,
+                QuestionId = questionId
+            };
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult MotivationQuestions(int pageId, int questionId)
+        {
+            PageQuestionModel model = new PageQuestionModel
+            {
+                PageId = pageId,
+                QuestionId = questionId
+            };
+            return View(model);
+        }
+
     }
 }

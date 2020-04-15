@@ -47,7 +47,7 @@
         <div class="wrapper" style="position: relative;">
             <div id="map" style="z-index: 0; width: 100%; height:1000px">
             </div>
-            <div class="surveyWrapper" style="position: absolute; top: 50px; left: 50px; height: 700px; width: 500px; background-color: white; border: gray; border-style: solid; border-width: 4px; overflow: auto;">
+            <div class="surveyWrapper" style="padding-left: 10px; position: absolute; top: 50px; left: 50px; height: 700px; width: 500px; background-color: white; border: gray; border-style: solid; border-width: 4px; overflow: auto;">
                 @using (Html.BeginForm())
                 {
                     @Html.AntiForgeryToken()
@@ -72,15 +72,14 @@
                                     QuestionViewModel questionView = pageView.Questions[j];
                                     <h3 name="name">@questionView.Title</h3>
                                     <p>@questionView.Description</p>
-                                    <p>@questionView.Type</p>
                                     switch (questionView.Type)
                                     {
                                         case TypeEnum.OpenVraag:
-                                            @Html.TextBoxFor(x => x.PagesList[i].Questions[j].TextAnswer)
+                                            @Html.TextBoxFor(x => x.PagesList[i].Questions[j].TextAnswer, new { required = "required" })
                                             break;
                                         case TypeEnum.SliderVraag:
                                             <label>@Model.PagesList[i].Questions[j].SliderMinText</label>
-                                            @Html.TextBoxFor(x => x.PagesList[i].Questions[j].NumberAnswer, new { type = "range", min = 0, max = Model.PagesList[i].Questions[j].SliderScaleVal })
+                                            @Html.TextBoxFor(x => x.PagesList[i].Questions[j].NumberAnswer, new { type = "range", min = 0, max = Model.PagesList[i].Questions[j].SliderScaleVal, required = "required" })
                                             <label>@Model.PagesList[i].Questions[j].SliderMaxText</label>
                                             break;
                                         case TypeEnum.NummerVraag:
@@ -101,7 +100,7 @@
                                                 <div class="oneChecboxDiv">
                                                     @for (int q = 0; q < Model.PagesList[i].Questions[j].Options.Count; q++)
                                                     {
-                                                        @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].Options[q].Selected)
+                                                        @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].Options[q].Selected, new { required = "required" })
                                                         <label>@Model.PagesList[i].Questions[j].Options[q].Answer</label>
                                                         <p>@Model.PagesList[i].Questions[j].Options[q].Description</p>
                                                     }
@@ -110,7 +109,7 @@
                                             break;
                                         case TypeEnum.GeoVraag:
                                             <div id="@j" class="geoDraw">
-                                                @Html.TextBoxFor(x => x.PagesList[i].Questions[j].GeoCodeAnswer)
+                                                @Html.TextBoxFor(x => x.PagesList[i].Questions[j].GeoCodeAnswer, new { required = "required" })
                                                 @switch (Model.PagesList[i].Questions[j].GeoType)
                                                 {
                                                     case GeoTypeEnum.Marker:
@@ -264,13 +263,13 @@
         var pageNumber = 0;
 
         $("#nextPageButton").click(function (e) {
+            e.preventDefault();
             var pageDivs = $(this).parent().children("div");
             var maxNumber = pageDivs.length;
-            if (pageNumber + 1 < maxNumber) {
-                pageNumber++;
-                $("#submitBtn").show();
-                $(this).hide();
-            }
+            console.log(pageNumber);
+            console.log(maxNumber);
+            pageNumber++;
+
             for (var i = 0; i < maxNumber; i++) {
                 if (i == pageNumber) {
                     $(pageDivs[i]).fadeIn();
@@ -278,9 +277,17 @@
                     $(pageDivs[i]).hide();
                 }
             }
+
+            if (pageNumber + 1 == maxNumber) {
+                $("#submitBtn").show();
+                $(this).hide();
+            }
+
+            return false;
         });
 
         $("#previousPageButton").click(function (e) {
+            e.preventDefault();
             var pageDivs = $(this).parent().children("div");
             var maxNumber = pageDivs.length;
             if (pageNumber > 0) {
@@ -295,12 +302,22 @@
                     $(pageDivs[i]).hide();
                 }
             }
-
+            return false;
         });
 
-        $(".oneChecboxDiv input:checkbox").change(function () {
-            $(".oneChecboxDiv input:checkbox").attr("checked", false);
-            $(this).attr("checked", true);
+        $('.oneChecboxDiv input[type="checkbox"]').on('change', function() {
+            $(this).siblings('.oneChecboxDiv input[type="checkbox"]').not(this).prop('checked', false);
+        });
+
+        $(function(){
+            var requiredCheckboxes = $('.oneChecboxDiv input:checkbox[required]');
+            requiredCheckboxes.change(function(){
+                if(requiredCheckboxes.is(':checked')) {
+                    requiredCheckboxes.removeAttr('required');
+                } else {
+                    requiredCheckboxes.attr('required', 'required');
+                }
+            });
         });
     </script>
 </body>

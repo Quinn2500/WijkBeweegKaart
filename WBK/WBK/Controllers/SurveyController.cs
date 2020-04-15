@@ -39,39 +39,45 @@ namespace WBK.Controllers
                 for (int j = 0; j < survey.Pages[i].Questions.Count; j++)
                 {
                     Question question = survey.Pages[i].Questions[j];
+                    question.Answers = new List<Answer>
+                    {
+                        new GeoAnswer()
+                    };
                     switch (question.Type)
                     {
                         case TypeEnum.GeoVraag:
-                            question.Answer = new GeoAnswer{GeoData = model.PagesList[i].Questions[j].GeoCodeAnswer}; 
+                            question.Answers[0] = new GeoAnswer{GeoData = model.PagesList[i].Questions[j].GeoCodeAnswer}; 
                             break;
 
                         case TypeEnum.NummerVraag:
-                            question.Answer = new NumberAnswer{ NumberValue = model.PagesList[i].Questions[j].NumberAnswer };
+                            question.Answers[0] = new NumberAnswer{ NumberValue = model.PagesList[i].Questions[j].NumberAnswer };
                             break;
 
                         case TypeEnum.SliderVraag:
-                            question.Answer = new NumberAnswer{ NumberValue = model.PagesList[i].Questions[j].NumberAnswer };
+                            question.Answers[0] = new NumberAnswer{ NumberValue = model.PagesList[i].Questions[j].NumberAnswer };
                             break;
 
                         case TypeEnum.OpenVraag:
-                            question.Answer = new TextAnswer{ TextValue = model.PagesList[i].Questions[j].TextAnswer };
+                            question.Answers[0] = new TextAnswer{ TextValue = model.PagesList[i].Questions[j].TextAnswer };
                             break;
 
                         case TypeEnum.MeerkeuzeVraag:
-                            MultipleChoiceQuestion test = question as MultipleChoiceQuestion;
+                            MultipleChoiceQuestion multipleChoiceQuestion = question as MultipleChoiceQuestion;
                             List<MultipleChoiceOption> answer = new List<MultipleChoiceOption>();
-                            for (int k = 0; k < test.Options.Count; k++)
+                            QuestionViewModel testQuestion = model.PagesList[i].Questions[j - 1];
+                            for (int k = 0; k < multipleChoiceQuestion.Options.Count; k++)
                             {
-                                if (model.PagesList[i].Questions[j].Options[k].Selected)
+
+                                if (testQuestion.Options[k].Selected)
                                 {
-                                    answer.Add(test.Options[k]);
+                                    answer.Add(multipleChoiceQuestion.Options[k]);
                                 }
                             }
 
-                            question.Answer = new MultipleChoiceAnswer { AnsweredOptions = answer};
+                            question.Answers[0] = new MultipleChoiceAnswer { AnsweredOptions = answer};
                             break;
                     }
-                    question.Answer.Respondant = respondant;
+                    question.Answers[0].Respondant = respondant;
                 }
             }
             _logic.InserSurveyAnswers(survey);
@@ -81,7 +87,7 @@ namespace WBK.Controllers
         [HttpGet]
         public IActionResult AllAnswers(string surveyTitle)
         {
-            SurveyAnswers model = _logic.GetAllAnswersFromSurvey(surveyTitle);
+            Survey model = _logic.GetSurveyWithAllAnswers(surveyTitle);
             return View(model);
         }
 
@@ -91,7 +97,7 @@ namespace WBK.Controllers
             {
                 Title = survey.Title,
                 Description = survey.Description,
-                EndDate = survey.EndDate,
+                EndDate = survey.EndDate.ToShortDateString(),
                 StartLocationLat = survey.StartLocation.Latitude.ToString(),
                 StartLocationLong = survey.StartLocation.Longitude.ToString(),
                 PagesList = new List<PageViewModel>()

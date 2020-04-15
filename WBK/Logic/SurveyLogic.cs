@@ -46,9 +46,9 @@ namespace Logic
             _dataBaseCalls.InsertAnswers(surveyWithAnswers);
         }
 
-        public SurveyAnswers GetAllAnswersFromSurvey(string surveyTitle)
+        public Survey GetSurveyWithAllAnswers(string surveyTitle)
         {
-            return _dataBaseCalls.GetAllsSurveyAnswers(surveyTitle);
+            return _dataBaseCalls.GetSurveyWithAllAnswers(surveyTitle);
         }
     }
 }
