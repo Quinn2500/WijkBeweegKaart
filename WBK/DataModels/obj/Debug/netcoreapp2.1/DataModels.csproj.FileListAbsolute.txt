@@ -6,7 +6,6 @@ D:\GitKraken\Repos\WijkBeweegKaart\WBK\DataModels\obj\Debug\netcoreapp2.1\DataMo
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\DataModels\obj\Debug\netcoreapp2.1\DataModels.AssemblyInfo.cs
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\DataModels\obj\Debug\netcoreapp2.1\DataModels.dll
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\DataModels\obj\Debug\netcoreapp2.1\DataModels.pdb
-D:\GitKraken\Repos\WijkBeweegKaart\WBK\DataModels\obj\Debug\netcoreapp2.1\DataModels.csproj.CoreCompileInputs.cache
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\DataModels\bin\Debug\netcoreapp2.1\Newtonsoft.Json.dll
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\DataModels\bin\Debug\netcoreapp2.1\Newtonsoft.Json.xml
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\DataModels\obj\Debug\netcoreapp2.1\DataModels.csproj.CopyComplete

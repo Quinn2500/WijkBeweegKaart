@@ -352,12 +352,20 @@ namespace DAL
                 foreach (Question question in page.Questions)
                 {
                     int questionId = (int)GetQuestionId(question.Value, pageId);
-                    int respondantId = (int)InsertRespondant(question.Answer.Respondant);
+                    int respondantId;
+                    if (GetRespondentId(question.Answers[0].Respondant.SessionId) == null)
+                    {
+                        respondantId = (int)InsertRespondant(question.Answers[0].Respondant);
+                    }
+                    else
+                    {
+                        respondantId = (int)GetRespondentId(question.Answers[0].Respondant.SessionId);
+                    }
                     int answerId = (int)InsertAnswer(questionId, respondantId);
                     switch (question.Type)
                     {
                         case TypeEnum.GeoVraag:
-                            GeoAnswer geoAnswer = question.Answer as GeoAnswer;
+                            GeoAnswer geoAnswer = question.Answers[0] as GeoAnswer;
                             string queryGeo = "INSERT INTO `geoanswer`(`GeoData`, `AnswerId`) VALUES (@pGeoData, @pAnswerId)";
                             List<MySqlParameter> parametersGeo = new List<MySqlParameter>
                             {
@@ -367,7 +375,7 @@ namespace DAL
                             _databaseCalls.Command(queryGeo, parametersGeo);
                             break;
                         case TypeEnum.OpenVraag:
-                            TextAnswer openAnswer = question.Answer as TextAnswer;
+                            TextAnswer openAnswer = question.Answers[0] as TextAnswer;
                             string queryOpen = "INSERT INTO `textanswer`(`AnswerId`, `textAnswer`) VALUES (@pAnswerId, @pTextValue)";
                             List<MySqlParameter> parametersOpen = new List<MySqlParameter>
                             {
@@ -377,7 +385,7 @@ namespace DAL
                             _databaseCalls.Command(queryOpen, parametersOpen);
                             break;
                         case TypeEnum.MeerkeuzeVraag:
-                            MultipleChoiceAnswer answer = question.Answer as MultipleChoiceAnswer;
+                            MultipleChoiceAnswer answer = question.Answers[0] as MultipleChoiceAnswer;
 
                             foreach (MultipleChoiceOption option in answer.AnsweredOptions)
                             {
@@ -393,7 +401,7 @@ namespace DAL
                             break;
 
                         case TypeEnum.NummerVraag:
-                            NumberAnswer numberAnswer = question.Answer as NumberAnswer;
+                            NumberAnswer numberAnswer = question.Answers[0] as NumberAnswer;
 
                             string queryNumber = "INSERT INTO `numberanswer`(`AnswerValue`, `AnswerId`) VALUES (@pNumberValue, @pAnswerId)";
                             List<MySqlParameter> parametersNumber = new List<MySqlParameter>
@@ -405,7 +413,7 @@ namespace DAL
                             break;
 
                         case TypeEnum.SliderVraag:
-                            NumberAnswer numberAnswerSlider = question.Answer as NumberAnswer;
+                            NumberAnswer numberAnswerSlider = question.Answers[0] as NumberAnswer;
                             string query = "INSERT INTO `numberanswer`(`AnswerValue`, `AnswerId`) VALUES (@pNumberValue, @pAnswerId)";
                             List<MySqlParameter> parameters = new List<MySqlParameter>
                             {
@@ -421,18 +429,23 @@ namespace DAL
             }
         }
 
-        public Survey GetSurveyWithAnswers()
+        public int? GetRespondentId(string respondantSessionId)
         {
-            return null;
+            string query = "SELECT `Id` FROM `respondant` WHERE respondant.SessionId = @pSessionId";
+            List<MySqlParameter> parameters = new List<MySqlParameter>
+            {
+                new MySqlParameter("@pSessionId", respondantSessionId)
+            };
+            return _databaseCalls.GetOneInt(query, parameters);
         }
 
-        private int? GetPageId(string title, int id)
+        private int? GetPageId(string title, int surveyId)
         {
             string query = "SELECT `Id` FROM `page` WHERE page.Title = @pTitle AND page.SurveyId = @pSurveyId";
             List<MySqlParameter> parameters = new List<MySqlParameter>
             {
                 new MySqlParameter("@pTitle", title),
-                new MySqlParameter("@pSurveyId", id)
+                new MySqlParameter("@pSurveyId", surveyId)
             };
             return _databaseCalls.GetOneInt(query, parameters);
         }
@@ -491,223 +504,132 @@ namespace DAL
             return _databaseCalls.CommandWithLastId(query, parameters);
         }
 
-        public SurveyAnswers GetAllsSurveyAnswers(string surveyTitle)
+        public Survey GetSurveyWithAllAnswers(string surveyTitle)
         {
-            SurveyAnswers result = new SurveyAnswers
-            {
-                SurveyTitle = surveyTitle,
-                Questions = new List<Question>()
-            };
-
             int surveyId = (int)GetSurveyId(surveyTitle);
+            Survey result = GetSurvey(surveyId);
 
-            List<MySqlParameter> parametersSurveyId = new List<MySqlParameter>
+            foreach (Page page in result.Pages)
             {
-                new MySqlParameter("@pId", surveyId),
-            };
-
-            string queryPage = "SELECT * FROM `page` WHERE page.SurveyId = @pId";
-
-            foreach (DataRow rowPage in _databaseCalls.Select(queryPage, parametersSurveyId).Rows)
-            {
-
-                int pageId = Convert.ToInt32(rowPage[0]);
-
-                string queryQuestion = "SELECT * FROM `question` WHERE Question.PageId = @pId";
-                List<MySqlParameter> parametersQuestion = new List<MySqlParameter>
+                int pageId = (int) GetPageId(page.Title, surveyId);
+                foreach (Question question in page.Questions)
                 {
-                    new MySqlParameter("@pId", pageId),
-                };
+                    question.Answers = new List<Answer>();
 
-                foreach (DataRow rowQuestion in _databaseCalls.Select(queryQuestion, parametersQuestion).Rows)
-                {
-                    int questionId = Convert.ToInt32(rowQuestion[0]);
-                    List<MySqlParameter> questionIdParameter = new List<MySqlParameter>
+                    int questionId = (int) GetQuestionId(question.Value, pageId);
+
+                    string queryAnswers = "SELECT * FROM `answer` WHERE answer.QuestionId =  @pQuestionId";
+                    List<MySqlParameter> parametersAnswers = new List<MySqlParameter>
                     {
-                        new MySqlParameter("@pId", questionId),
+                        new MySqlParameter("@pQuestionId", questionId),
                     };
-                    int answerId = (int)GetAnswerId(questionId);
-                    List<MySqlParameter> answerIdParameter = new List<MySqlParameter>
+
+                    foreach (DataRow rowQuestion in _databaseCalls.Select(queryAnswers, parametersAnswers).Rows)
                     {
-                        new MySqlParameter("@pAnswerId", answerId),
-                    };
-                    TypeEnum questionType = (TypeEnum)Convert.ToInt32(rowQuestion[3]);
+                        List<MySqlParameter> answerIdParameter = new List<MySqlParameter>
+                        {
+                            new MySqlParameter("@pAnswerId", Convert.ToInt32(rowQuestion[0])),
+                        };
 
-                    Respondant respondant = GetRespondant((int)GetRespondentId(answerId));
+                        Respondant respondant = GetRespondant(Convert.ToInt32(rowQuestion[2]));
 
-                    switch (questionType)
-                    {
+                        switch (question.Type)
+                        {
 
-                        case TypeEnum.GeoVraag:
-                            string queryGeo = "SELECT * FROM `geoquestion` WHERE geoquestion.QuestionId = @pId";
-                            DataRow rowGeo = _databaseCalls.Select(queryGeo, questionIdParameter).Rows[0];
+                            case TypeEnum.GeoVraag:
+                                string queryAnswer = "SELECT `GeoData` FROM `geoanswer` WHERE geoanswer.AnswerId = @pAnswerId";
+                                DataRow rowAnswer = _databaseCalls.Select(queryAnswer, answerIdParameter).Rows[0];
 
-                            string queryAnswer = "SELECT `GeoData` FROM `geoanswer` WHERE geoanswer.AnswerId = @pAnswerId";
-                            DataRow rowAnswer = _databaseCalls.Select(queryAnswer, answerIdParameter).Rows[0];
-
-                            GeoAnswer answer = new GeoAnswer
-                            {
-                                GeoData = rowAnswer[0].ToString(),
-                                Respondant = respondant
-
-                            };
-
-
-                            GeoQuestion geoQuestion = new GeoQuestion
-                            {
-                                Value = rowQuestion[1].ToString(),
-                                Description = rowQuestion[2].ToString(),
-                                Category = (CategoryEnum)Convert.ToInt32(rowQuestion[5]),
-                                Type = questionType,
-                                TypeOfMarker = (GeoTypeEnum)Convert.ToInt32(rowGeo[2]),
-                                Answer = answer
-
-                            };
-                            result.Questions.Add(geoQuestion);
-                            break;
-
-                        case TypeEnum.OpenVraag:
-                            string queryAnswerOpen = "SELECT `textAnswer` FROM `textanswer` WHERE textanswer.AnswerId = @pAnswerId";
-                            DataRow rowAnswerOpen = _databaseCalls.Select(queryAnswerOpen, answerIdParameter).Rows[0];
-
-                            TextAnswer answerOpen = new TextAnswer
-                            {
-                                TextValue = rowAnswerOpen[0].ToString(),
-                                Respondant = respondant
-
-                            };
-
-
-                            OpenQuestion openQuestion = new OpenQuestion
-                            {
-                                Value = rowQuestion[1].ToString(),
-                                Description = rowQuestion[2].ToString(),
-                                Category = (CategoryEnum)Convert.ToInt32(rowQuestion[5]),
-                                Type = questionType,
-                                Answer = answerOpen
-                            };
-                            result.Questions.Add(openQuestion);
-                            break;
-
-                        case TypeEnum.MeerkeuzeVraag:
-                            MultipleChoiceAnswer answerMultipleChoice = new MultipleChoiceAnswer
-                            {
-                                Respondant = respondant
-                            };
-                            string queryAnswerMultipleChoice = "SELECT `MultipleChoiceOptionId` FROM `multiplechoiceanswer` WHERE multiplechoiceanswer.AnswerId = @pAnswerId";
-                            foreach (DataRow answerRow in _databaseCalls.Select(queryAnswerMultipleChoice, answerIdParameter).Rows)
-                            {
-                                string queryAnswerMultipleChoiceOption = "SELECT `Value`, `Description` FROM `multiplechoiceoption` WHERE multiplechoiceoption.Id = @pId";
-                                List<MySqlParameter> parameterAnswerMultipleChoiceOption = new List<MySqlParameter>
+                                GeoAnswer answer = new GeoAnswer
                                 {
-                                    new MySqlParameter("@pId", Convert.ToInt32(answerRow[0])),
-                                };
-                                DataRow rowMultipleChoiceOptionAnswer = _databaseCalls.Select(queryAnswerMultipleChoiceOption, parameterAnswerMultipleChoiceOption).Rows[0];
-                                MultipleChoiceOption option = new MultipleChoiceOption
-                                {
-                                    Value = rowMultipleChoiceOptionAnswer[0].ToString(),
-                                    Description = rowMultipleChoiceOptionAnswer[1].ToString(),
+                                    GeoData = rowAnswer[0].ToString(),
+                                    Respondant = respondant
 
                                 };
-                                answerMultipleChoice.AnsweredOptions.Add(option);
-                            }
 
-                            string queryMultiplechoice = "SELECT * FROM `multiplechoicequestion` WHERE multiplechoicequestion.QuestionId =  @pId";
-                            DataRow rowMultipleChoice = _databaseCalls.Select(queryMultiplechoice, questionIdParameter).Rows[0];
-                            int multipleChoiceId = Convert.ToInt32(rowMultipleChoice[0]);
-                            MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion
-                            {
-                                Value = rowQuestion[1].ToString(),
-                                Description = rowQuestion[2].ToString(),
-                                Category = (CategoryEnum)Convert.ToInt32(rowQuestion[5]),
-                                Type = questionType,
-                                AllowMutlipleAnwsers = Convert.ToBoolean(rowMultipleChoice[2]),
-                                Options = new List<MultipleChoiceOption>(),
-                                Answer = answerMultipleChoice
-                            };
+                                question.Answers.Add(answer);
+                                break;
 
-                            string queryOptions = "SELECT * FROM `multiplechoiceoption` WHERE multiplechoiceoption.MultipleChoiceQuestionId = @pId";
-                            List<MySqlParameter> parametersOptions = new List<MySqlParameter>
-                            {
-                                new MySqlParameter("@pId", multipleChoiceId),
-                            };
+                            case TypeEnum.OpenVraag:
 
-                            foreach (DataRow rowOption in _databaseCalls.Select(queryOptions, parametersOptions).Rows)
-                            {
-                                MultipleChoiceOption option = new MultipleChoiceOption
+                                string queryAnswerOpen = "SELECT `textAnswer` FROM `textanswer` WHERE textanswer.AnswerId = @pAnswerId";
+                                DataRow rowAnswerOpen = _databaseCalls.Select(queryAnswerOpen, answerIdParameter).Rows[0];
+
+                                TextAnswer answerOpen = new TextAnswer
                                 {
-                                    Value = rowOption[2].ToString(),
-                                    Description = rowOption[3].ToString(),
+                                    TextValue = rowAnswerOpen[0].ToString(),
+                                    Respondant = respondant
 
                                 };
-                                multipleChoiceQuestion.Options.Add(option);
-                            }
-                            result.Questions.Add(multipleChoiceQuestion);
-                            break;
+                                question.Answers.Add(answerOpen);
+                                break;
 
-                        case TypeEnum.SliderVraag:
+                            case TypeEnum.MeerkeuzeVraag:
 
-                            string queryAnswerSlider = "SELECT `AnswerValue` FROM `numberanswer` WHERE numberanswer.AnswerId = @pAnswerId";
-                            DataRow rowAnswerSlider = _databaseCalls.Select(queryAnswerSlider, answerIdParameter).Rows[0];
+                                MultipleChoiceAnswer answerMultipleChoice = new MultipleChoiceAnswer
+                                {
+                                    Respondant = respondant,
+                                    AnsweredOptions = new List<MultipleChoiceOption>()
 
-                            NumberAnswer answerSlider = new NumberAnswer
-                            {
-                                NumberValue = Convert.ToInt32(rowAnswerSlider[0]),
-                                Respondant = respondant
 
-                            };
+                                };
+                                string queryAnswerMultipleChoice = "SELECT `MultipleChoiceOptionId` FROM `multiplechoiceanswer` WHERE multiplechoiceanswer.AnswerId = @pAnswerId";
+                                foreach (DataRow answerRow in _databaseCalls.Select(queryAnswerMultipleChoice, answerIdParameter).Rows)
+                                {
+                                    string queryAnswerMultipleChoiceOption = "SELECT `Value`, `Description` FROM `multiplechoiceoption` WHERE multiplechoiceoption.Id = @pId";
+                                    List<MySqlParameter> parameterAnswerMultipleChoiceOption = new List<MySqlParameter>
+                                        {
+                                            new MySqlParameter("@pId", Convert.ToInt32(answerRow[0])),
+                                        };
+                                    DataRow rowMultipleChoiceOptionAnswer = _databaseCalls.Select(queryAnswerMultipleChoiceOption, parameterAnswerMultipleChoiceOption).Rows[0];
+                                    MultipleChoiceOption option = new MultipleChoiceOption
+                                    {
+                                        Value = rowMultipleChoiceOptionAnswer[0].ToString(),
+                                        Description = rowMultipleChoiceOptionAnswer[1].ToString(),
 
-                            string querySlider = "SELECT * FROM `sliderquestion` WHERE sliderquestion.QuestionId =  @pId";
-                            DataRow rowSlider = _databaseCalls.Select(querySlider, questionIdParameter).Rows[0];
+                                    };
+                                    answerMultipleChoice.AnsweredOptions.Add(option);
+                                }
+                                question.Answers.Add(answerMultipleChoice);
+                                break;
 
-                            SliderQuestion sliderQuestion = new SliderQuestion
-                            {
-                                Value = rowQuestion[1].ToString(),
-                                Description = rowQuestion[2].ToString(),
-                                Category = (CategoryEnum)Convert.ToInt32(rowQuestion[5]),
-                                Type = questionType,
-                                MaxValueText = rowSlider[2].ToString(),
-                                MinValueText = rowSlider[3].ToString(),
-                                Scale = Convert.ToInt32(rowSlider[4]),
-                                Answer = answerSlider
+                            case TypeEnum.SliderVraag:
 
-                            };
-                            result.Questions.Add(sliderQuestion);
-                            break;
+                                string queryAnswerSlider = "SELECT `AnswerValue` FROM `numberanswer` WHERE numberanswer.AnswerId = @pAnswerId";
+                                DataRow rowAnswerSlider = _databaseCalls.Select(queryAnswerSlider, answerIdParameter).Rows[0];
 
-                        case TypeEnum.NummerVraag:
+                                NumberAnswer answerSlider = new NumberAnswer
+                                {
+                                    NumberValue = Convert.ToInt32(rowAnswerSlider[0]),
+                                    Respondant = respondant
 
-                            string queryAnswerNumber = "SELECT `AnswerValue` FROM `numberanswer` WHERE numberanswer.AnswerId = @pAnswerId";
-                            DataRow rowAnswerNumber = _databaseCalls.Select(queryAnswerNumber, answerIdParameter).Rows[0];
+                                };
+                                question.Answers.Add(answerSlider);
+                                break;
 
-                            NumberAnswer answerNumber = new NumberAnswer
-                            {
-                                NumberValue = Convert.ToInt32(rowAnswerNumber[0]),
-                                Respondant = respondant
+                            case TypeEnum.NummerVraag:
 
-                            };
+                                string queryAnswerNumber = "SELECT `AnswerValue` FROM `numberanswer` WHERE numberanswer.AnswerId = @pAnswerId";
+                                DataRow rowAnswerNumber = _databaseCalls.Select(queryAnswerNumber, answerIdParameter).Rows[0];
 
-                            string queryNumber = "SELECT * FROM `numberquestion` WHERE numberquestion.QuestionId = @pId";
-                            DataRow rowNumber = _databaseCalls.Select(queryNumber, questionIdParameter).Rows[0];
+                                NumberAnswer answerNumber = new NumberAnswer
+                                {
+                                    NumberValue = Convert.ToInt32(rowAnswerNumber[0]),
+                                    Respondant = respondant
 
-                            NumberQuestion numberQuestion = new NumberQuestion
-                            {
-                                Value = rowQuestion[1].ToString(),
-                                Description = rowQuestion[2].ToString(),
-                                Category = (CategoryEnum)Convert.ToInt32(rowQuestion[5]),
-                                Type = questionType,
-                                Maximum = Convert.ToInt32(rowNumber[2]),
-                                Minimum = Convert.ToInt32(rowNumber[3]),
-                                Answer = answerNumber
-                            };
-                            result.Questions.Add(numberQuestion);
-                            break;
+                                };
+                                question.Answers.Add(answerNumber);
+                                break;
+                        }
                     }
+
+                    
                 }
             }
 
             return result;
         }
+
 
         private int? GetAnswerId(int questionId)
         {

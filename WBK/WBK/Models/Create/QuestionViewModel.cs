@@ -23,6 +23,7 @@ namespace WBK.Models.Create
         public string TextAnswer { get; set; }
         public string GeoCodeAnswer { get; set; }
         public int NumberAnswer { get; set; }
+        public string Attribute { get; set; }
 
 
 
