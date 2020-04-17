@@ -13,3 +13,4 @@ D:\GitKraken\Repos\WijkBeweegKaart\WBK\Logic\bin\Debug\netcoreapp2.1\DataModels.
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\Logic\obj\Debug\netcoreapp2.1\Logic.csproj.CopyComplete
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\Logic\bin\Debug\netcoreapp2.1\Newtonsoft.Json.dll
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\Logic\bin\Debug\netcoreapp2.1\Newtonsoft.Json.xml
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\Logic\obj\Debug\netcoreapp2.1\Logic.csproj.CoreCompileInputs.cache

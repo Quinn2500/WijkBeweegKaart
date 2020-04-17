@@ -20,17 +20,8 @@
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <link href="~/lib/jqeury-ui/jquery-ui.css" rel="stylesheet" />
     <script src="~/lib/jqeury-ui/jquery-ui.min.js"></script>
-
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
 </head>
 
 <body class="p-0">
@@ -190,6 +181,7 @@
         document.getElementsByName("StartLocationLong")[0].value = e.latlng.lng;
     }
     mymap.on('click', onMapClick);
+
     $(document).ready(function () {
         console.log("ready!");
  
@@ -199,6 +191,7 @@
             uiLibrary: 'bootstrap4',
             startDate: '+14d'
         });
+
         $("body").on("change",
             "select",
             function (e) {
@@ -555,74 +548,77 @@
                 }
                 return false;
             });
-    });
 
-    $("body").on("click",
-        ".addMCOption",
-        function (e) {
-            e.preventDefault();
-            var wrapper = $(this).parent().parent().children()[0];
-            var numberOfOptions = $(wrapper).children(".MCOption").length;
-            var pageNumber = $(this).parent().parent().parent().parent().parent().children("label")[0].innerHTML;
-            var questionWrapper = $(this).parent().parent().parent().parent().parent().children(".QuestionWrapper");
-            var currentQuestionCount = $(questionWrapper).children(".questionDiv").length - 1;
-            console.log(wrapper);
-            console.log(currentQuestionCount);
-            $(wrapper).append(
-                '<div class="MCOption">' +
-                '<label>Antwoord:</label> <input id="PagesList_' + pageNumber + '__Questions_' + currentQuestionCount + '__Options_' + numberOfOptions + '__Answer" name="PagesList[' + pageNumber + '].Questions[' +
-                currentQuestionCount +
-                '].Options[' +
-                numberOfOptions +
-                '].Answer" type="text" value="" />' +
-                '<label>Eventuele beschrijving:</label> <input id="PagesList_' +
-                pageNumber +
-                '__Questions_' +
-                currentQuestionCount +
-                '__Options_' +
-                numberOfOptions +
-                '__Description" name="PagesList[' +
-                pageNumber +
-                '].Questions[' +
-                currentQuestionCount +
-                '].Options[' +
-                numberOfOptions +
-                '].Description" type="text" value="" />' +
-                '<label for="OptionCounter" style="display: none;">' +
-                numberOfOptions +
-                '</label>' +
-                '<a href="" class="removeMCOption btn btn-danger">Verwijderen</a>' +
-                '</div> ');
-            return false;
-        });
+        $("body").on("click",
+            ".addMCOption",
+            function (e) {
+                e.preventDefault();
+                var wrapper = $(this).parent().parent().children()[0];
+                var numberOfOptions = $(wrapper).children(".MCOption").length;
+                var pageNumber = $(this).parent().parent().parent().parent().parent().children("label")[0].innerHTML;
+                var questionWrapper = $(this).parent().parent().parent().parent().parent().children(".QuestionWrapper");
+                var currentQuestionCount = $(questionWrapper).children(".questionDiv").length - 1;
+                console.log(wrapper);
+                console.log(currentQuestionCount);
+                $(wrapper).append(
+                    '<div class="MCOption">' +
+                    '<label>Antwoord:</label> <input id="PagesList_' + pageNumber + '__Questions_' + currentQuestionCount + '__Options_' + numberOfOptions + '__Answer" name="PagesList[' + pageNumber + '].Questions[' +
+                    currentQuestionCount +
+                    '].Options[' +
+                    numberOfOptions +
+                    '].Answer" type="text" value="" />' +
+                    '<label>Eventuele beschrijving:</label> <input id="PagesList_' +
+                    pageNumber +
+                    '__Questions_' +
+                    currentQuestionCount +
+                    '__Options_' +
+                    numberOfOptions +
+                    '__Description" name="PagesList[' +
+                    pageNumber +
+                    '].Questions[' +
+                    currentQuestionCount +
+                    '].Options[' +
+                    numberOfOptions +
+                    '].Description" type="text" value="" />' +
+                    '<label for="OptionCounter" style="display: none;">' +
+                    numberOfOptions +
+                    '</label>' +
+                    '<a href="" class="removeMCOption btn btn-danger">Verwijderen</a>' +
+                    '</div> ');
+                return false;
+            });
 
-    $("body").on("click",
-        ".removeMCOption",
-        function (e) {
-            e.preventDefault();
-            var wrapper = $(this).parent().parent().parent().children()[0];
-            $(this).parent('div').remove();
-            var options = $(wrapper).children(".MCOption");
-            var i;
-            var q;
-            for (i = 0; i < options.length; i++) {
-                var children = options[i].children;
-                var oldNumber = children[4].innerHTML;
-                children[4].innerHTML = i;
-                for (q = 0; q < children.length; q++) {
-                    var child = children[q];
-                    switch (child.tagName) {
-                    case "INPUT":
-                        child.id = child.id.replace("Options_" + oldNumber, "Options_" + i);
-                        child.name = child.name.replace("Options[" + oldNumber + "]", "PagesList[" + i + "]");
-                        break;
-                    default:
-                        break;
+        $("body").on("click",
+            ".removeMCOption",
+            function (e) {
+                e.preventDefault();
+                var wrapper = $(this).parent().parent().parent().children()[0];
+                $(this).parent('div').remove();
+                var options = $(wrapper).children(".MCOption");
+                var i;
+                var q;
+                for (i = 0; i < options.length; i++) {
+                    var children = options[i].children;
+                    var oldNumber = children[4].innerHTML;
+                    children[4].innerHTML = i;
+                    for (q = 0; q < children.length; q++) {
+                        var child = children[q];
+                        switch (child.tagName) {
+                            case "INPUT":
+                                child.id = child.id.replace("Options_" + oldNumber, "Options_" + i);
+                                child.name = child.name.replace("Options[" + oldNumber + "]", "PagesList[" + i + "]");
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
-            }
-            return false;
-        });
+                return false;
+            });
+
+    });
+
+  
 </script>
 </body>
 </html>
