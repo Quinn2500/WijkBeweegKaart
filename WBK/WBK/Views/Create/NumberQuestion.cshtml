@@ -1,0 +1,13 @@
+﻿@{
+    Layout = null;
+}
+
+@model WBK.Models.Create.PageQuestionModel
+
+
+<div class="question">
+    <label>Minimale waarde:</label>
+    <input class="form-control" data-val="true" data-val-required="The MinValue field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__MinValue" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].MinValue" type="number">
+    <label>Maximale waarde:</label>
+    <input class="form-control" data-val="true" data-val-required="The MaxValue field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__MaxValue" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].MaxValue" type="number">
+</div>

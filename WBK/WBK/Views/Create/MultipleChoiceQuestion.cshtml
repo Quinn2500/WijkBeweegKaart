@@ -1,0 +1,23 @@
+﻿@{
+    Layout = null;
+}
+
+@model WBK.Models.Create.PageQuestionModel
+
+<div class="question">  
+     <div class=mcWrapper>
+         <label>Laat meerdere antwoorden toe:</label>   
+         <input class="form-check" data-val="true" data-val-required="The AllowMultipleAnswers field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__AllowMultipleAnswers" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].AllowMultipleAnswers" type="checkbox" value="true" />   
+         <div class="MCOption">             
+             <label>Antwoord:</label> 
+             <input class="form-control" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_0__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[0].Answer" type="text" value="" placeholder="Multiple Choice Antwoord" />   
+             <label>Eventuele beschrijving:</label> 
+             <input class="form-control" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_0__Description" name="PagesList[(Model.PageId)].Questions[@(Model.QuestionId)].Options[0].Description" type="text" value="" />   
+             <label for="OptionCounter" style="display: none;">0</label>   
+             <a href="" class="removeMCOption btn btn-danger">Verwijderen</a>               
+        </div>             
+    </div>   
+    <div class="addMCOptions">
+        <a href="" class="addMCOption btn btn-info"> </a>
+    </div>        
+</div>

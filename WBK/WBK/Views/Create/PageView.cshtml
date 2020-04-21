@@ -1,0 +1,31 @@
+﻿@{
+    Layout = null;
+}
+
+@model WBK.Models.Create.PageQuestionModel
+
+<div class="pageDiv">
+
+    <h3>Pagina @(Model.PageId) </h3>
+    <label> Pagina Titel:</label>
+    <input class="form-control" required id="PagesList_@(Model.PageId)__Title" name="PagesList[@(Model.PageId)].Title" type="text" value="" placeholder="Pagina @(Model.PageId) Titel " />
+    <label> Pagina Beschrijving:</label>
+    <textarea class="form-control" id="PagesList_@(Model.PageId)__Description" name="PagesList[@(Model.PageId)].Description" type="text" value="" placeholder="Pagina @(Model.PageId) Beschrijving" rows="5" cols="40"></textarea>
+
+    <label for="PageCounter" style="display: none;">@(Model.PageId)</label>
+
+    <div class="QuestionWrapper">
+    </div>
+
+    <div class="addQuestion">
+         <a href="#" class="addQuestionButton btn btn-info">Voeg Vraag Toe</a><br><br>
+    </div>
+
+    <div class="preMadeQuestions">
+        <button href="" class="addProfileQuestionButton btn btn-info">Voeg Profiel Vragen Toe</button>
+        <button href="" class="addNNGBQuestionButton btn btn-info"> Voeg NNGB vragen Toe</button>
+        <button href="" class="addMotivationQuestionButton btn btn-info">Voeg Motivatie vragen Toe</button>
+    </div>
+    <a href="" class="removeclass btn btn-danger">Pagina verwijderen</a>
+
+</div>

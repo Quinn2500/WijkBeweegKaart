@@ -1,0 +1,15 @@
+﻿@{
+    Layout = null;
+}
+
+@model WBK.Models.Create.PageQuestionModel
+
+<div class="question">
+    <label>Tekst aan begin slider:</label>
+    <input class="form-control" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__SliderMinText" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].SliderMinText" type="text" value="" placeholder="Tekst aan het begin van de slider">
+    <label>Tekst aan eind slider:</label>
+    <input class="form-control" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__SliderMaxText" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].SliderMaxText" type="text" value="" placeholder="Tekst aan het eind van de slider">
+    <label>Max waarde:</label>
+    <input class="form-control" data-val="true" data-val-required="The SliderScaleVal field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__SliderScaleVal" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].SliderScaleVal" type="number">
+    <p>(De begin waarde is altijd 0. Het getal dat hierboven ingevuld wordt is de maximale waarde.)</p>
+</div>

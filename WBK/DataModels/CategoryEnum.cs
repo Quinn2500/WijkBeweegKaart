@@ -8,6 +8,7 @@ namespace DataModels
     {
         Profiel,
         Locatie,
-        Gezondheid
+        Gezondheid,
+        Motivatie
     }
 }
