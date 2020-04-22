@@ -1,0 +1,14 @@
+﻿@{
+    Layout = null;
+}
+
+@model WBK.Models.Create.PageQuestionModel
+
+<div class="question">   
+    <label>Marker Type:</label>
+    <select class="form-control" data-val="true" data-val-required="The GeoType field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__GeoType" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].GeoType">   
+         <option selected="selected" value="0">Marker</option>   
+         <option value="1">Lijn</option>   
+         <option value="2">Vlak</option>   
+    </select>   
+</div>

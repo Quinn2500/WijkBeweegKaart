@@ -271,6 +271,7 @@ namespace WBK.Controllers
             return model;
         }
 
+        #region Profile Questions
         [HttpGet]
         public IActionResult ProfileQuestions(int pageId, int questionId)
         {
@@ -304,5 +305,73 @@ namespace WBK.Controllers
             return View(model);
         }
 
+        #endregion
+
+        #region Questions
+        [HttpGet]
+        public IActionResult GeoQuestion(int pageId, int questionId)
+        {
+            PageQuestionModel model = new PageQuestionModel
+            {
+                PageId = pageId,
+                QuestionId = questionId
+            };
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult MultipleChoiceQuestion(int pageId, int questionId)
+        {
+            PageQuestionModel model = new PageQuestionModel
+            {
+                PageId = pageId,
+                QuestionId = questionId
+            };
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult NumberQuestion(int pageId, int questionId)
+        {
+            PageQuestionModel model = new PageQuestionModel
+            {
+                PageId = pageId,
+                QuestionId = questionId
+            };
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult SliderQuestion(int pageId, int questionId)
+        {
+            PageQuestionModel model = new PageQuestionModel
+            {
+                PageId = pageId,
+                QuestionId = questionId
+            };
+            return View(model);
+        }
+        #endregion
+
+        [HttpGet]
+        public IActionResult PageView(int pageId)
+        {
+            PageQuestionModel model = new PageQuestionModel
+            {
+                PageId = pageId
+            };
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult QuestionView(int pageId, int questionId)
+        {
+            PageQuestionModel model = new PageQuestionModel
+            {
+                PageId = pageId,
+                QuestionId = questionId
+            };
+            return View(model);
+        }
     }
 }
