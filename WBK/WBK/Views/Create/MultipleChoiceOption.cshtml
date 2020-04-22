@@ -1,0 +1,14 @@
+﻿@{
+    Layout = null;
+}
+
+@model WBK.Models.Create.PageQuestionModel
+<div class="MCOption">
+
+    <input class="form-control" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_@(Model.OptionId)__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId).Options[@(Model.OptionId)].Answer" type="text" value="" placeholder="Antwoord" />
+    <input class="form-control" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_@(Model.OptionId)__Description" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[@(Model.OptionId)].Description" type="text" value="" placeholder="Beschrijving" />
+    <input class="form-control" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_@(Model.OptionId)__ImageUrl" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[@(Model.OptionId)].ImageUrl" type="text" value="" placeholder="Foto URL" />
+    <label for="OptionCounter" style="display: none;"></label>
+    <a href="" class="removeMCOption btn btn-danger">Verwijderen</a>
+
+</div>

@@ -10,5 +10,6 @@ namespace WBK.Models.Create
         public string Title { get; set; }
         public string Description { get; set; }
         public List<QuestionViewModel> Questions { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

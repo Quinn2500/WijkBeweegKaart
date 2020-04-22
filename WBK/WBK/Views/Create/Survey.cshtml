@@ -20,6 +20,8 @@
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -37,38 +39,37 @@
             {
                 @Html.AntiForgeryToken()
 
-                <div class="col-6 form-group" style="margin-top: 20px;">
-                    <div>
-                        <label>Titel:</label>
-                        @Html.TextBoxFor(x => x.Title, new { required = "required", @class="form-control" })
-                    </div>
-                    <div>
-                        <label>Beschrijving:</label>
-                        @Html.TextAreaFor(x => x.Description, new { rows = "10", cols = "80", @class = "form-control" })
-                    </div>
-                    <div>
-                        <label>Eind Datum:</label>
-                        <div class="input-group date" data-provide="datepicker">
-                            @Html.TextBoxFor(model => model.EndDate, new { required = "required", @class = "form-control" })
-                            <div class="input-group-addon">
-                                <span class="glyphicon glyphicon-th"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="z-index: 1; position: relative;">
-                        <label>Selecteer locatie:</label>
-                        <div id="mapid" style="height: 400px; width: 400px;" class=""></div>
-                        <p>Klik op de kaart om de waardes in te voeren!</p>
-                        <label>Latitude:</label>
-                        @Html.TextBoxFor(x => x.StartLocationLat, new { required = "required", @class = "form-control" })
-                        <label>Longitude:</label>
-                        @Html.TextBoxFor(x => x.StartLocationLong, new { required = "required", @class = "form-control" })
-                    </div>
-
-                    <input type="submit" name="name" value="Maak Aan!" class="btn btn-success" />
-
+            <div class="col-6 form-group" style="margin-top: 20px;">
+                <div>
+                    <label>Titel:</label>
+                    @Html.TextBoxFor(x => x.Title, new { required = "required", @class = "form-control" })
                 </div>
+                <div>
+                    <label>Beschrijving:</label>
+                    @Html.TextAreaFor(x => x.Description, new { rows = "10", cols = "80", @class = "form-control" })
+                </div>
+                <div>
+                    <label>Foto URL:</label>
+                    @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
+                </div>
+                <div>
+                    <label>Eind Datum:</label>
+                     @Html.TextBoxFor(model => model.EndDate, new { required = "required", @class = "form-control" })
+                </div>
+
+                <div style="z-index: 1; position: relative;">
+                    <label>Selecteer locatie:</label>
+                    <div id="mapid" style="height: 400px; width: 400px;" class=""></div>
+                    <p>Klik op de kaart om de waardes in te voeren!</p>
+                    <label>Latitude:</label>
+                    @Html.TextBoxFor(x => x.StartLocationLat, new { required = "required", @class = "form-control" })
+                    <label>Longitude:</label>
+                    @Html.TextBoxFor(x => x.StartLocationLong, new { required = "required", @class = "form-control" })
+                </div>
+
+                <input type="submit" name="name" value="Maak Aan!" class="btn btn-success" />
+
+            </div>
 
                 <div class="col-6 form-group">
                     <h2>Pagina's en vragen:</h2>
@@ -76,66 +77,91 @@
                         @for (var i = 0; i < Model.PagesList.Count(); i++)
                         {
                             <div class="pageDiv">
-                                <h3>Pagina @i</h3>
-                                @Html.TextBoxFor(x => x.PagesList[i].Title, new { placeholder = "Pagina Titel", required = "required", @class = "form-control" })
+                                <div>
+                                    <h3 style="float: left;">Pagina @i</h3>
+
+                                    <div style="float: right;" class="dropleft show">
+                                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            =
+                                        </a>
+
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                @Html.TextBoxFor(x => x.PagesList[i].Title, new {placeholder = "Pagina Titel", required = "required", @class = "form-control"})
                                 @Html.ValidationMessageFor(x => x.PagesList[i].Title)
 
-                                @Html.TextAreaFor(x => x.PagesList[i].Description, new { placeholder = "Pagina Beschrijving", rows = "5", cols = "40", @class = "form-control" })
+                                @Html.TextBoxFor(x => x.PagesList[i].ImageUrl, new {placeholder = "Foto URL", @class = "form-control"})
+
+                                @Html.TextAreaFor(x => x.PagesList[i].Description, new {placeholder = "Pagina Beschrijving", rows = "5", cols = "40", @class = "form-control"})
                                 @Html.ValidationMessageFor(x => x.PagesList[i].Description)
 
-                                @Html.Label("PageCounter", i.ToString(), new { style = "display: none;" })     
+                                @Html.Label("PageCounter", i.ToString(), new {style = "display: none;"})
 
                                 <div class="QuestionWrapper">
 
                                     @for (var j = 0; j < Model.PagesList[i].Questions.Count(); j++)
                                     {
-                                    <div class="questionDiv">
-                                        <h3>Vraag @j</h3>
+                                        <div class="questionDiv">
+                                            <h3>Vraag @j</h3>
 
-                                        @Html.TextBoxFor(x => x.PagesList[i].Questions[j].Title, new { placeholder = "Vraag", required = "required", @class = "form-control" })
-                                        @Html.TextBoxFor(x => x.PagesList[i].Questions[j].Description, new { placeholder = "Vraag Beschrijving", required = "required", @class = "form-control" })
-                                        @Html.DropDownListFor(x => x.PagesList[i].Questions[j].Type, Html.GetEnumSelectList(Model.PagesList[i].Questions[j].Type.GetType()), new { @class = "form-control" })
-                                        @Html.DropDownListFor(x => x.PagesList[i].Questions[j].Category, Html.GetEnumSelectList(Model.PagesList[i].Questions[j].Category.GetType()), new { @class = "form-control" })
+                                            @Html.TextBoxFor(x => x.PagesList[i].Questions[j].Title, new {placeholder = "Vraag", required = "required", @class = "form-control"})
+                                            @Html.TextBoxFor(x => x.PagesList[i].Questions[j].Description, new {placeholder = "Vraag Beschrijving", required = "required", @class = "form-control"})
+                                            @Html.TextBoxFor(x => x.PagesList[i].Questions[j].ImageUrl, new {placeholder = "Foto URL", @class = "form-control"})
+                                            @Html.DropDownListFor(x => x.PagesList[i].Questions[j].Type, Html.GetEnumSelectList(Model.PagesList[i].Questions[j].Type.GetType()), new {@class = "form-control"})
+                                            @Html.DropDownListFor(x => x.PagesList[i].Questions[j].Category, Html.GetEnumSelectList(Model.PagesList[i].Questions[j].Category.GetType()), new {@class = "form-control"})
 
-                                        @Html.Label("QuestionCounter", j.ToString(), new { style = "display: none;" })
+                                            @Html.Label("QuestionCounter", j.ToString(), new {style = "display: none;"})
 
-                                        <div class="question">
-                                            @switch (Model.PagesList[i].Questions[j].Type)
-                                            {
-                                                case TypeEnum.GeoVraag:
-                                                    <label>Marker Type:</label>
-                                                    @Html.DropDownListFor(x => x.PagesList[i].Questions[j].GeoType, Html.GetEnumSelectList(Model.PagesList[i].Questions[j].GeoType.GetType()), new { @class = "form-control" })
-                                                    break;
-                                                case TypeEnum.SliderVraag:
-                                                    <label>Tekst aan begin slider:</label>
-                                                    @Html.TextBoxFor(x => x.PagesList[i].Questions[j].SliderMinText, new { @class = "form-control" });
-                                                    <label>Tekst aan eind slider:</label>
-                                                    @Html.TextBoxFor(x => x.PagesList[i].Questions[j].SliderMaxText, new { @class = "form-control" });
-                                                    <label>Max waarde:</label>
-                                                    @Html.EditorFor(x => x.PagesList[i].Questions[j].SliderScaleVal, new { @class = "form-control" });
-                                                    <p>(De begin waarde is altijd 0. Het getal dat hierboven ingevuld wordt is de maximale waarde.)</p>
-                                                    break;
-                                                case TypeEnum.NummerVraag:
-                                                    <label>Minimum waarde</label>
-                                                    @Html.EditorFor(x => x.PagesList[i].Questions[j].MinValue, new { @class = "form-control" });
-                                                    <label>Maximum waarde</label>
-                                                    @Html.EditorFor(x => x.PagesList[i].Questions[j].MaxValue, new { @class = "form-control" });
-                                                    break;
-                                                case TypeEnum.MeerkeuzeVraag:
-                                                    @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].AllowMultipleAnswers, new { @class = "form-check" });
+                                            <div class="question">
+                                                @switch (Model.PagesList[i].Questions[j].Type)
+                                                {
+                                                    case TypeEnum.GeoVraag:
+                                                        <label>Marker Type:</label>
+                                                        @Html.DropDownListFor(x => x.PagesList[i].Questions[j].GeoType, Html.GetEnumSelectList(Model.PagesList[i].Questions[j].GeoType.GetType()), new {@class = "form-control"})
+                                                        break;
+                                                    case TypeEnum.SliderVraag:
+                                                        <label>Tekst aan begin slider:</label>
+                                                        @Html.TextBoxFor(x => x.PagesList[i].Questions[j].SliderMinText, new {@class = "form-control"})
+                                                        ;
+                                                        <label>Tekst aan eind slider:</label>
+                                                        @Html.TextBoxFor(x => x.PagesList[i].Questions[j].SliderMaxText, new {@class = "form-control"})
+                                                        ;
+                                                        <label>Max waarde:</label>
+                                                        @Html.EditorFor(x => x.PagesList[i].Questions[j].SliderScaleVal, new {@class = "form-control"})
+                                                        ;
+                                                        <p>(De begin waarde is altijd 0. Het getal dat hierboven ingevuld wordt is de maximale waarde.)</p>
+                                                        break;
+                                                    case TypeEnum.NummerVraag:
+                                                        <label>Minimum waarde</label>
+                                                        @Html.EditorFor(x => x.PagesList[i].Questions[j].MinValue, new {@class = "form-control"})
+                                                        ;
+                                                        <label>Maximum waarde</label>
+                                                        @Html.EditorFor(x => x.PagesList[i].Questions[j].MaxValue, new {@class = "form-control"})
+                                                        ;
+                                                        break;
+                                                    case TypeEnum.MeerkeuzeVraag:
+                                                        @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].AllowMultipleAnswers, new {@class = "form-check"})
+                                                        ;
 
-                                                    for (int q = 0; q < Model.PagesList[i].Questions[j].Options.Count; q++)
-                                                    {
-                                                        <label>Antwoord:</label>
-                                                        <input class="form-control" id="PagesList_@i+__Questions_@j+__Options_@q+__Answer" name="PagesList[@i+].Questions[@j+].Options[@q+].Answer" type="text" value="@Model.PagesList[i].Questions[j].Options[q].Answer" />
-                                                        <label>Eventuele beschrijving:</label>
-                                                        <input class="form-control" id="PagesList_@i+__Questions_@j+__Options_@q+__Description" name="PagesList[@i+].Questions[@j+].Options[@q+].Description" type="text" value="@Model.PagesList[i].Questions[j].Options[q].Description" />
-                                                    }
-                                                    break;
-                                            }
+                                                        for (int q = 0; q < Model.PagesList[i].Questions[j].Options.Count; q++)
+                                                        {
+                                                            <label>Antwoord:</label>
+                                                            <input class="form-control" id="PagesList_@i+__Questions_@j+__Options_@q+__Answer" name="PagesList[@i+].Questions[@j+].Options[@q+].Answer" type="text" value="@Model.PagesList[i].Questions[j].Options[q].Answer"/>
+                                                            <label>Eventuele beschrijving:</label>
+                                                            <input class="form-control" id="PagesList_@i+__Questions_@j+__Options_@q+__Description" name="PagesList[@i+].Questions[@j+].Options[@q+].Description" type="text" value="@Model.PagesList[i].Questions[j].Options[q].Description"/>
+                                                            <label>Foto URL:</label>
+                                                            <input class="form-control" id="PagesList_@i+__Questions_@j+__Options_@q+__ImageUrl" name="PagesList[@i+].Questions[@j+].Options[@q+].ImageUrl" type="text" value="@Model.PagesList[i].Questions[j].Options[q].ImageUrl"/>
+                                                        }
+                                                        break;
+                                                }
+                                            </div>
+                                            <a href="" class="removeQuestionClass btn btn-danger">Vraag verwijderen</a>
                                         </div>
-                                        <a href="" class="removeQuestionClass btn btn-danger">Vraag verwijderen</a>
-                                    </div>
 
                                     }
 
@@ -189,16 +215,17 @@
     }
     mymap.on('click', onMapClick);
 
-    $(document).ready(function () {
-        console.log("ready!");
+        $(document).ready(function () {
 
+            $('#EndDate').datepicker({ dateFormat: "dd-mm-yy", minDate: -0 });
 
-        $('#EndDate').datepicker({ minDate: -0 });
+            $('.dropdown-toggle').dropdown();
+    
 
-
-        function appendToDiv(parentDiv, url, pageNumber, questionNumber) {
-            url = url.replace("x", pageNumber);
-            url = url.replace("y", questionNumber);
+        function appendToDiv(parentDiv, url, pageNumber, questionNumber, optionNumber) {
+            url = url.replace("pageNumberJS", pageNumber);
+            url = url.replace("questionNumberJS", questionNumber);
+            url = url.replace("optionNumberJS", optionNumber);
             url = url.replace(/&amp;/g, '&');
             console.log(url);
             console.log($(parentDiv));
@@ -226,19 +253,19 @@
                     var url = "";
                     switch (parseInt(this.value)) {
                     case 0:
-                            url = '@Url.Action("GeoQuestion","Create", new { pageId = 'x', questionId = 'y'})';
+                            url = '@Url.Action("GeoQuestion","Create", new { pageId = "", questionId = "questionNumberJS"})';
                             appendToDiv(parentDiv.children('.question'), url, pageNumber, questionNumber);
                         break;
                     case 1:
-                            url = '@Url.Action("MultipleChoiceQuestion","Create", new { pageId = 'x', questionId = 'y'})';
+                            url = '@Url.Action("MultipleChoiceQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
                             appendToDiv(parentDiv.children('.question'), url, pageNumber, questionNumber);
                         break;
                     case 3:
-                            url = '@Url.Action("SliderQuestion","Create", new { pageId = 'x', questionId = 'y'})';
+                            url = '@Url.Action("SliderQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
                             appendToDiv(parentDiv.children('.question'), url, pageNumber, questionNumber);
                         break;
                     case 4:
-                            url = '@Url.Action("NumberQuestion","Create", new { pageId = 'x', questionId = 'y'})';
+                            url = '@Url.Action("NumberQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
                             appendToDiv(parentDiv.children('.question'), url, pageNumber, questionNumber);
                         break;
                     }
@@ -261,7 +288,7 @@
             e.preventDefault();
             var currentPageCount = $('.pageDiv').length;
             if (x <= MaxInputsPage) {
-                var url = '@Url.Action("PageView","Create", new { pageId = 'x'})';
+                var url = '@Url.Action("PageView","Create", new { pageId = "pageNumberJS"})';
                 url = url.replace("x", currentPageCount);
                 url = url.replace(/&amp;/g, '&');
                 $.ajax({ type: "GET",
@@ -300,7 +327,7 @@
             var pageNumber = $(this).parent().parent().children("label")[0].innerHTML;
             var questionWrapper = $(this).parent().parent().children(".QuestionWrapper");
             var currentQuestionCount = $(questionWrapper).children(".questionDiv").length;
-            var url = '@Url.Action("ProfileQuestions","Create", new { pageId = 'x', questionId = 'y'})';
+            var url = '@Url.Action("ProfileQuestions","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
             appendToDiv(questionWrapper, url, pageNumber, currentQuestionCount);
             profileQuestionsUsed = true;
             $(".addProfileQuestionButton").hide();
@@ -311,7 +338,7 @@
             var pageNumber = $(this).parent().parent().children("label")[0].innerHTML;
             var questionWrapper = $(this).parent().parent().children(".QuestionWrapper");
             var currentQuestionCount = $(questionWrapper).children(".questionDiv").length;
-            var url = '@Url.Action("NngbQuestions","Create", new { pageId = 'x', questionId = 'y'})';
+            var url = '@Url.Action("NngbQuestions","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
             appendToDiv(questionWrapper, url, pageNumber, currentQuestionCount);
             nngbQuestionsUsed = true;
             $(".addNNGBQuestionButton").hide();
@@ -322,7 +349,7 @@
             var pageNumber = $(this).parent().parent().children("label")[0].innerHTML;
             var questionWrapper = $(this).parent().parent().children(".QuestionWrapper");
             var currentQuestionCount = $(questionWrapper).children(".questionDiv").length;
-            var url = '@Url.Action("MotivationQuestions","Create", new { pageId = 'x', questionId = 'y'})';
+            var url = '@Url.Action("MotivationQuestions","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
             appendToDiv(questionWrapper, url, pageNumber, currentQuestionCount);
             motivationQuestionsUsed = true;
             $(".addMotivationQuestionButton").hide();
@@ -372,20 +399,12 @@
                 var pageNumber = $(this).parent().parent().parent().children().length -1;
                 var questionWrapper = $(this).parent().parent().children(".QuestionWrapper");
                 var currentQuestionCount = $(questionWrapper).children(".questionDiv").length;
-            var url = '/Create/QuestionView?pageId=x&questionId=y';
-            console.log(url);
-                url = url.replace("x", pageNumber);
-                url = url.replace("y", currentQuestionCount);
+                var url = '@Url.Action("QuestionView", "Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
                 console.log(questionWrapper);
                 console.log(url);
-                $.ajax({ type: "GET",
-                    url: url ,
-                    success : function(text)
-                    {
-                        $(questionWrapper).append(text);
-                    }
-                });
-            });
+                console.log(pageNumber);
+                appendToDiv(questionWrapper, url, pageNumber, currentQuestionCount);
+        });
 
         $("body").on("click",
             ".removeQuestionClass",
@@ -433,36 +452,11 @@
                 e.preventDefault();
                 var wrapper = $(this).parent().parent().children()[0];
                 var numberOfOptions = $(wrapper).children(".MCOption").length;
-                var pageNumber = $(this).parent().parent().parent().parent().parent().children("label")[0].innerHTML;
+                var pageNumber = $(this).parent().parent().parent().parent().children().length - 1;
                 var questionWrapper = $(this).parent().parent().parent().parent().parent().children(".QuestionWrapper");
                 var currentQuestionCount = $(questionWrapper).children(".questionDiv").length - 1;
-                console.log(wrapper);
-                console.log(currentQuestionCount);
-                $(wrapper).append(
-                    '<div class="MCOption">' +
-                    '<label>Antwoord:</label> <input id="PagesList_' + pageNumber + '__Questions_' + currentQuestionCount + '__Options_' + numberOfOptions + '__Answer" name="PagesList[' + pageNumber + '].Questions[' +
-                    currentQuestionCount +
-                    '].Options[' +
-                    numberOfOptions +
-                    '].Answer" type="text" value="" />' +
-                    '<label>Eventuele beschrijving:</label> <input id="PagesList_' +
-                    pageNumber +
-                    '__Questions_' +
-                    currentQuestionCount +
-                    '__Options_' +
-                    numberOfOptions +
-                    '__Description" name="PagesList[' +
-                    pageNumber +
-                    '].Questions[' +
-                    currentQuestionCount +
-                    '].Options[' +
-                    numberOfOptions +
-                    '].Description" type="text" value="" />' +
-                    '<label for="OptionCounter" style="display: none;">' +
-                    numberOfOptions +
-                    '</label>' +
-                    '<a href="" class="removeMCOption btn btn-danger">Verwijderen</a>' +
-                    '</div> ');
+                var url = '@Url.Action("MultipleChoiceOption","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS", optionId="optionNumberJS"})';
+                appendToDiv(questionWrapper, url, pageNumber, currentQuestionCount, numberOfOptions);
                 return false;
             });
 

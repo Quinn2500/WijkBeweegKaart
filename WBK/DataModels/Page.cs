@@ -9,5 +9,6 @@ namespace DataModels
         public string Title { get; set; }
         public string Description { get; set; }
         public List<Question> Questions { get; set; }
+        public string ImageUrl { get; set; }
     }
 }
