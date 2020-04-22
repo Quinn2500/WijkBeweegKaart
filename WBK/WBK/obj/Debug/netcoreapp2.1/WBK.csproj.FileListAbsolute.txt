@@ -47,3 +47,4 @@ D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\Razor\Views\C
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\Razor\Views\Create\MultipleChoiceQuestion.g.cshtml.cs
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\Razor\Views\Create\SliderQuestion.g.cshtml.cs
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\Razor\Views\Create\NumberQuestion.g.cshtml.cs
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\Razor\Views\Create\MultipleChoiceOption.g.cshtml.cs

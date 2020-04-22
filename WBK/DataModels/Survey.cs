@@ -11,6 +11,7 @@ namespace DataModels
         public Location StartLocation { get; set; }
         public DateTime EndDate { get; set; }
         public string Owner { get; set; }
+        public string ImageUrl { get; set; }
         public List<Page> Pages { get; set; }
 
 

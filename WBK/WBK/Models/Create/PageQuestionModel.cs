@@ -9,5 +9,6 @@ namespace WBK.Models.Create
     {
         public int PageId { get; set; }
         public int QuestionId { get; set; }
+        public int OptionId { get; set; }
     }
 }

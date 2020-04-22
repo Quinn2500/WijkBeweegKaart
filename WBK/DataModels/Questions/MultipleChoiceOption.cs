@@ -8,5 +8,6 @@ namespace DataModels.Questions
     {
         public string Value { get; set; }
         public string Description { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

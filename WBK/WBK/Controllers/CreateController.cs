@@ -138,8 +138,9 @@ namespace WBK.Controllers
                 Title = model.Title,
                 Description = model.Description,
                 Owner = "test@test.nl",
-                EndDate = DateTime.ParseExact(model.EndDate, "MM/dd/yyyy", null),
-                DateOfCreation = DateTime.Today
+                EndDate = DateTime.Parse(model.EndDate),
+                DateOfCreation = DateTime.Today,
+                ImageUrl = model.ImageUrl
             };
             double longitude = Convert.ToDouble(model.StartLocationLong.Replace('.', ','));
             double latitude = Convert.ToDouble(model.StartLocationLat.Replace('.', ','));
@@ -153,7 +154,8 @@ namespace WBK.Controllers
                 {
                     Title = pageView.Title,
                     Description = pageView.Description,
-                    Questions = new List<Question>()
+                    Questions = new List<Question>(),
+                    ImageUrl = pageView.ImageUrl
 
                 };
                 if (pageView.Questions != null)
@@ -169,6 +171,7 @@ namespace WBK.Controllers
                                     Description = questionView.Description,
                                     Category = questionView.Category,
                                     Type = questionView.Type,
+                                    ImageUrl = questionView.ImageUrl,
                                     TypeOfMarker = questionView.GeoType
                                 };
                                 page.Questions.Add(geoQuestion);
@@ -180,6 +183,7 @@ namespace WBK.Controllers
                                     Value = questionView.Title,
                                     Description = questionView.Description,
                                     Category = questionView.Category,
+                                    ImageUrl = questionView.ImageUrl,
                                     Type = questionView.Type
                                 };
                                 page.Questions.Add(openQuestion);
@@ -192,6 +196,7 @@ namespace WBK.Controllers
                                     Description = questionView.Description,
                                     Category = questionView.Category,
                                     Type = questionView.Type,
+                                    ImageUrl = questionView.ImageUrl,
                                     Maximum = questionView.MaxValue,
                                     Minimum = questionView.MinValue
                                 };
@@ -205,6 +210,7 @@ namespace WBK.Controllers
                                     Description = questionView.Description,
                                     Category = questionView.Category,
                                     Type = questionView.Type,
+                                    ImageUrl = questionView.ImageUrl,
                                     MaxValueText = questionView.SliderMaxText,
                                     MinValueText = questionView.SliderMinText,
                                     Scale = questionView.SliderScaleVal
@@ -219,6 +225,7 @@ namespace WBK.Controllers
                                     Description = questionView.Description,
                                     Category = questionView.Category,
                                     Type = questionView.Type,
+                                    ImageUrl = questionView.ImageUrl,
                                     AllowMutlipleAnwsers = questionView.AllowMultipleAnswers,
                                     Options = new List<MultipleChoiceOption>()
                                 };
@@ -227,7 +234,8 @@ namespace WBK.Controllers
                                     MultipleChoiceOption option = new MultipleChoiceOption
                                     {
                                         Value = optionView.Answer,
-                                        Description = optionView.Description
+                                        Description = optionView.Description,
+                                        ImageUrl = questionView.ImageUrl
                                     };
                                     multipleChoiceQuestion.Options.Add(option);
                                 }
@@ -326,6 +334,18 @@ namespace WBK.Controllers
             {
                 PageId = pageId,
                 QuestionId = questionId
+            };
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult MultipleChoiceOption(int pageId, int questionId, int optionId)
+        {
+            PageQuestionModel model = new PageQuestionModel
+            {
+                PageId = pageId,
+                QuestionId = questionId,
+                OptionId = optionId
             };
             return View(model);
         }

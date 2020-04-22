@@ -24,6 +24,7 @@ namespace WBK.Models.Create
         public string GeoCodeAnswer { get; set; }
         public int NumberAnswer { get; set; }
         public string Attribute { get; set; }
+        public string ImageUrl { get; set; }
 
 
 
