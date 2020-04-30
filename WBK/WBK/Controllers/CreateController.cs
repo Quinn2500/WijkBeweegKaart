@@ -27,8 +27,6 @@ namespace WBK.Controllers
                     Title = survey.Title,
                     Description = survey.Description,
                     EndDate = survey.EndDate.ToString(),
-                    StartLocationLat = survey.StartLocation.Latitude.ToString(),
-                    StartLocationLong = survey.StartLocation.Longitude.ToString(),
                     PagesList = new List<PageViewModel>()
                 };
 
@@ -142,10 +140,6 @@ namespace WBK.Controllers
                 DateOfCreation = DateTime.Today,
                 ImageUrl = model.ImageUrl
             };
-            double longitude = Convert.ToDouble(model.StartLocationLong.Replace('.', ','));
-            double latitude = Convert.ToDouble(model.StartLocationLat.Replace('.', ','));
-            Location startLocation = new Location(latitude, longitude);
-            surveyModel.StartLocation = startLocation;
 
             List<Page> pages = new List<Page>();
             foreach (PageViewModel pageView in model.PagesList)
@@ -317,12 +311,13 @@ namespace WBK.Controllers
 
         #region Questions
         [HttpGet]
-        public IActionResult GeoQuestion(int pageId, int questionId)
+        public IActionResult GeoQuestion(int pageId, int questionId, bool firstGeoQuestionInPage)
         {
             PageQuestionModel model = new PageQuestionModel
             {
                 PageId = pageId,
-                QuestionId = questionId
+                QuestionId = questionId,
+                FirstGeoQuestionInPage = firstGeoQuestionInPage
             };
             return View(model);
         }

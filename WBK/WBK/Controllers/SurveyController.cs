@@ -98,8 +98,6 @@ namespace WBK.Controllers
                 Title = survey.Title,
                 Description = survey.Description,
                 EndDate = survey.EndDate.ToShortDateString(),
-                StartLocationLat = survey.StartLocation.Latitude.ToString(),
-                StartLocationLong = survey.StartLocation.Longitude.ToString(),
                 PagesList = new List<PageViewModel>()
             };
 

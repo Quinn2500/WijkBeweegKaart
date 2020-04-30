@@ -17,14 +17,13 @@ namespace DAL
 
         public void InsertSurvey(Survey survey)
         {
-            string querySurvey = "INSERT INTO `survey`(`Title`, `Description`, `DateCreation`, `CreatorEmail`, `StartLocation`, `EndDate`, `ImageUrl`) VALUES (@pTitle, @pDesc,@pDateCreation,@pCreator,@pStartLocation,@pEnddate,@pImageUrl)";
+            string querySurvey = "INSERT INTO `survey`(`Title`, `Description`, `DateCreation`, `CreatorEmail`,`EndDate`, `ImageUrl`) VALUES (@pTitle, @pDesc,@pDateCreation,@pCreator,@pEnddate,@pImageUrl)";
             List<MySqlParameter> parametersSurvey = new List<MySqlParameter>
             {
                 new MySqlParameter("@pTitle", survey.Title),
                 new MySqlParameter("@pDesc", survey.Description),
                 new MySqlParameter("@pDateCreation", survey.DateOfCreation),
                 new MySqlParameter("@pCreator", survey.Owner),
-                new MySqlParameter("@pStartLocation", JsonConvert.SerializeObject(survey.StartLocation)),
                 new MySqlParameter("@pEnddate", survey.EndDate),
                 new MySqlParameter("@pImageUrl", survey.ImageUrl)
             };
@@ -167,8 +166,7 @@ namespace DAL
             result.Description = rowSurvey[2].ToString();
             result.DateOfCreation = Convert.ToDateTime(rowSurvey[3]);
             result.Owner = rowSurvey[4].ToString();
-            result.StartLocation = JsonConvert.DeserializeObject<Location>(rowSurvey[5].ToString());
-            result.EndDate = Convert.ToDateTime(rowSurvey[6]);
+            result.EndDate = Convert.ToDateTime(rowSurvey[5]);
             result.Pages = new List<Page>();
 
             string queryPage = "SELECT * FROM `page` WHERE page.SurveyId = @pId";

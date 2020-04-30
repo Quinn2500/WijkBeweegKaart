@@ -4,11 +4,46 @@
 
 @model WBK.Models.Create.PageQuestionModel
 
-<div class="question">   
-    <label>Marker Type:</label>
-    <select class="form-control" data-val="true" data-val-required="The GeoType field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__GeoType" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].GeoType">   
-         <option selected="selected" value="0">Marker</option>   
-         <option value="1">Lijn</option>   
-         <option value="2">Vlak</option>   
-    </select>   
-</div>
+@if (Model.FirstGeoQuestionInPage)
+{
+    <div class="geo question">
+        <div id="mapid@(Model.PageId)" class ="map" style="height: 400px; width: 400px;" class=""></div>
+        <p>Klik op de kaart om de waardes in te voeren!</p>
+        <label>Marker Type:</label>
+        <select class="form-control" data-val="true" data-val-required="The GeoType field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__GeoType" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].GeoType">
+            <option selected="selected" value="0">Marker</option>
+            <option value="1">Lijn</option>
+            <option value="2">Vlak</option>
+        </select>
+    </div>
+
+    <script>
+        var map@(Model.PageId) = L.map('mapid@(Model.PageId)').setView([51.47358, 5.453167], 13);
+        var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map@(Model.PageId));
+
+        var marker@(Model.PageId) = L.marker();
+
+        function onMapClick(e) {
+            marker@(Model.PageId)
+                .setLatLng(e.latlng)
+                .bindPopup("You clicked the map at " + e.latlng.toString())
+                .addTo(map@(Model.PageId) );
+        }
+        map@(Model.PageId).on('click', onMapClick);
+    </script>
+}
+else
+{
+    <div class="geo question">
+        <label>Marker Type:</label>
+        <select class="form-control" data-val="true" data-val-required="The GeoType field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__GeoType" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].GeoType">
+            <option selected="selected" value="0">Marker</option>
+            <option value="1">Lijn</option>
+            <option value="2">Vlak</option>
+        </select>
+    </div>
+}
