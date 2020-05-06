@@ -54,6 +54,12 @@ namespace DAL
                         new MySqlParameter("@pTypeOfMarker", question.TypeOfMarker)
                     };
 
+                    if (question.StartLocation != null)
+                    {
+                        parametersGeoQuestion.Add(new MySqlParameter("@pStartLocation", JsonConvert.SerializeObject(question.StartLocation)));
+                        queryGeoQuestion = "INSERT INTO `geoquestion`(`QuestionId`, `TypeOfMarker`, `StartLocation`) VALUES (@pQuestionGeoId, @pTypeOfMarker, @pStartLocation)";
+                    }
+
                     _databaseCalls.Command(queryGeoQuestion, parametersGeoQuestion);
                 }
 
@@ -212,8 +218,16 @@ namespace DAL
                                 Category = (CategoryEnum)Convert.ToInt32(rowQuestion[5]),
                                 Type = questionType,
                                 TypeOfMarker = (GeoTypeEnum)Convert.ToInt32(rowGeo[2]),
+                                StartLocation = null
 
                             };
+
+                            if (rowGeo[3] != null)
+                            {
+                                geoQuestion.StartLocation =
+                                    JsonConvert.DeserializeObject<Location>(rowGeo[3].ToString());
+                            }
+
                             page.Questions.Add(geoQuestion);
                             break;
 

@@ -159,6 +159,7 @@ namespace WBK.Controllers
                         switch (questionView.Type)
                         {
                             case TypeEnum.GeoVraag:
+
                                 GeoQuestion geoQuestion = new GeoQuestion
                                 {
                                     Value = questionView.Title,
@@ -166,8 +167,15 @@ namespace WBK.Controllers
                                     Category = questionView.Category,
                                     Type = questionView.Type,
                                     ImageUrl = questionView.ImageUrl,
-                                    TypeOfMarker = questionView.GeoType
+                                    TypeOfMarker = questionView.GeoType,
+                                    StartLocation = null
                                 };
+
+                                if (!string.IsNullOrEmpty(questionView.StartLocationLat))
+                                {
+                                    Location startLocation = new Location(Convert.ToDouble(questionView.StartLocationLat.Replace('.', ',')), Convert.ToDouble(questionView.StartLocationLong.Replace('.', ',')));
+                                    geoQuestion.StartLocation = startLocation;
+                                }
                                 page.Questions.Add(geoQuestion);
                                 break;
 

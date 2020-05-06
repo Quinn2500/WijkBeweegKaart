@@ -118,8 +118,17 @@ namespace WBK.Controllers
                         Description = question.Description,
                         Category = question.Category,
                         Type = question.Type,
-                        GeoType = question.TypeOfMarker
+                        GeoType = question.TypeOfMarker,
+                        StartLocationLat = null,
+                        StartLocationLong = null
                     };
+
+                    if (question.StartLocation != null)
+                    {
+                        questionView.StartLocationLat = question.StartLocation.Latitude.ToString();
+                        questionView.StartLocationLong = question.StartLocation.Longitude.ToString();
+                    }
+
                     pageViewModel.Questions.Add(questionView);
                 }
 

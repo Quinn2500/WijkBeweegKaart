@@ -5,7 +5,16 @@
 @model WBK.Models.Create.PageQuestionModel
 
 <div class="questionDiv">
-    <h3>Vraag  @(Model.QuestionId)</h3>
+    <h3 style="float: left;">Vraag @(Model.QuestionId)</h3>
+
+    <div style="float: right;" class="dropleft show">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuQuestion@(Model.QuestionId)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            =
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a style="color: red;" href="" class="removeQuestionClass">Vraag verwijderen</a>
+        </div>
+    </div>
     <input class="form-control" required id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Title" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Title" type="text" value="" placeholder="Vraag" />
     <input class="form-control" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Description" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Description" type="text" value="" placeholder="Vraag Beschrijving" />
     <select class="form-control" data-val="true" data-val-required="The Type field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Type" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Type">
@@ -24,5 +33,4 @@
     <div class="question">
 
     </div>
-    <a href="" class="removeQuestionClass btn btn-danger">Vraag verwijderen</a>
 </div>

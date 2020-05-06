@@ -229,11 +229,11 @@
                             case 0:
                                 if (parentDiv.parent().parent().children("label")[0].innerHTML == "true") {
                                     url =
-                                        '@Url.Action("GeoQuestion","Create", new { pageId = "", questionId = "questionNumberJS", firstGeoQuestionInPage = true})';
+                                        '@Url.Action("GeoQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS", firstGeoQuestionInPage = true})';
                                     parentDiv.parent().parent().children("label")[0].innerHTML = false;
                                 } else {
                                     url =
-                                        '@Url.Action("GeoQuestion","Create", new { pageId = "", questionId = "questionNumberJS", firstGeoQuestionInPage = false})';
+                                        '@Url.Action("GeoQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS", firstGeoQuestionInPage = false})';
                                 }
                             appendToDiv(parentDiv.children('.question'), url, pageNumber, questionNumber);
                             break;
@@ -274,7 +274,7 @@
             var currentPageCount = $('.pageDiv').length;
             if (x <= MaxInputsPage) {
                 var url = '@Url.Action("PageView","Create", new { pageId = "pageNumberJS"})';
-                url = url.replace("x", currentPageCount);
+                url = url.replace("pageNumberJS", currentPageCount);
                 url = url.replace(/&amp;/g, '&');
                 $.ajax({ type: "GET",
                     url: url ,
@@ -395,14 +395,13 @@
             ".removeQuestionClass",
             function (e) {
                 e.preventDefault();
-                var questionsWrapper = $(this).parent().parent();
+                var questionsWrapper = $(this).parent().parent().parent().parent();
                 var i;
                 var j;
                 var q;
                 if (questionsWrapper.children().length > 1) {
-                    $(this).parent('div').remove();
+                    $(this).parent().parent().parent('div').remove();
                     var questions = questionsWrapper.children();
-                    console.log(questions);
                     for (q = 0; q < questions.length; q++) {
                         var children = questions[q].children;
                         var oldNumber = children[5].innerHTML;

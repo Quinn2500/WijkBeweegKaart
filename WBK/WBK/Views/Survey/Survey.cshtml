@@ -57,7 +57,6 @@
                 {
                     PageViewModel pageView = Model.PagesList[i];
                     Model.PagesList[i] = pageView;
-                    bool fisrtGeoQuestion = true;
                     <div class="pageDiv" style="display: none">
                         <div class="pageText">
                             <h2>@pageView.Title</h2>
@@ -107,22 +106,70 @@
                                         }
                                         break;
                                     case TypeEnum.GeoVraag:
-                                        if (fisrtGeoQuestion)
-                                        {
-                                            <div id="map@(j)" width="400px" heigth="400px"></div>
-                                            <script>
-                                                var center = [51.47358, 5.453167];
 
-                                                var map = L.map('map@(j)', { drawControl: true }).setView(center, 13);
+                                            if (questionView.StartLocationLat != null)
+                                            {
+                                                <div id="mapid@(i)" class="map" style="height: 500px; width: 800px; margin-left:60px"></div>
+                                                <button class="btn btn-info">Terug naar het startpunt!</button>
 
-                                                L.tileLayer(
-                                                    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                                                        attribution: 'Data © <a href="http://osm.org/copyright">OpenStreetMap</a>',
-                                                        maxZoom: 18
-                                                    }).addTo(map);
-                                            </script>
-                                            fisrtGeoQuestion = false;
-                                        }
+                                                <script>
+                                                    var map@(i) = L.map('mapid@(i)').setView([parseFloat(@questionView.StartLocationLat), parseFloat(@questionView.StartLocationLong)], 13);
+                                                    var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                                        {
+                                                            maxZoom: 19,
+                                                            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                                                        }).addTo(map@(i));
+
+                                                    var editableLayers@(i)  = new L.FeatureGroup();
+                                                    map@(i).addLayer(editableLayers@(i) );
+
+                                                    var drawPluginOptions@(i) = {
+                                                        position: 'topright',
+                                                        draw: {
+                                                            polygon: {
+                                                                allowIntersection: false,
+                                                                drawError: {
+                                                                    color: '#f73e3e',
+                                                                    message: '<strong>Oh snap!<strong> you can\'t draw that!'
+                                                                },
+                                                                shapeOptions: {
+                                                                    color: '#ffa33b'
+                                                                }
+                                                            },
+                                                            polyline: {
+                                                                allowIntersection: false,
+                                                                drawError: {
+                                                                    color: '#f73e3e',
+                                                                    message: '<strong>Oh snap!<strong> you can\'t draw that!'
+                                                                },
+                                                                shapeOptions: {
+                                                                    color: '#ffa33b'
+                                                                }
+                                                            },
+                                                            circle: false,
+                                                            rectangle: false,
+                                                            marker: true
+                                                        },
+                                                        edit: {
+                                                            featureGroup: editableLayers@(i),
+                                                            remove: false
+                                                        }
+                                                    };
+
+                                                    var drawControl@(i)  = new L.Control.Draw(drawPluginOptions@(i));
+                                                    map@(i).addControl(drawControl@(i));
+
+                                                    var editableLayers@(i)  = new L.FeatureGroup();
+                                                    map@(i).addLayer(editableLayers@(i));
+
+                                                    map@(i).on('draw:created', function (e) {
+                                                        var type = e.layerType,
+                                                            layer = e.layer;
+
+                                                        editableLayers@(i).addLayer(layer);
+                                                    });
+                                                </script>
+                                            }
 
                                         <div id="@j" class="geoDraw">
                                             @Html.TextBoxFor(x => x.PagesList[i].Questions[j].GeoCodeAnswer, new {required = "required"})
@@ -189,7 +236,7 @@
             $("#previousPageButton").hide();
         }
 
-        $("#pageCounter").text("Pagina: 0/" + maxNumber);
+        $("#pageCounter").text("Pagina: 1/" + maxNumber);
 
         $("#nextPageButton").click(function (e) {
             e.preventDefault();
@@ -210,7 +257,7 @@
                 $("#submitBtn").show();
                 $(this).hide();
             }
-            $("#pageCounter").text("Pagina: " + pageNumber + "/" + maxNumber);
+            $("#pageCounter").text("Pagina: " + (pageNumber + 1) + "/" + maxNumber);
             return false;
         });
 
@@ -232,7 +279,7 @@
             if (pageNumber == 0) {
                 $("#previousPageButton").hide();
             }
-            $("#pageCounter").text("Pagina: " + pageNumber + "/" + maxNumber);
+            $("#pageCounter").text("Pagina: " + (pageNumber + 1) + "/" + maxNumber);
             return false;
         });
 
