@@ -57,16 +57,6 @@
                      @Html.TextBoxFor(model => model.EndDate, new { required = "required", @class = "form-control" })
                 </div>
 
-                <div style="z-index: 1; position: relative;">
-                    <label>Selecteer locatie:</label>
-                    <div id="mapid" style="height: 400px; width: 400px;" class=""></div>
-                    <p>Klik op de kaart om de waardes in te voeren!</p>
-                    <label>Latitude:</label>
-                    @Html.TextBoxFor(x => x.StartLocationLat, new { required = "required", @class = "form-control" })
-                    <label>Longitude:</label>
-                    @Html.TextBoxFor(x => x.StartLocationLong, new { required = "required", @class = "form-control" })
-                </div>
-
                 <input type="submit" name="name" value="Maak Aan!" class="btn btn-success" />
 
             </div>
@@ -76,21 +66,24 @@
                     <div id="InputsWrapper">
                         @for (var i = 0; i < Model.PagesList.Count(); i++)
                         {
-                            <div class="pageDiv">
+                            <div class="pageDiv" style="border-style: solid; border-color: orange; border-width: 3px; border-radius: 5px; padding: 5px">
+                                <label style="display: none;" class="boolFirstGeoQuestion">true</label>
                                 <div>
                                     <h3 style="float: left;">Pagina @i</h3>
 
                                     <div style="float: right;" class="dropleft show">
-                                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuPage@(i)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             =
                                         </a>
-
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <a class="dropdown-item" href="#">Something else here</a>
+                                            <a href="" class="dropdown-item addProfileQuestionButton">Voeg Profiel Vragen Toe</a>
+                                            <a href="" class="dropdown-item addNNGBQuestionButton">Voeg NNGB vragen Toe</a>
+                                            <a href="" class="dropdown-item addMotivationQuestionButton">Voeg Motivatie vragen Toe</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a style="color: red" href="" class="dropdown-item removeclass">Pagina verwijderen</a>
                                         </div>
                                     </div>
+
                                 </div>
                                 @Html.TextBoxFor(x => x.PagesList[i].Title, new {placeholder = "Pagina Titel", required = "required", @class = "form-control"})
                                 @Html.ValidationMessageFor(x => x.PagesList[i].Title)
@@ -102,12 +95,21 @@
 
                                 @Html.Label("PageCounter", i.ToString(), new {style = "display: none;"})
 
-                                <div class="QuestionWrapper">
+                                <div class="QuestionWrapper" style="margin-top: 10px;">
 
                                     @for (var j = 0; j < Model.PagesList[i].Questions.Count(); j++)
                                     {
                                         <div class="questionDiv">
-                                            <h3>Vraag @j</h3>
+                                            <h3 style="float: left;">Vraag @j</h3>
+
+                                            <div style="float: right;" class="dropleft show">
+                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuQuestion@(j)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    =
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                    <a style="color: red;" href="" class="removeQuestionClass">Vraag verwijderen</a>
+                                                </div>
+                                            </div>
 
                                             @Html.TextBoxFor(x => x.PagesList[i].Questions[j].Title, new {placeholder = "Vraag", required = "required", @class = "form-control"})
                                             @Html.TextBoxFor(x => x.PagesList[i].Questions[j].Description, new {placeholder = "Vraag Beschrijving", required = "required", @class = "form-control"})
@@ -160,24 +162,17 @@
                                                         break;
                                                 }
                                             </div>
-                                            <a href="" class="removeQuestionClass btn btn-danger">Vraag verwijderen</a>
                                         </div>
 
                                     }
 
                                 </div>
 
-                                <div class="addQuestion">
+                                <div style="margin-top: 10px;" class="addQuestion">
                                     <a href="" class="addQuestionButton btn btn-info">Voeg Vraag Toe</a>
                                 </div>
 
-                                <div class="preMadeQuestions">
-                                    <button href="" class="addProfileQuestionButton btn btn-info">Voeg Profiel Vragen Toe</button>
-                                    <button href="" class="addNNGBQuestionButton btn btn-info">Voeg NNGB vragen Toe</button>
-                                    <button href="" class="addMotivationQuestionButton btn btn-info">Voeg Motivatie vragen Toe</button>
-                                </div>
 
-                                <a href="" class="removeclass btn btn-danger">Pagina verwijderen</a>
                             </div>
 
                         }
@@ -197,24 +192,6 @@
 
     <script type="text/javascript">
 
-    var mymap = L.map('mapid').setView([51.47358, 5.453167], 13);
-    var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        {
-            maxZoom: 19,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(mymap);
-    var marker = L.marker();
-
-    function onMapClick(e) {
-        marker
-            .setLatLng(e.latlng)
-            .bindPopup("You clicked the map at " + e.latlng.toString())
-            .addTo(mymap);
-        document.getElementsByName("StartLocationLat")[0].value = e.latlng.lat;
-        document.getElementsByName("StartLocationLong")[0].value = e.latlng.lng;
-    }
-    mymap.on('click', onMapClick);
-
         $(document).ready(function () {
 
             $('#EndDate').datepicker({ dateFormat: "dd-mm-yy", minDate: -0 });
@@ -227,8 +204,6 @@
             url = url.replace("questionNumberJS", questionNumber);
             url = url.replace("optionNumberJS", optionNumber);
             url = url.replace(/&amp;/g, '&');
-            console.log(url);
-            console.log($(parentDiv));
             $.ajax({
                 type: "GET",
                 url: url,
@@ -238,40 +213,50 @@
             });
         }
 
-        $("body").on("change",
-            "select",
-            function (e) {
-                console.log($(this).parent().children('.question'));
-                if (this.id.includes("Type")) {
-                    var parentDiv = $(this).parent();
-                    parentDiv.children('.question').empty();
-                    var str = this.id;
-                    var indexOfPage = str.indexOf("t_");
-                    var indexOfQeustions = str.indexOf("s_");
-                    var pageNumber = str.charAt(indexOfPage + 2);
-                    var questionNumber = str.charAt(indexOfQeustions + 2);
-                    var url = "";
-                    switch (parseInt(this.value)) {
-                    case 0:
-                            url = '@Url.Action("GeoQuestion","Create", new { pageId = "", questionId = "questionNumberJS"})';
+            $("body").on("change",
+                "select",
+                function(e) {
+                    if (this.id.includes("Type")) {
+                        var parentDiv = $(this).parent();
+                        parentDiv.children('.question').empty();
+                        var str = this.id;
+                        var indexOfPage = str.indexOf("t_");
+                        var indexOfQeustions = str.indexOf("s_");
+                        var pageNumber = str.charAt(indexOfPage + 2);
+                        var questionNumber = str.charAt(indexOfQeustions + 2);
+                        var url = "";
+                        switch (parseInt(this.value)) {
+                            case 0:
+                                if (parentDiv.parent().parent().children("label")[0].innerHTML == "true") {
+                                    url =
+                                        '@Url.Action("GeoQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS", firstGeoQuestionInPage = true})';
+                                    parentDiv.parent().parent().children("label")[0].innerHTML = false;
+                                } else {
+                                    url =
+                                        '@Url.Action("GeoQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS", firstGeoQuestionInPage = false})';
+                                }
                             appendToDiv(parentDiv.children('.question'), url, pageNumber, questionNumber);
-                        break;
-                    case 1:
-                            url = '@Url.Action("MultipleChoiceQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
+                            break;
+                        case 1:
+                            url =
+                                '@Url.Action("MultipleChoiceQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
                             appendToDiv(parentDiv.children('.question'), url, pageNumber, questionNumber);
-                        break;
-                    case 3:
-                            url = '@Url.Action("SliderQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
+                            break;
+                        case 3:
+                            url =
+                                '@Url.Action("SliderQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
                             appendToDiv(parentDiv.children('.question'), url, pageNumber, questionNumber);
-                        break;
-                    case 4:
-                            url = '@Url.Action("NumberQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
+                            break;
+                        case 4:
+                            url =
+                                '@Url.Action("NumberQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
                             appendToDiv(parentDiv.children('.question'), url, pageNumber, questionNumber);
-                        break;
+                            break;
+                        }
+
                     }
 
-                }
-            });
+        });
 
 
         var profileQuestionsUsed = false;
@@ -289,7 +274,7 @@
             var currentPageCount = $('.pageDiv').length;
             if (x <= MaxInputsPage) {
                 var url = '@Url.Action("PageView","Create", new { pageId = "pageNumberJS"})';
-                url = url.replace("x", currentPageCount);
+                url = url.replace("pageNumberJS", currentPageCount);
                 url = url.replace(/&amp;/g, '&');
                 $.ajax({ type: "GET",
                     url: url ,
@@ -324,8 +309,8 @@
 
         $("body").on("click", ".addProfileQuestionButton", function(e) {
             e.preventDefault();
-            var pageNumber = $(this).parent().parent().children("label")[0].innerHTML;
-            var questionWrapper = $(this).parent().parent().children(".QuestionWrapper");
+            var pageNumber = $(this).parent().parent().parent().parent().children("label")[0].innerHTML;
+            var questionWrapper = $(this).parent().parent().parent().parent().children(".QuestionWrapper");
             var currentQuestionCount = $(questionWrapper).children(".questionDiv").length;
             var url = '@Url.Action("ProfileQuestions","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
             appendToDiv(questionWrapper, url, pageNumber, currentQuestionCount);
@@ -335,8 +320,8 @@
 
         $("body").on("click", ".addNNGBQuestionButton", function(e) {
             e.preventDefault();
-            var pageNumber = $(this).parent().parent().children("label")[0].innerHTML;
-            var questionWrapper = $(this).parent().parent().children(".QuestionWrapper");
+            var pageNumber = $(this).parent().parent().parent().parent().children("label")[0].innerHTML;
+            var questionWrapper = $(this).parent().parent().parent().parent().children(".QuestionWrapper");
             var currentQuestionCount = $(questionWrapper).children(".questionDiv").length;
             var url = '@Url.Action("NngbQuestions","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
             appendToDiv(questionWrapper, url, pageNumber, currentQuestionCount);
@@ -346,8 +331,8 @@
 
         $("body").on("click", ".addMotivationQuestionButton", function(e) {
             e.preventDefault();
-            var pageNumber = $(this).parent().parent().children("label")[0].innerHTML;
-            var questionWrapper = $(this).parent().parent().children(".QuestionWrapper");
+            var pageNumber = $(this).parent().parent().parent().parent().children("label")[0].innerHTML;
+            var questionWrapper = $(this).parent().parent().parent().parent().children(".QuestionWrapper");
             var currentQuestionCount = $(questionWrapper).children(".questionDiv").length;
             var url = '@Url.Action("MotivationQuestions","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
             appendToDiv(questionWrapper, url, pageNumber, currentQuestionCount);
@@ -360,8 +345,8 @@
             function (e) {
                 e.preventDefault();
                 if (x > 1) {
-                    $(this).parent('div').remove(); //remove text box
-                    x--; //decrement textbox
+                    $(this).parent().parent().parent().parent('div').remove(); 
+                    x--; 
                     var i;
                     var pages = $('.pageDiv').toArray();
                     var counters = $('.pageDiv label[for=PageCounter]').toArray();
@@ -410,14 +395,13 @@
             ".removeQuestionClass",
             function (e) {
                 e.preventDefault();
-                var questionsWrapper = $(this).parent().parent();
+                var questionsWrapper = $(this).parent().parent().parent().parent();
                 var i;
                 var j;
                 var q;
                 if (questionsWrapper.children().length > 1) {
-                    $(this).parent('div').remove();
+                    $(this).parent().parent().parent('div').remove();
                     var questions = questionsWrapper.children();
-                    console.log(questions);
                     for (q = 0; q < questions.length; q++) {
                         var children = questions[q].children;
                         var oldNumber = children[5].innerHTML;

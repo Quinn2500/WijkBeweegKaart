@@ -98,8 +98,6 @@ namespace WBK.Controllers
                 Title = survey.Title,
                 Description = survey.Description,
                 EndDate = survey.EndDate.ToShortDateString(),
-                StartLocationLat = survey.StartLocation.Latitude.ToString(),
-                StartLocationLong = survey.StartLocation.Longitude.ToString(),
                 PagesList = new List<PageViewModel>()
             };
 
@@ -120,8 +118,17 @@ namespace WBK.Controllers
                         Description = question.Description,
                         Category = question.Category,
                         Type = question.Type,
-                        GeoType = question.TypeOfMarker
+                        GeoType = question.TypeOfMarker,
+                        StartLocationLat = null,
+                        StartLocationLong = null
                     };
+
+                    if (question.StartLocation != null)
+                    {
+                        questionView.StartLocationLat = question.StartLocation.Latitude.ToString();
+                        questionView.StartLocationLong = question.StartLocation.Longitude.ToString();
+                    }
+
                     pageViewModel.Questions.Add(questionView);
                 }
 

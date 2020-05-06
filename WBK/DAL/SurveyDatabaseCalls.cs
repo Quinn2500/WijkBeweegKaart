@@ -17,14 +17,13 @@ namespace DAL
 
         public void InsertSurvey(Survey survey)
         {
-            string querySurvey = "INSERT INTO `survey`(`Title`, `Description`, `DateCreation`, `CreatorEmail`, `StartLocation`, `EndDate`, `ImageUrl`) VALUES (@pTitle, @pDesc,@pDateCreation,@pCreator,@pStartLocation,@pEnddate,@pImageUrl)";
+            string querySurvey = "INSERT INTO `survey`(`Title`, `Description`, `DateCreation`, `CreatorEmail`,`EndDate`, `ImageUrl`) VALUES (@pTitle, @pDesc,@pDateCreation,@pCreator,@pEnddate,@pImageUrl)";
             List<MySqlParameter> parametersSurvey = new List<MySqlParameter>
             {
                 new MySqlParameter("@pTitle", survey.Title),
                 new MySqlParameter("@pDesc", survey.Description),
                 new MySqlParameter("@pDateCreation", survey.DateOfCreation),
                 new MySqlParameter("@pCreator", survey.Owner),
-                new MySqlParameter("@pStartLocation", JsonConvert.SerializeObject(survey.StartLocation)),
                 new MySqlParameter("@pEnddate", survey.EndDate),
                 new MySqlParameter("@pImageUrl", survey.ImageUrl)
             };
@@ -54,6 +53,12 @@ namespace DAL
                         new MySqlParameter("@pQuestionGeoId", geoQuestionId),
                         new MySqlParameter("@pTypeOfMarker", question.TypeOfMarker)
                     };
+
+                    if (question.StartLocation != null)
+                    {
+                        parametersGeoQuestion.Add(new MySqlParameter("@pStartLocation", JsonConvert.SerializeObject(question.StartLocation)));
+                        queryGeoQuestion = "INSERT INTO `geoquestion`(`QuestionId`, `TypeOfMarker`, `StartLocation`) VALUES (@pQuestionGeoId, @pTypeOfMarker, @pStartLocation)";
+                    }
 
                     _databaseCalls.Command(queryGeoQuestion, parametersGeoQuestion);
                 }
@@ -167,8 +172,7 @@ namespace DAL
             result.Description = rowSurvey[2].ToString();
             result.DateOfCreation = Convert.ToDateTime(rowSurvey[3]);
             result.Owner = rowSurvey[4].ToString();
-            result.StartLocation = JsonConvert.DeserializeObject<Location>(rowSurvey[5].ToString());
-            result.EndDate = Convert.ToDateTime(rowSurvey[6]);
+            result.EndDate = Convert.ToDateTime(rowSurvey[5]);
             result.Pages = new List<Page>();
 
             string queryPage = "SELECT * FROM `page` WHERE page.SurveyId = @pId";
@@ -214,8 +218,16 @@ namespace DAL
                                 Category = (CategoryEnum)Convert.ToInt32(rowQuestion[5]),
                                 Type = questionType,
                                 TypeOfMarker = (GeoTypeEnum)Convert.ToInt32(rowGeo[2]),
+                                StartLocation = null
 
                             };
+
+                            if (rowGeo[3] != null)
+                            {
+                                geoQuestion.StartLocation =
+                                    JsonConvert.DeserializeObject<Location>(rowGeo[3].ToString());
+                            }
+
                             page.Questions.Add(geoQuestion);
                             break;
 

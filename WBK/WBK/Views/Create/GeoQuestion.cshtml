@@ -4,11 +4,50 @@
 
 @model WBK.Models.Create.PageQuestionModel
 
-<div class="question">   
+@if (Model.FirstGeoQuestionInPage)
+{
+<div class="geo question">
+    <div id="mapid@(Model.PageId)" class="map" style="height: 400px; width: 400px;"></div>
+    <p>Klik op de kaart om de waardes in te voeren!</p>
+    <input class = "form-control" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__StartLocationLat" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].StartLocationLat" type="text" value="Latitude" />
+    <input class = "form-control" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__StartLocationLong" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].StartLocationLong" type="text" value="Longitude" />
     <label>Marker Type:</label>
-    <select class="form-control" data-val="true" data-val-required="The GeoType field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__GeoType" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].GeoType">   
-         <option selected="selected" value="0">Marker</option>   
-         <option value="1">Lijn</option>   
-         <option value="2">Vlak</option>   
-    </select>   
+    <select class="form-control" data-val="true" data-val-required="The GeoType field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__GeoType" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].GeoType">
+        <option selected="selected" value="0">Marker</option>
+        <option value="1">Lijn</option>
+        <option value="2">Vlak</option>
+    </select>
 </div>
+
+    <script>
+        var map@(Model.PageId) = L.map('mapid@(Model.PageId)').setView([51.47358, 5.453167], 13);
+        var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map@(Model.PageId));
+
+        var marker@(Model.PageId) = L.marker();
+
+        function onMapClick@(Model.PageId)(e) {
+            marker@(Model.PageId)
+                .setLatLng(e.latlng)
+                .bindPopup("You clicked the map at " + e.latlng.toString())
+                .addTo(map@(Model.PageId) );
+            document.getElementById("PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__StartLocationLat").value = e.latlng.lat;
+            document.getElementById("PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__StartLocationLong").value = e.latlng.lng;
+        }
+        map@(Model.PageId).on('click', onMapClick@(Model.PageId));
+    </script>
+}
+else
+{
+    <div class="geo question">
+        <label>Marker Type:</label>
+        <select class="form-control" data-val="true" data-val-required="The GeoType field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__GeoType" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].GeoType">
+            <option selected="selected" value="0">Marker</option>
+            <option value="1">Lijn</option>
+            <option value="2">Vlak</option>
+        </select>
+    </div>
+}
