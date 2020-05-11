@@ -173,7 +173,7 @@ namespace WBK.Controllers
 
                                 if (!string.IsNullOrEmpty(questionView.StartLocationLat))
                                 {
-                                    Location startLocation = new Location(Convert.ToDouble(questionView.StartLocationLat.Replace('.', ',')), Convert.ToDouble(questionView.StartLocationLong.Replace('.', ',')));
+                                    Location startLocation = new Location(Convert.ToDouble(questionView.StartLocationLat.Replace('.', ',')), Convert.ToDouble(questionView.StartLocationLong.Replace('.', ',')), questionView.StartZoomLevel);
                                     geoQuestion.StartLocation = startLocation;
                                 }
                                 page.Questions.Add(geoQuestion);

@@ -9,8 +9,10 @@
 <div class="geo question">
     <div id="mapid@(Model.PageId)" class="map" style="height: 400px; width: 400px;"></div>
     <p>Klik op de kaart om de waardes in te voeren!</p>
-    <input class = "form-control" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__StartLocationLat" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].StartLocationLat" type="text" value="Latitude" />
-    <input class = "form-control" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__StartLocationLong" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].StartLocationLong" type="text" value="Longitude" />
+    <input class="form-control" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__StartLocationLat" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].StartLocationLat" type="text" value="Latitude" />
+    <input class="form-control" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__StartLocationLong" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].StartLocationLong" type="text" value="Longitude" />
+    <input class="form-control" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__StartZoomLevel" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].StartZoomLevel" type="number" />
+    
     <label>Marker Type:</label>
     <select class="form-control" data-val="true" data-val-required="The GeoType field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__GeoType" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].GeoType">
         <option selected="selected" value="0">Marker</option>
@@ -36,6 +38,7 @@
                 .addTo(map@(Model.PageId) );
             document.getElementById("PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__StartLocationLat").value = e.latlng.lat;
             document.getElementById("PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__StartLocationLong").value = e.latlng.lng;
+            document.getElementById("PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__StartZoomLevel").value = map@(Model.PageId).getZoom();
         }
         map@(Model.PageId).on('click', onMapClick@(Model.PageId));
     </script>

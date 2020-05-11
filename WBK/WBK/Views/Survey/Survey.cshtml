@@ -33,6 +33,7 @@
         <a class="navbar-brand" href="#">
             <img src="~/images/WijkBeweegKaart Logo.png" alt="WijkBeweegKaart" style="height: 80px; width: 360px;" />
         </a>
+        <h3 id="pageCounter">Pagina: 0/0</h3>
     </nav>
 
 <div class="container-fluid p-0 row h-75">
@@ -62,7 +63,7 @@
                         </div>
                     </div>
 
-                    <div class="questionDiv"  style="display: none">
+                    <div class="questionDiv"  style="display: none; margin-top:20px;">
                         @for (int j = 0; j < pageView.Questions.Count; j++)
                         {
                             <div class="question">
@@ -108,7 +109,7 @@
 
                                         if (questionView.StartLocationLat != null)
                                         {
-                                            <div id="mapid@(i)" class="map" style="height: 500px; width: 800px; margin-left:60px"></div>
+                                            <div id="mapid@(i)" onclick="map@(i).invalidateSize()" class="map" style="height: 800px; margin-left: 60px; margin-right: 60px;"></div>
                                             <button id="mapButton@(i)" class="mapBtn btn btn-info">Terug naar het startpunt!</button>
 
                                             <script>
@@ -116,7 +117,10 @@
                                                     parseFloat(@questionView.StartLocationLat),
                                                     parseFloat(@questionView.StartLocationLong)
                                                 ];
-                                                var map@(i) = L.map('mapid@(i)').setView(mapCenter@(i), 13);
+
+                                                var mapZoom@(i) = @questionView.StartZoomLevel;
+
+                                                var map@(i) = L.map('mapid@(i)').setView(mapCenter@(i), @questionView.StartZoomLevel);
                                                 var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
                                                     {
                                                         maxZoom: 19,
@@ -125,6 +129,8 @@
 
                                                 var editableLayers@(i)  = new L.FeatureGroup();
                                                 map@(i).addLayer(editableLayers@(i) );
+
+                                                setTimeout(function () { map@(i).invalidateSize() }, 1000);
 
                                                 var drawPluginOptions@(i) = {
                                                     position: 'topright',
@@ -226,15 +232,7 @@
 
 
         </div>
-
     </div>
-
-    <footer class="navbar fixed-bottom navbar-light d-flex justify-content-between" style="background-color: darkorange">
-        <div class="p-2"></div>
-        <div class="p-2">
-            <p id="pageCounter">Pagina: 0/0</p></div>
-        <div class="p-2"></div>
-    </footer>
 
 <script>
 
@@ -257,6 +255,7 @@
             var mapId = $(this).attr('id').split("mapButton").pop();
             console.log(mapId);
             window["map" + mapId].setView(window["mapCenter" + mapId]);
+            window["map" + mapId].setZoom(window["mapZoom" + mapId]);
             return false;
         });
 
