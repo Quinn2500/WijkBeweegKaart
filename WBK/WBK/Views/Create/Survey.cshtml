@@ -434,10 +434,12 @@
             ".addMCOption",
             function (e) {
                 e.preventDefault();
+                console.log($(this));
                 var wrapper = $(this).parent().parent().children()[0];
                 var numberOfOptions = $(wrapper).children(".MCOption").length;
                 var pageNumber = $(this).parent().parent().parent().parent().children().length - 1;
-                var questionWrapper = $(this).parent().parent().parent().parent().parent().children(".QuestionWrapper");
+                var questionWrapper = $(this).parent().parent().parent().parent().parent();
+                console.log(questionWrapper);
                 var currentQuestionCount = $(questionWrapper).children(".questionDiv").length - 1;
                 var url = '@Url.Action("MultipleChoiceOption","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS", optionId="optionNumberJS"})';
                 appendToDiv(questionWrapper, url, pageNumber, currentQuestionCount, numberOfOptions);
