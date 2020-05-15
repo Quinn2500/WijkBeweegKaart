@@ -162,7 +162,9 @@ namespace WBK.Controllers
                         MultipleChoiceOptionViewModel optionViewModel = new MultipleChoiceOptionViewModel
                         {
                             Answer = option.Value,
-                            Description = option.Description
+                            Description = option.Description,
+                            ImageUrl = option.ImageUrl
+                           
                         };
                         questionView.Options.Add(optionViewModel);
                     }

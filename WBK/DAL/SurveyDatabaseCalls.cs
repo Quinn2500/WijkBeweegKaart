@@ -264,12 +264,8 @@ namespace DAL
 
                             foreach (DataRow rowOption in _databaseCalls.Select(queryOptions, parametersOptions).Rows)
                             {
-                                MultipleChoiceOption option = new MultipleChoiceOption
-                                {
-                                    Value = rowOption[2].ToString(),
-                                    Description = rowOption[3].ToString(), 
-
-                                };
+                                MultipleChoiceOption option = new MultipleChoiceOption(rowOption[2].ToString(),
+                                    rowOption[3].ToString(), rowOption[4].ToString());
                                 multipleChoiceQuestion.Options.Add(option);
                             }
                             page.Questions.Add(multipleChoiceQuestion);
@@ -592,18 +588,13 @@ namespace DAL
                                 string queryAnswerMultipleChoice = "SELECT `MultipleChoiceOptionId` FROM `multiplechoiceanswer` WHERE multiplechoiceanswer.AnswerId = @pAnswerId";
                                 foreach (DataRow answerRow in _databaseCalls.Select(queryAnswerMultipleChoice, answerIdParameter).Rows)
                                 {
-                                    string queryAnswerMultipleChoiceOption = "SELECT `Value`, `Description` FROM `multiplechoiceoption` WHERE multiplechoiceoption.Id = @pId";
+                                    string queryAnswerMultipleChoiceOption = "SELECT `Value`, `Description`, `ImageURL` FROM `multiplechoiceoption` WHERE multiplechoiceoption.Id = @pId";
                                     List<MySqlParameter> parameterAnswerMultipleChoiceOption = new List<MySqlParameter>
                                         {
                                             new MySqlParameter("@pId", Convert.ToInt32(answerRow[0])),
                                         };
                                     DataRow rowMultipleChoiceOptionAnswer = _databaseCalls.Select(queryAnswerMultipleChoiceOption, parameterAnswerMultipleChoiceOption).Rows[0];
-                                    MultipleChoiceOption option = new MultipleChoiceOption
-                                    {
-                                        Value = rowMultipleChoiceOptionAnswer[0].ToString(),
-                                        Description = rowMultipleChoiceOptionAnswer[1].ToString(),
-
-                                    };
+                                    MultipleChoiceOption option = new MultipleChoiceOption(rowMultipleChoiceOptionAnswer[0].ToString(), rowMultipleChoiceOptionAnswer[1].ToString(), rowMultipleChoiceOptionAnswer[2].ToString());
                                     answerMultipleChoice.AnsweredOptions.Add(option);
                                 }
                                 question.Answers.Add(answerMultipleChoice);

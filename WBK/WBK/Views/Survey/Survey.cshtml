@@ -90,6 +90,7 @@
                                             {
                                                 @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].Options[q].Selected)
                                                 <label>@Model.PagesList[i].Questions[j].Options[q].Answer</label>
+                                                <img src="@Model.PagesList[i].Questions[j].Options[q].ImageUrl" width="150" height="150" style="object-fit: none;"/>
                                                 <p>@Model.PagesList[i].Questions[j].Options[q].Description</p>
                                             }
                                         }
@@ -100,6 +101,7 @@
                                                 {
                                                     @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].Options[q].Selected, new { required = "required" })
                                                     <label>@Model.PagesList[i].Questions[j].Options[q].Answer</label>
+                                                    <img src="@Model.PagesList[i].Questions[j].Options[q].ImageUrl" width="150" height="150" style="object-fit: none;"/>
                                                     <p>@Model.PagesList[i].Questions[j].Options[q].Description</p>
                                                 }
                                             </div>
@@ -108,32 +110,32 @@
                                     case TypeEnum.GeoVraag:
 
                                             <div id="page@(i)_question@(j)" class="geoDraw">
-                                                <p><small>Druk op de volgende knop om uw antwoord aan te geven:</small></p>
+                                                <p style="display: inline-block;"><small>Druk op de volgende knop om uw antwoord aan te geven:</small></p>
                                                 @Html.HiddenFor(x => x.PagesList[i].Questions[j].GeoCodeAnswer, new { required = "required" })
                                                 @switch (Model.PagesList[i].Questions[j].GeoType)
                                                 {
                                                     case GeoTypeEnum.Marker:
-                                                        <div class="marker">
+                                                        <div style="width: 30px; height: 30px; margin-left: 10px; display: inline-block;" class="marker">
 
                                                         </div>
                                                         break;
                                                     case GeoTypeEnum.Lijn:
-                                                        <div class="polyline">
+                                                        <div style="width: 30px; height: 30px; margin-left: 10px; display: inline-block;" class="polyline">
 
                                                         </div>
                                                         break;
                                                     case GeoTypeEnum.Vlak:
-                                                        <div class="polygon">
+                                                        <div style="width: 30px; height: 30px; margin-left: 10px; display: inline-block;" class="polygon">
 
                                                         </div>
                                                         break;
                                                 }
-                                                <p><small>(Verkeer geplaatst? Geen probleem klik op uw markering en vervolgens op de gele knop.)</small></p>
+                                                <p><small>(Verkeerd geplaatst? Geen probleem klik op uw markering en vervolgens op de gele knop.)</small></p>
 
                                             </div>
 
                                         if (questionView.StartLocationLat != null)
-                                        {
+                                        { 
                                             <div id="mapid@(i)" onclick="map@(i).invalidateSize()" class="map" style="height: 800px; margin-left: 60px; margin-right: 60px;"></div>
                                             <button id="mapButton@(i)" class="mapBtn btn btn-info">Terug naar het startpunt!</button>
 
@@ -144,7 +146,7 @@
                                                 ];
 
                                                 var mapZoom@(i) = @questionView.StartZoomLevel;
-
+                                                console.log(mapCenter@(i));
                                                 console.log(mapZoom@(i));
 
                                                 var map@(i) = L.map('mapid@(i)').setView(mapCenter@(i), 13);
@@ -290,26 +292,23 @@
 
             var drawControls = window["drawButtonsForMap" + mapId];
 
-            var containerDiv = $(geoDiv).children('div')[0];
-
-            var buttons = $(drawControls).children()[0].children[0].children;
-
-            switch ($(containerDiv).attr('class')) {
-            case "marker":
-                $(buttons[0]).hide();
-                $(buttons[1]).hide();
-                break;
-            case "polyline":
-                $(buttons[1]).hide();
-                $(buttons[2]).hide();
-                break;
-            case "polygon":
-                $(buttons[0]).hide();
-                $(buttons[2]).hide();
-                break;
-            }
-
-            containerDiv.appendChild(drawControls);
+            for (var i = 0; i < allGeoDivs.length; i++) {
+                var containerDiv = $(allGeoDivs[i]).children()[1];
+                var buttons = $(drawControls).children()[0].children()[0].children();
+                switch ($(containerDiv).attr('class')) {
+                case "marker":
+                    $(buttons[0]).hide();
+                    $(buttons[1]).hide();
+                    break;
+                case "polyline":
+                    $(buttons[1]).hide();
+                    $(buttons[2]).hide();
+                    break;
+                case "polygon":
+                    $(buttons[0]).hide();
+                    $(buttons[2]).hide();
+                    break;
+                }
         }
 
         $(".leaflet-draw-draw-marker").click(function (e) {

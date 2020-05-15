@@ -9,6 +9,8 @@ namespace DataModels
         Profiel,
         Locatie,
         Gezondheid,
-        Motivatie
+        Motivatie,
+        Algemeen,
+        Product
     }
 }

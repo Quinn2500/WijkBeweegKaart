@@ -233,12 +233,7 @@ namespace WBK.Controllers
                                 };
                                 foreach (MultipleChoiceOptionViewModel optionView in questionView.Options)
                                 {
-                                    MultipleChoiceOption option = new MultipleChoiceOption
-                                    {
-                                        Value = optionView.Answer,
-                                        Description = optionView.Description,
-                                        ImageUrl = questionView.ImageUrl
-                                    };
+                                    MultipleChoiceOption option = new MultipleChoiceOption(optionView.Answer, optionView.Description, optionView.ImageUrl);
                                     multipleChoiceQuestion.Options.Add(option);
                                 }
                                 page.Questions.Add(multipleChoiceQuestion);
