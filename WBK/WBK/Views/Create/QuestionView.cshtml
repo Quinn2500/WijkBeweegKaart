@@ -5,7 +5,7 @@
 @model WBK.Models.Create.PageQuestionModel
 
 <div class="questionDiv">
-    <h3 style="float: left;">Vraag @(Model.QuestionId)</h3>
+    <h3 style="float: left;">Vraag @(Model.QuestionId +1)</h3>
 
     <div style="float: right;" class="dropleft show">
         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuQuestion@(Model.QuestionId)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -28,6 +28,9 @@
         <option selected="selected" value="0">Profiel</option>
         <option value="1">Locatie</option>
         <option value="2">Gezondheid</option>
+        <option value="3">Motivatie</option>
+        <option value="4">Algemeen</option>
+        <option value="5">Product</option>
     </select>
     <label for="QuestionCounter" style="display: none;">@(Model.QuestionId)</label>
     <div class="question">

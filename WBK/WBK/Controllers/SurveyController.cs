@@ -120,13 +120,15 @@ namespace WBK.Controllers
                         Type = question.Type,
                         GeoType = question.TypeOfMarker,
                         StartLocationLat = null,
-                        StartLocationLong = null
+                        StartLocationLong = null,
+                        StartZoomLevel = 13
                     };
 
                     if (question.StartLocation != null)
                     {
                         questionView.StartLocationLat = question.StartLocation.Latitude.ToString();
                         questionView.StartLocationLong = question.StartLocation.Longitude.ToString();
+                        questionView.StartZoomLevel = question.StartLocation.ZoomLevel;
                     }
 
                     pageViewModel.Questions.Add(questionView);
@@ -160,7 +162,9 @@ namespace WBK.Controllers
                         MultipleChoiceOptionViewModel optionViewModel = new MultipleChoiceOptionViewModel
                         {
                             Answer = option.Value,
-                            Description = option.Description
+                            Description = option.Description,
+                            ImageUrl = option.ImageUrl
+                           
                         };
                         questionView.Options.Add(optionViewModel);
                     }
