@@ -27,8 +27,6 @@ namespace WBK.Controllers
                     Title = survey.Title,
                     Description = survey.Description,
                     EndDate = survey.EndDate.ToString(),
-                    StartLocationLat = survey.StartLocation.Latitude.ToString(),
-                    StartLocationLong = survey.StartLocation.Longitude.ToString(),
                     PagesList = new List<PageViewModel>()
                 };
 
@@ -138,13 +136,10 @@ namespace WBK.Controllers
                 Title = model.Title,
                 Description = model.Description,
                 Owner = "test@test.nl",
-                EndDate = DateTime.ParseExact(model.EndDate, "MM/dd/yyyy", null),
-                DateOfCreation = DateTime.Today
+                EndDate = DateTime.Parse(model.EndDate),
+                DateOfCreation = DateTime.Today,
+                ImageUrl = model.ImageUrl
             };
-            double longitude = Convert.ToDouble(model.StartLocationLong.Replace('.', ','));
-            double latitude = Convert.ToDouble(model.StartLocationLat.Replace('.', ','));
-            Location startLocation = new Location(latitude, longitude);
-            surveyModel.StartLocation = startLocation;
 
             List<Page> pages = new List<Page>();
             foreach (PageViewModel pageView in model.PagesList)
@@ -153,7 +148,8 @@ namespace WBK.Controllers
                 {
                     Title = pageView.Title,
                     Description = pageView.Description,
-                    Questions = new List<Question>()
+                    Questions = new List<Question>(),
+                    ImageUrl = pageView.ImageUrl
 
                 };
                 if (pageView.Questions != null)
@@ -163,14 +159,23 @@ namespace WBK.Controllers
                         switch (questionView.Type)
                         {
                             case TypeEnum.GeoVraag:
+
                                 GeoQuestion geoQuestion = new GeoQuestion
                                 {
                                     Value = questionView.Title,
                                     Description = questionView.Description,
                                     Category = questionView.Category,
                                     Type = questionView.Type,
-                                    TypeOfMarker = questionView.GeoType
+                                    ImageUrl = questionView.ImageUrl,
+                                    TypeOfMarker = questionView.GeoType,
+                                    StartLocation = null
                                 };
+
+                                if (!string.IsNullOrEmpty(questionView.StartLocationLat))
+                                {
+                                    Location startLocation = new Location(Convert.ToDouble(questionView.StartLocationLat.Replace('.', ',')), Convert.ToDouble(questionView.StartLocationLong.Replace('.', ',')), questionView.StartZoomLevel);
+                                    geoQuestion.StartLocation = startLocation;
+                                }
                                 page.Questions.Add(geoQuestion);
                                 break;
 
@@ -180,6 +185,7 @@ namespace WBK.Controllers
                                     Value = questionView.Title,
                                     Description = questionView.Description,
                                     Category = questionView.Category,
+                                    ImageUrl = questionView.ImageUrl,
                                     Type = questionView.Type
                                 };
                                 page.Questions.Add(openQuestion);
@@ -192,6 +198,7 @@ namespace WBK.Controllers
                                     Description = questionView.Description,
                                     Category = questionView.Category,
                                     Type = questionView.Type,
+                                    ImageUrl = questionView.ImageUrl,
                                     Maximum = questionView.MaxValue,
                                     Minimum = questionView.MinValue
                                 };
@@ -205,6 +212,7 @@ namespace WBK.Controllers
                                     Description = questionView.Description,
                                     Category = questionView.Category,
                                     Type = questionView.Type,
+                                    ImageUrl = questionView.ImageUrl,
                                     MaxValueText = questionView.SliderMaxText,
                                     MinValueText = questionView.SliderMinText,
                                     Scale = questionView.SliderScaleVal
@@ -219,16 +227,13 @@ namespace WBK.Controllers
                                     Description = questionView.Description,
                                     Category = questionView.Category,
                                     Type = questionView.Type,
+                                    ImageUrl = questionView.ImageUrl,
                                     AllowMutlipleAnwsers = questionView.AllowMultipleAnswers,
                                     Options = new List<MultipleChoiceOption>()
                                 };
                                 foreach (MultipleChoiceOptionViewModel optionView in questionView.Options)
                                 {
-                                    MultipleChoiceOption option = new MultipleChoiceOption
-                                    {
-                                        Value = optionView.Answer,
-                                        Description = optionView.Description
-                                    };
+                                    MultipleChoiceOption option = new MultipleChoiceOption(optionView.Answer, optionView.Description, optionView.ImageUrl);
                                     multipleChoiceQuestion.Options.Add(option);
                                 }
                                 page.Questions.Add(multipleChoiceQuestion);
@@ -271,6 +276,7 @@ namespace WBK.Controllers
             return model;
         }
 
+        #region Profile Questions
         [HttpGet]
         public IActionResult ProfileQuestions(int pageId, int questionId)
         {
@@ -304,5 +310,86 @@ namespace WBK.Controllers
             return View(model);
         }
 
+        #endregion
+
+        #region Questions
+        [HttpGet]
+        public IActionResult GeoQuestion(int pageId, int questionId, bool firstGeoQuestionInPage)
+        {
+            PageQuestionModel model = new PageQuestionModel
+            {
+                PageId = pageId,
+                QuestionId = questionId,
+                FirstGeoQuestionInPage = firstGeoQuestionInPage
+            };
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult MultipleChoiceQuestion(int pageId, int questionId)
+        {
+            PageQuestionModel model = new PageQuestionModel
+            {
+                PageId = pageId,
+                QuestionId = questionId
+            };
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult MultipleChoiceOption(int pageId, int questionId, int optionId)
+        {
+            PageQuestionModel model = new PageQuestionModel
+            {
+                PageId = pageId,
+                QuestionId = questionId,
+                OptionId = optionId
+            };
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult NumberQuestion(int pageId, int questionId)
+        {
+            PageQuestionModel model = new PageQuestionModel
+            {
+                PageId = pageId,
+                QuestionId = questionId
+            };
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult SliderQuestion(int pageId, int questionId)
+        {
+            PageQuestionModel model = new PageQuestionModel
+            {
+                PageId = pageId,
+                QuestionId = questionId
+            };
+            return View(model);
+        }
+        #endregion
+
+        [HttpGet]
+        public IActionResult PageView(int pageId)
+        {
+            PageQuestionModel model = new PageQuestionModel
+            {
+                PageId = pageId
+            };
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult QuestionView(int pageId, int questionId)
+        {
+            PageQuestionModel model = new PageQuestionModel
+            {
+                PageId = pageId,
+                QuestionId = questionId
+            };
+            return View(model);
+        }
     }
 }

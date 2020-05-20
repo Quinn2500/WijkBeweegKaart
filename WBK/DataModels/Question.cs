@@ -12,5 +12,6 @@ namespace DataModels
         public CategoryEnum Category { get; set; }
         public string Attribute { get; set; }
         public List<Answer> Answers { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

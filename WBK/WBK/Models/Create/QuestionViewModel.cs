@@ -24,6 +24,12 @@ namespace WBK.Models.Create
         public string GeoCodeAnswer { get; set; }
         public int NumberAnswer { get; set; }
         public string Attribute { get; set; }
+        public string ImageUrl { get; set; }
+        public string StartLocationLat { get; set; }
+        public string StartLocationLong { get; set; }
+        public int StartZoomLevel { get; set; }
+
+
 
 
 

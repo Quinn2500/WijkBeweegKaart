@@ -11,3 +11,4 @@ D:\GitKraken\Repos\WijkBeweegKaart\WBK\DAL\bin\Debug\netcoreapp2.1\DataModels.pd
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\DAL\obj\Debug\netcoreapp2.1\DAL.csproj.CopyComplete
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\DAL\bin\Debug\netcoreapp2.1\Newtonsoft.Json.dll
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\DAL\bin\Debug\netcoreapp2.1\Newtonsoft.Json.xml
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\DAL\obj\Debug\netcoreapp2.1\DAL.csproj.CoreCompileInputs.cache

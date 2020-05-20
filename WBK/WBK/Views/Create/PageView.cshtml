@@ -1,0 +1,41 @@
+﻿@{
+    Layout = null;
+}
+
+@model WBK.Models.Create.PageQuestionModel
+
+<div class="pageDiv" style="border-style: solid; border-color: orange; border-width: 3px; border-radius: 5px; padding: 5px; margin-top:10px;">
+
+    <label style="display: none;" class="boolFirstGeoQuestion">true</label>
+
+    <div>
+        <h3 style="float: left;">Pagina @(Model.PageId)</h3>
+
+        <div style="float: right;" class="dropleft show">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuPage@(Model.PageId)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                =
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a href="" class="dropdown-item addProfileQuestionButton">Voeg Profiel Vragen Toe</a>
+                <a href="" class="dropdown-item addNNGBQuestionButton">Voeg NNGB vragen Toe</a>
+                <a href="" class="dropdown-item addMotivationQuestionButton">Voeg Motivatie vragen Toe</a>
+                <div class="dropdown-divider"></div>
+                <a style="color: red" href="" class="dropdown-item removeclass">Pagina verwijderen</a>
+            </div>
+        </div>
+
+    </div>
+
+    <input class="form-control" required id="PagesList_@(Model.PageId)__Title" name="PagesList[@(Model.PageId)].Title" type="text" value="" placeholder="Pagina @(Model.PageId) Titel "/>
+    <textarea class="form-control" id="PagesList_@(Model.PageId)__Description" name="PagesList[@(Model.PageId)].Description" type="text" value="" placeholder="Pagina @(Model.PageId) Beschrijving" rows="5" cols="40"></textarea>
+
+    <label for="PageCounter" style="display: none;">@(Model.PageId)</label>
+
+    <div class="QuestionWrapper">
+    </div>
+
+    <div class="addQuestion">
+        <a href="#" class="addQuestionButton btn btn-info">Voeg Vraag Toe</a><br><br>
+    </div>
+
+</div>

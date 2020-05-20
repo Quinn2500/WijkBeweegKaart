@@ -1,0 +1,32 @@
+﻿@{
+    Layout = null;
+}
+
+@model WBK.Models.Create.PageQuestionModel
+
+<div class="question">  
+     <div class=mcWrapper>
+         <label style="display: inline-block;" >Laat meerdere antwoorden toe:</label>   
+         <input style="display: inline-block;" class="form-check" data-val="true" data-val-required="The AllowMultipleAnswers field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__AllowMultipleAnswers" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].AllowMultipleAnswers" type="checkbox" value="true" />   
+         <div class="MCOption">
+             <h4 style="float: left;">Optie @(Model.OptionId + 1):</h4>
+
+             <div style="float: right;" class="dropleft show">
+                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuQuestion@(Model.QuestionId)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     =
+                 </a>
+                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                     <a style="color: red;" href="" class="removeMCOption">Verwijderen</a>
+                 </div>
+             </div>
+             <input class="form-control" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_@(Model.OptionId)__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId).Options[@(Model.OptionId)].Answer" type="text" value="" placeholder="Antwoord" />
+             <input class="form-control" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_@(Model.OptionId)__ImageUrl" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[@(Model.OptionId)].ImageUrl" type="text" value="" placeholder="Foto URL" />
+             <input class="form-control" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_@(Model.OptionId)__Description" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[@(Model.OptionId)].Description" type="text" value="" placeholder="Beschrijving" />
+             <label for="OptionCounter" style="display: none;">@(Model.OptionId)</label>
+         </div>             
+    </div>   
+
+    <div class="addMCOptions">
+        <a href="" class="addMCOption btn btn-info">Voeg optie toe! </a>
+    </div>        
+</div>

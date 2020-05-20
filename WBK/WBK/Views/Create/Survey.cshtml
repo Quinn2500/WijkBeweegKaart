@@ -9,28 +9,24 @@
 
 <!DOCTYPE html>
 <html>
-<head>
+<head runat=server>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WijkBeweegKaart</title>
+    
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    </environment>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-
+    <link href="~/css/site.css" rel="stylesheet" type="text/css" media="screen" runat="server" />
     <script src="~/lib/jquery/dist/jquery.js"></script>
-    <link href="~/lib/jqeury-ui/jquery-ui.css" rel="stylesheet" />
-    <script src="~/lib/jqeury-ui/jquery-ui.min.js"></script>
-
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
 </head>
 
 <body class="p-0">
@@ -46,114 +42,140 @@
             {
                 @Html.AntiForgeryToken()
 
-                <div class="col-6" style="margin-top: 20px;">
-                    <div>
-                        <label>Titel:</label>
-                        @Html.TextBoxFor(x => x.Title, new { required = "required" })
-                    </div>
-                    <div>
-                        <label>Beschrijving:</label>
-                        @Html.TextAreaFor(x => x.Description, new { rows = "10", cols = "80", required = "required" })
-                    </div>
-                    <div>
-                        <label>Eind Datum:</label>
-                        @Html.TextBoxFor(model => model.EndDate, new { required = "required" })
-                    </div>
-
-                    <div style="margin-top: 240px;">
-                        <label>Selecteer locatie:</label>
-                        <div id="mapid" style="height: 400px; width: 400px;" class=""></div>
-                        <p>Klik op de kaart om de waardes in te voeren!</p>
-                        <label>Latitude:</label>
-                        @Html.TextBoxFor(x => x.StartLocationLat, new { required = "required" })
-                        <label>Longitude:</label>
-                        @Html.TextBoxFor(x => x.StartLocationLong, new { required = "required" })
-                    </div>
-
-                    <input type="submit" name="name" value="Maak Aan!" class="btn btn-success" />
-
+            <div class="col-6 form-group" style="margin-top: 20px;">
+                <div>
+                    <label>Titel:</label>
+                    @Html.TextBoxFor(x => x.Title, new { required = "required", @class = "form-control" })
+                </div>
+                <div>
+                    <label>Beschrijving:</label>
+                    @Html.TextAreaFor(x => x.Description, new { rows = "10", cols = "80", @class = "form-control" })
+                </div>
+                <div>
+                    <label>Foto URL:</label>
+                    @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
+                </div>
+                <div>
+                    <label>Eind Datum:</label>
+                     @Html.TextBoxFor(model => model.EndDate, new { required = "required", @class = "form-control" })
                 </div>
 
-                <div class="col-6">
+                <input type="submit" name="name" value="Maak Aan!" class="btn btn-success" />
+
+            </div>
+
+                <div class="col-6 form-group">
                     <h2>Pagina's en vragen:</h2>
                     <div id="InputsWrapper">
                         @for (var i = 0; i < Model.PagesList.Count(); i++)
                         {
-                            <div class="pageDiv">
-                                <h3>Pagina @i</h3>
-                                @Html.TextBoxFor(x => x.PagesList[i].Title, new { placeholder = "Pagina " + i + " Titel", required = "required" })
+                            <div class="pageDiv" style="border-style: solid; border-color: orange; border-width: 3px; border-radius: 5px; padding: 15px">
+                                <label style="display: none;" class="boolFirstGeoQuestion">true</label>
+                                <div>
+                                    <h3 style="float: left;">Pagina @(i+1)</h3>
+
+                                    <div style="float: right;" class="dropleft show">
+                                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuPage@(i)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            =
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <a href="" class="dropdown-item addProfileQuestionButton">Voeg Profiel Vragen Toe</a>
+                                            <a href="" class="dropdown-item addNNGBQuestionButton">Voeg NNGB vragen Toe</a>
+                                            <a href="" class="dropdown-item addMotivationQuestionButton">Voeg Motivatie vragen Toe</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a style="color: red" href="" class="dropdown-item removeclass">Pagina verwijderen</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                @Html.TextBoxFor(x => x.PagesList[i].Title, new {placeholder = "Pagina Titel", required = "required", @class = "form-control"})
                                 @Html.ValidationMessageFor(x => x.PagesList[i].Title)
 
-                                @Html.TextAreaFor(x => x.PagesList[i].Description, new { placeholder = "Pagina " + i + " Beschrijving", rows = "5", cols = "40", required = "required" })
+                                @Html.TextBoxFor(x => x.PagesList[i].ImageUrl, new {placeholder = "Foto URL", @class = "form-control"})
+
+                                @Html.TextAreaFor(x => x.PagesList[i].Description, new {placeholder = "Pagina Beschrijving", rows = "5", cols = "40", @class = "form-control"})
                                 @Html.ValidationMessageFor(x => x.PagesList[i].Description)
 
-                                @Html.Label("PageCounter", i.ToString(), new { style = "display: none;" })
+                                @Html.Label("PageCounter", i.ToString(), new {style = "display: none;"})
 
                                 <div class="QuestionWrapper">
 
                                     @for (var j = 0; j < Model.PagesList[i].Questions.Count(); j++)
                                     {
-                                        <div class="questionDiv">
-                                            <h3>Vraag @j</h3>
+                                        <div class="questionDiv" style="border-style: solid; border-color: darkorange; border-width: 3px; border-radius: 5px; padding: 5px; margin-top: 10px;">
+                                            <h3 style="float: left;">Vraag @(j+1)</h3>
 
-                                            @Html.TextBoxFor(x => x.PagesList[i].Questions[j].Title, new { placeholder = "Vraag " + j, required = "required" })
+                                            <div style="float: right;" class="dropleft show">
+                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuQuestion@(j)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    =
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                    <a style="color: red;" href="" class="removeQuestionClass">Vraag verwijderen</a>
+                                                </div>
+                                            </div>
 
-                                            @Html.TextBoxFor(x => x.PagesList[i].Questions[j].Description, new { placeholder = "Vraag " + j + " Beschrijving", required = "required" })
+                                            @Html.TextBoxFor(x => x.PagesList[i].Questions[j].Title, new {placeholder = "Vraag", required = "required", @class = "form-control"})
+                                            @Html.TextBoxFor(x => x.PagesList[i].Questions[j].Description, new {placeholder = "Vraag Beschrijving", @class = "form-control"})
+                                            @Html.TextBoxFor(x => x.PagesList[i].Questions[j].ImageUrl, new {placeholder = "Foto URL", @class = "form-control"})
+                                            @Html.DropDownListFor(x => x.PagesList[i].Questions[j].Type, Html.GetEnumSelectList(Model.PagesList[i].Questions[j].Type.GetType()), new {@class = "form-control"})
+                                            @Html.DropDownListFor(x => x.PagesList[i].Questions[j].Category, Html.GetEnumSelectList(Model.PagesList[i].Questions[j].Category.GetType()), new {@class = "form-control"})
 
-                                            @Html.DropDownListFor(x => x.PagesList[i].Questions[j].Type, Html.GetEnumSelectList(Model.PagesList[i].Questions[j].Type.GetType()))
+                                            @Html.Label("QuestionCounter", j.ToString(), new {style = "display: none;"})
 
-                                            @Html.DropDownListFor(x => x.PagesList[i].Questions[j].Category, Html.GetEnumSelectList(Model.PagesList[i].Questions[j].Category.GetType()))
+                                            <div class="question">
+                                                @switch (Model.PagesList[i].Questions[j].Type)
+                                                {
+                                                    case TypeEnum.GeoVraag:
+                                                        <label>Marker Type:</label>
+                                                        @Html.DropDownListFor(x => x.PagesList[i].Questions[j].GeoType, Html.GetEnumSelectList(Model.PagesList[i].Questions[j].GeoType.GetType()), new {@class = "form-control"})
+                                                        break;
+                                                    case TypeEnum.SliderVraag:
+                                                        <label>Tekst aan begin slider:</label>
+                                                        @Html.TextBoxFor(x => x.PagesList[i].Questions[j].SliderMinText, new {@class = "form-control"})
+                                                        ;
+                                                        <label>Tekst aan eind slider:</label>
+                                                        @Html.TextBoxFor(x => x.PagesList[i].Questions[j].SliderMaxText, new {@class = "form-control"})
+                                                        ;
+                                                        <label>Max waarde:</label>
+                                                        @Html.EditorFor(x => x.PagesList[i].Questions[j].SliderScaleVal, new {@class = "form-control"})
+                                                        ;
+                                                        <p>(De begin waarde is altijd 0. Het getal dat hierboven ingevuld wordt is de maximale waarde.)</p>
+                                                        break;
+                                                    case TypeEnum.NummerVraag:
+                                                        <label>Minimum waarde</label>
+                                                        @Html.EditorFor(x => x.PagesList[i].Questions[j].MinValue, new {@class = "form-control"})
+                                                        ;
+                                                        <label>Maximum waarde</label>
+                                                        @Html.EditorFor(x => x.PagesList[i].Questions[j].MaxValue, new {@class = "form-control"})
+                                                        ;
+                                                        break;
+                                                    case TypeEnum.MeerkeuzeVraag:
+                                                        @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].AllowMultipleAnswers, new {@class = "form-check", style = ""})
+                                                        ;
 
-                                            @Html.Label("QuestionCounter", j.ToString(), new { style = "display: none;" })
-
-
-                                            @switch (Model.PagesList[i].Questions[j].Type)
-                                            {
-                                                case TypeEnum.GeoVraag:
-                                                    @Html.DropDownListFor(x => x.PagesList[i].Questions[j].GeoType, Html.GetEnumSelectList(Model.PagesList[i].Questions[j].GeoType.GetType()))
-                                                    break;
-                                                case TypeEnum.SliderVraag:
-                                                    @Html.TextBoxFor(x => x.PagesList[i].Questions[j].SliderMinText);
-                                                    @Html.TextBoxFor(x => x.PagesList[i].Questions[j].SliderMaxText);
-                                                    @Html.EditorFor(x => x.PagesList[i].Questions[j].SliderScaleVal);
-                                                    break;
-                                                case TypeEnum.NummerVraag:
-                                                    <label>Minimum waarde</label>
-                                                    @Html.EditorFor(x => x.PagesList[i].Questions[j].MinValue);
-                                                    <label>Maximum waarde</label>
-                                                    @Html.EditorFor(x => x.PagesList[i].Questions[j].MaxValue);
-                                                    break;
-                                                case TypeEnum.MeerkeuzeVraag:
-                                                    @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].AllowMultipleAnswers);
-
-                                                    for (int q = 0; q < Model.PagesList[i].Questions[j].Options.Count; q++)
-                                                    {
-                                                        <label>Antwoord:</label>
-                                                        <input id="PagesList_@i+__Questions_@j+__Options_@q+__Answer" name="PagesList[@i+].Questions[@j+].Options[@q+].Answer" type="text" value="@Model.PagesList[i].Questions[j].Options[q].Answer" />
-                                                        <label>Eventuele beschrijving:</label>
-                                                        <input id="PagesList_@i+__Questions_@j+__Options_@q+__Description" name="PagesList[@i+].Questions[@j+].Options[@q+].Description" type="text" value="@Model.PagesList[i].Questions[j].Options[q].Description" />
-                                                    }
-                                                    break;
-                                            }
-
-                                            <a href="" class="removeQuestionClass btn btn-danger">Vraag verwijderen</a>
+                                                        for (int q = 0; q < Model.PagesList[i].Questions[j].Options.Count; q++)
+                                                        {
+                                                            <label>Antwoord:</label>
+                                                            <input class="form-control" id="PagesList_@i+__Questions_@j+__Options_@q+__Answer" name="PagesList[@i+].Questions[@j+].Options[@q+].Answer" type="text" value="@Model.PagesList[i].Questions[j].Options[q].Answer"/>
+                                                            <label>Eventuele beschrijving:</label>
+                                                            <input class="form-control" id="PagesList_@i+__Questions_@j+__Options_@q+__Description" name="PagesList[@i+].Questions[@j+].Options[@q+].Description" type="text" value="@Model.PagesList[i].Questions[j].Options[q].Description"/>
+                                                            <label>Foto URL:</label>
+                                                            <input class="form-control" id="PagesList_@i+__Questions_@j+__Options_@q+__ImageUrl" name="PagesList[@i+].Questions[@j+].Options[@q+].ImageUrl" type="text" value="@Model.PagesList[i].Questions[j].Options[q].ImageUrl"/>
+                                                        }
+                                                        break;
+                                                }
+                                            </div>
                                         </div>
 
                                     }
 
                                 </div>
 
-                                <div class="addQuestion">
+                                <div style="margin-top: 10px;" class="addQuestion">
                                     <a href="" class="addQuestionButton btn btn-info">Voeg Vraag Toe</a>
                                 </div>
-                                
-                                <div class="preMadeQuestions">
-                                    <button href="" class="addProfileQuestionButton btn btn-info">Voeg Profiel Vragen Toe</button>
-                                    <button href="" class="addNNGBQuestionButton btn btn-info">Voeg NNGB vragen Toe</button>
-                                    <button href="" class="addMotivationQuestionButton btn btn-info">Voeg Motivatie vragen Toe</button>
-                                </div>
 
-                                <a href="" class="removeclass btn btn-danger">Pagina verwijderen</a>
+
                             </div>
 
                         }
@@ -171,159 +193,80 @@
 
     </div>
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
-    var mymap = L.map('mapid').setView([51.47358, 5.453167], 13);
-    var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        {
-            maxZoom: 19,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(mymap);
-    var marker = L.marker();
+        $(document).ready(function () {
 
-    function onMapClick(e) {
-        marker
-            .setLatLng(e.latlng)
-            .bindPopup("You clicked the map at " + e.latlng.toString())
-            .addTo(mymap);
-        document.getElementsByName("StartLocationLat")[0].value = e.latlng.lat;
-        document.getElementsByName("StartLocationLong")[0].value = e.latlng.lng;
-    }
-    mymap.on('click', onMapClick);
-    $(document).ready(function () {
-        console.log("ready!");
- 
+            $('#EndDate').datepicker({ dateFormat: "dd-mm-yy", minDate: -0 });
 
-        $('#EndDate').datepicker({
-            format: 'dd/mm/yyyy',
-            uiLibrary: 'bootstrap4',
-            startDate: '+14d'
-        });
-        $("body").on("change",
-            "select",
-            function (e) {
-                console.log($(this));
-                if (this.id.includes("Type")) {
-                    var parentDiv = $(this).parent();
-                    parentDiv.children('.question').remove();
-                    var str = this.id;
-                    var indexOfPage = str.indexOf("t_");
-                    var indexOfQeustions = str.indexOf("s_");
-                    var pageNumber = str.charAt(indexOfPage + 2);
-                    var questionNumber = str.charAt(indexOfQeustions + 2);
-                    switch (parseInt(this.value)) {
-                    case 0:
-                        $(parentDiv).append('<div class="question">' +
-                            '<select data-val="true" data-val-required="The GeoType field is required." id="PagesList_' +
-                            pageNumber +
-                            '__Questions_' +
-                            questionNumber +
-                            '__GeoType" name="PagesList[' +
-                            pageNumber +
-                            '].Questions[' +
-                            questionNumber +
-                            '].GeoType">' +
-                            ' <option selected="selected" value="0">Marker</option>' +
-                            ' <option value="1">Lijn</option>' +
-                            '<option value="2">Vlak</option>' +
-                            '</select>' +
-                            '</div>');
-                        break;
-                    case 1:
-                        $(parentDiv).append('<div class="question">' +
-                            '<div class=mcWrapper>' +
-                            '<label>Laat meerdere antwoorden toe:</label>' +
-                            '<input data-val="true" data-val-required="The AllowMultipleAnswers field is required." id="PagesList_' +
-                            pageNumber +
-                            '__Questions_' +
-                            questionNumber +
-                            '__AllowMultipleAnswers" name="PagesList[' +
-                            pageNumber +
-                            '].Questions[' +
-                            questionNumber +
-                            '].AllowMultipleAnswers" type="checkbox" value="true"/>' +
-                            '<div class="MCOption">' +
-                            '<label>Antwoord:</label> <input id="PagesList_' +
-                            pageNumber +
-                            '__Questions_' +
-                            questionNumber +
-                            '__Options_0__Answer" name="PagesList[' +
-                            pageNumber +
-                            '].Questions[' +
-                            questionNumber +
-                            '].Options[0].Answer" type="text" value="" placeholder="Multiple Choice Antwoord" />' +
-                            '<label>Eventuele beschrijving:</label> <input id="PagesList_' +
-                            pageNumber +
-                            '__Questions_' +
-                            questionNumber +
-                            '__Options_0__Description" name="PagesList[' +
-                            pageNumber +
-                            '].Questions[' +
-                            questionNumber +
-                            '].Options[0].Description" type="text" value="" />' +
-                            '<label for="OptionCounter" style="display: none;">0</label>' +
-                            '<a href="" class="removeMCOption">Verwijderen</a>' +
-                            '</div> ' +
-                            '</div>' +
-                            '<div class="addMCOptions"><a href="" class="addMCOption" btn btn-info">+</a><br><br></div>' +
-                            '</div>');
-                        break;
-                    case 3:
-                        $(parentDiv).append('<div class="question">' +
-                            '<input id="PagesList_' +
-                            pageNumber +
-                            '__Questions_' +
-                            questionNumber +
-                            '__SliderMaxText" name="PagesList[' +
-                            pageNumber +
-                            '].Questions[' +
-                            questionNumber +
-                            '].SliderMaxText" type="text" value="" />' +
-                            '<input id="PagesList_' +
-                            pageNumber +
-                            '__Questions_' +
-                            questionNumber +
-                            '__SliderMinText" name="PagesList[' +
-                            pageNumber +
-                            '].Questions[' +
-                            questionNumber +
-                            '].SliderMinText" type="text" value="" />' +
-                            '<input data-val="true" data-val-required="The SliderScaleVal field is required." id="PagesList_' +
-                            pageNumber +
-                            '__Questions_' +
-                            questionNumber +
-                            '__SliderScaleVal" name="PagesList[' +
-                            pageNumber +
-                            '].Questions[' +
-                            questionNumber +
-                            '].SliderScaleVal" type="number" />' +
-                            '</div>');
-                        break;
-                    case 4:
-                        $(parentDiv).append('<div class="question">' +
-                            '<input data-val="true" data-val-required="The MaxValue field is required." id="PagesList_' +
-                            pageNumber +
-                            '__Questions_' +
-                            questionNumber +
-                            '__MaxValue" name="PagesList[' +
-                            pageNumber +
-                            '].Questions[' +
-                            questionNumber +
-                            '].MaxValue" type="number" />' +
-                            '<input data-val="true" data-val-required="The MinValue field is required." id="PagesList_' +
-                            pageNumber +
-                            '__Questions_' +
-                            questionNumber +
-                            '__MinValue" name="PagesList[' +
-                            pageNumber +
-                            '].Questions[' +
-                            questionNumber +
-                            '].MinValue" type="number"/>' +
-                            '</div>');
-                        break;
-                    }
+            $('.dropdown-toggle').dropdown();
+    
+
+        function appendToDiv(parentDiv, url, pageNumber, questionNumber, optionNumber) {
+            url = url.replace("pageNumberJS", pageNumber);
+            url = url.replace("questionNumberJS", questionNumber);
+            url = url.replace("optionNumberJS", optionNumber);
+            url = url.replace(/&amp;/g, '&');
+            $.ajax({
+                type: "GET",
+                url: url,
+                success: function (text) {
+                    $(parentDiv).append(text);
                 }
             });
+        }
+
+            $("body").on("change",
+                "select",
+                function(e) {
+                    if (this.id.includes("Type")) {
+                        var parentDiv = $(this).parent();
+                        parentDiv.children('.question').empty();
+                        var str = this.id;
+                        var indexOfPage = str.indexOf("t_");
+                        var indexOfQeustions = str.indexOf("s_");
+                        var pageNumber = str.charAt(indexOfPage + 2);
+                        var questionNumber = str.charAt(indexOfQeustions + 2);
+                        var url = "";
+                        switch (parseInt(this.value)) {
+                            case 0:
+                                if (parentDiv.parent().parent().children("label")[0].innerHTML == "true") {
+                                    url =
+                                        '@Url.Action("GeoQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS", firstGeoQuestionInPage = true})';
+                                    parentDiv.parent().parent().children("label")[0].innerHTML = false;
+                                } else {
+                                    url =
+                                        '@Url.Action("GeoQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS", firstGeoQuestionInPage = false})';
+                                }
+                            appendToDiv(parentDiv.children('.question'), url, pageNumber, questionNumber);
+                            break;
+                        case 1:
+                            url =
+                                '@Url.Action("MultipleChoiceQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS", optionId = "0"})';
+                            appendToDiv(parentDiv.children('.question'), url, pageNumber, questionNumber);
+                            break;
+                        case 3:
+                            url =
+                                '@Url.Action("SliderQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
+                            appendToDiv(parentDiv.children('.question'), url, pageNumber, questionNumber);
+                            break;
+                        case 4:
+                            url =
+                                '@Url.Action("NumberQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
+                            appendToDiv(parentDiv.children('.question'), url, pageNumber, questionNumber);
+                            break;
+                        }
+
+                    }
+
+        });
+
+
+        var profileQuestionsUsed = false;
+        var nngbQuestionsUsed = false;
+        var motivationQuestionsUsed = false;
+
+
         //Pagina
         var MaxInputsPage = 10;
         var InputsWrapper = $("#InputsWrapper");
@@ -333,33 +276,30 @@
             e.preventDefault();
             var currentPageCount = $('.pageDiv').length;
             if (x <= MaxInputsPage) {
-                $(InputsWrapper).append('<div class="pageDiv">' +
-                    '<h3>Pagina ' +
-                    currentPageCount +
-                    '</h3>' +
-                    '<input required id="PagesList_' + currentPageCount + '__Title" name="PagesList[' + currentPageCount + '].Title" type="text" value="" placeholder="Pagina ' + currentPageCount +' Titel "/><span class="field-validation-valid" data-valmsg-for="PagesList[' +
-                    currentPageCount +
-                    '].Title" data-valmsg-replace="true"></span>' +
-                    '<textarea required id="PagesList_' +
-                    currentPageCount +
-                    '__Description" name="PagesList[' +
-                    currentPageCount +
-                    '].Description" type="text" value="" placeholder="Pagina ' + currentPageCount +' Beschrijving" rows="5" cols = "40"></textarea><span class="field-validation-valid" data-valmsg-for="PagesList[' +
-                    currentPageCount +
-                    '].Description" data-valmsg-replace="true"></span>' +
-                    '<label for="PageCounter" style="display: none;">' +
-                    currentPageCount +
-                    '</label>' +
-                    '<div class="QuestionWrapper">' +
-                    '</div>' +
-                    '<div class="addQuestion"> <a href="#" class="addQuestionButton btn btn-info">Voeg Vraag Toe</a><br><br></div> ' +
-                    '<div class="preMadeQuestions">' +
-                    '<button href="" class="addProfileQuestionButton btn btn-info">Voeg Profiel Vragen Toe</button>' +
-                    '<button href="" class="addNNGBQuestionButton btn btn-info"> Voeg NNGB vragen Toe</button>' +
-                    '<button href="" class="addMotivationQuestionButton btn btn-info">Voeg Motivatie vragen Toe</button>' +
-                     '</div>' +
-                    '<a href="" class="removeclass btn btn-danger">Pagina verwijderen</a>' +
-                    '</div>');
+                var url = '@Url.Action("PageView","Create", new { pageId = "pageNumberJS"})';
+                url = url.replace("pageNumberJS", currentPageCount);
+                url = url.replace(/&amp;/g, '&');
+                $.ajax({ type: "GET",
+                    url: url ,
+                    success: function (text) {
+
+                        if (profileQuestionsUsed) {
+                            text = $(text).find('.addProfileQuestionButton').remove().end();
+                        }
+
+                        if (nngbQuestionsUsed) {
+                            text = $(text).find('.addNNGBQuestionButton').remove().end();
+                        }
+
+                       if (motivationQuestionsUsed) {
+                            text = $(text).find('.addMotivationQuestionButton').remove().end();
+                        }
+
+                        $(InputsWrapper).append(text);
+                    }
+                });
+
+
                 x++;
                 $("#AddMoreFileId").show();
                 $('AddMoreFileBox').html("Add field");
@@ -372,55 +312,34 @@
 
         $("body").on("click", ".addProfileQuestionButton", function(e) {
             e.preventDefault();
-            var pageNumber = $(this).parent().parent().children("label")[0].innerHTML;
-            var questionWrapper = $(this).parent().parent().children(".QuestionWrapper");
+            var pageNumber = $(this).parent().parent().parent().parent().children("label")[0].innerHTML;
+            var questionWrapper = $(this).parent().parent().parent().parent().children(".QuestionWrapper");
             var currentQuestionCount = $(questionWrapper).children(".questionDiv").length;
-            var url = '@Url.Action("ProfileQuestions","Create", new { pageId = 'x', questionId = 'y'})';
-            url = url.replace("x", pageNumber);
-            url = url.replace("y", currentQuestionCount);
-            $.ajax({ type: "GET",   
-                url: url ,   
-                success : function(text)
-                {
-                    $(questionWrapper).append(text);
-                }
-            });
+            var url = '@Url.Action("ProfileQuestions","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
+            appendToDiv(questionWrapper, url, pageNumber, currentQuestionCount);
+            profileQuestionsUsed = true;
             $(".addProfileQuestionButton").hide();
         });
 
         $("body").on("click", ".addNNGBQuestionButton", function(e) {
             e.preventDefault();
-            var pageNumber = $(this).parent().parent().children("label")[0].innerHTML;
-            var questionWrapper = $(this).parent().parent().children(".QuestionWrapper");
+            var pageNumber = $(this).parent().parent().parent().parent().children("label")[0].innerHTML;
+            var questionWrapper = $(this).parent().parent().parent().parent().children(".QuestionWrapper");
             var currentQuestionCount = $(questionWrapper).children(".questionDiv").length;
-            var url = '@Url.Action("NngbQuestions","Create", new { pageId = 'x', questionId = 'y'})';
-            url = url.replace("x", pageNumber);
-            url = url.replace("y", currentQuestionCount);
-            $.ajax({ type: "GET",   
-                url: url ,   
-                success : function(text)
-                {
-                    $(questionWrapper).append(text);
-                }
-            });
+            var url = '@Url.Action("NngbQuestions","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
+            appendToDiv(questionWrapper, url, pageNumber, currentQuestionCount);
+            nngbQuestionsUsed = true;
             $(".addNNGBQuestionButton").hide();
         });
 
         $("body").on("click", ".addMotivationQuestionButton", function(e) {
             e.preventDefault();
-            var pageNumber = $(this).parent().parent().children("label")[0].innerHTML;
-            var questionWrapper = $(this).parent().parent().children(".QuestionWrapper");
+            var pageNumber = $(this).parent().parent().parent().parent().children("label")[0].innerHTML;
+            var questionWrapper = $(this).parent().parent().parent().parent().children(".QuestionWrapper");
             var currentQuestionCount = $(questionWrapper).children(".questionDiv").length;
-            var url = '@Url.Action("MotivationQuestions","Create", new { pageId = 'x', questionId = 'y'})';
-            url = url.replace("x", pageNumber);
-            url = url.replace("y", currentQuestionCount);
-            $.ajax({ type: "GET",   
-                url: url ,   
-                success : function(text)
-                {
-                    $(questionWrapper).append(text);
-                }
-            });
+            var url = '@Url.Action("MotivationQuestions","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
+            appendToDiv(questionWrapper, url, pageNumber, currentQuestionCount);
+            motivationQuestionsUsed = true;
             $(".addMotivationQuestionButton").hide();
         });
 
@@ -429,8 +348,8 @@
             function (e) {
                 e.preventDefault();
                 if (x > 1) {
-                    $(this).parent('div').remove(); //remove text box
-                    x--; //decrement textbox
+                    $(this).parent().parent().parent().parent('div').remove(); 
+                    x--; 
                     var i;
                     var pages = $('.pageDiv').toArray();
                     var counters = $('.pageDiv label[for=PageCounter]').toArray();
@@ -461,73 +380,27 @@
                 return false;
             });
 
-        $("body").on("click",
-            ".addQuestionButton",
-            function (e) {
+        $("body").on("click",".addQuestionButton",function (e) {
                 e.stopPropagation();
                 e.stopImmediatePropagation();
                 e.preventDefault();
-                var pageNumber = $(this).parent().parent().children("label")[0].innerHTML;
+                var pageNumber = $(this).parent().parent().parent().children().length -1;
                 var questionWrapper = $(this).parent().parent().children(".QuestionWrapper");
                 var currentQuestionCount = $(questionWrapper).children(".questionDiv").length;
-                $(questionWrapper).append('<div class="questionDiv">' +
-                    '<h3>Vraag ' +
-                    currentQuestionCount +
-                    '</h3>' +
-                    '<input required id="PagesList_' +
-                    pageNumber +
-                    '__Questions_' +
-                    currentQuestionCount +
-                    '__Title" name="PagesList[' +
-                    pageNumber +
-                    '].Questions[' +
-                    currentQuestionCount +
-                    '].Title" type="text" value="" placeholder="Vraag ' + currentQuestionCount +'" />' +
-                    '<input required id="PagesList_' +
-                    pageNumber +
-                    '__Questions_' +
-                    currentQuestionCount +
-                    '__Description" name="PagesList[' +
-                    pageNumber +
-                    '].Questions[' +
-                    currentQuestionCount +
-                    '].Description" type="text" value="" placeholder="Vraag ' + currentQuestionCount +' Beschrijving" />' +
-                    '<select data-val="true" data-val-required="The Type field is required." id="PagesList_' +
-                    pageNumber +
-                    '__Questions_' +
-                    currentQuestionCount +
-                    '__Type" name="PagesList[0].Questions[' +
-                    currentQuestionCount +
-                    '].Type">' +
-                    '<option selected="selected" value="0">GeoVraag</option><option value="1">MeerkeuzeVraag</option>' +
-                    '<option value="2">OpenVraag</option>' +
-                    '<option value="3">SliderVraag</option><option value="4">NummerVraag</option></select>                                       ' +
-                    '<select data-val="true" data-val-required="The Category field is required." id="PagesList_' +
-                    pageNumber +
-                    '__Questions_' +
-                    currentQuestionCount +
-                    '__Category" name="PagesList[0].Questions[' +
-                    currentQuestionCount +
-                    '].Category">' +
-                    '<option selected="selected" value="0">Profiel</option><option value="1">Locatie</option><option value="2">Gezondheid</option></select>' +
-                    '<label for="QuestionCounter" style="display: none;">' +
-                    currentQuestionCount +
-                    '</label>' +
-                    '<a href="" class="removeQuestionClass btn btn-danger">Vraag verwijderen</a>' +
-                    '</div>');
-            });
+                var url = '@Url.Action("QuestionView", "Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
+                appendToDiv(questionWrapper, url, pageNumber, currentQuestionCount);
+        });
+
         $("body").on("click",
             ".removeQuestionClass",
             function (e) {
                 e.preventDefault();
-                var questionsWrapper = $(this).parent().parent();
-                var i;
+                var questionsWrapper = $(this).parent().parent().parent().parent();
                 var j;
                 var q;
                 if (questionsWrapper.children().length > 1) {
-                    $(this).parent('div').remove();
+                    $(this).parent().parent().parent('div').remove();
                     var questions = questionsWrapper.children();
-                    console.log(questions);
                     for (q = 0; q < questions.length; q++) {
                         var children = questions[q].children;
                         var oldNumber = children[5].innerHTML;
@@ -535,7 +408,7 @@
                             var child = children[j];
                             switch (child.tagName) {
                             case "H3":
-                                child.innerHTML = "Vraag " + q;
+                                child.innerHTML = "Vraag " + (q+1);
                                 break;
                             case "INPUT":
                                 child.id = child.id.replace("Questions_" + oldNumber, "Questions_" + q);
@@ -555,74 +428,57 @@
                 }
                 return false;
             });
-    });
 
-    $("body").on("click",
-        ".addMCOption",
-        function (e) {
-            e.preventDefault();
-            var wrapper = $(this).parent().parent().children()[0];
-            var numberOfOptions = $(wrapper).children(".MCOption").length;
-            var pageNumber = $(this).parent().parent().parent().parent().parent().children("label")[0].innerHTML;
-            var questionWrapper = $(this).parent().parent().parent().parent().parent().children(".QuestionWrapper");
-            var currentQuestionCount = $(questionWrapper).children(".questionDiv").length - 1;
-            console.log(wrapper);
-            console.log(currentQuestionCount);
-            $(wrapper).append(
-                '<div class="MCOption">' +
-                '<label>Antwoord:</label> <input id="PagesList_' + pageNumber + '__Questions_' + currentQuestionCount + '__Options_' + numberOfOptions + '__Answer" name="PagesList[' + pageNumber + '].Questions[' +
-                currentQuestionCount +
-                '].Options[' +
-                numberOfOptions +
-                '].Answer" type="text" value="" />' +
-                '<label>Eventuele beschrijving:</label> <input id="PagesList_' +
-                pageNumber +
-                '__Questions_' +
-                currentQuestionCount +
-                '__Options_' +
-                numberOfOptions +
-                '__Description" name="PagesList[' +
-                pageNumber +
-                '].Questions[' +
-                currentQuestionCount +
-                '].Options[' +
-                numberOfOptions +
-                '].Description" type="text" value="" />' +
-                '<label for="OptionCounter" style="display: none;">' +
-                numberOfOptions +
-                '</label>' +
-                '<a href="" class="removeMCOption btn btn-danger">Verwijderen</a>' +
-                '</div> ');
-            return false;
-        });
+        $("body").on("click",
+            ".addMCOption",
+            function (e) {
+                e.preventDefault();  
+                var wrapper = $(this).parent().parent().children()[0];
+                var numberOfOptions = $(wrapper).children(".MCOption").length;
+                var pageNumber = $("#InputsWrapper").children(".pageDiv").length - 1;
+                var currentQuestionCount = parseInt($(this).parent().parent().parent().parent().children()[7].innerHTML);
 
-    $("body").on("click",
-        ".removeMCOption",
-        function (e) {
-            e.preventDefault();
-            var wrapper = $(this).parent().parent().parent().children()[0];
-            $(this).parent('div').remove();
-            var options = $(wrapper).children(".MCOption");
-            var i;
-            var q;
-            for (i = 0; i < options.length; i++) {
-                var children = options[i].children;
-                var oldNumber = children[4].innerHTML;
-                children[4].innerHTML = i;
-                for (q = 0; q < children.length; q++) {
-                    var child = children[q];
-                    switch (child.tagName) {
-                    case "INPUT":
-                        child.id = child.id.replace("Options_" + oldNumber, "Options_" + i);
-                        child.name = child.name.replace("Options[" + oldNumber + "]", "PagesList[" + i + "]");
-                        break;
-                    default:
-                        break;
+                var url = '@Url.Action("MultipleChoiceOption","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS", optionId="optionNumberJS"})';
+                appendToDiv(wrapper, url, pageNumber, currentQuestionCount, numberOfOptions);
+                return false;
+            });
+
+        $("body").on("click",
+            ".removeMCOption",
+            function (e) {
+                e.preventDefault();
+                var wrapper = $(this).parent().parent().parent().parent();
+                console.log(wrapper);
+                $(this).parent().parent().parent('div').remove();
+                var options = $(wrapper).children(".MCOption");
+                var i;
+                var q;
+                for (i = 0; i < options.length; i++) {
+                    var children = options[i].children;
+                    console.log(children);
+                    var oldNumber = children[5].innerHTML;
+                    children[5].innerHTML = i;
+                    for (q = 0; q < children.length; q++) {
+                        var child = children[q];
+                        switch (child.tagName) {
+                            case "H4":
+                                child.innerHTML = "Optie " + (q+1);
+                                break;
+                            case "INPUT":
+                                child.id = child.id.replace("Options_" + oldNumber, "Options_" + i);
+                                child.name = child.name.replace("Options[" + oldNumber + "]", "PagesList[" + i + "]");
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
-            }
-            return false;
-        });
-</script>
+                return false;
+            });
+
+    });
+
+
+    </script>
 </body>
 </html>

@@ -98,8 +98,6 @@ namespace WBK.Controllers
                 Title = survey.Title,
                 Description = survey.Description,
                 EndDate = survey.EndDate.ToShortDateString(),
-                StartLocationLat = survey.StartLocation.Latitude.ToString(),
-                StartLocationLong = survey.StartLocation.Longitude.ToString(),
                 PagesList = new List<PageViewModel>()
             };
 
@@ -120,8 +118,19 @@ namespace WBK.Controllers
                         Description = question.Description,
                         Category = question.Category,
                         Type = question.Type,
-                        GeoType = question.TypeOfMarker
+                        GeoType = question.TypeOfMarker,
+                        StartLocationLat = null,
+                        StartLocationLong = null,
+                        StartZoomLevel = 13
                     };
+
+                    if (question.StartLocation != null)
+                    {
+                        questionView.StartLocationLat = question.StartLocation.Latitude.ToString();
+                        questionView.StartLocationLong = question.StartLocation.Longitude.ToString();
+                        questionView.StartZoomLevel = question.StartLocation.ZoomLevel;
+                    }
+
                     pageViewModel.Questions.Add(questionView);
                 }
 
@@ -153,7 +162,9 @@ namespace WBK.Controllers
                         MultipleChoiceOptionViewModel optionViewModel = new MultipleChoiceOptionViewModel
                         {
                             Answer = option.Value,
-                            Description = option.Description
+                            Description = option.Description,
+                            ImageUrl = option.ImageUrl
+                           
                         };
                         questionView.Options.Add(optionViewModel);
                     }

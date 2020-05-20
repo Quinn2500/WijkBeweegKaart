@@ -17,27 +17,28 @@ namespace DAL
 
         public void InsertSurvey(Survey survey)
         {
-            string querySurvey = "INSERT INTO `survey`(`Title`, `Description`, `DateCreation`, `CreatorEmail`, `StartLocation`, `EndDate`) VALUES (@pTitle, @pDesc,@pDateCreation,@pCreator,@pStartLocation,@pEnddate)";
+            string querySurvey = "INSERT INTO `survey`(`Title`, `Description`, `DateCreation`, `CreatorEmail`,`EndDate`, `ImageUrl`) VALUES (@pTitle, @pDesc,@pDateCreation,@pCreator,@pEnddate,@pImageUrl)";
             List<MySqlParameter> parametersSurvey = new List<MySqlParameter>
             {
                 new MySqlParameter("@pTitle", survey.Title),
                 new MySqlParameter("@pDesc", survey.Description),
                 new MySqlParameter("@pDateCreation", survey.DateOfCreation),
                 new MySqlParameter("@pCreator", survey.Owner),
-                new MySqlParameter("@pStartLocation", JsonConvert.SerializeObject(survey.StartLocation)),
-                new MySqlParameter("@pEnddate", survey.EndDate)
+                new MySqlParameter("@pEnddate", survey.EndDate),
+                new MySqlParameter("@pImageUrl", survey.ImageUrl)
             };
 
             int? surveyId = _databaseCalls.CommandWithLastId(querySurvey, parametersSurvey);
 
             foreach (Page page in survey.Pages)
             {
-                string queryPage = "INSERT INTO `page`(`SurveyId`, `Title`, `Description`) VALUES (@pSurveyId, @pPageTitle, @pPageDesc)";
+                string queryPage = "INSERT INTO `page`(`SurveyId`, `Title`, `Description`, `ImageUrl`) VALUES (@pSurveyId, @pPageTitle, @pPageDesc,@pImageUrl)";
                 List<MySqlParameter> parametersPage = new List<MySqlParameter>
                 {
                     new MySqlParameter("@pSurveyId", surveyId),
                     new MySqlParameter("@pPageTitle", page.Title),
-                    new MySqlParameter("@pPageDesc", page.Description)
+                    new MySqlParameter("@pPageDesc", page.Description),
+                    new MySqlParameter("@pImageUrl", survey.ImageUrl)
                 };
 
                 int? pageId = _databaseCalls.CommandWithLastId(queryPage, parametersPage);
@@ -52,6 +53,12 @@ namespace DAL
                         new MySqlParameter("@pQuestionGeoId", geoQuestionId),
                         new MySqlParameter("@pTypeOfMarker", question.TypeOfMarker)
                     };
+
+                    if (question.StartLocation != null)
+                    {
+                        parametersGeoQuestion.Add(new MySqlParameter("@pStartLocation", JsonConvert.SerializeObject(question.StartLocation)));
+                        queryGeoQuestion = "INSERT INTO `geoquestion`(`QuestionId`, `TypeOfMarker`, `StartLocation`) VALUES (@pQuestionGeoId, @pTypeOfMarker, @pStartLocation)";
+                    }
 
                     _databaseCalls.Command(queryGeoQuestion, parametersGeoQuestion);
                 }
@@ -76,12 +83,13 @@ namespace DAL
 
                     foreach (MultipleChoiceOption option in question.Options)
                     {
-                        string queryOption = "INSERT INTO `multiplechoiceoption`(`MultipleChoiceQuestionId`, `Value`, `Description`) VALUES (@pMCQuestionId, @pValue, @pDesc)";
+                        string queryOption = "INSERT INTO `multiplechoiceoption`(`MultipleChoiceQuestionId`, `Value`, `Description`, `ImageUrl`) VALUES (@pMCQuestionId, @pValue, @pDesc, @pImageUrl)";
                         List<MySqlParameter> parametersOption= new List<MySqlParameter>
                         {
                             new MySqlParameter("@pMCQuestionId", optionId),
                             new MySqlParameter("@pValue", option.Value),
-                            new MySqlParameter("@pDesc", option.Description)
+                            new MySqlParameter("@pDesc", option.Description),
+                            new MySqlParameter("@pImageUrl", option.ImageUrl)
                         };
                         _databaseCalls.Command(queryOption, parametersOption);
                     }
@@ -126,14 +134,15 @@ namespace DAL
 
         public int? InsertQuestion(Question question, int? pageId)
         {
-            string query ="INSERT INTO `question`(`Question`, `Description`, `Type`, `PageId`, `Category`) VALUES (@pQuestion,@pDesc,@pType,@pPageId,@pCategoryId)";
+            string query = "INSERT INTO `question`(`Question`, `Description`, `Type`, `PageId`, `Category`, `ImageUrl`) VALUES (@pQuestion,@pDesc,@pType,@pPageId,@pCategoryId,@pImageUrl)";
             List<MySqlParameter> parameters= new List<MySqlParameter>
             {
                 new MySqlParameter("@pQuestion", question.Value),
                 new MySqlParameter("@pDesc", question.Description),
                 new MySqlParameter("@pType", question.Type),
                 new MySqlParameter("@pPageId", pageId),
-                new MySqlParameter("@pCategoryId", question.Category)
+                new MySqlParameter("@pCategoryId", question.Category),
+                new MySqlParameter("@pImageUrl", question.ImageUrl)
             };
 
             return _databaseCalls.CommandWithLastId(query, parameters);
@@ -163,8 +172,7 @@ namespace DAL
             result.Description = rowSurvey[2].ToString();
             result.DateOfCreation = Convert.ToDateTime(rowSurvey[3]);
             result.Owner = rowSurvey[4].ToString();
-            result.StartLocation = JsonConvert.DeserializeObject<Location>(rowSurvey[5].ToString());
-            result.EndDate = Convert.ToDateTime(rowSurvey[6]);
+            result.EndDate = Convert.ToDateTime(rowSurvey[5]);
             result.Pages = new List<Page>();
 
             string queryPage = "SELECT * FROM `page` WHERE page.SurveyId = @pId";
@@ -210,8 +218,16 @@ namespace DAL
                                 Category = (CategoryEnum)Convert.ToInt32(rowQuestion[5]),
                                 Type = questionType,
                                 TypeOfMarker = (GeoTypeEnum)Convert.ToInt32(rowGeo[2]),
+                                StartLocation = null
 
                             };
+
+                            if (rowGeo[3] != null)
+                            {
+                                geoQuestion.StartLocation =
+                                    JsonConvert.DeserializeObject<Location>(rowGeo[3].ToString());
+                            }
+
                             page.Questions.Add(geoQuestion);
                             break;
 
@@ -248,12 +264,8 @@ namespace DAL
 
                             foreach (DataRow rowOption in _databaseCalls.Select(queryOptions, parametersOptions).Rows)
                             {
-                                MultipleChoiceOption option = new MultipleChoiceOption
-                                {
-                                    Value = rowOption[2].ToString(),
-                                    Description = rowOption[3].ToString(), 
-
-                                };
+                                MultipleChoiceOption option = new MultipleChoiceOption(rowOption[2].ToString(),
+                                    rowOption[3].ToString(), rowOption[4].ToString());
                                 multipleChoiceQuestion.Options.Add(option);
                             }
                             page.Questions.Add(multipleChoiceQuestion);
@@ -576,18 +588,13 @@ namespace DAL
                                 string queryAnswerMultipleChoice = "SELECT `MultipleChoiceOptionId` FROM `multiplechoiceanswer` WHERE multiplechoiceanswer.AnswerId = @pAnswerId";
                                 foreach (DataRow answerRow in _databaseCalls.Select(queryAnswerMultipleChoice, answerIdParameter).Rows)
                                 {
-                                    string queryAnswerMultipleChoiceOption = "SELECT `Value`, `Description` FROM `multiplechoiceoption` WHERE multiplechoiceoption.Id = @pId";
+                                    string queryAnswerMultipleChoiceOption = "SELECT `Value`, `Description`, `ImageURL` FROM `multiplechoiceoption` WHERE multiplechoiceoption.Id = @pId";
                                     List<MySqlParameter> parameterAnswerMultipleChoiceOption = new List<MySqlParameter>
                                         {
                                             new MySqlParameter("@pId", Convert.ToInt32(answerRow[0])),
                                         };
                                     DataRow rowMultipleChoiceOptionAnswer = _databaseCalls.Select(queryAnswerMultipleChoiceOption, parameterAnswerMultipleChoiceOption).Rows[0];
-                                    MultipleChoiceOption option = new MultipleChoiceOption
-                                    {
-                                        Value = rowMultipleChoiceOptionAnswer[0].ToString(),
-                                        Description = rowMultipleChoiceOptionAnswer[1].ToString(),
-
-                                    };
+                                    MultipleChoiceOption option = new MultipleChoiceOption(rowMultipleChoiceOptionAnswer[0].ToString(), rowMultipleChoiceOptionAnswer[1].ToString(), rowMultipleChoiceOptionAnswer[2].ToString());
                                     answerMultipleChoice.AnsweredOptions.Add(option);
                                 }
                                 question.Answers.Add(answerMultipleChoice);
