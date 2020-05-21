@@ -41,3 +41,10 @@ D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Release\netcoreapp2.1\WBK.Views.p
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Release\netcoreapp2.1\WBK.csproj.CopyComplete
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Release\netcoreapp2.1\WBK.dll
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Release\netcoreapp2.1\WBK.pdb
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Release\netcoreapp2.1\Razor\Views\Create\GeoQuestion.g.cshtml.cs
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Release\netcoreapp2.1\Razor\Views\Create\MultipleChoiceOption.g.cshtml.cs
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Release\netcoreapp2.1\Razor\Views\Create\MultipleChoiceQuestion.g.cshtml.cs
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Release\netcoreapp2.1\Razor\Views\Create\NumberQuestion.g.cshtml.cs
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Release\netcoreapp2.1\Razor\Views\Create\PageView.g.cshtml.cs
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Release\netcoreapp2.1\Razor\Views\Create\QuestionView.g.cshtml.cs
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Release\netcoreapp2.1\Razor\Views\Create\SliderQuestion.g.cshtml.cs

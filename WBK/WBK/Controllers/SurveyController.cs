@@ -200,6 +200,17 @@ namespace WBK.Controllers
                     pageViewModel.Questions.Add(questionView);
                 }
 
+                for (int i = 0; i < pageViewModel.Questions.Count ; i++)
+                {
+                    QuestionViewModel question = pageViewModel.Questions[i];
+                    if (!string.IsNullOrEmpty(question.StartLocationLat))
+                    {
+                        QuestionViewModel firstQuestion = pageViewModel.Questions[i];
+                        pageViewModel.Questions[i] = pageViewModel.Questions[0];
+                        pageViewModel.Questions[0] = firstQuestion;
+                    }
+                }
+
                 viewModel.PagesList.Add(pageViewModel);
             }
 
