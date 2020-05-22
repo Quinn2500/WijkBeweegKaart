@@ -43,13 +43,19 @@
             {
                 @Html.AntiForgeryToken()
 
+                @Html.HiddenFor(x => x.Title, new {value= Model.Title})
+
                 <div id="introDiv">
-                    <h1>@Model.Title</h1>
-                    <p>@Model.Description<p>
-                    @if (Model.ImageUrl != null)
-                    {
-                        <img src="@Model.ImageUrl" style='height: 200px; width: 200px; object-fit: contain' />
-                    }
+                    <div class="pageText w-50" style="margin-left: 25%">
+
+                        <h1>@Html.DisplayTextFor(x => x.Title)</h1>
+                        <p>@Model.Description<p>
+                        @if (Model.ImageUrl != null)
+                        {
+                            <img src="@Model.ImageUrl" style='height: 200px; width: 200px; object-fit: contain'/>
+                        }
+
+                    </div>
 
                 </div>
                 for (int i = 0; i < Model.PagesList.Count; i++)
@@ -57,7 +63,7 @@
                     PageViewModel pageView = Model.PagesList[i];
                     Model.PagesList[i] = pageView;
                     <div class="pageDivSurvey" style="display: none">
-                        <div class="pageText">
+                        <div class="pageText w-50" style="margin-left: 25%">
 
                             <h2>@pageView.Title</h2>
                             @if (pageView.ImageUrl != null)
@@ -83,11 +89,11 @@
                             @switch (questionView.Type)
                             {
                                 case TypeEnum.OpenVraag:
-                                    @Html.TextBoxFor(x => x.PagesList[i].Questions[j].TextAnswer, new { required = "required" })
+                                    @Html.TextBoxFor(x => x.PagesList[i].Questions[j].TextAnswer)
                                     break;
                                 case TypeEnum.SliderVraag:
                                     <label>@Model.PagesList[i].Questions[j].SliderMinText</label>
-                                    @Html.TextBoxFor(x => x.PagesList[i].Questions[j].NumberAnswer, new { type = "range", min = 0, max = Model.PagesList[i].Questions[j].SliderScaleVal, required = "required" })
+                                    @Html.TextBoxFor(x => x.PagesList[i].Questions[j].NumberAnswer, new { type = "range", min = 0, max = Model.PagesList[i].Questions[j].SliderScaleVal})
                                     <label>@Model.PagesList[i].Questions[j].SliderMaxText</label>
                                     break;
                                 case TypeEnum.NummerVraag:
@@ -109,7 +115,7 @@
                                         <div class="oneChecboxDiv">
                                             @for (int q = 0; q < Model.PagesList[i].Questions[j].Options.Count; q++)
                                             {
-                                                @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].Options[q].Selected, new { required = "required" })
+                                                @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].Options[q].Selected)
                                                 <label>@Model.PagesList[i].Questions[j].Options[q].Answer</label>
                                                 <img src="@Model.PagesList[i].Questions[j].Options[q].ImageUrl" width="150" height="150" style="object-fit: none;" />
                                                 <p>@Model.PagesList[i].Questions[j].Options[q].Description</p>
@@ -137,7 +143,7 @@
                                                     break;
                                             }
                                             <p><small>(Verkeerd geplaatst? Geen probleem klik op uw markering en vervolgens op de gele knop.)</small></p>
-                                            @Html.HiddenFor(x => x.PagesList[i].Questions[j].GeoCodeAnswer, new { required = "required" })
+                                            @Html.TextBoxFor(x => x.PagesList[i].Questions[j].GeoCodeAnswer)
                                         </div>
 
 
@@ -156,7 +162,7 @@
                                             var mapZoom@(i) = @questionView.StartZoomLevel;
                                             console.log(mapCenter@(i));
 
-                                            var map@(i) = L.map('mapid@(i)').setView(mapCenter@(i), 13);
+                                            var map@(i) = L.map('mapid@(i)').setView(mapCenter@(i), mapZoom@(i));
                                             var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
                                                 {
                                                     maxZoom: 19,
@@ -191,7 +197,7 @@
                                                         .toString().split("question")[1]);
                                                 array@(i)[questionIdNumber] = layer;
                                                 window.scrollBy(0, 300);
-                                                $('#' + questionId).hide();
+                                                $("#" + questionId).children("input").val(geoAnswer);
                                             });
 
                                         </script>
@@ -205,29 +211,34 @@
                     </div>
                 }
 
+                <section id="pageButtons" class="row">
+                    <div id="previousButtonDiv" class="col">
+                        <p>Vorige</p>
+                        <button id="previousPageButton">
+                            <img src="~/images/pijlLinks.png" style='height: 80px; width: 120px; object-fit: contain' />
+                        </button>
+                    </div>
+
+                    <div id="nextButtonDiv" class="col">
+                        <p>Volgende</p>
+                        <button id="nextPageButton">
+                            <img src="~/images/pijlRechts.png" style='height: 80px; width: 120px; object-fit: contain'/>
+                        </button>
+                    </div>
+                
+                    <div id="submitBtn" class="col">
+                        <p>Einde Enquete</p>
+                        <input type="submit" name="submit" value="Voltooi!" class="btn btn-success" />
+                    </div>
+
+                </section>
+
             }
             
-            <div class="row">
-                <div id="previousButtonDiv" class="col">
-                    <p>Vorige</p>
-                    <button id="previousPageButton">
-                        <img src="~/images/pijlLinks.png" style='height: 80px; width: 120px; object-fit: contain' />
-                    </button>
-                </div>
-
-                <div id="nextButtonDiv" class="col">
-                    <p>Volgende</p>
-                    <button id="nextPageButton">
-                        <img src="~/images/pijlRechts.png" style='height: 80px; width: 120px; object-fit: contain'/>
-                    </button>
-                </div>
-                
-                <input id="submitBtn" type="submit" value="Voltooi!" class="btn btn-success"/>
-            </div>
 
 
         </div>
-    </div>
+</div>
 
 <script>
 
@@ -242,14 +253,6 @@
         window["map" + mapId].removeLayer(window["array" + mapId][parseInt(questionIdNumber)]);
         window["array" + mapId][parseInt(questionIdNumber)] = null;
         $(questionId).show();
-    }
-
-    function DrawMarker(questionId) {
-        if (!isDrawing) {
-            isDrawing = true;
-            var mapId = $(questionId).attr('id').toString().split("_")[0].toString().split("page")[1];
-            window["markerDrawer" + mapId].enable();
-        }
     }
 
     $(document).ready(function () {
@@ -342,7 +345,7 @@
                 $("#nextButtonDiv").hide();
             }
             $("#pageCounter").text("Pagina: " + (pageNumber + 1) + "/" + maxNumber);
-
+            $("#pageButtons").show();
             return false;
         });
 
@@ -364,6 +367,7 @@
                 $("#previousButtonDiv").hide();
             }
             $("#pageCounter").text("Pagina: " + (pageNumber + 1) + "/" + maxNumber);
+            $("#pageButtons").show();
             return false;
         });
 
