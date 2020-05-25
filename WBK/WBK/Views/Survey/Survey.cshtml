@@ -43,23 +43,35 @@
             {
                 @Html.AntiForgeryToken()
 
+                @Html.HiddenFor(x => x.Title, new {value= Model.Title})
+
                 <div id="introDiv">
-                    <h1>@Model.Title</h1>
-                    <p>@Model.Description<p>
-                    @if (Model.ImageUrl != null)
-                    {
-                        <img src="@Model.ImageUrl" style='height: 200px; width: 200px; object-fit: contain' />
-                    }
+                    <div class="pageText w-50" style="margin-left: 25%">
+
+                        <h1>@Html.DisplayTextFor(x => x.Title)</h1>
+                        <p>@Model.Description<p>
+                        @if (Model.ImageUrl != null)
+                        {
+                            <img src="@Model.ImageUrl" style='height: 200px; width: 200px; object-fit: contain'/>
+                        }
+
+                    </div>
 
                 </div>
                 for (int i = 0; i < Model.PagesList.Count; i++)
                 {
                     PageViewModel pageView = Model.PagesList[i];
                     Model.PagesList[i] = pageView;
-                    <div class="pageDiv" style="display: none">
-                        <div class="pageText">
+                    <div class="pageDivSurvey" style="display: none">
+                        <div class="pageText w-50" style="margin-left: 25%">
+
                             <h2>@pageView.Title</h2>
+                            @if (pageView.ImageUrl != null)
+                            {
+                                <img src="@pageView.ImageUrl" width="400" height="400" style="object-fit: none;"/>
+                            }
                             <p>@pageView.Description</p>
+
                         </div>
                     </div>
 
@@ -69,15 +81,19 @@
                         <div class="question">
                             @{ QuestionViewModel questionView = pageView.Questions[j]; }
                             <h3 name="name">@questionView.Title</h3>
+                            @if (questionView.ImageUrl != null)
+                            {
+                                <img src="@questionView.ImageUrl" width="400" height="400" style="object-fit: none;" />
+                            }
                             <p>@questionView.Description</p>
                             @switch (questionView.Type)
                             {
                                 case TypeEnum.OpenVraag:
-                                    @Html.TextBoxFor(x => x.PagesList[i].Questions[j].TextAnswer, new { required = "required" })
+                                    @Html.TextBoxFor(x => x.PagesList[i].Questions[j].TextAnswer)
                                     break;
                                 case TypeEnum.SliderVraag:
                                     <label>@Model.PagesList[i].Questions[j].SliderMinText</label>
-                                    @Html.TextBoxFor(x => x.PagesList[i].Questions[j].NumberAnswer, new { type = "range", min = 0, max = Model.PagesList[i].Questions[j].SliderScaleVal, required = "required" })
+                                    @Html.TextBoxFor(x => x.PagesList[i].Questions[j].NumberAnswer, new { type = "range", min = 0, max = Model.PagesList[i].Questions[j].SliderScaleVal})
                                     <label>@Model.PagesList[i].Questions[j].SliderMaxText</label>
                                     break;
                                 case TypeEnum.NummerVraag:
@@ -99,7 +115,7 @@
                                         <div class="oneChecboxDiv">
                                             @for (int q = 0; q < Model.PagesList[i].Questions[j].Options.Count; q++)
                                             {
-                                                @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].Options[q].Selected, new { required = "required" })
+                                                @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].Options[q].Selected)
                                                 <label>@Model.PagesList[i].Questions[j].Options[q].Answer</label>
                                                 <img src="@Model.PagesList[i].Questions[j].Options[q].ImageUrl" width="150" height="150" style="object-fit: none;" />
                                                 <p>@Model.PagesList[i].Questions[j].Options[q].Description</p>
@@ -109,129 +125,80 @@
                                     break;
                                 case TypeEnum.GeoVraag:
 
+                                        <div id="page@(i)_question@(j)" class="geoDraw">
+                                            @switch (Model.PagesList[i].Questions[j].GeoType)
+                                            {
+                                                case GeoTypeEnum.Marker:
+                                                    <button type="button" class="btn btn-primary btn-sm drawMarker">Zet Marker</button>
+                                                    <button type="button" class="btn btn-danger btn-sm cancelMarker">Cancel Marker</button>
+                                                    break;
+                                                case GeoTypeEnum.Lijn:
+                                                    <button type="button" class="btn btn-primary btn-sm  drawLine">Teken Lijn</button>
+                                                    <button type="button" class="btn btn-danger btn-sm  cancelLine">Cancel Lijn</button>
+
+                                                    break;
+                                                case GeoTypeEnum.Vlak:
+                                                    <button type="button" class="btn btn-primary btn-sm  drawPolygon">Teken Vlak</button>
+                                                    <button type="button" class="btn btn-danger btn-sm  cancelPolygon">Cancel Vlak</button>
+                                                    break;
+                                            }
+                                            <p><small>(Verkeerd geplaatst? Geen probleem klik op uw markering en vervolgens op de gele knop.)</small></p>
+                                            @Html.TextBoxFor(x => x.PagesList[i].Questions[j].GeoCodeAnswer)
+                                        </div>
 
 
                                     if (questionView.StartLocationLat != null)
                                     {
-                                        <div id="page@(i)_question@(j)" class="geoDraw">
-                                            <p style="display: inline-block;"><small>Druk op de volgende knop om uw antwoord aan te geven:</small></p>
-                                            @Html.HiddenFor(x => x.PagesList[i].Questions[j].GeoCodeAnswer, new { required = "required" })
-                                            @switch (Model.PagesList[i].Questions[j].GeoType)
-                                            {
-                                                case GeoTypeEnum.Marker:
-                                                    <div style="width: 30px; height: 30px; margin-left: 10px; display: inline-block;" class="marker">
-
-                                                    </div>
-                                                    break;
-                                                case GeoTypeEnum.Lijn:
-                                                    <div style="width: 30px; height: 30px; margin-left: 10px; display: inline-block;" class="polyline">
-
-                                                    </div>
-                                                    break;
-                                                case GeoTypeEnum.Vlak:
-                                                    <div style="width: 30px; height: 30px; margin-left: 10px; display: inline-block;" class="polygon">
-
-                                                    </div>
-                                                    break;
-                                            }
-                                            <p><small>(Verkeerd geplaatst? Geen probleem klik op uw markering en vervolgens op de gele knop.)</small></p>
-
-                                        </div>
 
                                         <div id="mapid@(i)" onclick="map@(i).invalidateSize()" class="map" style="height: 800px; margin-left: 60px; margin-right: 60px;"></div>
                                         <button id="mapButton@(i)" class="mapBtn btn btn-info">Terug naar het startpunt!</button>
 
                                         <script>
-                                                var mapCenter@(i) = [
-                                                    parseFloat(@questionView.StartLocationLat),
-                                                    parseFloat(@questionView.StartLocationLong)
-                                                ];
+                                            var mapCenter@(i) = [
+                                                parseFloat(@questionView.StartLocationLat),
+                                                parseFloat(@questionView.StartLocationLong)
+                                            ];
 
-                                                var mapZoom@(i) = @questionView.StartZoomLevel;
-                                                console.log(mapCenter@(i));
-                                                console.log(mapZoom@(i));
+                                            var mapZoom@(i) = @questionView.StartZoomLevel;
+                                            console.log(mapCenter@(i));
 
-                                                var map@(i) = L.map('mapid@(i)').setView(mapCenter@(i), 13);
-                                                var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                                                    {
-                                                        maxZoom: 19,
-                                                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                                                    }).addTo(map@(i));
+                                            var map@(i) = L.map('mapid@(i)').setView(mapCenter@(i), mapZoom@(i));
+                                            var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                                {
+                                                    maxZoom: 19,
+                                                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                                                }).addTo(map@(i));
 
-                                                var editableLayers@(i)  = new L.FeatureGroup();
-                                                map@(i).addLayer(editableLayers@(i) );
+                                            var polygonDrawer@(i) = new L.Draw.Polygon(map@(i));
+                                            var markerDrawer@(i) = new L.Draw.Marker(map@(i));
+                                            var polylineDrawer@(i) = new L.Draw.Polyline(map@(i));
 
-                                                setTimeout(function () { map@(i).invalidateSize() }, 1000);
+                                            var array@(i) = [];
 
-                                                var drawPluginOptions@(i) = {
-                                                    position: 'topright',
-                                                    draw: {
-                                                        polygon: {
-                                                            allowIntersection: false,
-                                                            drawError: {
-                                                                color: '#f73e3e',
-                                                                message: '<strong>Oh snap!<strong> you can\'t draw that!'
-                                                            },
-                                                            shapeOptions: {
-                                                                color: '#ffa33b'
-                                                            }
-                                                        },
-                                                        polyline: {
-                                                            allowIntersection: false,
-                                                            drawError: {
-                                                                color: '#f73e3e',
-                                                                message: '<strong>Oh snap!<strong> you can\'t draw that!'
-                                                            },
-                                                            shapeOptions: {
-                                                                color: '#ffa33b'
-                                                            }
-                                                        },
-                                                        circle: false,
-                                                        rectangle: false,
-                                                        marker: {
-                                                            tooltip: {
-                                                                start: '- your text-.'
-                                                            }
-                                                        }
-                                                    },
-                                                    edit: {
-                                                        featureGroup: editableLayers@(i),
-                                                        remove: false
-                                                    }
-                                                };
-
-                                                var drawControl@(i)  = new L.Control.Draw(drawPluginOptions@(i));
-                                                map@(i).addControl(drawControl@(i));
-
-                                                var editableLayers@(i)  = new L.FeatureGroup();
-                                                map@(i).addLayer(editableLayers@(i));
-
-                                                var layer@(j);
-
-                                                map@(i).on('draw:created', function (e) {
-                                                    var type = e.layerType,
-                                                        layer = e.layer;
-                                                    layer@(j) = layer;
-                                                    layer.bindPopup('<button class="btn btn-warning" type="button" onclick="editMapItem( '+questionId +')" >Plaats Opnieuw!</button>');
-                                                    switch (type) {
-                                                    case "marker":
-                                                        geoAnswer = layer.getLatLng();
-                                                        break;
-                                                    case "polyline":
-                                                        geoAnswer = layer.getLatLngs();
-                                                        break;
-                                                    case "polygon":
-                                                        geoAnswer = layer.getLatLngs();
-                                                        break;
-                                                    }
-
-                                                    editableLayers@(i).addLayer(layer);
-                                                    $('#' + questionId).children()[0].value = geoAnswer;
-                                                    $('#' + questionId).hide();
-                                                });
-
-                                                var drawButtonsForMap@(i) = drawControl@(i).getContainer();
-
+                                            map@(i).on('draw:created', function (e) {
+                                                var type = e.layerType,
+                                                    layer = e.layer;
+                                                layer.bindPopup('<button class="btn btn-warning" type="button" onclick="editMapItem( ' + questionId + ')" >Plaats Opnieuw!</button>');
+                                                switch (type) {
+                                                case "marker":
+                                                    geoAnswer = layer.getLatLng();
+                                                    break;
+                                                case "polyline":
+                                                    geoAnswer = layer.getLatLngs();
+                                                    break;
+                                                case "polygon":
+                                                    geoAnswer = layer.getLatLngs();
+                                                    break;
+                                                }
+                                                isDrawing = false;
+                                                layer.addTo(map@(i));
+                                                var questionIdNumber =
+                                                    parseInt(questionId.split("_")[1]
+                                                        .toString().split("question")[1]);
+                                                array@(i)[questionIdNumber] = layer;
+                                                window.scrollBy(0, 300);
+                                                $("#" + questionId).children("input").val(geoAnswer);
+                                            });
 
                                         </script>
                                     }
@@ -244,93 +211,53 @@
                     </div>
                 }
 
+                <section id="pageButtons" class="row">
+                    <div id="previousButtonDiv" class="col">
+                        <p>Vorige</p>
+                        <button id="previousPageButton">
+                            <img src="~/images/pijlLinks.png" style='height: 80px; width: 120px; object-fit: contain' />
+                        </button>
+                    </div>
+
+                    <div id="nextButtonDiv" class="col">
+                        <p>Volgende</p>
+                        <button id="nextPageButton">
+                            <img src="~/images/pijlRechts.png" style='height: 80px; width: 120px; object-fit: contain'/>
+                        </button>
+                    </div>
+                
+                    <div id="submitBtn" class="col">
+                        <p>Einde Enquete</p>
+                        <input type="submit" name="submit" value="Voltooi!" class="btn btn-success" />
+                    </div>
+
+                </section>
+
             }
             
-            <div class="row">
-                <div id="previousButtonDiv" class="col">
-                    <p>Vorige</p>
-                    <button id="previousPageButton">
-                        <img src="~/images/pijlLinks.png" style='height: 80px; width: 120px; object-fit: contain' />
-                    </button>
-                </div>
-
-                <div id="nextButtonDiv" class="col">
-                    <p>Volgende</p>
-                    <button id="nextPageButton">
-                        <img src="~/images/pijlRechts.png" style='height: 80px; width: 120px; object-fit: contain'/>
-                    </button>
-                </div>
-                
-                <input id="submitBtn" type="submit" value="Voltooi!" class="btn btn-success"/>
-            </div>
 
 
         </div>
-    </div>
+</div>
 
 <script>
 
     var questionId;
     var geoAnswer;
+    var isDrawing;
+    
 
     function editMapItem(questionId) {
         var mapId = $(questionId).attr('id').toString().split("_")[0].toString().split("page")[1];
         var questionIdNumber = $(questionId).attr('id').toString().split("_")[1].toString().split("question")[1];
-        window["map" + mapId].removeLayer(window["layer" + questionIdNumber]);
+        window["map" + mapId].removeLayer(window["array" + mapId][parseInt(questionIdNumber)]);
+        window["array" + mapId][parseInt(questionIdNumber)] = null;
         $(questionId).show();
     }
 
     $(document).ready(function () {
 
-        
-        $(".leaflet-draw-edit-edit.leaflet-disabled").hide();
-
-        var allGeoDivs = document.getElementsByClassName("geoDraw");
-
-        for (var i = 0; i < allGeoDivs.length; i++) {
-
-            var geoDiv = allGeoDivs[i];
-
-            var mapId = $(geoDiv).attr('id').toString().split("_")[0].toString().split("page")[1];
-
-            var drawControls = window["drawButtonsForMap" + mapId];
-
-            var containerDiv = $(geoDiv).children('div')[0];
-
-            var buttons = $(drawControls).children()[0].children[0].children;
-
-            switch ($(containerDiv).attr('class')) {
-
-            case "marker":
-                $(buttons[0]).hide();
-                $(buttons[1]).hide();
-                break;
-            case "polyline":
-                $(buttons[1]).hide();
-                $(buttons[2]).hide();
-                break;
-            case "polygon":
-                $(buttons[0]).hide();
-                $(buttons[2]).hide();
-                break;
-            }
-
-            console.log(containerDiv);
-            console.log(drawControls);
-            containerDiv.appendChild(drawControls);
-        }
-
-        $(".leaflet-draw-draw-marker").click(function (e) {
-            questionId = $(this).parent().parent().parent().parent().parent()[0].id;
-        });
-
-        $(".leaflet-draw-draw-polyline").click(function (e) {
-            questionId = $(this).parent().parent().parent().parent().parent()[0].id;
-        });
-
-        $(".leaflet-draw-draw-polygon").click(function (e) {
-            questionId = $(this).parent().parent().parent().parent().parent()[0].id;
-        });
+        isDrawing = false;
 
         $("#submitBtn").hide();
 
@@ -350,6 +277,52 @@
             window["map" + mapId].setZoom(window["mapZoom" + mapId]);
             return false;
         });
+
+        $(".drawMarker").click(function (e) {
+            if (!isDrawing) {
+                isDrawing = true;
+                var mapId = $(this).parent().attr('id').toString().split("_")[0].toString().split("page")[1];
+                questionId = $(this).parent().attr('id');
+                window["markerDrawer" + mapId].enable();
+            }
+        }); 
+
+        $(".drawLine").click(function (e) {
+            if (!isDrawing) {
+                isDrawing = true;
+                var mapId = $(this).parent().attr('id').toString().split("_")[0].toString().split("page")[1];
+                questionId = $(this).parent().attr('id');
+                window["polylineDrawer" + mapId].enable();
+            }
+        });
+
+        $(".drawPolygon").click(function (e) {
+            if (!isDrawing) {
+                isDrawing = true;
+                var mapId = $(this).parent().attr('id').toString().split("_")[0].toString().split("page")[1];
+                questionId = $(this).parent().attr('id');
+                window["polygonDrawer" + mapId].enable();
+            }
+        });
+
+        $(".cancelPolygon").click(function (e) {
+            var mapId = $(this).parent().attr('id').toString().split("_")[0].toString().split("page")[1];
+            window["polygonDrawer" + mapId].disable();
+            isDrawing = false;
+        });
+
+        $(".cancelPolyline").click(function (e) {
+            var mapId = $(this).parent().attr('id').toString().split("_")[0].toString().split("page")[1];
+            window["polylineDrawer" + mapId].disable();
+            isDrawing = false;
+        });
+
+        $(".cancelMarker").click(function (e) {
+            var mapId = $(this).parent().attr('id').toString().split("_")[0].toString().split("page")[1];
+            window["markerDrawer" + mapId].disable();
+            isDrawing = false;
+        });
+
 
         $("#pageCounter").text("Pagina: 1/" + maxNumber);
 
@@ -372,7 +345,7 @@
                 $("#nextButtonDiv").hide();
             }
             $("#pageCounter").text("Pagina: " + (pageNumber + 1) + "/" + maxNumber);
-
+            $("#pageButtons").show();
             return false;
         });
 
@@ -394,6 +367,7 @@
                 $("#previousButtonDiv").hide();
             }
             $("#pageCounter").text("Pagina: " + (pageNumber + 1) + "/" + maxNumber);
+            $("#pageButtons").show();
             return false;
         });
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using DataModels;
@@ -136,7 +137,7 @@ namespace WBK.Controllers
                 Title = model.Title,
                 Description = model.Description,
                 Owner = "test@test.nl",
-                EndDate = DateTime.Parse(model.EndDate),
+                EndDate = DateTime.Parse(model.EndDate, CultureInfo.CreateSpecificCulture("nl-NL")),
                 DateOfCreation = DateTime.Today,
                 ImageUrl = model.ImageUrl
             };

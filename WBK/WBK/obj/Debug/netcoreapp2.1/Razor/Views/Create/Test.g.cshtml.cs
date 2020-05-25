@@ -66,7 +66,7 @@ using WBK.Models;
             WriteLiteral("\r\n\r\n<!DOCTYPE html>\r\n<html>\r\n");
             EndContext();
             BeginContext(29, 647, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c7184b306c8e42aba01e9126d7148ec5", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f789aa05a07a498a8cf08b067538e51c", async() => {
                 BeginContext(35, 634, true);
                 WriteLiteral(@"
     <meta charset=""utf-8"" />
@@ -103,12 +103,12 @@ using WBK.Models;
             WriteLiteral("\r\n\r\n");
             EndContext();
             BeginContext(680, 6330, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ab5c1a161b1c48ee9513a16517abc95f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4d86cdc88f084456afc4d6c2eb91d2a9", async() => {
                 BeginContext(698, 95, true);
                 WriteLiteral("\r\n<div class=\"container\">\r\n\r\n\r\n    <div class=\"row\">\r\n\r\n        <div class=\"col\">\r\n            ");
                 EndContext();
                 BeginContext(793, 5740, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b8e7a4aef669464cb8835aad7d40cd00", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "99ad233f3c1e4f89861f6a7534703594", async() => {
                     BeginContext(836, 1306, true);
                     WriteLiteral(@"
                 <h3>Pagina 0</h3>
@@ -125,7 +125,7 @@ using WBK.Models;
                     ");
                     EndContext();
                     BeginContext(2142, 55, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8e530477f3bf41358e45212f74936c72", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "49dcce0b1ce54cc584c465e886cee5c7", async() => {
                         BeginContext(2180, 8, true);
                         WriteLiteral("GeoVraag");
                         EndContext();
@@ -148,7 +148,7 @@ using WBK.Models;
                     WriteLiteral("\r\n                    ");
                     EndContext();
                     BeginContext(2219, 41, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c5fac34d66a84c28ba3f21c2cb69f937", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2e0a3b351698444fadbe046022316542", async() => {
                         BeginContext(2237, 14, true);
                         WriteLiteral("MeerkeuzeVraag");
                         EndContext();
@@ -170,7 +170,7 @@ using WBK.Models;
                     WriteLiteral("\r\n                    ");
                     EndContext();
                     BeginContext(2282, 36, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5057a75aca824c6a8d35ecda4f8e9142", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cbd5a87efe5d4f17b5e892946d77881a", async() => {
                         BeginContext(2300, 9, true);
                         WriteLiteral("OpenVraag");
                         EndContext();
@@ -192,7 +192,7 @@ using WBK.Models;
                     WriteLiteral("\r\n                    ");
                     EndContext();
                     BeginContext(2340, 38, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2cc7bc586a45455380c7ec21f25c974a", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "40afd0e1df20475bb2ca0485e17a99bd", async() => {
                         BeginContext(2358, 11, true);
                         WriteLiteral("SliderVraag");
                         EndContext();
@@ -214,7 +214,7 @@ using WBK.Models;
                     WriteLiteral("\r\n                    ");
                     EndContext();
                     BeginContext(2400, 38, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6b30ec49f2a74ad3b176a6832c066227", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a96ed4c5914b44c99c3979a2c74815c7", async() => {
                         BeginContext(2418, 11, true);
                         WriteLiteral("NummerVraag");
                         EndContext();
@@ -239,7 +239,7 @@ using WBK.Models;
                     ");
                     EndContext();
                     BeginContext(2783, 54, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1808529b8a4a4614ba1c00a2dbd175a1", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "01978de6344f4f079aa534e771598544", async() => {
                         BeginContext(2821, 7, true);
                         WriteLiteral("Profiel");
                         EndContext();
@@ -262,7 +262,7 @@ using WBK.Models;
                     WriteLiteral("\r\n                    ");
                     EndContext();
                     BeginContext(2859, 34, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "221302ae3dde46859d7e047df83c23bc", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4ddeed10305c491f9e223029482ef305", async() => {
                         BeginContext(2877, 7, true);
                         WriteLiteral("Locatie");
                         EndContext();
@@ -284,7 +284,7 @@ using WBK.Models;
                     WriteLiteral("\r\n                    ");
                     EndContext();
                     BeginContext(2915, 37, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "61feb529146049dba93d55e8dc29cf92", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5b59289e9ffc47239943cd51cce31ff7", async() => {
                         BeginContext(2933, 10, true);
                         WriteLiteral("Gezondheid");
                         EndContext();
@@ -310,7 +310,7 @@ using WBK.Models;
                         ");
                     EndContext();
                     BeginContext(3365, 53, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "aa177a588e59413db9a01a5f0304c36b", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "39d5a7981cdf478b82aee0a6dfb393a5", async() => {
                         BeginContext(3403, 6, true);
                         WriteLiteral("Marker");
                         EndContext();
@@ -333,7 +333,7 @@ using WBK.Models;
                     WriteLiteral("\r\n                        ");
                     EndContext();
                     BeginContext(3444, 31, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8a89484585c841838b43d8621848b549", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fd8c3b31047d44e7b174d0053dd7fd8e", async() => {
                         BeginContext(3462, 4, true);
                         WriteLiteral("Lijn");
                         EndContext();
@@ -355,7 +355,7 @@ using WBK.Models;
                     WriteLiteral("\r\n                        ");
                     EndContext();
                     BeginContext(3501, 31, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "be53ef7465cd4d60b45e231dc87cd825", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "569d332a417a4f7f94a4fe7a6352cc62", async() => {
                         BeginContext(3519, 4, true);
                         WriteLiteral("Vlak");
                         EndContext();

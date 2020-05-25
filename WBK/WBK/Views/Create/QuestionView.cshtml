@@ -5,7 +5,7 @@
 @model WBK.Models.Create.PageQuestionModel
 
 <div class="questionDiv">
-    <h3 style="float: left;">Vraag @(Model.QuestionId +1)</h3>
+    <h3 style="float: left;">Vraag @(Model.QuestionId + 1)</h3>
 
     <div style="float: right;" class="dropleft show">
         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuQuestion@(Model.QuestionId)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -16,6 +16,7 @@
         </div>
     </div>
     <input class="form-control" required id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Title" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Title" type="text" value="" placeholder="Vraag" />
+    <input class="form-control" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__ImageUrl" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].ImageUrl" type="text" value="" placeholder="Vraag Foto URL" />
     <input class="form-control" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Description" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Description" type="text" value="" placeholder="Vraag Beschrijving" />
     <select class="form-control" data-val="true" data-val-required="The Type field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Type" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Type">
         <option value="0">GeoVraag</option>

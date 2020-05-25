@@ -24,9 +24,9 @@ namespace WBK.Controllers
         }
 
         [HttpPost]
-        public IActionResult Survey(string name, SurveyViewModel model)
+        public IActionResult Survey(SurveyViewModel model)
         {
-            Survey survey = _logic.GetSurvey(name);
+            Survey survey = _logic.GetSurvey(model.Title);
             Respondant respondant = new Respondant
             {
                 DateTimeOfCreation = DateTime.Now,
@@ -81,7 +81,7 @@ namespace WBK.Controllers
                 }
             }
             _logic.InserSurveyAnswers(survey);
-            return RedirectToAction("SurveysCreatedBy","Create");
+            return RedirectToAction("SurveyCompleted", "Survey");
         }
 
         [HttpGet]
@@ -126,8 +126,8 @@ namespace WBK.Controllers
 
                     if (question.StartLocation != null)
                     {
-                        questionView.StartLocationLat = question.StartLocation.Latitude.ToString();
-                        questionView.StartLocationLong = question.StartLocation.Longitude.ToString();
+                        questionView.StartLocationLat = question.StartLocation.Latitude.ToString().Replace(',', '.');
+                        questionView.StartLocationLong = question.StartLocation.Longitude.ToString().Replace(',', '.');
                         questionView.StartZoomLevel = question.StartLocation.ZoomLevel;
                     }
 
@@ -200,10 +200,27 @@ namespace WBK.Controllers
                     pageViewModel.Questions.Add(questionView);
                 }
 
+                for (int i = 0; i < pageViewModel.Questions.Count ; i++)
+                {
+                    QuestionViewModel question = pageViewModel.Questions[i];
+                    if (!string.IsNullOrEmpty(question.StartLocationLat))
+                    {
+                        QuestionViewModel firstQuestion = pageViewModel.Questions[i];
+                        pageViewModel.Questions[i] = pageViewModel.Questions[0];
+                        pageViewModel.Questions[0] = firstQuestion;
+                    }
+                }
+
                 viewModel.PagesList.Add(pageViewModel);
             }
 
             return viewModel;
+        }
+
+        [HttpGet]
+        public IActionResult SurveyCompleted()
+        {
+            return View();
         }
     }
 }
