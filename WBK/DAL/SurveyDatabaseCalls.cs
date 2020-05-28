@@ -134,7 +134,7 @@ namespace DAL
 
         public int? InsertQuestion(Question question, int? pageId)
         {
-            string query = "INSERT INTO `question`(`Question`, `Description`, `Type`, `PageId`, `Category`, `ImageUrl`) VALUES (@pQuestion,@pDesc,@pType,@pPageId,@pCategoryId,@pImageUrl)";
+            string query = "INSERT INTO `question`(`Question`, `Description`, `Type`, `PageId`, `Category`, `ImageUrl` , `Attribute`) VALUES (@pQuestion,@pDesc,@pType,@pPageId,@pCategoryId,@pImageUrl,@pAttribute)";
             List<MySqlParameter> parameters= new List<MySqlParameter>
             {
                 new MySqlParameter("@pQuestion", question.Value),
@@ -142,7 +142,8 @@ namespace DAL
                 new MySqlParameter("@pType", question.Type),
                 new MySqlParameter("@pPageId", pageId),
                 new MySqlParameter("@pCategoryId", question.Category),
-                new MySqlParameter("@pImageUrl", question.ImageUrl)
+                new MySqlParameter("@pImageUrl", question.ImageUrl),
+                new MySqlParameter("@pAttribute", question.Attribute)
             };
 
             return _databaseCalls.CommandWithLastId(query, parameters);
@@ -181,10 +182,12 @@ namespace DAL
             {
                 Page page = new Page
                 {
+                    Id = Convert.ToInt32(rowPage[0]),
                     Title = rowPage[2].ToString(),
                     Description = rowPage[3].ToString(),
-                    Questions = new List<Question>()
-                    
+                    Questions = new List<Question>(),
+                    ImageUrl = rowPage[4].ToString()
+
                 };
                 int pageId = Convert.ToInt32(rowPage[0]);
 
@@ -213,12 +216,15 @@ namespace DAL
 
                             GeoQuestion geoQuestion = new GeoQuestion
                             {
+                                Id = Convert.ToInt32(rowQuestion[0]),
                                 Value = rowQuestion[1].ToString(),
                                 Description = rowQuestion[2].ToString(),
                                 Category = (CategoryEnum)Convert.ToInt32(rowQuestion[5]),
                                 Type = questionType,
                                 TypeOfMarker = (GeoTypeEnum)Convert.ToInt32(rowGeo[2]),
-                                StartLocation = null
+                                StartLocation = null,
+                                ImageUrl = rowQuestion[6].ToString(),
+                                Attribute = rowQuestion[7].ToString()
 
                             };
 
@@ -234,10 +240,13 @@ namespace DAL
                         case TypeEnum.OpenVraag:
                             OpenQuestion openQuestion = new OpenQuestion
                             {
+                                Id = Convert.ToInt32(rowQuestion[0]),
                                 Value = rowQuestion[1].ToString(),
                                 Description = rowQuestion[2].ToString(),
                                 Category = (CategoryEnum)Convert.ToInt32(rowQuestion[5]),
-                                Type = questionType
+                                Type = questionType,
+                                ImageUrl = rowQuestion[6].ToString(),
+                                Attribute = rowQuestion[7].ToString()
                             };
                             page.Questions.Add(openQuestion);
                             break;
@@ -248,12 +257,15 @@ namespace DAL
                             int multipleChoiceId = Convert.ToInt32(rowMultipleChoice[0]);
                             MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion
                             {
+                                Id = Convert.ToInt32(rowQuestion[0]),
                                 Value = rowQuestion[1].ToString(),
                                 Description = rowQuestion[2].ToString(),
                                 Category = (CategoryEnum)Convert.ToInt32(rowQuestion[5]),
                                 Type = questionType,
                                 AllowMutlipleAnwsers = Convert.ToBoolean(rowMultipleChoice[2]),
-                                Options = new List<MultipleChoiceOption>()
+                                Options = new List<MultipleChoiceOption>(),
+                                ImageUrl = rowQuestion[6].ToString(),
+                                Attribute = rowQuestion[7].ToString()
                             };
 
                             string queryOptions = "SELECT * FROM `multiplechoiceoption` WHERE multiplechoiceoption.MultipleChoiceQuestionId = @pId";
@@ -277,13 +289,16 @@ namespace DAL
 
                             SliderQuestion sliderQuestion = new SliderQuestion
                             {
+                                Id = Convert.ToInt32(rowQuestion[0]),
                                 Value = rowQuestion[1].ToString(),
                                 Description = rowQuestion[2].ToString(),
                                 Category = (CategoryEnum)Convert.ToInt32(rowQuestion[5]),
                                 Type = questionType,
                                 MaxValueText = rowSlider[2].ToString(),
                                 MinValueText = rowSlider[3].ToString(),
-                                Scale = Convert.ToInt32(rowSlider[4])
+                                Scale = Convert.ToInt32(rowSlider[4]),
+                                ImageUrl = rowQuestion[6].ToString(),
+                                Attribute = rowQuestion[7].ToString()
 
                             };
                             page.Questions.Add(sliderQuestion);
@@ -296,12 +311,15 @@ namespace DAL
 
                             NumberQuestion numberQuestion = new NumberQuestion
                             {
+                                Id = Convert.ToInt32(rowQuestion[0]),
                                 Value = rowQuestion[1].ToString(),
                                 Description = rowQuestion[2].ToString(),
                                 Category = (CategoryEnum)Convert.ToInt32(rowQuestion[5]),
                                 Type = questionType,
                                 Maximum = Convert.ToInt32(rowNumber[2]),
                                 Minimum = Convert.ToInt32(rowNumber[3]),
+                                ImageUrl = rowQuestion[6].ToString(),
+                                Attribute = rowQuestion[7].ToString()
                             };
                             page.Questions.Add(numberQuestion);
                             break;
@@ -356,7 +374,7 @@ namespace DAL
         public void InsertAnswers(Survey surveyWithAnswers)
         {
             int? surveyId = GetSurveyId(surveyWithAnswers.Title);
-
+            int respondantId = -1;
             foreach (Page page in surveyWithAnswers.Pages)
             {
                 int pageId = (int)GetPageId(page.Title, (int) surveyId);
@@ -364,7 +382,7 @@ namespace DAL
                 foreach (Question question in page.Questions)
                 {
                     int questionId = (int)GetQuestionId(question.Value, pageId);
-                    int respondantId;
+
                     if (GetRespondentId(question.Answers[0].Respondant.SessionId) == null)
                     {
                         respondantId = (int)InsertRespondant(question.Answers[0].Respondant);
@@ -439,6 +457,15 @@ namespace DAL
                 }
 
             }
+
+            string queryRespondantToSurvey = "INSERT INTO `respondanttosurvey`(`SurveyId`, `RespondantId`) VALUES (@pSurveyId,@pRespondantId)";
+            List<MySqlParameter> parametersRespondatToSurvey = new List<MySqlParameter>
+            {
+                new MySqlParameter("@pSurveyId", surveyId),
+                new MySqlParameter("@pRespondantId", respondantId)
+            };
+            _databaseCalls.Command(queryRespondantToSurvey, parametersRespondatToSurvey);
+
         }
 
         public int? GetRespondentId(string respondantSessionId)
@@ -538,9 +565,10 @@ namespace DAL
 
                     foreach (DataRow rowQuestion in _databaseCalls.Select(queryAnswers, parametersAnswers).Rows)
                     {
+                        string test = rowQuestion[0].ToString();
                         List<MySqlParameter> answerIdParameter = new List<MySqlParameter>
                         {
-                            new MySqlParameter("@pAnswerId", Convert.ToInt32(rowQuestion[0])),
+                            new MySqlParameter("@pAnswerId", Convert.ToInt32(test)),
                         };
 
                         Respondant respondant = GetRespondant(Convert.ToInt32(rowQuestion[2]));
@@ -671,6 +699,23 @@ namespace DAL
             result.SessionId = row[1].ToString();
             result.DateTimeOfCreation = Convert.ToDateTime(row[2]);
             return result;
+        }
+
+        public List<int> GetAllRespondentIdsFromSurveyId(int surveyId)
+        {
+            List<int> allRespondantIds = new List<int>();
+            string query = "SELECT RespondantId FROM `respondanttosurvey` WHERE respondanttosurvey.SurveyId = @pId";
+            List<MySqlParameter> parameter = new List<MySqlParameter>
+            {
+                new MySqlParameter("@pId", surveyId),
+            };
+
+            foreach (DataRow row in _databaseCalls.Select(query, parameter).Rows)
+            {
+                allRespondantIds.Add(Convert.ToInt32(row[0].ToString()));
+            }
+
+            return allRespondantIds;
         }
     }
  }

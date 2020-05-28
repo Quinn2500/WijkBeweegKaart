@@ -15,7 +15,14 @@ namespace Logic
 
         public Survey GetSurvey(int surveyId)
         {
-            return _dataBaseCalls.GetSurvey(surveyId);
+            Survey survey = _dataBaseCalls.GetSurvey(surveyId);
+            survey.Pages.Sort((x, y) => x.Id.CompareTo(y.Id));
+            foreach (Page page in survey.Pages)
+            {
+                page.Questions.Sort((x, y) => x.Id.CompareTo(y.Id));
+            }
+
+            return survey;
         }
 
         public Survey GetSurvey(string surveyTitle)
@@ -23,7 +30,7 @@ namespace Logic
             int? id = _dataBaseCalls.GetSurveyId(surveyTitle);
             if (id != null)
             {
-                return _dataBaseCalls.GetSurvey((int)id);
+                return GetSurvey((int)id);
             }
             else
             {
@@ -48,7 +55,14 @@ namespace Logic
 
         public Survey GetSurveyWithAllAnswers(string surveyTitle)
         {
-            return _dataBaseCalls.GetSurveyWithAllAnswers(surveyTitle);
+            Survey survey = _dataBaseCalls.GetSurveyWithAllAnswers(surveyTitle);
+            survey.Pages.Sort((x, y) => x.Id.CompareTo(y.Id));
+            foreach (Page page in survey.Pages)
+            {
+                page.Questions.Sort((x, y) => x.Id.CompareTo(y.Id));
+            }
+
+            return survey;
         }
     }
 }

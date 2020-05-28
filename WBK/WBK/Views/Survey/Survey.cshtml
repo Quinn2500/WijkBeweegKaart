@@ -19,13 +19,16 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
+    
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    </environment>
 
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <link href="~/lib/jqeury-ui/jquery-ui.css" rel="stylesheet" />
     <script src="~/lib/jqeury-ui/jquery-ui.min.js"></script>
     <script src="~/lib/jquery.appear-master/index.js"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-    <link href="~/css/site.css" rel="stylesheet" />
 </head>
 
 <body class="p-0" style="height: 100%;">
@@ -50,7 +53,7 @@
 
                         <h1>@Html.DisplayTextFor(x => x.Title)</h1>
                         <p>@Model.Description<p>
-                        @if (Model.ImageUrl != null)
+                        @if (!string.IsNullOrEmpty(Model.ImageUrl))
                         {
                             <img src="@Model.ImageUrl" style='height: 200px; width: 200px; object-fit: contain'/>
                         }
@@ -89,36 +92,48 @@
                             @switch (questionView.Type)
                             {
                                 case TypeEnum.OpenVraag:
-                                    @Html.TextBoxFor(x => x.PagesList[i].Questions[j].TextAnswer)
+                                    @Html.TextBoxFor(x => x.PagesList[i].Questions[j].TextAnswer, new { @class = "form-control" })
                                     break;
                                 case TypeEnum.SliderVraag:
                                     <label>@Model.PagesList[i].Questions[j].SliderMinText</label>
-                                    @Html.TextBoxFor(x => x.PagesList[i].Questions[j].NumberAnswer, new { type = "range", min = 0, max = Model.PagesList[i].Questions[j].SliderScaleVal})
+                                    @Html.TextBoxFor(x => x.PagesList[i].Questions[j].NumberAnswer, new { type = "range", min = 0, max = Model.PagesList[i].Questions[j].SliderScaleVal, @class = "form-control" })
                                     <label>@Model.PagesList[i].Questions[j].SliderMaxText</label>
                                     break;
                                 case TypeEnum.NummerVraag:
-                                    @Html.TextBoxFor(x => x.PagesList[i].Questions[j].NumberAnswer, new { type = "number", min = Model.PagesList[i].Questions[j].MinValue, max = Model.PagesList[i].Questions[j].MaxValue })
+                                    @Html.TextBoxFor(x => x.PagesList[i].Questions[j].NumberAnswer, new { type = "number", min = Model.PagesList[i].Questions[j].MinValue, max = Model.PagesList[i].Questions[j].MaxValue, @class = "form-control" })
                                     break;
                                 case TypeEnum.MeerkeuzeVraag:
                                     if (Model.PagesList[i].Questions[j].AllowMultipleAnswers)
                                     {
-                                        for (int q = 0; q < Model.PagesList[i].Questions[j].Options.Count; q++)
+                                        <div class="multipleChoiceList">
+                                        @for (int q = 0; q < Model.PagesList[i].Questions[j].Options.Count; q++)
                                         {
-                                            @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].Options[q].Selected)
-                                            <label>@Model.PagesList[i].Questions[j].Options[q].Answer</label>
-                                            <img src="@Model.PagesList[i].Questions[j].Options[q].ImageUrl" width="150" height="150" style="object-fit: none;" />
-                                            <p>@Model.PagesList[i].Questions[j].Options[q].Description</p>
-                                        }
+                                            <div class="multipleChoiceElement">
+                                                @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].Options[q].Selected)
+                                                <label>@Model.PagesList[i].Questions[j].Options[q].Answer</label>
+                                                @if (!string.IsNullOrEmpty(Model.PagesList[i].Questions[j].Options[q].ImageUrl))
+                                                {
+                                                    <img src="@Model.PagesList[i].Questions[j].Options[q].ImageUrl" width="150" height="150" style="object-fit: none;" />
+                                                }
+                                                <p>@Model.PagesList[i].Questions[j].Options[q].Description</p>
+                                            </div>
+                                         }
+                                        </div>
                                     }
                                     else
                                     {
-                                        <div class="oneChecboxDiv">
+                                        <div class="oneChecboxDiv multipleChoiceList">
                                             @for (int q = 0; q < Model.PagesList[i].Questions[j].Options.Count; q++)
                                             {
-                                                @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].Options[q].Selected)
-                                                <label>@Model.PagesList[i].Questions[j].Options[q].Answer</label>
-                                                <img src="@Model.PagesList[i].Questions[j].Options[q].ImageUrl" width="150" height="150" style="object-fit: none;" />
-                                                <p>@Model.PagesList[i].Questions[j].Options[q].Description</p>
+                                                <div class="multipleChoiceElement">
+                                                    @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].Options[q].Selected)
+                                                    <label>@Model.PagesList[i].Questions[j].Options[q].Answer</label>
+                                                    @if (!string.IsNullOrEmpty(Model.PagesList[i].Questions[j].Options[q].ImageUrl))
+                                                    {
+                                                        <img src="@Model.PagesList[i].Questions[j].Options[q].ImageUrl" width="150" height="150" style="object-fit: none;" />
+                                                    }
+                                                    <p>@Model.PagesList[i].Questions[j].Options[q].Description</p>
+                                                </div>
                                             }
                                         </div>
                                     }
@@ -143,7 +158,7 @@
                                                     break;
                                             }
                                             <p><small>(Verkeerd geplaatst? Geen probleem klik op uw markering en vervolgens op de gele knop.)</small></p>
-                                            @Html.TextBoxFor(x => x.PagesList[i].Questions[j].GeoCodeAnswer)
+                                            @Html.HiddenFor(x => x.PagesList[i].Questions[j].GeoCodeAnswer)
                                         </div>
 
 
@@ -154,13 +169,9 @@
                                         <button id="mapButton@(i)" class="mapBtn btn btn-info">Terug naar het startpunt!</button>
 
                                         <script>
-                                            var mapCenter@(i) = [
-                                                parseFloat(@questionView.StartLocationLat),
-                                                parseFloat(@questionView.StartLocationLong)
-                                            ];
+                                            var mapCenter@(i) = [parseFloat(@questionView.StartLocationLat), parseFloat(@questionView.StartLocationLong)];
 
                                             var mapZoom@(i) = @questionView.StartZoomLevel;
-                                            console.log(mapCenter@(i));
 
                                             var map@(i) = L.map('mapid@(i)').setView(mapCenter@(i), mapZoom@(i));
                                             var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -273,8 +284,7 @@
             e.preventDefault();
             var mapId = $(this).attr('id').split("mapButton").pop();
             console.log(mapId);
-            window["map" + mapId].setView(window["mapCenter" + mapId]);
-            window["map" + mapId].setZoom(window["mapZoom" + mapId]);
+            window["map" + mapId].setView(window["mapCenter" + mapId], window["mapZoom" + mapId]);
             return false;
         });
 
@@ -282,6 +292,7 @@
             if (!isDrawing) {
                 isDrawing = true;
                 var mapId = $(this).parent().attr('id').toString().split("_")[0].toString().split("page")[1];
+                window["map" + mapId].invalidateSize();
                 questionId = $(this).parent().attr('id');
                 window["markerDrawer" + mapId].enable();
             }
@@ -291,6 +302,7 @@
             if (!isDrawing) {
                 isDrawing = true;
                 var mapId = $(this).parent().attr('id').toString().split("_")[0].toString().split("page")[1];
+                window["map" + mapId].invalidateSize();
                 questionId = $(this).parent().attr('id');
                 window["polylineDrawer" + mapId].enable();
             }
@@ -300,6 +312,7 @@
             if (!isDrawing) {
                 isDrawing = true;
                 var mapId = $(this).parent().attr('id').toString().split("_")[0].toString().split("page")[1];
+                window["map" + mapId].invalidateSize();
                 questionId = $(this).parent().attr('id');
                 window["polygonDrawer" + mapId].enable();
             }
@@ -371,8 +384,8 @@
             return false;
         });
 
-        $('.oneChecboxDiv input[type="checkbox"]').on('change', function () {
-            $(this).siblings('.oneChecboxDiv input[type="checkbox"]').not(this).prop('checked', false);
+        $('.oneChecboxDiv div input[type="checkbox"]').on('change', function () {
+            $(this).siblings('.oneChecboxDiv div input[type="checkbox"]').not(this).prop('checked', false);
         });
 
         $(function () {

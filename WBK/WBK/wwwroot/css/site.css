@@ -28,3 +28,17 @@
 .addQuestion {
     margin-top: 10px;
 }
+
+.multipleChoiceList {
+    width: 30%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    list-style-type: none;
+    justify-content: space-evenly;
+}
+
+.multipleChoiceElement {
+    width: 180px;
+}

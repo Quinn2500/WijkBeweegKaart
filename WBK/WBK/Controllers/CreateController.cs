@@ -169,7 +169,8 @@ namespace WBK.Controllers
                                     Type = questionView.Type,
                                     ImageUrl = questionView.ImageUrl,
                                     TypeOfMarker = questionView.GeoType,
-                                    StartLocation = null
+                                    StartLocation = null,
+                                    Attribute = questionView.Attribute
                                 };
 
                                 if (!string.IsNullOrEmpty(questionView.StartLocationLat))
@@ -187,7 +188,8 @@ namespace WBK.Controllers
                                     Description = questionView.Description,
                                     Category = questionView.Category,
                                     ImageUrl = questionView.ImageUrl,
-                                    Type = questionView.Type
+                                    Type = questionView.Type,
+                                    Attribute = questionView.Attribute
                                 };
                                 page.Questions.Add(openQuestion);
                                 break;
@@ -201,7 +203,8 @@ namespace WBK.Controllers
                                     Type = questionView.Type,
                                     ImageUrl = questionView.ImageUrl,
                                     Maximum = questionView.MaxValue,
-                                    Minimum = questionView.MinValue
+                                    Minimum = questionView.MinValue,
+                                    Attribute = questionView.Attribute
                                 };
                                 page.Questions.Add(numberQuestion);
                                 break;
@@ -216,7 +219,8 @@ namespace WBK.Controllers
                                     ImageUrl = questionView.ImageUrl,
                                     MaxValueText = questionView.SliderMaxText,
                                     MinValueText = questionView.SliderMinText,
-                                    Scale = questionView.SliderScaleVal
+                                    Scale = questionView.SliderScaleVal,
+                                    Attribute = questionView.Attribute
                                 };
                                 page.Questions.Add(sliderQuestion);
                                 break;
@@ -230,7 +234,8 @@ namespace WBK.Controllers
                                     Type = questionView.Type,
                                     ImageUrl = questionView.ImageUrl,
                                     AllowMutlipleAnwsers = questionView.AllowMultipleAnswers,
-                                    Options = new List<MultipleChoiceOption>()
+                                    Options = new List<MultipleChoiceOption>(),
+                                    Attribute = questionView.Attribute
                                 };
                                 foreach (MultipleChoiceOptionViewModel optionView in questionView.Options)
                                 {
@@ -249,21 +254,14 @@ namespace WBK.Controllers
             surveyModel.Pages = pages;
             _logic.InsertSurvey(surveyModel);
 
-            return RedirectToAction("SurveysCreatedBy");
+            return RedirectToAction("Index", "Dashboard");
         }
 
         [HttpGet]
         public IActionResult DeleteSurvey(string title)
         {
             _logic.DeleteSurvey("test@test.nl", title);
-            return RedirectToAction("SurveysCreatedBy");
-        }
-
-        [HttpGet]
-        public IActionResult SurveysCreatedBy()
-        {
-            List<SurveyOverview> model = _logic.SurveyOverviewDataOfUser("test@test.nl");
-            return View(model);
+            return RedirectToAction("Index", "Dashboard");
         }
 
         private List<PageViewModel> CreateEmptyPageModel()

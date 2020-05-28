@@ -35,7 +35,6 @@ namespace WBK.Controllers
             };
             for (int i = 0; i < survey.Pages.Count; i++)
             {
-                model.PagesList[i].Questions.Reverse();
                 for (int j = 0; j < survey.Pages[i].Questions.Count; j++)
                 {
                     Question question = survey.Pages[i].Questions[j];
@@ -50,6 +49,12 @@ namespace WBK.Controllers
                             break;
 
                         case TypeEnum.NummerVraag:
+                            switch (question.Attribute)
+                            {
+                                case "age":
+                                    respondant.Age = model.PagesList[i].Questions[j].NumberAnswer;
+                                    break;
+                            }
                             question.Answers[0] = new NumberAnswer{ NumberValue = model.PagesList[i].Questions[j].NumberAnswer };
                             break;
 
@@ -58,14 +63,24 @@ namespace WBK.Controllers
                             break;
 
                         case TypeEnum.OpenVraag:
+                            switch (question.Attribute)
+                            {
+                                case "postcode":
+                                    respondant.PostCode = model.PagesList[i].Questions[j].TextAnswer;
+                                    break;
+                                case "sport":
+                                     respondant.DoesSport = !string.IsNullOrEmpty(model.PagesList[i].Questions[j].TextAnswer);
+                                    break;
+                            }
                             question.Answers[0] = new TextAnswer{ TextValue = model.PagesList[i].Questions[j].TextAnswer };
                             break;
 
                         case TypeEnum.MeerkeuzeVraag:
+
                             MultipleChoiceQuestion multipleChoiceQuestion = question as MultipleChoiceQuestion;
                             List<MultipleChoiceOption> answer = new List<MultipleChoiceOption>();
-                            QuestionViewModel testQuestion = model.PagesList[i].Questions[j - 1];
-                            for (int k = 0; k < multipleChoiceQuestion.Options.Count; k++)
+                            QuestionViewModel testQuestion = model.PagesList[i].Questions[j];
+                            for (int k = 0; k < testQuestion.Options.Count; k++)
                             {
 
                                 if (testQuestion.Options[k].Selected)
@@ -74,8 +89,22 @@ namespace WBK.Controllers
                                 }
                             }
 
-                            question.Answers[0] = new MultipleChoiceAnswer { AnsweredOptions = answer};
+                            switch (question.Attribute)
+                            {
+                                case "gender":
+                                    respondant.Gender = (GenderEnum)Enum.Parse(typeof(GenderEnum), answer[0].Value); 
+                                    break;
+                                case "profile":
+                                    respondant.Profile = (ProfileEnum)Enum.Parse(typeof(ProfileEnum), answer[0].Value);
+                                    break;
+                                case "restrained":
+                                    respondant.Restrained = answer[0].Value.Equals("Ja");
+                                    break;
+                            }
+                            question.Answers[0] = new MultipleChoiceAnswer { AnsweredOptions = answer };
                             break;
+
+
                     }
                     question.Answers[0].Respondant = respondant;
                 }
@@ -83,13 +112,7 @@ namespace WBK.Controllers
             _logic.InserSurveyAnswers(survey);
             return RedirectToAction("SurveyCompleted", "Survey");
         }
-
-        [HttpGet]
-        public IActionResult AllAnswers(string surveyTitle)
-        {
-            Survey model = _logic.GetSurveyWithAllAnswers(surveyTitle);
-            return View(model);
-        }
+ 
 
         public SurveyViewModel ConvertToViewModel(Survey survey)
         {

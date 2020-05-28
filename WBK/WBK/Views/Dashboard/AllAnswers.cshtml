@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewData["Title"] = "AllAnswers";
+    Layout = null;
+}
+
+@using DataModels
+@using DataModels.Answers
+@using DataModels.Questions
+@model DataModels.Survey
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WijkBeweegKaart</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <link href="~/lib/jqeury-ui/jquery-ui.css" rel="stylesheet" />
+    <script src="~/lib/jqeury-ui/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<body class="p-0" style="overflow: hidden;">
+    <nav class="navbar navbar-light" style="background-color: #F9A11B;">
+        <a class="navbar-brand" href="#">
+            <img src="~/images/WijkBeweegKaart Logo.png" alt="WijkBeweegKaart" style="height: 80px; width: 360px;" />
+        </a>
+    </nav>
+
+    <div class="container-fluid p-0">
+        <h1>@Model.Title</h1>
+        <a class="btn btn-info" asp-area="" asp-route-Name="@Model.Title" asp-controller="Dashboard" asp-action="GetExcelOverview">Download</a>
+        <div>
+            @foreach (Page page in Model.Pages)
+            {
+                <table>
+                    <tr>
+                        <th>Gebruiker</th>
+                        @foreach (Question question in page.Questions)
+                        {
+                            <th>@question.Value</th>
+                        }
+                    </tr>
+                    @foreach (Answer asnwer in page.Questions[0].Answers)
+                    {
+                        Respondant respondant = asnwer.Respondant;
+                        <tr>
+                            <td>@asnwer.Respondant.SessionId</td>
+                            @foreach (Question question in page.Questions)
+                            {
+                                foreach (Answer answer in question.Answers)
+                                {
+                                    if (answer.Respondant.SessionId == respondant.SessionId)
+                                    {
+                                        switch (question.Type)
+                                        {
+                                            case TypeEnum.GeoVraag:
+                                                var geo = answer as GeoAnswer;
+                                                <td>
+                                                    @geo.GeoData
+                                                </td>
+                                                break;
+
+                                            case TypeEnum.NummerVraag:
+                                                var number = answer as NumberAnswer;
+                                                <td>
+                                                    @number.NumberValue
+                                                </td>
+                                                break;
+
+                                            case TypeEnum.SliderVraag:
+                                                var slider = answer as NumberAnswer;
+                                                <td>
+                                                    @slider.NumberValue
+                                                </td>
+                                                break;
+
+                                            case TypeEnum.OpenVraag:
+                                                var open = answer as TextAnswer;
+                                                <td>
+                                                    @open.TextValue
+                                                </td>
+                                                break;
+
+                                            case TypeEnum.MeerkeuzeVraag:
+                                                var multipleChoiceAnswer = answer as MultipleChoiceAnswer;
+                                                <td>
+                                                    @string.Join(" ", multipleChoiceAnswer.AnsweredOptions.Select(t => t.Value));
+                                                </td>
+                                                break;
+                                        }
+                                    }
+                                }
+                            }
+                        </tr>
+                    }
+                </table>
+            }
+        </div>
+    </div>
+</body>
+</html>
