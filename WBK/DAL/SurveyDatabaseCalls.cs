@@ -76,7 +76,7 @@ namespace DAL
                     List<MySqlParameter> parametersMCQuestion = new List<MySqlParameter>
                     {
                         new MySqlParameter("@pQuestionId", multipleChoiceQuestionId),
-                        new MySqlParameter("@pMultipleAnswers", question.AllowMutlipleAnwsers)
+                        new MySqlParameter("@pMultipleAnswers", question.MaximumNumberOfAnswers)
                     };
 
                     int? optionId = _databaseCalls.CommandWithLastId(queryMCQuestion, parametersMCQuestion);
@@ -87,7 +87,7 @@ namespace DAL
                         List<MySqlParameter> parametersOption= new List<MySqlParameter>
                         {
                             new MySqlParameter("@pMCQuestionId", optionId),
-                            new MySqlParameter("@pValue", option.Value),
+                            new MySqlParameter("@pValue", option.Answer),
                             new MySqlParameter("@pDesc", option.Description),
                             new MySqlParameter("@pImageUrl", option.ImageUrl)
                         };
@@ -174,6 +174,7 @@ namespace DAL
             result.DateOfCreation = Convert.ToDateTime(rowSurvey[3]);
             result.Owner = rowSurvey[4].ToString();
             result.EndDate = Convert.ToDateTime(rowSurvey[5]);
+            result.ImageUrl = rowSurvey[6].ToString();
             result.Pages = new List<Page>();
 
             string queryPage = "SELECT * FROM `page` WHERE page.SurveyId = @pId";
@@ -262,7 +263,7 @@ namespace DAL
                                 Description = rowQuestion[2].ToString(),
                                 Category = (CategoryEnum)Convert.ToInt32(rowQuestion[5]),
                                 Type = questionType,
-                                AllowMutlipleAnwsers = Convert.ToBoolean(rowMultipleChoice[2]),
+                                MaximumNumberOfAnswers = Convert.ToInt32(rowMultipleChoice[2]),
                                 Options = new List<MultipleChoiceOption>(),
                                 ImageUrl = rowQuestion[6].ToString(),
                                 Attribute = rowQuestion[7].ToString()
@@ -419,7 +420,7 @@ namespace DAL
 
                             foreach (MultipleChoiceOption option in answer.AnsweredOptions)
                             {
-                                int optionid = (int)GetMultipleChoiceOptionId((int)GetMultipleChoiceQuestionId(questionId), option.Value);
+                                int optionid = (int)GetMultipleChoiceOptionId((int)GetMultipleChoiceQuestionId(questionId), option.Answer);
                                 string queryMultipleChoice = "INSERT INTO `multiplechoiceanswer`(`MultipleChoiceOptionId`, `AnswerId`) VALUES (@pMPOptionId, @pAnswerId)";
                                 List<MySqlParameter> parametersMultipleChoice = new List<MySqlParameter>
                                 {

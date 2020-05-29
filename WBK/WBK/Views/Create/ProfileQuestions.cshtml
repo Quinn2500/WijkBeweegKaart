@@ -22,6 +22,8 @@
         <option value="1">Locatie</option>
         <option value="2">Gezondheid</option>
     </select>
+    <label for="QuestionCounter" style="display: none;">@(Model.QuestionId)</label>
+
 </div>
 @{ Model.QuestionId++; }
 <div class="questionDiv">
@@ -45,6 +47,7 @@
 
     <input class="form-control" readonly="readonly" data-val="true" data-val-required="The MinValue field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__MinValue" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].MinValue" type="number" value="0" />
     <input class="form-control" readonly="readonly" data-val="true" data-val-required="The MaxValue field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__MaxValue" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].MaxValue" type="number" value="110" />
+    <label for="QuestionCounter" style="display: none;">@(Model.QuestionId)</label>
 </div>
 @{ Model.QuestionId++; }
 <div class="questionDiv">
@@ -66,6 +69,7 @@
         <option value="1">Locatie</option>
         <option value="2">Gezondheid</option>
     </select>
+    <label for="QuestionCounter" style="display: none;">@(Model.QuestionId)</label>
 </div>
 @{ Model.QuestionId++; }
 <div class="questionDiv">
@@ -103,6 +107,7 @@
         </div>
 
     </div>
+    <label for="QuestionCounter" style="display: none;">@(Model.QuestionId)</label>
 </div>
 @{ Model.QuestionId++; }
 <div class="questionDiv">
@@ -158,6 +163,7 @@
         </div>
 
     </div>
+    <label for="QuestionCounter" style="display: none;">@(Model.QuestionId)</label>
 </div>
 @{ Model.QuestionId++; }
 <div class="questionDiv">
@@ -195,4 +201,5 @@
         </div>
 
     </div>
+    <label for="QuestionCounter" style="display: none;">@(Model.QuestionId)</label>
 </div>

@@ -91,7 +91,7 @@
                                             case TypeEnum.MeerkeuzeVraag:
                                                 var multipleChoiceAnswer = answer as MultipleChoiceAnswer;
                                                 <td>
-                                                    @string.Join(" ", multipleChoiceAnswer.AnsweredOptions.Select(t => t.Value));
+                                                    @string.Join(" ", multipleChoiceAnswer.AnsweredOptions.Select(t => t.Answer));
                                                 </td>
                                                 break;
                                         }

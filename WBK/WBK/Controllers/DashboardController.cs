@@ -104,7 +104,7 @@ namespace WBK.Controllers
 
                                         case TypeEnum.MeerkeuzeVraag:
                                             var multipleChoiceAnswer = answer as MultipleChoiceAnswer;
-                                                row.CreateCell(j).SetCellValue(string.Join(" ", multipleChoiceAnswer.AnsweredOptions.Select(t => t.Value)));
+                                                row.CreateCell(j).SetCellValue(string.Join(" ", multipleChoiceAnswer.AnsweredOptions.Select(t => t.Answer)));
                                             break;
                                     }
                                 }

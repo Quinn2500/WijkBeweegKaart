@@ -6,7 +6,7 @@ namespace DataModels.Questions
 {
     public class MultipleChoiceQuestion : Question
     {
-        public bool AllowMutlipleAnwsers { get; set; }
+        public int MaximumNumberOfAnswers { get; set; }
         public List<MultipleChoiceOption> Options { get; set; }
     }
 }

@@ -92,13 +92,13 @@ namespace WBK.Controllers
                             switch (question.Attribute)
                             {
                                 case "gender":
-                                    respondant.Gender = (GenderEnum)Enum.Parse(typeof(GenderEnum), answer[0].Value); 
+                                    respondant.Gender = (GenderEnum)Enum.Parse(typeof(GenderEnum), answer[0].Answer); 
                                     break;
                                 case "profile":
-                                    respondant.Profile = (ProfileEnum)Enum.Parse(typeof(ProfileEnum), answer[0].Value);
+                                    respondant.Profile = (ProfileEnum)Enum.Parse(typeof(ProfileEnum), answer[0].Answer);
                                     break;
                                 case "restrained":
-                                    respondant.Restrained = answer[0].Value.Equals("Ja");
+                                    respondant.Restrained = answer[0].Answer.Equals("Ja");
                                     break;
                             }
                             question.Answers[0] = new MultipleChoiceAnswer { AnsweredOptions = answer };
@@ -120,6 +120,7 @@ namespace WBK.Controllers
             {
                 Title = survey.Title,
                 Description = survey.Description,
+                ImageUrl = survey.ImageUrl,
                 EndDate = survey.EndDate.ToShortDateString(),
                 PagesList = new List<PageViewModel>()
             };
@@ -130,6 +131,7 @@ namespace WBK.Controllers
                 {
                     Description = page.Description,
                     Title = page.Title,
+                    ImageUrl = page.ImageUrl,
                     Questions = new List<QuestionViewModel>()
                 };
 
@@ -139,6 +141,7 @@ namespace WBK.Controllers
                     {
                         Title = question.Value,
                         Description = question.Description,
+                        ImageUrl = question.ImageUrl,
                         Category = question.Category,
                         Type = question.Type,
                         GeoType = question.TypeOfMarker,
@@ -163,6 +166,7 @@ namespace WBK.Controllers
                     {
                         Title = question.Value,
                         Description = question.Description,
+                        ImageUrl = question.ImageUrl,
                         Category = question.Category,
                         Type = question.Type
                     };
@@ -175,16 +179,17 @@ namespace WBK.Controllers
                     {
                         Title = question.Value,
                         Description = question.Description,
+                        ImageUrl = question.ImageUrl,
                         Category = question.Category,
                         Type = question.Type,
-                        AllowMultipleAnswers = question.AllowMutlipleAnwsers,
+                        MaximumNumberOfAnswers = question.MaximumNumberOfAnswers,
                         Options = new List<MultipleChoiceOptionViewModel>()
                     };
                     foreach (MultipleChoiceOption option in question.Options)
                     {
                         MultipleChoiceOptionViewModel optionViewModel = new MultipleChoiceOptionViewModel
                         {
-                            Answer = option.Value,
+                            Answer = option.Answer,
                             Description = option.Description,
                             ImageUrl = option.ImageUrl
                            
@@ -199,6 +204,7 @@ namespace WBK.Controllers
                     QuestionViewModel questionView = new QuestionViewModel
                     {
                         Title = question.Value,
+                        ImageUrl = question.ImageUrl,
                         Description = question.Description,
                         Category = question.Category,
                         Type = question.Type,
@@ -214,6 +220,7 @@ namespace WBK.Controllers
                     QuestionViewModel questionView = new QuestionViewModel
                     {
                         Title = question.Value,
+                        ImageUrl = question.ImageUrl,
                         Description = question.Description,
                         Category = question.Category,
                         Type = question.Type,
@@ -221,17 +228,6 @@ namespace WBK.Controllers
                         MaxValue = question.Maximum
                     };
                     pageViewModel.Questions.Add(questionView);
-                }
-
-                for (int i = 0; i < pageViewModel.Questions.Count ; i++)
-                {
-                    QuestionViewModel question = pageViewModel.Questions[i];
-                    if (!string.IsNullOrEmpty(question.StartLocationLat))
-                    {
-                        QuestionViewModel firstQuestion = pageViewModel.Questions[i];
-                        pageViewModel.Questions[i] = pageViewModel.Questions[0];
-                        pageViewModel.Questions[0] = firstQuestion;
-                    }
                 }
 
                 viewModel.PagesList.Add(pageViewModel);

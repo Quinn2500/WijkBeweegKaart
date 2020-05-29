@@ -73,14 +73,14 @@ namespace WBK.Controllers
                             Description = question.Description,
                             Category = question.Category,
                             Type = question.Type,
-                            AllowMultipleAnswers = question.AllowMutlipleAnwsers,
+                            MaximumNumberOfAnswers = question.MaximumNumberOfAnswers,
                             Options = new List<MultipleChoiceOptionViewModel>()
                         };
                         foreach (MultipleChoiceOption option in question.Options)
                         {
                             MultipleChoiceOptionViewModel optionViewModel = new MultipleChoiceOptionViewModel
                             {
-                                Answer = option.Value,
+                                Answer = option.Answer,
                                 Description = option.Description
                             };
                             questionView.Options.Add(optionViewModel);
@@ -233,7 +233,7 @@ namespace WBK.Controllers
                                     Category = questionView.Category,
                                     Type = questionView.Type,
                                     ImageUrl = questionView.ImageUrl,
-                                    AllowMutlipleAnwsers = questionView.AllowMultipleAnswers,
+                                    MaximumNumberOfAnswers = questionView.MaximumNumberOfAnswers,
                                     Options = new List<MultipleChoiceOption>(),
                                     Attribute = questionView.Attribute
                                 };
@@ -330,7 +330,8 @@ namespace WBK.Controllers
             PageQuestionModel model = new PageQuestionModel
             {
                 PageId = pageId,
-                QuestionId = questionId
+                QuestionId = questionId,
+                OptionId = 0
             };
             return View(model);
         }

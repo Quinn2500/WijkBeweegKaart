@@ -69,7 +69,7 @@
                         <div class="pageText w-50" style="margin-left: 25%">
 
                             <h2>@pageView.Title</h2>
-                            @if (pageView.ImageUrl != null)
+                            @if (!string.IsNullOrEmpty(pageView.ImageUrl))
                             {
                                 <img src="@pageView.ImageUrl" width="400" height="400" style="object-fit: none;"/>
                             }
@@ -84,7 +84,7 @@
                         <div class="question">
                             @{ QuestionViewModel questionView = pageView.Questions[j]; }
                             <h3 name="name">@questionView.Title</h3>
-                            @if (questionView.ImageUrl != null)
+                            @if (!string.IsNullOrEmpty(questionView.ImageUrl))
                             {
                                 <img src="@questionView.ImageUrl" width="400" height="400" style="object-fit: none;" />
                             }
@@ -103,13 +103,11 @@
                                     @Html.TextBoxFor(x => x.PagesList[i].Questions[j].NumberAnswer, new { type = "number", min = Model.PagesList[i].Questions[j].MinValue, max = Model.PagesList[i].Questions[j].MaxValue, @class = "form-control" })
                                     break;
                                 case TypeEnum.MeerkeuzeVraag:
-                                    if (Model.PagesList[i].Questions[j].AllowMultipleAnswers)
-                                    {
-                                        <div class="multipleChoiceList">
+                                    <div class="multipleChoiceList">
                                         @for (int q = 0; q < Model.PagesList[i].Questions[j].Options.Count; q++)
                                         {
                                             <div class="multipleChoiceElement">
-                                                @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].Options[q].Selected)
+                                                @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].Options[q].Selected, new {@class = "multipleChoice"+j })
                                                 <label>@Model.PagesList[i].Questions[j].Options[q].Answer</label>
                                                 @if (!string.IsNullOrEmpty(Model.PagesList[i].Questions[j].Options[q].ImageUrl))
                                                 {
@@ -117,26 +115,29 @@
                                                 }
                                                 <p>@Model.PagesList[i].Questions[j].Options[q].Description</p>
                                             </div>
-                                         }
-                                        </div>
-                                    }
-                                    else
-                                    {
-                                        <div class="oneChecboxDiv multipleChoiceList">
-                                            @for (int q = 0; q < Model.PagesList[i].Questions[j].Options.Count; q++)
-                                            {
-                                                <div class="multipleChoiceElement">
-                                                    @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].Options[q].Selected)
-                                                    <label>@Model.PagesList[i].Questions[j].Options[q].Answer</label>
-                                                    @if (!string.IsNullOrEmpty(Model.PagesList[i].Questions[j].Options[q].ImageUrl))
-                                                    {
-                                                        <img src="@Model.PagesList[i].Questions[j].Options[q].ImageUrl" width="150" height="150" style="object-fit: none;" />
+                                        }
+                                    </div>
+                                    <script>
+                                        $('.multipleChoice'+@j).on('change', function(){
+                                            var noChecked = 0;
+                                            $.each($('.multipleChoice'+@j), function(){
+                                                if($(this).is(':checked')){
+                                                    noChecked++;    
+                                                }
+                                            });
+                                            if(noChecked >= @Model.PagesList[i].Questions[j].MaximumNumberOfAnswers){
+                                                $.each($('.multipleChoice'+@j), function(){
+                                                    if($(this).not(':checked').length == 1){
+                                                        $(this).attr('disabled','disabled');    
                                                     }
-                                                    <p>@Model.PagesList[i].Questions[j].Options[q].Description</p>
-                                                </div>
-                                            }
-                                        </div>
-                                    }
+                                                });
+                                            }else{
+                                                $('.multipleChoice'+@j).removeAttr('disabled');    
+                                            };
+                                        });
+                                    </script>
+
+
                                     break;
                                 case TypeEnum.GeoVraag:
 
@@ -384,20 +385,6 @@
             return false;
         });
 
-        $('.oneChecboxDiv div input[type="checkbox"]').on('change', function () {
-            $(this).siblings('.oneChecboxDiv div input[type="checkbox"]').not(this).prop('checked', false);
-        });
-
-        $(function () {
-            var requiredCheckboxes = $('.oneChecboxDiv input:checkbox[required]');
-            requiredCheckboxes.change(function () {
-                if (requiredCheckboxes.is(':checked')) {
-                    requiredCheckboxes.removeAttr('required');
-                } else {
-                    requiredCheckboxes.attr('required', 'required');
-                }
-            });
-        });
  
 
     });

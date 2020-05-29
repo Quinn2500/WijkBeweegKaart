@@ -27,7 +27,7 @@
     </div>
 
     <input class="form-control" required id="PagesList_@(Model.PageId)__Title" name="PagesList[@(Model.PageId)].Title" type="text" value="" placeholder="Pagina Titel " />
-    <input class="form-control" required id="PagesList_@(Model.PageId)__ImageUrl" name="PagesList[@(Model.PageId)].ImageUrl" type="text" value="" placeholder="Pagina Foto URL " />
+    <input class="form-control" id="PagesList_@(Model.PageId)__ImageUrl" name="PagesList[@(Model.PageId)].ImageUrl" type="text" value="" placeholder="Pagina Foto URL " />
     <textarea class="form-control" id="PagesList_@(Model.PageId)__Description" name="PagesList[@(Model.PageId)].Description" type="text" value="" placeholder="Pagina Beschrijving" rows="5" cols="40"></textarea>
 
     <label for="PageCounter" style="display: none;">@(Model.PageId)</label>
@@ -64,6 +64,10 @@
                 <option value="5">Product</option>
             </select>
             <label for="QuestionCounter" style="display: none;">@(Model.QuestionId)</label>
+            
+            <div class="question">
+
+            </div>
         </div>
 
     </div>

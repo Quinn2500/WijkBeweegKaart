@@ -27,6 +27,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <script src="https://cdn-geoweb.s3.amazonaws.com/esri-leaflet/0.0.1-beta.5/esri-leaflet.js"></script>
+    <script src="https://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.5/esri-leaflet-geocoder.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.5/esri-leaflet-geocoder.css">
+
 </head>
 
 <body class="p-0">
@@ -150,7 +154,7 @@
                                                         ;
                                                         break;
                                                     case TypeEnum.MeerkeuzeVraag:
-                                                        @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].AllowMultipleAnswers, new {@class = "form-check", style = ""})
+                                                        @Html.EditorFor(x => x.PagesList[i].Questions[j].MaximumNumberOfAnswers, new {@class = "form-check", style = ""})
                                                         ;
 
                                                         for (int q = 0; q < Model.PagesList[i].Questions[j].Options.Count; q++)
@@ -222,6 +226,7 @@
                     if (this.id.includes("Type")) {
                         var parentDiv = $(this).parent();
                         parentDiv.children('.question').empty();
+                        console.log($(this));
                         var str = this.id;
                         var indexOfPage = str.indexOf("t_");
                         var indexOfQeustions = str.indexOf("s_");
@@ -242,7 +247,7 @@
                             break;
                         case 1:
                             url =
-                                '@Url.Action("MultipleChoiceQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS", optionId = "0"})';
+                                '@Url.Action("MultipleChoiceQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
                             appendToDiv(parentDiv.children('.question'), url, pageNumber, questionNumber);
                             break;
                         case 3:
@@ -352,7 +357,7 @@
                     x--; 
                     var i;
                     var pages = $('.pageDiv').toArray();
-                    var counters = $('.pageDiv label[for=PageCounter]').toArray();
+                    var counters = $('.pageDiv label[for=PageCounter]').toArray();                
                     for (i = 0; i < pages.length; i++) {
                         var children = pages[i].children;
                         for (j = 0; j < children.length; j++) {
@@ -361,9 +366,9 @@
                             case "H3":
                                 child.innerHTML = "Pagina " + i;
                                 break;
-                            case "INPUT":
-                                child.id = child.id.replace("PagesList_" + counters[i].innerHTML, "PagesList_" + i);
-                                child.name = child.name.replace("PagesList[" + counters[i].innerHTML + "]",
+                                case "INPUT":
+                                    child.id = child.id.replace("PagesList_" + counters[i].innerHTML, "PagesList_" + i);
+                                    child.name = child.name.replace("PagesList[" + counters[i].innerHTML + "]",
                                     "PagesList[" + i + "]");
                                 break;
                             case "LABEL":
@@ -374,8 +379,6 @@
                         }
                     };
                     $("#AddMoreFileId").show();
-                    // Adds the "add" link again when a field is removed.
-                    $('AddMoreFileBox').html("Add field");
                 }
                 return false;
             });
@@ -403,14 +406,14 @@
                     var questions = questionsWrapper.children();
                     for (q = 0; q < questions.length; q++) {
                         var children = questions[q].children;
-                        var oldNumber = children[5].innerHTML;
+                        var oldNumber = $(questions[q]).children("label")[0].innerHTML;
                         for (j = 0; j < children.length; j++) {
                             var child = children[j];
                             switch (child.tagName) {
                             case "H3":
                                 child.innerHTML = "Vraag " + (q+1);
                                 break;
-                            case "INPUT":
+                                case "INPUT":
                                 child.id = child.id.replace("Questions_" + oldNumber, "Questions_" + q);
                                 child.name = child.name.replace("Questions[" + oldNumber + "]", "Questions[" + q + "]");
                                 break;
@@ -436,7 +439,7 @@
                 var wrapper = $(this).parent().parent().children()[0];
                 var numberOfOptions = $(wrapper).children(".MCOption").length;
                 var pageNumber = $("#InputsWrapper").children(".pageDiv").length - 1;
-                var currentQuestionCount = parseInt($(this).parent().parent().parent().parent().children()[7].innerHTML);
+                var currentQuestionCount = parseInt($(this).parent().parent().parent().parent().children("label")[0].innerHTML);
 
                 var url = '@Url.Action("MultipleChoiceOption","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS", optionId="optionNumberJS"})';
                 appendToDiv(wrapper, url, pageNumber, currentQuestionCount, numberOfOptions);
