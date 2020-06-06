@@ -1,0 +1,308 @@
+﻿
+@{
+    ViewData["Title"] = "AllAnswers";
+    Layout = null;
+}
+
+@using DataModels
+@using DataModels.Answers
+@using DataModels.Questions
+@model DataModels.Survey
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WijkBeweegKaart</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <link href="~/lib/jqeury-ui/jquery-ui.css" rel="stylesheet" />
+    <script src="~/lib/jqeury-ui/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    </environment>
+
+</head>
+
+<body class="p-0" style="overflow: hidden;">
+    <nav class="navbar navbar-light" style="background-color: #F9A11B;">
+        <a class="navbar-brand" href="#">
+            <img src="~/images/WijkBeweegKaart Logo.png" alt="WijkBeweegKaart" style="height: 80px; width: 360px;" />
+        </a>
+    </nav>
+
+    <div class="container-fluid p-0">
+        <h1>@Model.Title</h1>
+
+        <div class="row">
+            <div id="map" style="width: 1500px; height: 600px; float: left;"></div>
+            <div style="float: left; margin-left: 10px;">
+                @foreach (Page pageView in Model.Pages)
+                {
+                    <h3>@pageView.Title</h3>
+                    <dl>
+                        @foreach (Question question in pageView.Questions)
+                        {
+                            <dd>
+                                <input type="checkbox" id="@question.Id" name="@question.Type.ToString()" value="@question.Value">
+                                <label for="@question.Id"> @question.Value</label>
+                            </dd>
+                            if (question.Type == TypeEnum.GeoVraag)
+                            {
+                                var geoQuestion = question as GeoQuestion;
+                                <script>
+                                    var geoArray@(question.Id) = [];
+                                </script>
+                                foreach (Answer answer in question.Answers)
+                                {
+                                    var geoAnswer = answer as GeoAnswer;
+                                    switch (geoQuestion.TypeOfMarker)
+                                    {
+                                        case GeoTypeEnum.Marker:
+                                            <script>
+                                                $(document).ready(function () {
+                                                    var marker = L.marker(@geoAnswer.GeoData).on('click', function (e) {
+                                                        highlightUser("@(answer.Respondant.SessionId)");
+                                                    });
+                                                    geoArray@(question.Id).push(marker);
+                                                });
+                                            </script>
+                                            break;
+
+                                        case GeoTypeEnum.Vlak:
+                                            <script>
+                                              $(document).ready(function () {
+                                                  var polygon = L.polygon(@geoAnswer.GeoData).on('click', function (e) {
+                                                      highlightUser("@(answer.Respondant.SessionId)");
+                                                  });
+                                                  geoArray@(question.Id).push(polygon);
+                                              });
+                                            </script>
+                                            break;
+
+                                        case GeoTypeEnum.Lijn:
+                                            <script>
+                                                $(document).ready(function () {
+                                                    var polyline = L.polyline(@geoAnswer.GeoData).on('click', function (e) {
+                                                        highlightUser("@(answer.Respondant.SessionId)");
+                                                    });
+                                                    geoArray@(question.Id).push(polyline);
+                                                });
+                                            </script>
+                                            break;
+                                    }
+                                }
+                            }
+                            
+                        }
+                    </dl>
+
+                }
+            </div>
+        </div>
+
+        <div class="row" style="margin-left: 0;">
+            @foreach (Page pageView in Model.Pages)
+            {
+                if (Model.Pages.First() == pageView)
+                {
+                    <table id="first" style="border: 1px solid black;">
+                        <tr>
+                            <th>
+                                @pageView.Title
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>Gebruiker</th>
+                            @foreach (Question question in pageView.Questions)
+                            {
+                                <th class="table@(question.Id)">@question.Value</th>
+                            }
+                        </tr>
+                        @foreach (Answer asnwer in pageView.Questions[0].Answers)
+                        {
+                            Respondant respondant = asnwer.Respondant;
+                            <tr>
+                                @if (Model.Pages.First() == pageView)
+                                {
+                                    <td style="border: 1px solid black;">@asnwer.Respondant.SessionId</td>
+                                }
+                                @foreach (Question question in pageView.Questions)
+                                {
+                                    foreach (Answer answer in question.Answers)
+                                    {
+                                        if (answer.Respondant.SessionId == respondant.SessionId)
+                                        {
+                                            
+                                           <td class="table@(question.Id)" style="border: 1px solid black;">
+                                           @switch (question.Type)
+                                            {
+                                                case TypeEnum.NummerVraag:
+                                                    var number = answer as NumberAnswer;                                                  
+                                                        @number.NumberValue
+                                                    break;
+
+                                                case TypeEnum.SliderVraag:
+                                                    var slider = answer as NumberAnswer;
+                                                        @slider.NumberValue
+                                                    break;
+
+                                                case TypeEnum.GeoVraag:
+                                                     <p>Zie Map</p>
+                                                    break;
+
+                                                case TypeEnum.OpenVraag:
+                                                    var open = answer as TextAnswer;
+                                                        @open.TextValue   
+                                                    break;
+
+                                                case TypeEnum.MeerkeuzeVraag:
+                                                    var multipleChoiceAnswer = answer as MultipleChoiceAnswer;
+                                                        @string.Join(" ", multipleChoiceAnswer.AnsweredOptions.Select(t => t.Answer));
+                                                    break;
+                                            }
+                                           </td>
+                                        }
+                                    }
+                                }
+                            </tr>
+                        }
+                    </table>
+                }
+                else
+                {
+                    <table id="@pageView.Id" style="border: 1px solid black;">
+                        <tr>
+                            <th>
+                                @pageView.Title
+                            </th>
+                        </tr>
+                        <tr>
+                            @foreach (Question question in pageView.Questions)
+                            {
+                                <th class="table@(question.Id)">@question.Value</th>
+                            }
+                        </tr>
+                        @foreach (Answer asnwer in pageView.Questions[0].Answers)
+                        {
+                            Respondant respondant = asnwer.Respondant;
+                            <tr>
+                                @if (Model.Pages.First() == pageView)
+                                {
+                                    <td style="border: 1px solid black;">@asnwer.Respondant.SessionId</td>
+                                }
+                                @foreach (Question question in pageView.Questions)
+                                {
+                                    foreach (Answer answer in question.Answers)
+                                    {
+                                        if (answer.Respondant.SessionId == respondant.SessionId)
+                                        {
+                                            <td class="table@(question.Id)" style="border: 1px solid black;">
+                                                @switch (question.Type)
+                                                {
+                                                    case TypeEnum.NummerVraag:
+                                                        var number = answer as NumberAnswer;                                                  
+                                                        @number.NumberValue
+                                                        break;
+
+                                                    case TypeEnum.SliderVraag:
+                                                        var slider = answer as NumberAnswer;
+                                                        @slider.NumberValue
+                                                        break;
+
+                                                    case TypeEnum.GeoVraag:
+                                                        <p>Zie Map</p>
+                                                        break;
+
+                                                    case TypeEnum.OpenVraag:
+                                                        var open = answer as TextAnswer;
+                                                        @open.TextValue   
+                                                        break;
+
+                                                    case TypeEnum.MeerkeuzeVraag:
+                                                        var multipleChoiceAnswer = answer as MultipleChoiceAnswer;
+                                                        @string.Join(" ", multipleChoiceAnswer.AnsweredOptions.Select(t => t.Answer));
+                                                        break;
+                                                }
+                                            </td>
+                                            }
+                                        }
+                                    }  
+                            </tr>
+                        }
+                    </table>
+                }
+            }
+        </div>
+    </div>
+
+    <script>
+        var map = L.map('map').setView([51.47358, 5.453167], 13);
+        var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        $('input[type="checkbox"]').change(function (event) {
+            var questionId = $(this).attr('id');
+            var type = $(this).attr('name');
+            if (type == "GeoVraag") {
+                if ($(this).is(":checked")) {
+                    window["geoArray" + questionId].forEach(addLayer);
+                } else {
+                    window["geoArray" + questionId].forEach(removelayer);
+                }
+            } else {
+                if ($(this).is(":checked")) {
+                    $('.table' + questionId).show();
+                } else {
+                    $('.table' + questionId).hide();
+                }
+            }
+        });
+
+        function highlightUser(sessionId) {
+            var rowIndex = 0;
+            $('#first tr').each(function() {
+                var respondantId = $(this).find("td").eq(0).html();
+                if (respondantId == sessionId) {
+                    rowIndex = $(this).index();
+                    console.log(rowIndex);
+                }
+            });
+                                                            
+            $('tr').each(function () {
+                if ($(this).index() == rowIndex) {
+                    $(this).css("backgroundColor", "yellow");
+                } else {
+                    $(this).css("backgroundColor", "transparent");
+                }
+
+            });
+        }
+
+
+        $('td').click(function() {
+            alert($(this).text());
+        });
+        
+
+        function removelayer(layer, index) {
+            map.removeLayer(layer);
+        }
+
+        function addLayer(layer, index) {
+            map.addLayer(layer);
+        }
+    </script>
+
+</body>
+</html>
+

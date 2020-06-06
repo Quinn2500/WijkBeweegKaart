@@ -41,7 +41,10 @@
             {
                 <table>
                     <tr>
-                        <th>Gebruiker</th>
+                        @if (Model.Pages.First() == page)
+                        {
+                            <th>Gebruiker</th>
+                        }
                         @foreach (Question question in page.Questions)
                         {
                             <th>@question.Value</th>
@@ -51,7 +54,10 @@
                     {
                         Respondant respondant = asnwer.Respondant;
                         <tr>
-                            <td>@asnwer.Respondant.SessionId</td>
+                            @if (Model.Pages.First() == page)
+                            {
+                                <td>@asnwer.Respondant.SessionId</td>
+                            }>
                             @foreach (Question question in page.Questions)
                             {
                                 foreach (Answer answer in question.Answers)

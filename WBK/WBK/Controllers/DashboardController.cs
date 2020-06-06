@@ -43,7 +43,7 @@ namespace WBK.Controllers
         {
             Survey survey = _logic.GetSurveyWithAllAnswers(name);
             string sWebRootFolder = _hostingEnvironment.WebRootPath;
-            string sFileName = @"Overzicht Certificaat " + ".xlsx";
+            string sFileName = @"Antwoorden "+ name +".xlsx";
             string URL = string.Format("{0}://{1}/{2}", Request.Scheme, Request.Host, sFileName);
             FileInfo file = new FileInfo(Path.Combine(sWebRootFolder, sFileName));
             var memory = new MemoryStream();
@@ -57,7 +57,7 @@ namespace WBK.Controllers
 
                 IRow row1 = excelSheet.CreateRow(0);
                 IRow row2 = excelSheet.CreateRow(1);
-                row2.CreateCell(0).SetCellValue("Gebruiker");
+                row2.CreateCell(0).SetCellValue("Respondent");
                 IRow row = excelSheet.CreateRow(2);              
                 foreach (Page page in survey.Pages)
                 {
@@ -125,6 +125,13 @@ namespace WBK.Controllers
             }
             memory.Position = 0;
             return File(memory, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", sFileName);
+        }
+
+        [HttpGet]
+        public IActionResult AnalyseGeoAnswers(string surveyTitle)
+        {
+            Survey model = _logic.GetSurveyWithAllAnswers(surveyTitle);
+            return View(model);
         }
     }
 }

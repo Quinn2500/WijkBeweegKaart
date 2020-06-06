@@ -459,14 +459,6 @@ namespace DAL
 
             }
 
-            string queryRespondantToSurvey = "INSERT INTO `respondanttosurvey`(`SurveyId`, `RespondantId`) VALUES (@pSurveyId,@pRespondantId)";
-            List<MySqlParameter> parametersRespondatToSurvey = new List<MySqlParameter>
-            {
-                new MySqlParameter("@pSurveyId", surveyId),
-                new MySqlParameter("@pRespondantId", respondantId)
-            };
-            _databaseCalls.Command(queryRespondantToSurvey, parametersRespondatToSurvey);
-
         }
 
         public int? GetRespondentId(string respondantSessionId)
@@ -566,10 +558,10 @@ namespace DAL
 
                     foreach (DataRow rowQuestion in _databaseCalls.Select(queryAnswers, parametersAnswers).Rows)
                     {
-                        string test = rowQuestion[0].ToString();
+                        int answerId = Convert.ToInt32(rowQuestion[0].ToString());
                         List<MySqlParameter> answerIdParameter = new List<MySqlParameter>
                         {
-                            new MySqlParameter("@pAnswerId", Convert.ToInt32(test)),
+                            new MySqlParameter("@pAnswerId", answerId),
                         };
 
                         Respondant respondant = GetRespondant(Convert.ToInt32(rowQuestion[2]));
@@ -584,7 +576,8 @@ namespace DAL
                                 GeoAnswer answer = new GeoAnswer
                                 {
                                     GeoData = rowAnswer[0].ToString(),
-                                    Respondant = respondant
+                                    Respondant = respondant,
+                                    Id = answerId
 
                                 };
 
@@ -599,7 +592,8 @@ namespace DAL
                                 TextAnswer answerOpen = new TextAnswer
                                 {
                                     TextValue = rowAnswerOpen[0].ToString(),
-                                    Respondant = respondant
+                                    Respondant = respondant,
+                                    Id = answerId
 
                                 };
                                 question.Answers.Add(answerOpen);
@@ -610,7 +604,8 @@ namespace DAL
                                 MultipleChoiceAnswer answerMultipleChoice = new MultipleChoiceAnswer
                                 {
                                     Respondant = respondant,
-                                    AnsweredOptions = new List<MultipleChoiceOption>()
+                                    AnsweredOptions = new List<MultipleChoiceOption>(),
+                                    Id = answerId
 
 
                                 };
@@ -637,7 +632,8 @@ namespace DAL
                                 NumberAnswer answerSlider = new NumberAnswer
                                 {
                                     NumberValue = Convert.ToInt32(rowAnswerSlider[0]),
-                                    Respondant = respondant
+                                    Respondant = respondant,
+                                    Id = answerId
 
                                 };
                                 question.Answers.Add(answerSlider);
@@ -651,7 +647,8 @@ namespace DAL
                                 NumberAnswer answerNumber = new NumberAnswer
                                 {
                                     NumberValue = Convert.ToInt32(rowAnswerNumber[0]),
-                                    Respondant = respondant
+                                    Respondant = respondant,
+                                    Id = answerId
 
                                 };
                                 question.Answers.Add(answerNumber);

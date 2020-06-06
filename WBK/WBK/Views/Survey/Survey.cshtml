@@ -155,6 +155,7 @@
                                                     break;
                                                 case GeoTypeEnum.Vlak:
                                                     <button type="button" class="btn btn-primary btn-sm  drawPolygon">Teken Vlak</button>
+                                                    <button type="button" class="btn btn-primary btn-sm  finishPolygon">Maak af</button>
                                                     <button type="button" class="btn btn-danger btn-sm  cancelPolygon">Cancel Vlak</button>
                                                     break;
                                             }
@@ -191,17 +192,26 @@
                                                 var type = e.layerType,
                                                     layer = e.layer;
                                                 layer.bindPopup('<button class="btn btn-warning" type="button" onclick="editMapItem( ' + questionId + ')" >Plaats Opnieuw!</button>');
+
                                                 switch (type) {
-                                                case "marker":
-                                                    geoAnswer = layer.getLatLng();
+                                                    case "marker":
+                                                        var latlng = [];
+                                                        latlng[0] = layer.getLatLng().lat;
+                                                        latlng[1] = layer.getLatLng().lng;
+                                                        geoAnswer = JSON.stringify(latlng);
                                                     break;
-                                                case "polyline":
-                                                    geoAnswer = layer.getLatLngs();
+                                                    case "polyline":
+                                                        geoAnswer = JSON.stringify(layer.getLatLngs().map(function(point) {
+                                                            return [point.lat, point.lng];
+                                                        }));
                                                     break;
-                                                case "polygon":
-                                                    geoAnswer = layer.getLatLngs();
+                                                   case "polygon":
+                                                        geoAnswer = JSON.stringify(layer.getLatLngs()[0].map(function (point) {
+                                                        return [point.lat, point.lng];
+                                                    }));
                                                     break;
                                                 }
+                                                console.log(geoAnswer);
                                                 isDrawing = false;
                                                 layer.addTo(map@(i));
                                                 var questionIdNumber =
@@ -334,6 +344,12 @@
         $(".cancelMarker").click(function (e) {
             var mapId = $(this).parent().attr('id').toString().split("_")[0].toString().split("page")[1];
             window["markerDrawer" + mapId].disable();
+            isDrawing = false;
+        });
+
+        $(".finishPolygon").click(function (e) {
+            var mapId = $(this).parent().attr('id').toString().split("_")[0].toString().split("page")[1];
+            window["polygonDrawer" + mapId].completeShape();
             isDrawing = false;
         });
 

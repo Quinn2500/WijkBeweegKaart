@@ -17,6 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\Dashboard\AnalyseGeoAnswers.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Dashboard\AllAnswers.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

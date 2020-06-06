@@ -27,10 +27,12 @@ namespace WBK.Controllers
         public IActionResult Survey(SurveyViewModel model)
         {
             Survey survey = _logic.GetSurvey(model.Title);
+            Random rnd = new Random();
+            int test = rnd.Next(122424124);
             Respondant respondant = new Respondant
             {
                 DateTimeOfCreation = DateTime.Now,
-                SessionId = "test"
+                SessionId = "test"+test
 
             };
             for (int i = 0; i < survey.Pages.Count; i++)
