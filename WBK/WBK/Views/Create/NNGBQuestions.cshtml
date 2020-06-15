@@ -26,7 +26,7 @@
 
     <div class=mcWrapper>
         <label>Laat meerdere antwoorden toe:</label>
-        <input class="form-control" readonly="readonly" data-val="true" data-val-required="The AllowMultipleAnswers field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__AllowMultipleAnswers" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].AllowMultipleAnswers" type="checkbox" value="false" />
+        <input readonly="readonly" style="display: inline-block;" class="form-control" data-val="true" data-val-required="The AllowMultipleAnswers field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__MaximumNumberOfAnswers" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].MaximumNumberOfAnswers" type="number" min="1" max="10" value="1"/>
         <div class="MCOption">
             <label>Antwoord:</label>
             <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_0__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[0].Answer" type="text" value="<60 min per week " />
@@ -76,7 +76,7 @@
 
     <div class=mcWrapper>
         <label>Laat meerdere antwoorden toe:</label>
-        <input class="form-control" readonly="readonly" data-val="true" data-val-required="The AllowMultipleAnswers field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__AllowMultipleAnswers" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].AllowMultipleAnswers" type="checkbox" value="false" />
+        <input readonly="readonly" style="display: inline-block;" class="form-control" data-val="true" data-val-required="The AllowMultipleAnswers field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__MaximumNumberOfAnswers" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].MaximumNumberOfAnswers" type="number" min="1" max="10" value="1" />
         <div class="MCOption">
             <label>Antwoord:</label>
             <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_0__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[0].Answer" type="text" value="Gemiddeld minder dan 1 x per week" />

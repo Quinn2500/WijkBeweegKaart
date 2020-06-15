@@ -157,6 +157,8 @@ namespace WBK.Controllers
                 {
                     foreach (QuestionViewModel questionView in pageView.Questions)
                     {
+                        questionView.Category = CategoryEnum.Algemeen;
+
                         switch (questionView.Type)
                         {
                             case TypeEnum.GeoVraag:

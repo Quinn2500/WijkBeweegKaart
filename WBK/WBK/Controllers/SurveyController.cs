@@ -27,12 +27,11 @@ namespace WBK.Controllers
         public IActionResult Survey(SurveyViewModel model)
         {
             Survey survey = _logic.GetSurvey(model.Title);
-            Random rnd = new Random();
-            int test = rnd.Next(122424124);
+            Guid guid = Guid.NewGuid();
             Respondant respondant = new Respondant
             {
                 DateTimeOfCreation = DateTime.Now,
-                SessionId = "test"+test
+                SessionId = guid.ToString()
 
             };
             for (int i = 0; i < survey.Pages.Count; i++)
@@ -99,8 +98,11 @@ namespace WBK.Controllers
                                 case "profile":
                                     respondant.Profile = (ProfileEnum)Enum.Parse(typeof(ProfileEnum), answer[0].Answer);
                                     break;
-                                case "restrained":
-                                    respondant.Restrained = answer[0].Answer.Equals("Ja");
+                                case "motivation":
+                                    respondant.Motivator =  answer[0].Answer;
+                                    break;
+                                case "reasonNot":
+                                    respondant.Restrain = answer[0].Answer;
                                     break;
                             }
                             question.Answers[0] = new MultipleChoiceAnswer { AnsweredOptions = answer };

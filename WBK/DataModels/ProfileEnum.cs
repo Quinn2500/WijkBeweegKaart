@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel.DataAnnotations;
 
 namespace DataModels
 {
@@ -9,7 +10,7 @@ namespace DataModels
         Student,
         Werkend,
         Werkloos,
-        Huismanvrouw,
+        Huismanofvrouw,
         Gepensioneerd
     }
 }

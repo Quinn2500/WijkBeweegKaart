@@ -47,6 +47,7 @@
 
     <input class="form-control" readonly="readonly" data-val="true" data-val-required="The MinValue field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__MinValue" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].MinValue" type="number" value="0" />
     <input class="form-control" readonly="readonly" data-val="true" data-val-required="The MaxValue field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__MaxValue" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].MaxValue" type="number" value="110" />
+    
     <label for="QuestionCounter" style="display: none;">@(Model.QuestionId)</label>
 </div>
 @{ Model.QuestionId++; }
@@ -93,7 +94,7 @@
 
     <div class=mcWrapper>
         <label>Laat meerdere antwoorden toe:</label>
-        <input class="form-control" readonly="readonly" data-val="true" data-val-required="The AllowMultipleAnswers field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__AllowMultipleAnswers" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].AllowMultipleAnswers" type="checkbox" value="false" />
+        <input readonly="readonly" style="display: inline-block;" class="form-control" data-val="true" data-val-required="The AllowMultipleAnswers field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__MaximumNumberOfAnswers" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].MaximumNumberOfAnswers" type="number" min="1" max="10" value="1">
         <div class="MCOption">
             <label>Antwoord:</label>
             <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_0__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[0].Answer" type="text" value="Man" />
@@ -131,10 +132,10 @@
 
     <div class=mcWrapper>
         <label>Laat meerdere antwoorden toe:</label>
-        <input class="form-control" readonly="readonly" data-val="true" data-val-required="The AllowMultipleAnswers field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__AllowMultipleAnswers" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].AllowMultipleAnswers" type="checkbox" value="false" />
+        <input readonly="readonly" style="display: inline-block;" class="form-control" data-val="true" data-val-required="The AllowMultipleAnswers field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__MaximumNumberOfAnswers" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].MaximumNumberOfAnswers" type="number" min="1" max="10" value="1"/>
         <div class="MCOption">
             <label>Antwoord:</label>
-            <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_0__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[0].Answer" type="text" value="Studerend" />
+            <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_0__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[0].Answer" type="text" value="Student" />
             <label for="OptionCounter" style="display: none;">0</label>
         </div>
 
@@ -146,7 +147,7 @@
 
         <div class="MCOption">
             <label>Antwoord:</label>
-            <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_2__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[2].Answer" type="text" value="Voor het gezin zorgen" />
+            <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_2__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[2].Answer" type="text" value="Huismanofvrouw" />
             <label for="OptionCounter" style="display: none;">2</label>
         </div>
 
@@ -187,7 +188,7 @@
 
     <div class=mcWrapper>
         <label>Laat meerdere antwoorden toe:</label>
-        <input class="form-control" readonly="readonly" data-val="true" data-val-required="The AllowMultipleAnswers field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__AllowMultipleAnswers" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].AllowMultipleAnswers" type="checkbox" value="false" />
+        <input readonly="readonly" style="display: inline-block;" class="form-control" data-val="true" data-val-required="The AllowMultipleAnswers field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__MaximumNumberOfAnswers" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].MaximumNumberOfAnswers" type="number" min="1" max="10" value="1"/>
         <div class="MCOption">
             <label>Antwoord:</label>
             <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_0__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[0].Answer" type="text" value="Ja" />

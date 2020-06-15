@@ -14,6 +14,8 @@ namespace DataModels
         public string PostCode { get; set; }
         public bool SatifiesNngb { get; set; }
         public bool DoesSport { get; set; }
-        public bool Restrained { get; set; }
+        public bool Handicapped { get; set; }
+        public string Motivator { get; set; }
+        public string Restrain { get; set; }
     }
 }
