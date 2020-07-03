@@ -4,8 +4,16 @@
 
 @model WBK.Models.Create.PageQuestionModel
 
-<div class="questionDiv">
-    <h3>Vraag @(Model.QuestionId + 1)</h3>
+<div class="nngbQuestion questionDiv">
+    <h3 style="float: left;">Vraag @(Model.QuestionId + 1)</h3>
+    <div style="float: right;" class="dropleft show">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenu_Page@(Model.PageId)_Question@(Model.QuestionId)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            =
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a style="color: red;" href="" class="nngbQuestion removeQuestionClass">Vraag verwijderen</a>
+        </div>
+    </div>
     <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_ @(Model.QuestionId)__Title " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Title" type="text" value="Hoeveel minuten per week beweegt u tenminste gemiddeld matig intensief? " />
     <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_ @(Model.QuestionId)__Description " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Description" type="text" value="(Wandelen, tuinieren/ fietsen/ actief werk etc.) " />
     <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_ @(Model.QuestionId)__Attribute " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Attribute" type="text" value="nngbMediumIntensity" hidden />
@@ -26,10 +34,10 @@
 
     <div class=mcWrapper>
         <label>Laat meerdere antwoorden toe:</label>
-        <input readonly="readonly" style="display: inline-block;" class="form-control" data-val="true" data-val-required="The AllowMultipleAnswers field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__MaximumNumberOfAnswers" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].MaximumNumberOfAnswers" type="number" min="1" max="10" value="1"/>
+        <input readonly="readonly" style="display: inline-block;" class="form-control" data-val="true" data-val-required="The AllowMultipleAnswers field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__MaximumNumberOfAnswers" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].MaximumNumberOfAnswers" type="number" min="1" max="10" value="1" />
         <div class="MCOption">
             <label>Antwoord:</label>
-            <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_0__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[0].Answer" type="text" value="<60 min per week " />
+            <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_0__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[0].Answer" type="text" value="<60 min per week" />
             <label for="OptionCounter" style="display: none;">0</label>
         </div>
 
@@ -47,15 +55,23 @@
 
         <div class="MCOption">
             <label>Antwoord:</label>
-            <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_3__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[3].Answer" type="text" value=" >150 min per week" />
+            <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_3__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[3].Answer" type="text" value=">150 min per week" />
             <label for="OptionCounter" style="display: none;">3</label>
         </div>
 
     </div>
 </div>
 @{ Model.QuestionId++; }
-<div class="questionDiv">
-    <h3>Vraag @(Model.QuestionId + 1)</h3>
+<div class="nngbQuestion questionDiv">
+    <h3 style="float: left;">Vraag @(Model.QuestionId + 1)</h3>
+    <div style="float: right;" class="dropleft show">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenu_Page@(Model.PageId)_Question@(Model.QuestionId)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            =
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a style="color: red;" href="" class="nngbQuestion removeQuestionClass">Vraag verwijderen</a>
+        </div>
+    </div>
     <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_ @(Model.QuestionId)__Title " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Title" type="text" value="Hoeveel x per week gemiddeld doet u tenminste 20 minuten aan intensieve lichaamsbeweging" />
     <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_ @(Model.QuestionId)__Description " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Description" type="text" value="(bijv. sporten) " />
     <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_ @(Model.QuestionId)__Attribute " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Attribute" type="text" value="nngbHighIntensity" hidden />

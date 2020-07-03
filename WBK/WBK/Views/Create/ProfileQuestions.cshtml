@@ -4,8 +4,16 @@
 
 @model WBK.Models.Create.PageQuestionModel
 
-<div class="questionDiv">
-    <h3>Vraag @(Model.QuestionId + 1)</h3>
+<div class="profileQuestion questionDiv">
+    <h3 style="float: left;">Vraag @(Model.QuestionId + 1)</h3>
+    <div style="float: right;" class="dropleft show">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenu_Page@(Model.PageId)_Question@(Model.QuestionId)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            =
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a style="color: red;" href="" class="profileQuestion removeQuestionClass">Vraag verwijderen</a>
+        </div>
+    </div>
     <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Title " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Title" type="text" value="Wat is uw postcode?" />
     <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Attribute " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Attribute" type="text" value="postcode" hidden />
 
@@ -26,8 +34,16 @@
 
 </div>
 @{ Model.QuestionId++; }
-<div class="questionDiv">
-    <h3>Vraag @(Model.QuestionId + 1)</h3>
+<div class="profileQuestion questionDiv">
+    <h3 style="float: left;">Vraag @(Model.QuestionId + 1)</h3>
+    <div style="float: right;" class="dropleft show">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenu_Page@(Model.PageId)_Question@(Model.QuestionId)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            =
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a style="color: red;" href="" class="profileQuestion removeQuestionClass">Vraag verwijderen</a>
+        </div>
+    </div>
     <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Title " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Title" type="text" value="Wat is uw leeftijd?" />
     <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Attribute " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Attribute" type="text" value="age" hidden />
 
@@ -51,8 +67,16 @@
     <label for="QuestionCounter" style="display: none;">@(Model.QuestionId)</label>
 </div>
 @{ Model.QuestionId++; }
-<div class="questionDiv">
-    <h3>Vraag @(Model.QuestionId + 1)</h3>
+<div class="profileQuestion questionDiv">
+    <h3 style="float: left;">Vraag @(Model.QuestionId + 1)</h3>
+    <div style="float: right;" class="dropleft show">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenu_Page@(Model.PageId)_Question@(Model.QuestionId)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            =
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a style="color: red;" href="" class="profileQuestion removeQuestionClass">Vraag verwijderen</a>
+        </div>
+    </div>
     <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Title " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Title" type="text" value="Doet u aan sport/bewegen?" />
     <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Description " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Description" type="text" value="Zo niet mag u het veld leeg laten" />
     <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Attribute " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Attribute" type="text" value="sport" hidden />
@@ -73,8 +97,16 @@
     <label for="QuestionCounter" style="display: none;">@(Model.QuestionId)</label>
 </div>
 @{ Model.QuestionId++; }
-<div class="questionDiv">
-    <h3>Vraag @(Model.QuestionId + 1)</h3>
+<div class="profileQuestion questionDiv">
+    <h3 style="float: left;">Vraag @(Model.QuestionId + 1)</h3>
+    <div style="float: right;" class="dropleft show">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenu_Page@(Model.PageId)_Question@(Model.QuestionId)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            =
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a style="color: red;" href="" class="profileQuestion removeQuestionClass">Vraag verwijderen</a>
+        </div>
+    </div>
     <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Title " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Title" type="text" value="Wat is uw geslacht?" />
     <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Attribute " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Attribute" type="text" value="gender" hidden />
 
@@ -111,8 +143,16 @@
     <label for="QuestionCounter" style="display: none;">@(Model.QuestionId)</label>
 </div>
 @{ Model.QuestionId++; }
-<div class="questionDiv">
-    <h3>Vraag @(Model.QuestionId + 1)</h3>
+<div class="profileQuestion questionDiv">
+    <h3 style="float: left;">Vraag @(Model.QuestionId + 1)</h3>
+    <div style="float: right;" class="dropleft show">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenu_Page@(Model.PageId)_Question@(Model.QuestionId)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            =
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a style="color: red;" href="" class="profileQuestion removeQuestionClass">Vraag verwijderen</a>
+        </div>
+    </div>
     <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Title " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Title" type="text" value="Wat is het meest van toepassing voor u?" />
     <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Attribute " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Attribute" type="text" value="profile" hidden />
 
@@ -132,7 +172,7 @@
 
     <div class=mcWrapper>
         <label>Laat meerdere antwoorden toe:</label>
-        <input readonly="readonly" style="display: inline-block;" class="form-control" data-val="true" data-val-required="The AllowMultipleAnswers field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__MaximumNumberOfAnswers" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].MaximumNumberOfAnswers" type="number" min="1" max="10" value="1"/>
+        <input readonly="readonly" style="display: inline-block;" class="form-control" data-val="true" data-val-required="The AllowMultipleAnswers field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__MaximumNumberOfAnswers" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].MaximumNumberOfAnswers" type="number" min="1" max="10" value="1" />
         <div class="MCOption">
             <label>Antwoord:</label>
             <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_0__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[0].Answer" type="text" value="Student" />
@@ -167,8 +207,16 @@
     <label for="QuestionCounter" style="display: none;">@(Model.QuestionId)</label>
 </div>
 @{ Model.QuestionId++; }
-<div class="questionDiv">
-    <h3>Vraag @(Model.QuestionId + 1)</h3>
+<div class="profileQuestion questionDiv">
+    <h3 style="float: left;">Vraag @(Model.QuestionId + 1)</h3>
+    <div style="float: right;" class="dropleft show">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenu_Page@(Model.PageId)_Question@(Model.QuestionId)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            =
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a style="color: red;" href="" class="profileQuestion removeQuestionClass">Vraag verwijderen</a>
+        </div>
+    </div>
     <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Title " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Title" type="text" value="Bent u vanwege psychische of lichamelijke beperking moeilijk/niet in staat te bewegen/sporten? " />
     <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Attribute " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Attribute" type="text" value="restrained" hidden />
 
@@ -188,7 +236,7 @@
 
     <div class=mcWrapper>
         <label>Laat meerdere antwoorden toe:</label>
-        <input readonly="readonly" style="display: inline-block;" class="form-control" data-val="true" data-val-required="The AllowMultipleAnswers field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__MaximumNumberOfAnswers" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].MaximumNumberOfAnswers" type="number" min="1" max="10" value="1"/>
+        <input readonly="readonly" style="display: inline-block;" class="form-control" data-val="true" data-val-required="The AllowMultipleAnswers field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__MaximumNumberOfAnswers" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].MaximumNumberOfAnswers" type="number" min="1" max="10" value="1" />
         <div class="MCOption">
             <label>Antwoord:</label>
             <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_0__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[0].Answer" type="text" value="Ja" />

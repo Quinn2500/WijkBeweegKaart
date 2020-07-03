@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using DataModels;
@@ -18,6 +19,8 @@ namespace WBK.Models.Create
         public string SliderMinText { get; set; }
         public string SliderMaxText { get; set; }
         public GeoTypeEnum GeoType { get; set; }
+        [DisplayName("Verplicht:")]
+        public bool IsRequierd { get; set; }
         public List<MultipleChoiceOptionViewModel> Options { get; set; }
         public int MaximumNumberOfAnswers { get; set; }
         public string TextAnswer { get; set; }

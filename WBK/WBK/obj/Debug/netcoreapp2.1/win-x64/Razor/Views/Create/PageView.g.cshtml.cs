@@ -349,7 +349,7 @@ WriteAttributeValue("", 3455, Model.QuestionId, 3455, 19, false);
             WriteLiteral(">\r\n                ");
             EndContext();
             BeginContext(3500, 35, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8f0fb4a86de543d58be79814abd77003", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4269aca4ac244c7bad909fc9dd47a031", async() => {
                 BeginContext(3518, 8, true);
                 WriteLiteral("GeoVraag");
                 EndContext();
@@ -371,7 +371,7 @@ WriteAttributeValue("", 3455, Model.QuestionId, 3455, 19, false);
             WriteLiteral("\r\n                ");
             EndContext();
             BeginContext(3553, 41, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e4623f542eae497399b17719d12de82f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "de0ffea662a44afe96d53f75a1271ca6", async() => {
                 BeginContext(3571, 14, true);
                 WriteLiteral("MeerkeuzeVraag");
                 EndContext();
@@ -393,7 +393,7 @@ WriteAttributeValue("", 3455, Model.QuestionId, 3455, 19, false);
             WriteLiteral("\r\n                ");
             EndContext();
             BeginContext(3612, 36, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f9214b7acca74f5d9ae845ef580061c3", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "390b989ba0df49b68f1805480acbd084", async() => {
                 BeginContext(3630, 9, true);
                 WriteLiteral("OpenVraag");
                 EndContext();
@@ -415,7 +415,7 @@ WriteAttributeValue("", 3455, Model.QuestionId, 3455, 19, false);
             WriteLiteral("\r\n                ");
             EndContext();
             BeginContext(3666, 38, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "198ac12a0c8344a08801b304c58e487d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "db5fb8b655414a759a23d44f2e7392c2", async() => {
                 BeginContext(3684, 11, true);
                 WriteLiteral("SliderVraag");
                 EndContext();
@@ -437,7 +437,7 @@ WriteAttributeValue("", 3455, Model.QuestionId, 3455, 19, false);
             WriteLiteral("\r\n                ");
             EndContext();
             BeginContext(3722, 38, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1e19a2b7c9b24e4f8d8593b50a9f190d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "07297716051445049dc995859ad3da06", async() => {
                 BeginContext(3740, 11, true);
                 WriteLiteral("NummerVraag");
                 EndContext();

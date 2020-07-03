@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataModels;
 using DataModels.Questions;
 using Logic;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using WBK.Models.Create;
@@ -136,7 +137,7 @@ namespace WBK.Controllers
             {
                 Title = model.Title,
                 Description = model.Description,
-                Owner = "test@test.nl",
+                Owner = HttpContext.Session.GetString("Email"),
                 EndDate = DateTime.Parse(model.EndDate, CultureInfo.CreateSpecificCulture("nl-NL")),
                 DateOfCreation = DateTime.Today,
                 ImageUrl = model.ImageUrl
@@ -167,6 +168,7 @@ namespace WBK.Controllers
                                 {
                                     Value = questionView.Title,
                                     Description = questionView.Description,
+                                    IsRequired = questionView.IsRequierd,
                                     Category = questionView.Category,
                                     Type = questionView.Type,
                                     ImageUrl = questionView.ImageUrl,
@@ -188,6 +190,7 @@ namespace WBK.Controllers
                                 {
                                     Value = questionView.Title,
                                     Description = questionView.Description,
+                                    IsRequired = questionView.IsRequierd,
                                     Category = questionView.Category,
                                     ImageUrl = questionView.ImageUrl,
                                     Type = questionView.Type,
@@ -201,6 +204,7 @@ namespace WBK.Controllers
                                 {
                                     Value = questionView.Title,
                                     Description = questionView.Description,
+                                    IsRequired = questionView.IsRequierd,
                                     Category = questionView.Category,
                                     Type = questionView.Type,
                                     ImageUrl = questionView.ImageUrl,
@@ -216,6 +220,7 @@ namespace WBK.Controllers
                                 {
                                     Value = questionView.Title,
                                     Description = questionView.Description,
+                                    IsRequired = questionView.IsRequierd,
                                     Category = questionView.Category,
                                     Type = questionView.Type,
                                     ImageUrl = questionView.ImageUrl,
@@ -232,6 +237,7 @@ namespace WBK.Controllers
                                 {
                                     Value = questionView.Title,
                                     Description = questionView.Description,
+                                    IsRequired = questionView.IsRequierd,
                                     Category = questionView.Category,
                                     Type = questionView.Type,
                                     ImageUrl = questionView.ImageUrl,
@@ -262,7 +268,7 @@ namespace WBK.Controllers
         [HttpGet]
         public IActionResult DeleteSurvey(string title)
         {
-            _logic.DeleteSurvey("test@test.nl", title);
+            _logic.DeleteSurvey(HttpContext.Session.GetString("Email"), title);
             return RedirectToAction("Index", "Dashboard");
         }
 

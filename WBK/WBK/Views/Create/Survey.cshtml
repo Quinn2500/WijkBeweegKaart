@@ -13,7 +13,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WijkBeweegKaart</title>
-    
+
     <environment include="Development">
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     </environment>
@@ -121,6 +121,8 @@
                                             @Html.TextBoxFor(x => x.PagesList[i].Questions[j].Title, new {placeholder = "Vraag", required = "required", @class = "form-control"})
                                             @Html.TextBoxFor(x => x.PagesList[i].Questions[j].ImageUrl, new {placeholder = "Foto URL", @class = "form-control"})
                                             @Html.TextBoxFor(x => x.PagesList[i].Questions[j].Description, new {placeholder = "Vraag Beschrijving", @class = "form-control"})
+                                            @Html.LabelFor(x => x.PagesList[i].Questions[j].IsRequierd)
+                                            @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].IsRequierd, new {@class = "form-check-input", style = "width:100px; " })
                                             @Html.DropDownListFor(x => x.PagesList[i].Questions[j].Type, Html.GetEnumSelectList(Model.PagesList[i].Questions[j].Type.GetType()), new {@class = "form-control"})
 
                                             @Html.Label("QuestionCounter", j.ToString(), new {style = "display: none;"})
@@ -198,12 +200,18 @@
 
     <script type="text/javascript">
 
-        $(document).ready(function () {
+    String.prototype.replaceAt=function(index, char) {
+        var a = this.split("");
+        a[index] = char;
+        return a.join("");
+    }
 
-            $('#EndDate').datepicker({ dateFormat: "dd-mm-yy", minDate: -0 });
+    $(document).ready(function () {
 
-            $('.dropdown-toggle').dropdown();
-    
+        $('#EndDate').datepicker({ dateFormat: "dd-mm-yy", minDate: -0 });
+
+        $('.dropdown-toggle').dropdown();
+
 
         function appendToDiv(parentDiv, url, pageNumber, questionNumber, optionNumber) {
             url = url.replace("pageNumberJS", pageNumber);
@@ -219,51 +227,51 @@
             });
         }
 
-            $("body").on("change",
-                "select",
-                function(e) {
-                    if (this.id.includes("Type")) {
-                        var parentDiv = $(this).parent();
-                        parentDiv.children('.question').empty();
-                        console.log($(this));
-                        var str = this.id;
-                        var indexOfPage = str.indexOf("t_");
-                        var indexOfQeustions = str.indexOf("s_");
-                        var pageNumber = str.charAt(indexOfPage + 2);
-                        var questionNumber = str.charAt(indexOfQeustions + 2);
-                        var url = "";
-                        switch (parseInt(this.value)) {
-                            case 0:
-                                if (parentDiv.parent().parent().children("label")[0].innerHTML == "true") {
-                                    url =
-                                        '@Url.Action("GeoQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS", firstGeoQuestionInPage = true})';
-                                    parentDiv.parent().parent().children("label")[0].innerHTML = false;
-                                } else {
-                                    url =
-                                        '@Url.Action("GeoQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS", firstGeoQuestionInPage = false})';
-                                }
-                            appendToDiv(parentDiv.children('.question'), url, pageNumber, questionNumber);
-                            break;
-                        case 1:
+        $("body").on("change",
+            "select",
+            function(e) {
+                if (this.id.includes("Type")) {
+                    var parentDiv = $(this).parent();
+                    parentDiv.children('.question').empty();
+                    console.log($(this));
+                    var str = this.id;
+                    var indexOfPage = str.indexOf("t_");
+                    var indexOfQeustions = str.indexOf("s_");
+                    var pageNumber = str.charAt(indexOfPage + 2);
+                    var questionNumber = str.charAt(indexOfQeustions + 2);
+                    var url = "";
+                    switch (parseInt(this.value)) {
+                    case 0:
+                        if (parentDiv.parent().parent().children("label")[0].innerHTML == "true") {
                             url =
-                                '@Url.Action("MultipleChoiceQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
-                            appendToDiv(parentDiv.children('.question'), url, pageNumber, questionNumber);
-                            break;
-                        case 3:
+                                '@Url.Action("GeoQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS", firstGeoQuestionInPage = true})';
+                            parentDiv.parent().parent().children("label")[0].innerHTML = false;
+                        } else {
                             url =
-                                '@Url.Action("SliderQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
-                            appendToDiv(parentDiv.children('.question'), url, pageNumber, questionNumber);
-                            break;
-                        case 4:
-                            url =
-                                '@Url.Action("NumberQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
-                            appendToDiv(parentDiv.children('.question'), url, pageNumber, questionNumber);
-                            break;
+                                '@Url.Action("GeoQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS", firstGeoQuestionInPage = false})';
                         }
-
+                        appendToDiv(parentDiv.children('.question'), url, pageNumber, questionNumber);
+                        break;
+                    case 1:
+                        url =
+                            '@Url.Action("MultipleChoiceQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
+                        appendToDiv(parentDiv.children('.question'), url, pageNumber, questionNumber);
+                        break;
+                    case 3:
+                        url =
+                            '@Url.Action("SliderQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
+                        appendToDiv(parentDiv.children('.question'), url, pageNumber, questionNumber);
+                        break;
+                    case 4:
+                        url =
+                            '@Url.Action("NumberQuestion","Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
+                        appendToDiv(parentDiv.children('.question'), url, pageNumber, questionNumber);
+                        break;
                     }
 
-        });
+                }
+
+            });
 
 
         var profileQuestionsUsed = false;
@@ -295,7 +303,7 @@
                             text = $(text).find('.addNNGBQuestionButton').remove().end();
                         }
 
-                       if (motivationQuestionsUsed) {
+                        if (motivationQuestionsUsed) {
                             text = $(text).find('.addMotivationQuestionButton').remove().end();
                         }
 
@@ -358,11 +366,11 @@
             function (e) {
                 e.preventDefault();
                 if (x > 0) {
-                    $(this).parent().parent().parent().parent('div').remove(); 
-                    x--; 
+                    $(this).parent().parent().parent().parent('div').remove();
+                    x--;
                     var i;
                     var pages = $('.pageDiv').toArray();
-                    var counters = $('.pageDiv label[for=PageCounter]').toArray();                
+                    var counters = $('.pageDiv label[for=PageCounter]').toArray();
                     for (i = 0; i < pages.length; i++) {
                         var children = pages[i].children;
                         for (j = 0; j < children.length; j++) {
@@ -371,9 +379,9 @@
                             case "H3":
                                 child.innerHTML = "Pagina " + i;
                                 break;
-                                case "INPUT":
-                                    child.id = child.id.replace("PagesList_" + counters[i].innerHTML, "PagesList_" + i);
-                                    child.name = child.name.replace("PagesList[" + counters[i].innerHTML + "]",
+                            case "INPUT":
+                                child.id = child.id.replace("PagesList_" + counters[i].innerHTML, "PagesList_" + i);
+                                child.name = child.name.replace("PagesList[" + counters[i].innerHTML + "]",
                                     "PagesList[" + i + "]");
                                 break;
                             case "LABEL":
@@ -389,14 +397,14 @@
             });
 
         $("body").on("click",".addQuestionButton",function (e) {
-                e.stopPropagation();
-                e.stopImmediatePropagation();
-                e.preventDefault();
-                var pageNumber = $(this).parent().parent().parent().children().length -1;
-                var questionWrapper = $(this).parent().parent().children(".QuestionWrapper");
-                var currentQuestionCount = $(questionWrapper).children(".questionDiv").length;
-                var url = '@Url.Action("QuestionView", "Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
-                appendToDiv(questionWrapper, url, pageNumber, currentQuestionCount);
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            e.preventDefault();
+            var pageNumber = $(this).parent().parent().parent().children().length -1;
+            var questionWrapper = $(this).parent().parent().children(".QuestionWrapper");
+            var currentQuestionCount = $(questionWrapper).children(".questionDiv").length;
+            var url = '@Url.Action("QuestionView", "Create", new { pageId = "pageNumberJS", questionId = "questionNumberJS"})';
+            appendToDiv(questionWrapper, url, pageNumber, currentQuestionCount);
         });
 
         $("body").on("click",
@@ -406,41 +414,77 @@
                 var questionsWrapper = $(this).parent().parent().parent().parent();
                 var j;
                 var q;
+
+                var typePreMadeQuestion = $(this).attr("class").split(/\s+/)[0];
+                $("div." + typePreMadeQuestion).remove();
+
+                switch (typePreMadeQuestion) {
+                case "profileQuestion":
+                    profileQuestionsUsed = false;
+                    $(".addProfileQuestionButton").show();
+                    break;
+                case "nngbQuestion":
+                    nngbQuestionsUsed = false;
+                    $(".addNNGBQuestionButton").show();
+                    break;
+                case "motivationQuestion":
+                    motivationQuestionsUsed = false;
+                    $(".addMotivationQuestionButton").show();
+                    break;
+                }
+
                 if (questionsWrapper.children().length > 1) {
                     $(this).parent().parent().parent('div').remove();
                     var questions = questionsWrapper.children();
                     for (q = 0; q < questions.length; q++) {
-                        var children = questions[q].children;
-                        var oldNumber = $(questions[q]).children("label")[0].innerHTML;
-                        for (j = 0; j < children.length; j++) {
-                            var child = children[j];
-                            switch (child.tagName) {
-                            case "H3":
-                                child.innerHTML = "Vraag " + (q+1);
-                                break;
-                                case "INPUT":
-                                child.id = child.id.replace("Questions_" + oldNumber, "Questions_" + q);
-                                child.name = child.name.replace("Questions[" + oldNumber + "]", "Questions[" + q + "]");
-                                break;
-                            case "SELECT":
-                                child.id = child.id.replace("Questions_" + oldNumber, "Questions_" + q);
-                                child.name = child.name.replace("Questions[" + oldNumber + "]", "Questions[" + q + "]");
-                                break;
-                            case "LABEL":
-                                child.innerHTML = q;
-                                break;
-                            default:
-                            }
+                        var questionNumber = q;
+                        var questionDiv = $(questions[q]);
+                        $(questionDiv).children("H3").text("Vraag " + (q + 1));
+
+                        $(questionDiv).children("INPUT").each(function (index) {
+                            var textId = $(this).attr("id");
+                            var nameText = $(this).attr("name");
+                            $(this).attr("id", textId.replaceAt(textId.indexOf("Questions_") + 10, questionNumber));
+                            $(this).attr("name", nameText.replaceAt(nameText.indexOf("Questions[") + 10, questionNumber));
+                        });
+
+                        $(questionDiv).children("SELECT").each(function (index) {
+                            var textId = $(this).attr("id");
+                            var nameText = $(this).attr("name");
+                            $(this).attr("id", textId.replaceAt(textId.indexOf("Questions_") + 10, questionNumber));
+                            $(this).attr("name", nameText.replaceAt(nameText.indexOf("Questions[") + 10, questionNumber));
+
+                        });
+
+                        if ($(questionDiv).children(".mcWrapper").length > 0) {
+                            $(questionDiv).children(".mcWrapper").children("INPUT").each(function (index) {
+                                var textId = $(this).attr("id");
+                                var nameText = $(this).attr("name");
+                                $(this).attr("id", textId.replaceAt(textId.indexOf("Questions_") + 10, questionNumber));
+                                $(this).attr("name", nameText.replaceAt(nameText.indexOf("Questions[") + 10, questionNumber));
+                            });
+
+                            $(questionDiv).children(".mcWrapper").children(".MCOption").each(function (index) {
+                                var option = $(this);
+                                $(option).children("INPUT").each(function (index) {
+                                    var textId = $(this).attr("id");
+                                    var nameText = $(this).attr("name");
+                                    $(this).attr("id", textId.replaceAt(textId.indexOf("Questions_") + 10, questionNumber));
+                                    $(this).attr("name", nameText.replaceAt(nameText.indexOf("Questions[") + 10, questionNumber));
+                                });
+                            });
                         }
                     }
                 }
+
                 return false;
             });
+
 
         $("body").on("click",
             ".addMCOption",
             function (e) {
-                e.preventDefault();  
+                e.preventDefault();
                 var wrapper = $(this).parent().parent().children()[0];
                 var numberOfOptions = $(wrapper).children(".MCOption").length;
                 var pageNumber = $("#InputsWrapper").children(".pageDiv").length - 1;
@@ -469,15 +513,15 @@
                     for (q = 0; q < children.length; q++) {
                         var child = children[q];
                         switch (child.tagName) {
-                            case "H4":
-                                child.innerHTML = "Optie " + (q+1);
-                                break;
-                            case "INPUT":
-                                child.id = child.id.replace("Options_" + oldNumber, "Options_" + i);
-                                child.name = child.name.replace("Options[" + oldNumber + "]", "PagesList[" + i + "]");
-                                break;
-                            default:
-                                break;
+                        case "H4":
+                            child.innerHTML = "Optie " + (q+1);
+                            break;
+                        case "INPUT":
+                            child.id = child.id.replace("Options_" + oldNumber, "Options_" + i);
+                            child.name = child.name.replace("Options[" + oldNumber + "]", "PagesList[" + i + "]");
+                            break;
+                        default:
+                            break;
                         }
                     }
                 }

@@ -18,9 +18,13 @@ namespace WBK.Controllers
         [HttpGet]
         public IActionResult Survey(string name)
         {
-              Survey survey = _logic.GetSurvey(name);
-              SurveyViewModel viewModel = ConvertToViewModel(survey);
-              return View(viewModel);
+            Survey survey = _logic.GetSurvey(name);
+            if (survey.EndDate <= DateTime.Today)
+            {
+                return RedirectToAction("SurveyEnded", "Survey");
+            }
+            SurveyViewModel viewModel = ConvertToViewModel(survey);
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -34,6 +38,7 @@ namespace WBK.Controllers
                 SessionId = guid.ToString()
 
             };
+
             for (int i = 0; i < survey.Pages.Count; i++)
             {
                 for (int j = 0; j < survey.Pages[i].Questions.Count; j++)
@@ -43,6 +48,7 @@ namespace WBK.Controllers
                     {
                         new GeoAnswer()
                     };
+
                     switch (question.Type)
                     {
                         case TypeEnum.GeoVraag:
@@ -50,12 +56,6 @@ namespace WBK.Controllers
                             break;
 
                         case TypeEnum.NummerVraag:
-                            switch (question.Attribute)
-                            {
-                                case "age":
-                                    respondant.Age = model.PagesList[i].Questions[j].NumberAnswer;
-                                    break;
-                            }
                             question.Answers[0] = new NumberAnswer{ NumberValue = model.PagesList[i].Questions[j].NumberAnswer };
                             break;
 
@@ -64,15 +64,6 @@ namespace WBK.Controllers
                             break;
 
                         case TypeEnum.OpenVraag:
-                            switch (question.Attribute)
-                            {
-                                case "postcode":
-                                    respondant.PostCode = model.PagesList[i].Questions[j].TextAnswer;
-                                    break;
-                                case "sport":
-                                     respondant.DoesSport = !string.IsNullOrEmpty(model.PagesList[i].Questions[j].TextAnswer);
-                                    break;
-                            }
                             question.Answers[0] = new TextAnswer{ TextValue = model.PagesList[i].Questions[j].TextAnswer };
                             break;
 
@@ -90,21 +81,6 @@ namespace WBK.Controllers
                                 }
                             }
 
-                            switch (question.Attribute)
-                            {
-                                case "gender":
-                                    respondant.Gender = (GenderEnum)Enum.Parse(typeof(GenderEnum), answer[0].Answer); 
-                                    break;
-                                case "profile":
-                                    respondant.Profile = (ProfileEnum)Enum.Parse(typeof(ProfileEnum), answer[0].Answer);
-                                    break;
-                                case "motivation":
-                                    respondant.Motivator =  answer[0].Answer;
-                                    break;
-                                case "reasonNot":
-                                    respondant.Restrain = answer[0].Answer;
-                                    break;
-                            }
                             question.Answers[0] = new MultipleChoiceAnswer { AnsweredOptions = answer };
                             break;
 
@@ -139,99 +115,120 @@ namespace WBK.Controllers
                     Questions = new List<QuestionViewModel>()
                 };
 
-                foreach (GeoQuestion question in page.Questions.OfType<GeoQuestion>())
+                foreach (Question question in page.Questions)
                 {
-                    QuestionViewModel questionView = new QuestionViewModel
+                    switch (question.Type)
                     {
-                        Title = question.Value,
-                        Description = question.Description,
-                        ImageUrl = question.ImageUrl,
-                        Category = question.Category,
-                        Type = question.Type,
-                        GeoType = question.TypeOfMarker,
-                        StartLocationLat = null,
-                        StartLocationLong = null,
-                        StartZoomLevel = 13
-                    };
 
-                    if (question.StartLocation != null)
-                    {
-                        questionView.StartLocationLat = question.StartLocation.Latitude.ToString().Replace(',', '.');
-                        questionView.StartLocationLong = question.StartLocation.Longitude.ToString().Replace(',', '.');
-                        questionView.StartZoomLevel = question.StartLocation.ZoomLevel;
+                        case TypeEnum.GeoVraag:
+                            GeoQuestion geoQuestion = question as GeoQuestion;
+
+                            QuestionViewModel questionView = new QuestionViewModel
+                            {
+                                Title = geoQuestion.Value,
+                                Description = geoQuestion.Description,
+                                ImageUrl = geoQuestion.ImageUrl,
+                                Category = geoQuestion.Category,
+                                Type = geoQuestion.Type,
+                                IsRequierd = geoQuestion.IsRequired,
+                                GeoType = geoQuestion.TypeOfMarker,
+                                StartLocationLat = null,
+                                StartLocationLong = null,
+                                StartZoomLevel = 13
+                            };
+
+                            if (geoQuestion.StartLocation != null)
+                            {
+                                questionView.StartLocationLat = geoQuestion.StartLocation.Latitude.ToString().Replace(',', '.');
+                                questionView.StartLocationLong = geoQuestion.StartLocation.Longitude.ToString().Replace(',', '.');
+                                questionView.StartZoomLevel = geoQuestion.StartLocation.ZoomLevel;
+                            }
+
+                            pageViewModel.Questions.Add(questionView);
+
+                            break;
+
+                        case TypeEnum.OpenVraag:
+                            OpenQuestion openQuestion = question as OpenQuestion;
+
+                            QuestionViewModel openQuestionView = new QuestionViewModel
+                            {
+                                Title = openQuestion.Value,
+                                Description = openQuestion.Description,
+                                IsRequierd = openQuestion.IsRequired,
+                                ImageUrl = openQuestion.ImageUrl,
+                                Category = openQuestion.Category,
+                                Type = openQuestion.Type
+                            };
+                            pageViewModel.Questions.Add(openQuestionView);
+
+                            break;
+
+                        case TypeEnum.MeerkeuzeVraag:
+                            MultipleChoiceQuestion multipleChoiceQuestion = question as MultipleChoiceQuestion;
+
+                            QuestionViewModel mulitpleChoiQuestionViewModel = new QuestionViewModel
+                            {
+                                Title = multipleChoiceQuestion.Value,
+                                Description = multipleChoiceQuestion.Description,
+                                IsRequierd = multipleChoiceQuestion.IsRequired,
+                                ImageUrl = multipleChoiceQuestion.ImageUrl,
+                                Category = multipleChoiceQuestion.Category,
+                                Type = multipleChoiceQuestion.Type,
+                                MaximumNumberOfAnswers = multipleChoiceQuestion.MaximumNumberOfAnswers,
+                                Options = new List<MultipleChoiceOptionViewModel>()
+                            };
+                            foreach (MultipleChoiceOption option in multipleChoiceQuestion.Options)
+                            {
+                                MultipleChoiceOptionViewModel optionViewModel = new MultipleChoiceOptionViewModel
+                                {
+                                    Answer = option.Answer,
+                                    Description = option.Description,
+                                    ImageUrl = option.ImageUrl
+
+                                };
+                                mulitpleChoiQuestionViewModel.Options.Add(optionViewModel);
+                            }
+                            pageViewModel.Questions.Add(mulitpleChoiQuestionViewModel);
+
+                            break;
+
+                        case TypeEnum.SliderVraag:
+
+                            SliderQuestion sliderQuestion = question as SliderQuestion;
+                            QuestionViewModel sliderQuestionView = new QuestionViewModel
+                            {
+                                Title = sliderQuestion.Value,
+                                ImageUrl = sliderQuestion.ImageUrl,
+                                Description = sliderQuestion.Description,
+                                IsRequierd = sliderQuestion.IsRequired,
+                                Category = sliderQuestion.Category,
+                                Type = sliderQuestion.Type,
+                                SliderScaleVal = sliderQuestion.Scale,
+                                SliderMaxText = sliderQuestion.MaxValueText,
+                                SliderMinText = sliderQuestion.MinValueText
+                            };
+                            pageViewModel.Questions.Add(sliderQuestionView);
+                            break;
+
+                        case TypeEnum.NummerVraag:
+
+
+                            NumberQuestion numberQuestion = question as NumberQuestion;
+                            QuestionViewModel numberQuestionView = new QuestionViewModel
+                            {
+                                Title = numberQuestion.Value,
+                                ImageUrl = numberQuestion.ImageUrl,
+                                Description = numberQuestion.Description,
+                                IsRequierd = numberQuestion.IsRequired,
+                                Category = numberQuestion.Category,
+                                Type = numberQuestion.Type,
+                                MinValue = numberQuestion.Minimum,
+                                MaxValue = numberQuestion.Maximum
+                            };
+                            pageViewModel.Questions.Add(numberQuestionView);
+                            break;
                     }
-
-                    pageViewModel.Questions.Add(questionView);
-                }
-
-                foreach (OpenQuestion question in page.Questions.OfType<OpenQuestion>())
-                {
-                    QuestionViewModel questionView = new QuestionViewModel
-                    {
-                        Title = question.Value,
-                        Description = question.Description,
-                        ImageUrl = question.ImageUrl,
-                        Category = question.Category,
-                        Type = question.Type
-                    };
-                    pageViewModel.Questions.Add(questionView);
-                }
-
-                foreach (MultipleChoiceQuestion question in page.Questions.OfType<MultipleChoiceQuestion>())
-                {
-                    QuestionViewModel questionView = new QuestionViewModel
-                    {
-                        Title = question.Value,
-                        Description = question.Description,
-                        ImageUrl = question.ImageUrl,
-                        Category = question.Category,
-                        Type = question.Type,
-                        MaximumNumberOfAnswers = question.MaximumNumberOfAnswers,
-                        Options = new List<MultipleChoiceOptionViewModel>()
-                    };
-                    foreach (MultipleChoiceOption option in question.Options)
-                    {
-                        MultipleChoiceOptionViewModel optionViewModel = new MultipleChoiceOptionViewModel
-                        {
-                            Answer = option.Answer,
-                            Description = option.Description,
-                            ImageUrl = option.ImageUrl
-                           
-                        };
-                        questionView.Options.Add(optionViewModel);
-                    }
-                    pageViewModel.Questions.Add(questionView);
-                }
-
-                foreach (SliderQuestion question in page.Questions.OfType<SliderQuestion>())
-                {
-                    QuestionViewModel questionView = new QuestionViewModel
-                    {
-                        Title = question.Value,
-                        ImageUrl = question.ImageUrl,
-                        Description = question.Description,
-                        Category = question.Category,
-                        Type = question.Type,
-                        SliderScaleVal = question.Scale,
-                        SliderMaxText = question.MaxValueText,
-                        SliderMinText = question.MinValueText
-                    };
-                    pageViewModel.Questions.Add(questionView);
-                }
-
-                foreach (NumberQuestion question in page.Questions.OfType<NumberQuestion>())
-                {
-                    QuestionViewModel questionView = new QuestionViewModel
-                    {
-                        Title = question.Value,
-                        ImageUrl = question.ImageUrl,
-                        Description = question.Description,
-                        Category = question.Category,
-                        Type = question.Type,
-                        MinValue = question.Minimum,
-                        MaxValue = question.Maximum
-                    };
-                    pageViewModel.Questions.Add(questionView);
                 }
 
                 viewModel.PagesList.Add(pageViewModel);
@@ -242,6 +239,12 @@ namespace WBK.Controllers
 
         [HttpGet]
         public IActionResult SurveyCompleted()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult SurveyEnded()
         {
             return View();
         }

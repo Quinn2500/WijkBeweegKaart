@@ -8,12 +8,14 @@ using DataModels;
 using DataModels.Answers;
 using Logic;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MySqlX.XDevAPI.Relational;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using WBK.Models;
 using WBK.Models.Dashboard;
+using static System.String;
 
 namespace WBK.Controllers
 {
@@ -27,15 +29,24 @@ namespace WBK.Controllers
             _hostingEnvironment = hostingEnvironment;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
-            List<SurveyOverview> model = _logic.SurveyOverviewDataOfUser("test@test.nl");
+            if (IsNullOrEmpty(HttpContext.Session.GetString("Email")))
+            {
+                return StatusCode(401);
+            }
+            List<SurveyOverview> model = _logic.SurveyOverviewDataOfUser(HttpContext.Session.GetString("Email"));
             return View(model);
         }
 
         [HttpGet]
         public IActionResult AllAnswers(string surveyTitle)
         {
+            if (IsNullOrEmpty(HttpContext.Session.GetString("Email")))
+            {
+                return StatusCode(401);
+            }
             Survey model = _logic.GetSurveyWithAllAnswers(surveyTitle);
             return View(model);
         }
@@ -43,10 +54,14 @@ namespace WBK.Controllers
         [HttpGet]
         public async Task<ActionResult> GetExcelOverview(string name)
         {
+            if (IsNullOrEmpty(HttpContext.Session.GetString("Email")))
+            {
+                return StatusCode(401);
+            }
             Survey survey = _logic.GetSurveyWithAllAnswers(name);
             string sWebRootFolder = _hostingEnvironment.WebRootPath;
             string sFileName = @"Antwoorden "+ name +".xlsx";
-            string URL = string.Format("{0}://{1}/{2}", Request.Scheme, Request.Host, sFileName);
+            string URL = Format("{0}://{1}/{2}", Request.Scheme, Request.Host, sFileName);
             FileInfo file = new FileInfo(Path.Combine(sWebRootFolder, sFileName));
             var memory = new MemoryStream();
             using (var fs = new FileStream(Path.Combine(sWebRootFolder, sFileName), FileMode.Create, FileAccess.Write))
@@ -140,14 +155,25 @@ namespace WBK.Controllers
         [HttpGet]
         public IActionResult AnalyseGeoAnswers(string surveyTitle)
         {
+            if (IsNullOrEmpty(HttpContext.Session.GetString("Email")))
+            {
+                return StatusCode(401);
+            }
             Survey model = _logic.GetSurveyWithAllAnswers(surveyTitle);
             return View(model);
         }
 
+
         [HttpGet]
         public IActionResult ProfileAverage(string surveyTitle, string profileString)
         {
+            if (IsNullOrEmpty(HttpContext.Session.GetString("Email")))
+            {
+                return StatusCode(401);
+            }
+
             Survey surey = _logic.GetSurveyWithAllAnswers(surveyTitle);
+
             ProfileAverageViewModel model = new ProfileAverageViewModel();
             Enum.TryParse(profileString, out ProfileEnum profile);
 
@@ -156,6 +182,8 @@ namespace WBK.Controllers
             List<int> doesSport = new List<int>();
             List<string> motivators = new List<string>();
             List<string> restains = new List<string>();
+            bool usersFound = false;
+
             foreach (Answer answer in surey.Pages[0].Questions[0].Answers)
             {
                 Respondant respondant = answer.Respondant;
@@ -167,8 +195,11 @@ namespace WBK.Controllers
                     satifiesNNGB.Add(respondant.SatifiesNngb ? 1 : 0);
                     motivators.Add(respondant.Motivator);
                     restains.Add(respondant.Restrain);
+                    usersFound = true;
                 }
             }
+
+            if (!usersFound) return StatusCode(404);
 
             model.AverageAge = Convert.ToInt32(Math.Round(allAges.Average()));
             model.BiggestMotivator = motivators.GroupBy(v => v)
@@ -183,6 +214,7 @@ namespace WBK.Controllers
             model.PercentageThatSatifiesNNGB = Convert.ToInt32(Math.Round(satifiesNNGB.Average() * 100));
 
             return View(model);
+
         }
     }
 }

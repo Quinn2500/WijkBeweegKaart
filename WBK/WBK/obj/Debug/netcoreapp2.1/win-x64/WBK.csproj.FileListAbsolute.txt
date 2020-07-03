@@ -53,3 +53,6 @@ D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\win-x64\WBK.c
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\win-x64\WBK.dll
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\win-x64\WBK.pdb
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\win-x64\WBK.csprojAssemblyReference.cache
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\win-x64\Razor\Views\Account\Login.g.cshtml.cs
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\win-x64\Razor\Views\Account\Register.g.cshtml.cs
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\win-x64\Razor\Views\Dashboard\ProfileAverage.g.cshtml.cs

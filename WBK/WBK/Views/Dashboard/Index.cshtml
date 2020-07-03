@@ -3,9 +3,9 @@
 }
 
 @using DataModels
+@using Ubiety.Dns.Core
 @model List<DataModels.SurveyOverview>
 
-<!DOCTYPE html>
 <html  lang="nl">
 <head>
     <meta charset="utf-8" />
@@ -20,6 +20,8 @@
     <script src="~/lib/jqeury-ui/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    
+
 </head>
 
 <body class="p-0">
@@ -28,21 +30,36 @@
         <a class="navbar-brand" href="#">
             <img src="~/images/WijkBeweegKaart Logo.png" alt="WijkBeweegKaart" style="height: 80px; width: 360px;" />
         </a>
-        
+
         <a class="btn btn-success" asp-area="" asp-controller="Create" asp-action="Survey">Maak enquête aan!</a>
+        <a class="btn btn-success" asp-area="" asp-controller="Account" asp-action="Register">Maak account aan!</a>
+        <a class="btn btn-danger" asp-area="" asp-controller="Account" asp-action="LogOut">Log Uit!</a>
     </nav>
 
     <div class="container-fluid">
         @foreach (SurveyOverview overview in Model)
         {
-            <p>@overview.Title</p>
+            <p>@overview.Title - Eindigd op: @overview.EndDate.ToShortDateString()</p>
             <a class="btn btn-danger" asp-area="" asp-route-Title="@overview.Title" asp-controller="Create" asp-action="DeleteSurvey">Delete</a>
             <a class="btn btn-info" asp-area="" asp-route-Title="@overview.Title" asp-controller="Create" asp-action="Survey">Edit</a>
             <a class="btn btn-info" asp-area="" asp-route-Name="@overview.Title" asp-controller="Survey" asp-action="Survey">Open</a>
             <a class="btn btn-info" asp-area="" asp-route-SurveyTitle="@overview.Title" asp-controller="Dashboard" asp-action="AllAnswers">Answers</a>
             <a class="btn btn-info" asp-area="" asp-route-SurveyTitle="@overview.Title" asp-controller="Dashboard" asp-action="AnalyseGeoAnswers">Analyze</a>
+            <button class="btn btn-success" onclick="copyToClipboard('@Url.Action("Survey","Survey", new { Title = overview.Title}, "https")')">Copy Link!</button>
         }
     </div>
+    
+<script>
+    function copyToClipboard(message) {
+        var msg = message;
+        alert("Gekopieerd: " + msg);
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val(msg).select();
+        document.execCommand("copy");
+        $temp.remove();
+    }
+</script>
 
 </body>
 </html>

@@ -24,7 +24,8 @@
     <script src="~/lib/jqeury-ui/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
     <environment include="Development">
         <link rel="stylesheet" href="~/css/surveyAnalyze.css" asp-append-version="true" />
     </environment>
@@ -39,7 +40,7 @@
     </nav>
 
     <div class="container-fluid p-0">
-        <h1>@Model.Title Analyse</h1>
+        <h1 id="title" style="margin-left: 10px;">@Model.Title Analyse</h1>
 
         <div class="row" style="margin-left: 0;">
             <div class="col-9">
@@ -59,16 +60,16 @@
                                     <th>Gebruiker</th>
                                     @foreach (Question question in pageView.Questions)
                                     {
-                                        <th class="table@(question.Id)">@question.Value</th>
+                                        <th class="cell@(question.Id)" style="display: none;">@question.Value</th>
                                     }
                                 </tr>
                                 @foreach (Answer asnwer in pageView.Questions[0].Answers)
                                 {
                                     Respondant respondant = asnwer.Respondant;
-                                    <tr>
+                                    <tr style="display: none;">
                                         @if (Model.Pages.First() == pageView)
                                         {
-                                            <td style="border: 1px solid black;">@asnwer.Respondant.SessionId</td>
+                                            <td class="@asnwer.Respondant.Profile.ToString()" style="border: 1px solid black;">@asnwer.Respondant.SessionId</td>
                                         }
                                         @foreach (Question question in pageView.Questions)
                                         {
@@ -77,7 +78,7 @@
                                                 if (answer.Respondant.SessionId == respondant.SessionId)
                                                 {
 
-                                                    <td class="table@(question.Id)" style="border: 1px solid black;">
+                                                    <td class="cell@(question.Id)" style="display:none; border: 1px solid black;">
                                                         @switch (question.Type)
                                                         {
                                                             case TypeEnum.NummerVraag:
@@ -123,7 +124,7 @@
                                 <tr>
                                     @foreach (Question question in pageView.Questions)
                                     {
-                                        <th class="table@(question.Id)">@question.Value</th>
+                                        <th class="cell@(question.Id)" style="display: none;">@question.Value</th>
                                     }
                                 </tr>
                                 @foreach (Answer asnwer in pageView.Questions[0].Answers)
@@ -140,7 +141,7 @@
                                             {
                                                 if (answer.Respondant.SessionId == respondant.SessionId)
                                                 {
-                                                    <td class="table@(question.Id)" style="border: 1px solid black;">
+                                                    <td class="cell@(question.Id)" style="display:none; border: 1px solid black;">
                                                         @switch (question.Type)
                                                         {
                                                             case TypeEnum.NummerVraag:
@@ -180,6 +181,21 @@
             </div>
             <div class="col-3">
                 <div style="margin-left: 10px;">
+                    @{string[] colors = { "blue", "gold", "red", "green", "orange", "yellow", "violet", "grey", "black" };}
+                    <script>
+                        var allGeoArray = [];
+                    </script>
+                    <h3>Profielen</h3>
+                    <dl>
+                        @foreach (string profileName in Enum.GetNames(typeof(ProfileEnum)))
+                        {
+                            <dd>
+                                <input type="checkbox" class="profile" name="@profileName" value="@profileName">
+                                <label for="@profileName"> @profileName</label>
+                                <button id="@profileName" type="button" class="btn btn-warning btn-sm profileLabel">Gemiddelde</button>
+                            </dd>
+                        }
+                    </dl>
                     @foreach (Page pageView in Model.Pages)
                     {
                         <h3>@pageView.Title</h3>
@@ -192,9 +208,10 @@
                                 </dd>
                                 if (question.Type == TypeEnum.GeoVraag)
                                 {
+                                    int colorNumber = new Random().Next(0, colors.Length);
                                     var geoQuestion = question as GeoQuestion;
                                     <script>
-                                    var geoArray@(question.Id) = [];
+                                        var geoArray@(question.Id) = [];
                                     </script>
                                     foreach (Answer answer in question.Answers)
                                     {
@@ -203,37 +220,68 @@
                                         {
                                             case GeoTypeEnum.Marker:
                                                 <script>
-                                                $(document).ready(function() {
-                                                    var marker = L.marker(@geoAnswer.GeoData).on('click',
-                                                        function(e) {
-                                                            highlightUser("@(answer.Respondant.SessionId)");
+                                                    $(document).ready(function() {
+                                                        var icon@(question.Id) = new L.Icon({
+                                                            iconUrl:
+                                                                'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-' +
+                                                                    "@colors[colorNumber]" +
+                                                                    '.png',
+                                                            shadowUrl:
+                                                                'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                                                            iconSize: [25, 41],
+                                                            iconAnchor: [12, 41],
+                                                            popupAnchor: [1, -34],
+                                                            shadowSize: [41, 41]
                                                         });
-                                                    geoArray@(question.Id).push(marker);
-                                                });
+                                                        var marker = L.marker(@geoAnswer.GeoData,
+                                                            { icon: icon@(question.Id) }).on('click',
+                                                            function(e) {
+                                                                highlightUser("@(answer.Respondant.SessionId)");
+                                                            });
+                                                        marker.properties = {};
+                                                        marker.properties.myId = "@(answer.Respondant.SessionId)";
+                                                        geoArray@(question.Id).push(marker);
+                                                        allGeoArray[@(question.Id)] = geoArray@(question.Id);
+                                                        $("td.cell@(question.Id)").text("Marker: @colors[colorNumber]"+"");
+                                                    });
                                                 </script>
                                                 break;
 
                                             case GeoTypeEnum.Vlak:
                                                 <script>
-                                                $(document).ready(function() {
-                                                    var polygon = L.polygon(@geoAnswer.GeoData).on('click',
-                                                        function(e) {
-                                                            highlightUser("@(answer.Respondant.SessionId)");
+                                                    $(document).ready(function() {
+                                                        var polygon = L.polygon(@geoAnswer.GeoData).on('click',
+                                                            function(e) {
+                                                                highlightUser("@(answer.Respondant.SessionId)");
+                                                            });
+                                                        polygon.setStyle({
+                                                            color: "@colors[colorNumber]"
                                                         });
-                                                    geoArray@(question.Id).push(polygon);
-                                                });
+                                                        polygon.properties = {};
+                                                        polygon.properties.myId = "@(answer.Respondant.SessionId)";
+                                                        geoArray@(question.Id).push(polygon);
+                                                        allGeoArray[@(question.Id)] = geoArray@(question.Id);
+                                                        $("td.cell@(question.Id)").text("Vlak: @colors[colorNumber]");
+                                                    });
                                                 </script>
                                                 break;
 
                                             case GeoTypeEnum.Lijn:
                                                 <script>
-                                                $(document).ready(function() {
-                                                    var polyline = L.polyline(@geoAnswer.GeoData).on('click',
-                                                        function(e) {
-                                                            highlightUser("@(answer.Respondant.SessionId)");
+                                                    $(document).ready(function() {
+                                                        var polyline = L.polyline(@geoAnswer.GeoData).on('click',
+                                                            function(e) {
+                                                                highlightUser("@(answer.Respondant.SessionId)");
+                                                            });
+                                                        polyline.setStyle({
+                                                            color: "@colors[colorNumber]"
                                                         });
-                                                    geoArray@(question.Id).push(polyline);
-                                                });
+                                                        polyline.properties = {};
+                                                        polyline.properties.myId = "@(answer.Respondant.SessionId)";
+                                                        geoArray@(question.Id).push(polyline);
+                                                        allGeoArray[@(question.Id)] = geoArray@(question.Id);
+                                                        $("td.cell@(question.Id)").text("Lijn: @colors[colorNumber]");
+                                                    });
                                                 </script>
                                                 break;
                                         }
@@ -247,71 +295,145 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="profileModalTitle"> Profiel Titel </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body" id="profileModalBody">
+                    </div>
+                </div>
+            </div>
+        </div>
        
     </div>
 
-    <script>
-        var map = L.map('map').setView([51.47358, 5.453167], 13);
-        var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+<script>
+    var map = L.map('map').setView([51.47358, 5.453167], 13);
+    var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
-        $('input[type="checkbox"]').change(function (event) {
-            var questionId = $(this).attr('id');
-            var type = $(this).attr('name');
-            if (type == "GeoVraag") {
-                if ($(this).is(":checked")) {
-                    window["geoArray" + questionId].forEach(addLayer);
-                    $('.table' + questionId).show();
-                } else {
-                    window["geoArray" + questionId].forEach(removelayer);
-                    $('.table' + questionId).hide();
-                }
+    $('input[type="checkbox"]').change(function (event) {
+        var questionId = $(this).attr('id');
+        var type = $(this).attr('name');
+        if (type == "GeoVraag") {
+            if ($(this).is(":checked")) {
+                window["geoArray" + questionId].forEach(addLayer);
+                $('.cell' + questionId).show();
             } else {
-                if ($(this).is(":checked")) {
-                    $('.table' + questionId).show();
-                } else {
-                    $('.table' + questionId).hide();
+                window["geoArray" + questionId].forEach(removelayer);
+                $('.cell' + questionId).hide();
+            }
+        } else {
+            if ($(this).is(":checked")) {
+                $('.cell' + questionId).show();
+            } else {
+                $('.cell' + questionId).hide();
+            }
+        }
+    });
+
+    $(".profileLabel").click(function () {
+        var str = $("#title").text();
+        var lastIndex = str.lastIndexOf(" ");
+        str = str.substring(0, lastIndex);
+        var profileString = $(this).attr('id');
+        $.ajax({ cache: false,
+            url: "@Url.Action("ProfileAverage", "Dashboard")",
+            data: {
+                "surveyTitle": str,
+                "profileString": profileString
+            },
+            success: function (data) {
+                $("#profileModalTitle").text(profileString + " Gemiddelde");
+                $("#profileModalBody").html(data);
+                $("#profileModal").modal('show');
+            },
+            error:function (xhr, ajaxOptions, thrownError){
+                if(xhr.status==404) {
+                    alert("Helaas, zijn er geen resulaten bekend. Of er iets kapot....");
                 }
             }
         });
+    });
 
-        function highlightUser(sessionId) {
-            var rowIndex = 0;
-            $('#first tr').each(function() {
-                var respondantId = $(this).find("td").eq(0).html();
-                if (respondantId == sessionId) {
-                    rowIndex = $(this).index();
-                    console.log(rowIndex);
-                }
-            });
-                                                            
+    $('input.profile[type=checkbox]').change(function (event) {
+        var profile = $(this).attr('value');
+        var checkbox = $(this);
+        var rowIndex;
+        var cell;
+        $("td." + profile).each(function (index) {
+            rowIndex = $(this).parent().index();
+            cell = $(this);
             $('tr').each(function () {
                 if ($(this).index() == rowIndex) {
-                    $(this).css("backgroundColor", "yellow");
-                    $(this).insertAfter($(this).parent().parent().find('tr').eq(1));
-                } else {
-                    $(this).css("backgroundColor", "transparent");
+                    if ($(checkbox).is(":checked")) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
                 }
-
             });
-        }
 
+            allGeoArray.forEach(function (item, index) {
+                item.forEach(function (itemSecond, indexSecond) {
+                    console.log($(cell));
+                    console.log($(cell).text());
+                    if ($(cell).text() == itemSecond.properties.myId)
+                    {
+                        if ($(checkbox).is(":checked")) {
+                            map.addLayer(itemSecond);
+                        } else {
+                            map.removeLayer(itemSecond);
+                        }
+                    }
+                });
+            });
 
-        $('td, th').click(function() {
-            alert($(this).text());
         });
+
+    });
+
+    function highlightUser(sessionId) {
+        var rowIndex = 0;
+        $('#first tr').each(function() {
+            var respondantId = $(this).find("td").eq(0).text();
+            if (respondantId == sessionId) {
+                rowIndex = $(this).index();
+            }
+        });
+                                                            
+        $('tr').each(function () {
+            if ($(this).index() == rowIndex) {
+                $(this).css("backgroundColor", "yellow");
+                $(this).insertAfter($(this).parent().parent().find('tr').eq(1));
+            } else {
+                $(this).css("backgroundColor", "transparent");
+            }
+        });
+    }
+
+
+    $('td, th').click(function() {
+        alert($(this).text());
+    });
         
 
-        function removelayer(layer, index) {
-            map.removeLayer(layer);
-        }
+    function removelayer(layer, index) {
+        map.removeLayer(layer);
+    }
 
-        function addLayer(layer, index) {
-            map.addLayer(layer);
-        }
-    </script>
+    function addLayer(layer, index) {
+        console.log(layer.properties.myId);
+        map.addLayer(layer);
+    }
+</script>
 
 </body>
 </html>
