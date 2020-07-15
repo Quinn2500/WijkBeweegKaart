@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "60c20251c3a71808126aacee46a1ebbc6e530dd9"
+    "signature": "0ea3c1c0cf0db4652ead10391ac0934b272334a8"
   },
   "compilationOptions": {
     "defines": [
@@ -27,9 +27,12 @@
           "DataModels": "1.0.0",
           "Logic": "1.0.0",
           "Microsoft.AspNetCore.App": "2.1.1",
+          "Microsoft.AspNetCore.Cryptography.Internal": "3.1.5",
+          "Microsoft.AspNetCore.DataProtection.Abstractions": "3.1.5",
           "Microsoft.AspNetCore.Razor.Design": "2.1.2",
           "Microsoft.NETCore.App": "2.1.0",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.3"
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.3",
+          "NPOI": "2.5.1"
         },
         "runtime": {
           "WBK.dll": {}
@@ -38,20 +41,22 @@
           "WBK.dll": {}
         }
       },
+      "BCrypt.Net-Core/1.6.0": {
+        "runtime": {
+          "lib/netstandard2.0/BCrypt.Net-Core.dll": {
+            "assemblyVersion": "1.6.0.0",
+            "fileVersion": "1.6.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/BCrypt.Net-Core.dll": {}
+        }
+      },
       "BouncyCastle.NetCore/1.8.3": {
         "dependencies": {
           "NETStandard.Library": "2.0.3",
           "System.Reflection": "4.3.0",
           "System.Reflection.TypeExtensions": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/BouncyCastle.Crypto.dll": {
-            "assemblyVersion": "1.8.2.0",
-            "fileVersion": "1.8.18099.1"
-          }
-        },
-        "compile": {
-          "lib/netstandard2.0/BouncyCastle.Crypto.dll": {}
         }
       },
       "Google.Protobuf/3.6.1": {
@@ -66,6 +71,28 @@
         },
         "compile": {
           "lib/netstandard1.0/Google.Protobuf.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Cryptography.Internal/3.1.5": {
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {
+            "assemblyVersion": "3.1.5.0",
+            "fileVersion": "3.100.520.27105"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.DataProtection.Abstractions/3.1.5": {
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll": {
+            "assemblyVersion": "3.1.5.0",
+            "fileVersion": "3.100.520.27105"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll": {}
         }
       },
       "Microsoft.AspNetCore.Razor.Design/2.1.2": {},
@@ -246,12 +273,31 @@
           "lib/net461/dotnet-aspnet-codegenerator-design.exe": {}
         }
       },
+      "Microsoft.Win32.SystemEvents/4.5.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "3.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Win32.SystemEvents.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.6.26515.6"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/netcoreapp2.0/Microsoft.Win32.SystemEvents.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.6.26515.6"
+          }
+        }
+      },
       "MySql.Data/8.0.19": {
         "dependencies": {
           "BouncyCastle.NetCore": "1.8.3",
           "Google.Protobuf": "3.6.1",
           "SSH.NET": "2016.1.0",
-          "System.Configuration.ConfigurationManager": "4.4.1",
+          "System.Configuration.ConfigurationManager": "4.5.0",
           "System.Security.Permissions": "4.6.0",
           "System.Text.Encoding.CodePages": "4.5.0"
         },
@@ -273,6 +319,60 @@
       "NETStandard.Library/2.0.3": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.0.0"
+        }
+      },
+      "NPOI/2.5.1": {
+        "dependencies": {
+          "Portable.BouncyCastle": "1.8.6",
+          "SharpZipLib": "1.2.0",
+          "System.Configuration.ConfigurationManager": "4.5.0",
+          "System.Drawing.Common": "4.5.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/NPOI.OOXML.dll": {
+            "assemblyVersion": "2.5.1.0",
+            "fileVersion": "2.5.1.0"
+          },
+          "lib/netstandard2.0/NPOI.OpenXml4Net.dll": {
+            "assemblyVersion": "2.5.1.0",
+            "fileVersion": "2.5.1.0"
+          },
+          "lib/netstandard2.0/NPOI.OpenXmlFormats.dll": {
+            "assemblyVersion": "2.5.1.0",
+            "fileVersion": "2.5.1.0"
+          },
+          "lib/netstandard2.0/NPOI.dll": {
+            "assemblyVersion": "2.5.1.0",
+            "fileVersion": "2.5.1.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/NPOI.OOXML.dll": {},
+          "lib/netstandard2.0/NPOI.OpenXml4Net.dll": {},
+          "lib/netstandard2.0/NPOI.OpenXmlFormats.dll": {},
+          "lib/netstandard2.0/NPOI.dll": {}
+        }
+      },
+      "Portable.BouncyCastle/1.8.6": {
+        "runtime": {
+          "lib/netstandard2.0/BouncyCastle.Crypto.dll": {
+            "assemblyVersion": "1.8.6.0",
+            "fileVersion": "1.8.6.1"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/BouncyCastle.Crypto.dll": {}
+        }
+      },
+      "SharpZipLib/1.2.0": {
+        "runtime": {
+          "lib/netstandard2.0/ICSharpCode.SharpZipLib.dll": {
+            "assemblyVersion": "1.2.0.246",
+            "fileVersion": "1.2.0.246"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/ICSharpCode.SharpZipLib.dll": {}
         }
       },
       "SSH.NET/2016.1.0": {
@@ -325,14 +425,15 @@
           "lib/netstandard1.3/SshNet.Security.Cryptography.dll": {}
         }
       },
-      "System.Configuration.ConfigurationManager/4.4.1": {
+      "System.Configuration.ConfigurationManager/4.5.0": {
         "dependencies": {
-          "System.Security.Cryptography.ProtectedData": "4.4.0"
+          "System.Security.Cryptography.ProtectedData": "4.5.0",
+          "System.Security.Permissions": "4.6.0"
         },
         "runtime": {
           "lib/netstandard2.0/System.Configuration.ConfigurationManager.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.6.25921.2"
+            "assemblyVersion": "4.0.1.0",
+            "fileVersion": "4.6.26515.6"
           }
         },
         "compile": {
@@ -360,6 +461,35 @@
             "rid": "win",
             "assetType": "runtime"
           }
+        }
+      },
+      "System.Drawing.Common/4.5.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "3.0.0",
+          "Microsoft.Win32.SystemEvents": "4.5.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Drawing.Common.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.6.26515.6"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/netcoreapp2.0/System.Drawing.Common.dll": {
+            "rid": "unix",
+            "assetType": "runtime",
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.6.26515.6"
+          },
+          "runtimes/win/lib/netcoreapp2.0/System.Drawing.Common.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.6.26515.6"
+          }
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Drawing.Common.dll": {}
         }
       },
       "System.Net.NameResolution/4.0.0": {
@@ -423,19 +553,19 @@
           "ref/netstandard2.0/System.Security.AccessControl.dll": {}
         }
       },
-      "System.Security.Cryptography.ProtectedData/4.4.0": {
+      "System.Security.Cryptography.ProtectedData/4.5.0": {
         "runtime": {
           "lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {
-            "assemblyVersion": "4.0.2.0",
-            "fileVersion": "4.6.25519.3"
+            "assemblyVersion": "4.0.3.0",
+            "fileVersion": "4.6.26515.6"
           }
         },
         "runtimeTargets": {
           "runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {
             "rid": "win",
             "assetType": "runtime",
-            "assemblyVersion": "4.0.2.0",
-            "fileVersion": "4.6.25519.3"
+            "assemblyVersion": "4.0.3.0",
+            "fileVersion": "4.6.26515.6"
           }
         }
       },
@@ -539,6 +669,7 @@
       },
       "Logic/1.0.0": {
         "dependencies": {
+          "BCrypt.Net-Core": "1.6.0",
           "DAL": "1.0.0",
           "DataModels": "1.0.0"
         },
@@ -618,10 +749,10 @@
           "Microsoft.AspNetCore.Connections.Abstractions": "2.1.1",
           "Microsoft.AspNetCore.CookiePolicy": "2.1.1",
           "Microsoft.AspNetCore.Cors": "2.1.1",
-          "Microsoft.AspNetCore.Cryptography.Internal": "2.1.1",
+          "Microsoft.AspNetCore.Cryptography.Internal": "3.1.5",
           "Microsoft.AspNetCore.Cryptography.KeyDerivation": "2.1.1",
           "Microsoft.AspNetCore.DataProtection": "2.1.1",
-          "Microsoft.AspNetCore.DataProtection.Abstractions": "2.1.1",
+          "Microsoft.AspNetCore.DataProtection.Abstractions": "3.1.5",
           "Microsoft.AspNetCore.DataProtection.Extensions": "2.1.1",
           "Microsoft.AspNetCore.Diagnostics": "2.1.1",
           "Microsoft.AspNetCore.Diagnostics.Abstractions": "2.1.1",
@@ -922,15 +1053,9 @@
         },
         "compileOnly": true
       },
-      "Microsoft.AspNetCore.Cryptography.Internal/2.1.1": {
-        "compile": {
-          "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {}
-        },
-        "compileOnly": true
-      },
       "Microsoft.AspNetCore.Cryptography.KeyDerivation/2.1.1": {
         "dependencies": {
-          "Microsoft.AspNetCore.Cryptography.Internal": "2.1.1"
+          "Microsoft.AspNetCore.Cryptography.Internal": "3.1.5"
         },
         "compile": {
           "lib/netcoreapp2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": {}
@@ -939,8 +1064,8 @@
       },
       "Microsoft.AspNetCore.DataProtection/2.1.1": {
         "dependencies": {
-          "Microsoft.AspNetCore.Cryptography.Internal": "2.1.1",
-          "Microsoft.AspNetCore.DataProtection.Abstractions": "2.1.1",
+          "Microsoft.AspNetCore.Cryptography.Internal": "3.1.5",
+          "Microsoft.AspNetCore.DataProtection.Abstractions": "3.1.5",
           "Microsoft.AspNetCore.Hosting.Abstractions": "2.1.1",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "2.1.1",
           "Microsoft.Extensions.Logging.Abstractions": "2.1.1",
@@ -951,12 +1076,6 @@
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.AspNetCore.DataProtection.dll": {}
-        },
-        "compileOnly": true
-      },
-      "Microsoft.AspNetCore.DataProtection.Abstractions/2.1.1": {
-        "compile": {
-          "lib/netstandard2.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll": {}
         },
         "compileOnly": true
       },
@@ -3472,6 +3591,13 @@
       "serviceable": false,
       "sha512": ""
     },
+    "BCrypt.Net-Core/1.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hsKiHGjrnlDW05MzuzzlD9gNP8YOW2KbZ+FbvISrilsKJJ76tXKhWey6psZX5sd7DczNpSU2U6ldjPoblk8BLw==",
+      "path": "bcrypt.net-core/1.6.0",
+      "hashPath": "bcrypt.net-core.1.6.0.nupkg.sha512"
+    },
     "BouncyCastle.NetCore/1.8.3": {
       "type": "package",
       "serviceable": true,
@@ -3485,6 +3611,20 @@
       "sha512": "sha512-741fGeDQjixBJaU2j+0CbrmZXsNJkTn/hWbOh4fLVXndHsCclJmWznCPWrJmPoZKvajBvAz3e8ECJOUvRtwjNQ==",
       "path": "google.protobuf/3.6.1",
       "hashPath": "google.protobuf.3.6.1.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Cryptography.Internal/3.1.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-oLOay0PH+b0x9mTAFAZswlDuoZYOO2Is6eeDoN8pzx31zzpNL2RvEY343s8yaTVEzydymRduTyff4htRJgt6IA==",
+      "path": "microsoft.aspnetcore.cryptography.internal/3.1.5",
+      "hashPath": "microsoft.aspnetcore.cryptography.internal.3.1.5.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.DataProtection.Abstractions/3.1.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5YEWjf2VWME/b43Mpnq4E909vWVvMFdSaBP2HjydxvilKW8VaYAz472xbZopnJWxSjpmRClx0lrkx004CtIjQg==",
+      "path": "microsoft.aspnetcore.dataprotection.abstractions/3.1.5",
+      "hashPath": "microsoft.aspnetcore.dataprotection.abstractions.3.1.5.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Razor.Design/2.1.2": {
       "type": "package",
@@ -3542,6 +3682,13 @@
       "path": "microsoft.visualstudio.web.codegeneration.design/3.1.3",
       "hashPath": "microsoft.visualstudio.web.codegeneration.design.3.1.3.nupkg.sha512"
     },
+    "Microsoft.Win32.SystemEvents/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-LuI1oG+24TUj1ZRQQjM5Ew73BKnZE5NZ/7eAdh1o8ST5dPhUnJvIkiIn2re3MwnkRy6ELRnvEbBxHP8uALKhJw==",
+      "path": "microsoft.win32.systemevents/4.5.0",
+      "hashPath": "microsoft.win32.systemevents.4.5.0.nupkg.sha512"
+    },
     "MySql.Data/8.0.19": {
       "type": "package",
       "serviceable": true,
@@ -3555,6 +3702,27 @@
       "sha512": "sha512-st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
       "path": "netstandard.library/2.0.3",
       "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
+    },
+    "NPOI/2.5.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2RkrIi+h6hDcrdR8EIxMpBb7vSz5Lgsr1HKgrA7Q+9/zQ17ky5b+3eHuJeuautFhRSrUTRxUfOpF5l9Vooy8/A==",
+      "path": "npoi/2.5.1",
+      "hashPath": "npoi.2.5.1.nupkg.sha512"
+    },
+    "Portable.BouncyCastle/1.8.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-y+GvZomzhY+Lwu5mMeNmFFYLHiEr2xFDOANhABn/wgg64/QpTzfgpNGPct+pXgQHjmutd363ZCur/91DLaBxOw==",
+      "path": "portable.bouncycastle/1.8.6",
+      "hashPath": "portable.bouncycastle.1.8.6.nupkg.sha512"
+    },
+    "SharpZipLib/1.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zvWa/L02JHNatdtjya6Swpudb2YEHaOLHL1eRrqpjm71iGRNUNONO5adUF/9CHbSJbzhELW1UoH4NGy7n7+3bQ==",
+      "path": "sharpziplib/1.2.0",
+      "hashPath": "sharpziplib.1.2.0.nupkg.sha512"
     },
     "SSH.NET/2016.1.0": {
       "type": "package",
@@ -3570,12 +3738,12 @@
       "path": "sshnet.security.cryptography/1.2.0",
       "hashPath": "sshnet.security.cryptography.1.2.0.nupkg.sha512"
     },
-    "System.Configuration.ConfigurationManager/4.4.1": {
+    "System.Configuration.ConfigurationManager/4.5.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-jz3TWKMAeuDEyrPCK5Jyt4bzQcmzUIMcY9Ud6PkElFxTfnsihV+9N/UCqvxe1z5gc7jMYAnj7V1COMS9QKIuHQ==",
-      "path": "system.configuration.configurationmanager/4.4.1",
-      "hashPath": "system.configuration.configurationmanager.4.4.1.nupkg.sha512"
+      "sha512": "sha512-UIFvaFfuKhLr9u5tWMxmVoDPkFeD+Qv8gUuap4aZgVGYSYMdERck4OhLN/2gulAc0nYTEigWXSJNNWshrmxnng==",
+      "path": "system.configuration.configurationmanager/4.5.0",
+      "hashPath": "system.configuration.configurationmanager.4.5.0.nupkg.sha512"
     },
     "System.Diagnostics.TraceSource/4.0.0": {
       "type": "package",
@@ -3583,6 +3751,13 @@
       "sha512": "sha512-6WVCczFZKXwpWpzd/iJkYnsmWTSFFiU24Xx/YdHXBcu+nFI/ehTgeqdJQFbtRPzbrO3KtRNjvkhtj4t5/WwWsA==",
       "path": "system.diagnostics.tracesource/4.0.0",
       "hashPath": "system.diagnostics.tracesource.4.0.0.nupkg.sha512"
+    },
+    "System.Drawing.Common/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-AiJFxxVPdeITstiRS5aAu8+8Dpf5NawTMoapZ53Gfirml24p7HIfhjmCRxdXnmmf3IUA3AX3CcW7G73CjWxW/Q==",
+      "path": "system.drawing.common/4.5.0",
+      "hashPath": "system.drawing.common.4.5.0.nupkg.sha512"
     },
     "System.Net.NameResolution/4.0.0": {
       "type": "package",
@@ -3605,12 +3780,12 @@
       "path": "system.security.accesscontrol/4.6.0",
       "hashPath": "system.security.accesscontrol.4.6.0.nupkg.sha512"
     },
-    "System.Security.Cryptography.ProtectedData/4.4.0": {
+    "System.Security.Cryptography.ProtectedData/4.5.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-cJV7ScGW7EhatRsjehfvvYVBvtiSMKgN8bOVI0bQhnF5bU7vnHVIsH49Kva7i7GWaWYvmEzkYVk1TC+gZYBEog==",
-      "path": "system.security.cryptography.protecteddata/4.4.0",
-      "hashPath": "system.security.cryptography.protecteddata.4.4.0.nupkg.sha512"
+      "sha512": "sha512-wLBKzFnDCxP12VL9ANydSYhk59fC4cvOr9ypYQLPnAj48NQIhqnjdD2yhP8yEKyBJEjERWS9DisKL7rX5eU25Q==",
+      "path": "system.security.cryptography.protecteddata/4.5.0",
+      "hashPath": "system.security.cryptography.protecteddata.4.5.0.nupkg.sha512"
     },
     "System.Security.Permissions/4.6.0": {
       "type": "package",
@@ -3809,13 +3984,6 @@
       "path": "microsoft.aspnetcore.cors/2.1.1",
       "hashPath": "microsoft.aspnetcore.cors.2.1.1.nupkg.sha512"
     },
-    "Microsoft.AspNetCore.Cryptography.Internal/2.1.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-guY3jMNkcUi2hrMJ4/vPnUUFwudxTVSJ809gCfpq+xR0UgV6P9ZHZLOI5q/07QHDZY+kKPXxipXGyJXQpq2k0g==",
-      "path": "microsoft.aspnetcore.cryptography.internal/2.1.1",
-      "hashPath": "microsoft.aspnetcore.cryptography.internal.2.1.1.nupkg.sha512"
-    },
     "Microsoft.AspNetCore.Cryptography.KeyDerivation/2.1.1": {
       "type": "package",
       "serviceable": true,
@@ -3829,13 +3997,6 @@
       "sha512": "sha512-OPZDPAAL3OwOCrz870F9goq//NJOmPl4Lv3dz+v0cRQe8EpsbCe0c6IRI8vdlFwM13Qy57D5rLQlysb+tLpENA==",
       "path": "microsoft.aspnetcore.dataprotection/2.1.1",
       "hashPath": "microsoft.aspnetcore.dataprotection.2.1.1.nupkg.sha512"
-    },
-    "Microsoft.AspNetCore.DataProtection.Abstractions/2.1.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-dcH52SMIIUOwBeDZ2QQEY3hWXJz50Dk2YzC/B2hxDLB78Il75BHGOhClIw6/0H+dKZCwItUytxoMNYtCSmG+aQ==",
-      "path": "microsoft.aspnetcore.dataprotection.abstractions/2.1.1",
-      "hashPath": "microsoft.aspnetcore.dataprotection.abstractions.2.1.1.nupkg.sha512"
     },
     "Microsoft.AspNetCore.DataProtection.Extensions/2.1.1": {
       "type": "package",

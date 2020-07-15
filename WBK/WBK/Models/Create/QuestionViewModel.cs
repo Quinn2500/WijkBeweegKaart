@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using DataModels;
@@ -8,6 +9,7 @@ namespace WBK.Models.Create
 {
     public class QuestionViewModel
     {
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public TypeEnum Type { get; set; }
@@ -18,8 +20,10 @@ namespace WBK.Models.Create
         public string SliderMinText { get; set; }
         public string SliderMaxText { get; set; }
         public GeoTypeEnum GeoType { get; set; }
+        [DisplayName("Verplicht:")]
+        public bool IsRequierd { get; set; }
         public List<MultipleChoiceOptionViewModel> Options { get; set; }
-        public bool AllowMultipleAnswers { get; set; }
+        public int MaximumNumberOfAnswers { get; set; }
         public string TextAnswer { get; set; }
         public string GeoCodeAnswer { get; set; }
         public int NumberAnswer { get; set; }

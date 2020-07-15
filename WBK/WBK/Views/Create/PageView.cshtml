@@ -15,7 +15,7 @@
             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuPage@(Model.PageId)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 =
             </a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <div id="dropdownMenu_Page@(Model.PageId)_Question@(Model.QuestionId)"  class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <a href="" class="dropdown-item addProfileQuestionButton">Voeg Profiel Vragen Toe</a>
                 <a href="" class="dropdown-item addNNGBQuestionButton">Voeg NNGB vragen Toe</a>
                 <a href="" class="dropdown-item addMotivationQuestionButton">Voeg Motivatie vragen Toe</a>
@@ -27,7 +27,7 @@
     </div>
 
     <input class="form-control" required id="PagesList_@(Model.PageId)__Title" name="PagesList[@(Model.PageId)].Title" type="text" value="" placeholder="Pagina Titel " />
-    <input class="form-control" required id="PagesList_@(Model.PageId)__ImageUrl" name="PagesList[@(Model.PageId)].ImageUrl" type="text" value="" placeholder="Pagina Foto URL " />
+    <input class="form-control" id="PagesList_@(Model.PageId)__ImageUrl" name="PagesList[@(Model.PageId)].ImageUrl" type="text" value="" placeholder="Pagina Foto URL " />
     <textarea class="form-control" id="PagesList_@(Model.PageId)__Description" name="PagesList[@(Model.PageId)].Description" type="text" value="" placeholder="Pagina Beschrijving" rows="5" cols="40"></textarea>
 
     <label for="PageCounter" style="display: none;">@(Model.PageId)</label>
@@ -55,15 +55,11 @@
                 <option value="3">SliderVraag</option>
                 <option value="4">NummerVraag</option>
             </select>
-            <select class="form-control" data-val="true" data-val-required="The Category field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Category" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Category">
-                <option selected="selected" value="0">Profiel</option>
-                <option value="1">Locatie</option>
-                <option value="2">Gezondheid</option>
-                <option value="3">Motivatie</option>
-                <option value="4">Algemeen</option>
-                <option value="5">Product</option>
-            </select>
             <label for="QuestionCounter" style="display: none;">@(Model.QuestionId)</label>
+            
+            <div class="question">
+
+            </div>
         </div>
 
     </div>

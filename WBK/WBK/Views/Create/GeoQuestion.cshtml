@@ -32,6 +32,9 @@
 
         var marker@(Model.PageId) = L.marker();
 
+        var searchControl@(Model.PageId) = new L.esri.Controls.Geosearch().addTo(map@(Model.PageId));
+        var results@(Model.PageId) = new L.LayerGroup().addTo(map@(Model.PageId));
+
         function onMapClick@(Model.PageId)(e) {
             marker@(Model.PageId)
                 .setLatLng(e.latlng)

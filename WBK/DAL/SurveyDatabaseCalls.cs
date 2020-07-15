@@ -38,95 +38,128 @@ namespace DAL
                     new MySqlParameter("@pSurveyId", surveyId),
                     new MySqlParameter("@pPageTitle", page.Title),
                     new MySqlParameter("@pPageDesc", page.Description),
-                    new MySqlParameter("@pImageUrl", survey.ImageUrl)
+                    new MySqlParameter("@pImageUrl", page.ImageUrl)
                 };
 
                 int? pageId = _databaseCalls.CommandWithLastId(queryPage, parametersPage);
 
-                foreach (GeoQuestion question in page.Questions.OfType<GeoQuestion>())
+                foreach (Question question in page.Questions)
                 {
-                    int? geoQuestionId = InsertQuestion(question, pageId); ;
-
-                    string queryGeoQuestion ="INSERT INTO `geoquestion`(`QuestionId`, `TypeOfMarker`) VALUES (@pQuestionGeoId, @pTypeOfMarker)";
-                    List<MySqlParameter> parametersGeoQuestion = new List<MySqlParameter>
+                    string queryCheckQuestion = "SELECT Question.Id FROM `question` WHERE Question.Question = @pQuestion AND Question.Attribute = @pAttribute";
+                    List<MySqlParameter> parameterCheckQuestion = new List<MySqlParameter>
                     {
-                        new MySqlParameter("@pQuestionGeoId", geoQuestionId),
-                        new MySqlParameter("@pTypeOfMarker", question.TypeOfMarker)
+                        new MySqlParameter("@pQuestion", question.Value),
+                        new MySqlParameter("@pAttribute", question.Attribute)
                     };
 
-                    if (question.StartLocation != null)
+                    DataTable checkQuestionDataTable = _databaseCalls.Select(queryCheckQuestion, parameterCheckQuestion);
+
+                    if (checkQuestionDataTable.Rows.Count == 1)
                     {
-                        parametersGeoQuestion.Add(new MySqlParameter("@pStartLocation", JsonConvert.SerializeObject(question.StartLocation)));
-                        queryGeoQuestion = "INSERT INTO `geoquestion`(`QuestionId`, `TypeOfMarker`, `StartLocation`) VALUES (@pQuestionGeoId, @pTypeOfMarker, @pStartLocation)";
-                    }
-
-                    _databaseCalls.Command(queryGeoQuestion, parametersGeoQuestion);
-                }
-
-                foreach (OpenQuestion question in page.Questions.OfType<OpenQuestion>())
-                {
-                    InsertQuestion(question, pageId);
-                }
-
-                foreach (MultipleChoiceQuestion question in page.Questions.OfType<MultipleChoiceQuestion>())
-                {
-                    int? multipleChoiceQuestionId = InsertQuestion(question, pageId);
-
-                    string queryMCQuestion = "INSERT INTO `multiplechoicequestion`(`QuestionId`, `MultipleAnswers`) VALUES (@pQuestionId, @pMultipleAnswers)";
-                    List<MySqlParameter> parametersMCQuestion = new List<MySqlParameter>
-                    {
-                        new MySqlParameter("@pQuestionId", multipleChoiceQuestionId),
-                        new MySqlParameter("@pMultipleAnswers", question.AllowMutlipleAnwsers)
-                    };
-
-                    int? optionId = _databaseCalls.CommandWithLastId(queryMCQuestion, parametersMCQuestion);
-
-                    foreach (MultipleChoiceOption option in question.Options)
-                    {
-                        string queryOption = "INSERT INTO `multiplechoiceoption`(`MultipleChoiceQuestionId`, `Value`, `Description`, `ImageUrl`) VALUES (@pMCQuestionId, @pValue, @pDesc, @pImageUrl)";
-                        List<MySqlParameter> parametersOption= new List<MySqlParameter>
+                        string queryQuestionToPageExisting = "INSERT INTO `questiontopage`(`PageId`, `QuestionId`) VALUES (@pPageId, @pQuestionId)";
+                        List<MySqlParameter> parametersQuestionToPageExisting = new List<MySqlParameter>
                         {
-                            new MySqlParameter("@pMCQuestionId", optionId),
-                            new MySqlParameter("@pValue", option.Value),
-                            new MySqlParameter("@pDesc", option.Description),
-                            new MySqlParameter("@pImageUrl", option.ImageUrl)
+                            new MySqlParameter("@pPageId", pageId),
+                            new MySqlParameter("@pQuestionId", Convert.ToInt32(checkQuestionDataTable.Rows[0][0]))
                         };
-                        _databaseCalls.Command(queryOption, parametersOption);
+                        _databaseCalls.Command(queryQuestionToPageExisting, parametersQuestionToPageExisting);
+                    }
+                    else
+                    {
+
+                        int? questionId = InsertQuestion(question, pageId);
+
+                        string queryQuestionToPage =
+                            "INSERT INTO `questiontopage`(`PageId`, `QuestionId`, `IsRequierd`) VALUES (@pPageId, @pQuestionId, @pIsRequierd)";
+                        List<MySqlParameter> parametersQuestionToPage = new List<MySqlParameter>
+                        {
+                            new MySqlParameter("@pPageId", pageId),
+                            new MySqlParameter("@pQuestionId", questionId),
+                            new MySqlParameter("@pIsRequierd", question.IsRequired)
+                        };
+                        _databaseCalls.Command(queryQuestionToPage, parametersQuestionToPage);
+
+                        switch (question.Type)
+                        {
+                            case TypeEnum.GeoVraag:
+                                GeoQuestion geo = question as GeoQuestion;
+
+                                string queryGeoQuestion =
+                                    "INSERT INTO `geoquestion`(`QuestionId`, `TypeOfMarker`) VALUES (@pQuestionGeoId, @pTypeOfMarker)";
+                                List<MySqlParameter> parametersGeoQuestion = new List<MySqlParameter>
+                                {
+                                    new MySqlParameter("@pQuestionGeoId", questionId),
+                                    new MySqlParameter("@pTypeOfMarker", geo.TypeOfMarker)
+                                };
+
+                                if (geo.StartLocation != null)
+                                {
+                                    parametersGeoQuestion.Add(new MySqlParameter("@pStartLocation",
+                                        JsonConvert.SerializeObject(geo.StartLocation)));
+                                    queryGeoQuestion =
+                                        "INSERT INTO `geoquestion`(`QuestionId`, `TypeOfMarker`, `StartLocation`) VALUES (@pQuestionGeoId, @pTypeOfMarker, @pStartLocation)";
+                                }
+
+                                _databaseCalls.Command(queryGeoQuestion, parametersGeoQuestion);
+                                break;
+
+                            case TypeEnum.MeerkeuzeVraag:
+                                MultipleChoiceQuestion multipleChoiceQuestion = question as MultipleChoiceQuestion;
+
+                                string queryMCQuestion = "INSERT INTO `multiplechoicequestion`(`QuestionId`, `MultipleAnswers`) VALUES (@pQuestionId, @pMultipleAnswers)";
+                                List<MySqlParameter> parametersMCQuestion = new List<MySqlParameter>
+                                {
+                                    new MySqlParameter("@pQuestionId", questionId),
+                                    new MySqlParameter("@pMultipleAnswers", multipleChoiceQuestion.MaximumNumberOfAnswers)
+                                };
+
+                                int? optionId = _databaseCalls.CommandWithLastId(queryMCQuestion, parametersMCQuestion);
+
+                                foreach (MultipleChoiceOption option in multipleChoiceQuestion.Options)
+                                {
+                                    string queryOption = "INSERT INTO `multiplechoiceoption`(`MultipleChoiceQuestionId`, `Value`, `Description`, `ImageUrl`) VALUES (@pMCQuestionId, @pValue, @pDesc, @pImageUrl)";
+                                    List<MySqlParameter> parametersOption = new List<MySqlParameter>
+                                    {
+                                        new MySqlParameter("@pMCQuestionId", optionId),
+                                        new MySqlParameter("@pValue", option.Answer),
+                                        new MySqlParameter("@pDesc", option.Description),
+                                        new MySqlParameter("@pImageUrl", option.ImageUrl)
+                                    };
+                                    _databaseCalls.Command(queryOption, parametersOption);
+                                }
+                                break;
+
+                            case TypeEnum.NummerVraag:
+                                NumberQuestion numberQuestion = question as NumberQuestion;
+                                string queryNumberQuestion =
+                                    "INSERT INTO `numberquestion`(`QuestionId`, `MaxValue`, `MinValue`) VALUES (@pQuestionId, @pMaxVal,@pMinVal)";
+                                List<MySqlParameter> parametersNumberQuestion = new List<MySqlParameter>
+                                {
+                                    new MySqlParameter("@pQuestionId", questionId),
+                                    new MySqlParameter("@pMaxVal", numberQuestion.Maximum),
+                                    new MySqlParameter("@pMinVal", numberQuestion.Minimum)
+                                };
+
+                                _databaseCalls.Command(queryNumberQuestion, parametersNumberQuestion);
+                                break;
+
+                            case TypeEnum.SliderVraag:
+                                SliderQuestion sliderQuestion = question as SliderQuestion;
+                                string querySliderQuestion =
+                                    "INSERT INTO `sliderquestion`(`QuestionId`, `MaxValueText`, `MinValueText`, `Scale`) VALUES (@pQuestionId, @pMaxVal, @pMinVal, @pScale)";
+                                List<MySqlParameter> parametersSliderQuestion = new List<MySqlParameter>
+                                {
+                                    new MySqlParameter("@pQuestionId", questionId),
+                                    new MySqlParameter("@pMaxVal", sliderQuestion.MaxValueText),
+                                    new MySqlParameter("@pMinVal", sliderQuestion.MinValueText),
+                                    new MySqlParameter("@pScale", sliderQuestion.Scale)
+                                };
+
+                                _databaseCalls.Command(querySliderQuestion, parametersSliderQuestion);
+                                break;
+                        }
                     }
                 }
-
-                foreach (SliderQuestion question in page.Questions.OfType<SliderQuestion>())
-                {
-                    int? sliderQuestionId = InsertQuestion(question, pageId);
-
-                    string querySliderQuestion = "INSERT INTO `sliderquestion`(`QuestionId`, `MaxValueText`, `MinValueText`, `Scale`) VALUES (@pQuestionId, @pMaxVal, @pMinVal, @pScale)";
-                    List<MySqlParameter> parametersSliderQuestion = new List<MySqlParameter>
-                    {
-                        new MySqlParameter("@pQuestionId", sliderQuestionId),
-                        new MySqlParameter("@pMaxVal", question.MaxValueText),
-                        new MySqlParameter("@pMinVal", question.MinValueText),
-                        new MySqlParameter("@pScale", question.Scale)
-                    };
-
-                    _databaseCalls.Command(querySliderQuestion, parametersSliderQuestion);
-                }
-
-                foreach (NumberQuestion question in page.Questions.OfType<NumberQuestion>())
-                {
-                    int? numberQuestionId = InsertQuestion(question,pageId);
-
-                    string queryNumberQuestion =
-                        "INSERT INTO `numberquestion`(`QuestionId`, `MaxValue`, `MinValue`) VALUES (@pQuestionId, @pMaxVal,@pMinVal)";
-                    List<MySqlParameter> parametersNumberQuestion = new List<MySqlParameter>
-                    {
-                        new MySqlParameter("@pQuestionId", numberQuestionId),
-                        new MySqlParameter("@pMaxVal", question.Maximum),
-                        new MySqlParameter("@pMinVal", question.Minimum)
-                    };
-
-                    _databaseCalls.Command(queryNumberQuestion, parametersNumberQuestion);
-                }
-
 
             }
 
@@ -134,15 +167,15 @@ namespace DAL
 
         public int? InsertQuestion(Question question, int? pageId)
         {
-            string query = "INSERT INTO `question`(`Question`, `Description`, `Type`, `PageId`, `Category`, `ImageUrl`) VALUES (@pQuestion,@pDesc,@pType,@pPageId,@pCategoryId,@pImageUrl)";
-            List<MySqlParameter> parameters= new List<MySqlParameter>
+            string query = "INSERT INTO `question`(`Question`, `Description`, `Type`, `Category`, `ImageUrl` , `Attribute`) VALUES (@pQuestion,@pDesc,@pType,@pCategoryId,@pImageUrl,@pAttribute)";
+            List<MySqlParameter> parameters = new List<MySqlParameter>
             {
                 new MySqlParameter("@pQuestion", question.Value),
                 new MySqlParameter("@pDesc", question.Description),
                 new MySqlParameter("@pType", question.Type),
-                new MySqlParameter("@pPageId", pageId),
                 new MySqlParameter("@pCategoryId", question.Category),
-                new MySqlParameter("@pImageUrl", question.ImageUrl)
+                new MySqlParameter("@pImageUrl", question.ImageUrl),
+                new MySqlParameter("@pAttribute", question.Attribute)
             };
 
             return _databaseCalls.CommandWithLastId(query, parameters);
@@ -173,6 +206,7 @@ namespace DAL
             result.DateOfCreation = Convert.ToDateTime(rowSurvey[3]);
             result.Owner = rowSurvey[4].ToString();
             result.EndDate = Convert.ToDateTime(rowSurvey[5]);
+            result.ImageUrl = rowSurvey[6].ToString();
             result.Pages = new List<Page>();
 
             string queryPage = "SELECT * FROM `page` WHERE page.SurveyId = @pId";
@@ -181,26 +215,36 @@ namespace DAL
             {
                 Page page = new Page
                 {
+                    Id = Convert.ToInt32(rowPage[0]),
                     Title = rowPage[2].ToString(),
                     Description = rowPage[3].ToString(),
-                    Questions = new List<Question>()
-                    
+                    Questions = new List<Question>(),
+                    ImageUrl = rowPage[4].ToString()
+
                 };
                 int pageId = Convert.ToInt32(rowPage[0]);
 
-                string queryQuestion = "SELECT * FROM `question` WHERE Question.PageId = @pId";
+                string queryQuestion = "SELECT `Id`, `QuestionId`, `IsRequierd` FROM `questiontopage` WHERE questiontopage.PageId = @pId";
                 List<MySqlParameter> parametersQuestion = new List<MySqlParameter>
                 {
                     new MySqlParameter("@pId", pageId),
                 };
 
-                foreach (DataRow rowQuestion in _databaseCalls.Select(queryQuestion, parametersQuestion).Rows)
+                foreach (DataRow rowQuestionId in _databaseCalls.Select(queryQuestion, parametersQuestion).Rows)
                 {
-                    int questionId = Convert.ToInt32(rowQuestion[0]);
+                    int questionNumber = Convert.ToInt32(rowQuestionId[0]);
+                    int questionId = Convert.ToInt32(rowQuestionId[1]);
+                    bool questionIsRequierd = Convert.ToBoolean(rowQuestionId[2]);
+
+                    string questionQuery = "SELECT * FROM `question` WHERE Question.Id = @pId";
+
                     List<MySqlParameter> questionIdParameter = new List<MySqlParameter>
                     {
                         new MySqlParameter("@pId", questionId),
                     };
+
+                    DataRow rowQuestion = _databaseCalls.Select(questionQuery, questionIdParameter).Rows[0];
+
                     TypeEnum questionType = (TypeEnum)Convert.ToInt32(rowQuestion[3]);
 
                     switch (questionType)
@@ -213,12 +257,17 @@ namespace DAL
 
                             GeoQuestion geoQuestion = new GeoQuestion
                             {
+                                Id = Convert.ToInt32(rowQuestion[0]),
                                 Value = rowQuestion[1].ToString(),
                                 Description = rowQuestion[2].ToString(),
-                                Category = (CategoryEnum)Convert.ToInt32(rowQuestion[5]),
+                                Category = (CategoryEnum)Convert.ToInt32(rowQuestion[4]),
                                 Type = questionType,
                                 TypeOfMarker = (GeoTypeEnum)Convert.ToInt32(rowGeo[2]),
-                                StartLocation = null
+                                StartLocation = null,
+                                ImageUrl = rowQuestion[5].ToString(),
+                                Attribute = rowQuestion[6].ToString(),
+                                IsRequired = questionIsRequierd,
+                                QuestionNumber = questionNumber
 
                             };
 
@@ -232,13 +281,19 @@ namespace DAL
                             break;
 
                         case TypeEnum.OpenVraag:
-                            OpenQuestion openQuestion = new OpenQuestion
+                            OpenQuestion openQuestion = new OpenQuestion()
                             {
+                                Id = Convert.ToInt32(rowQuestion[0]),
                                 Value = rowQuestion[1].ToString(),
                                 Description = rowQuestion[2].ToString(),
-                                Category = (CategoryEnum)Convert.ToInt32(rowQuestion[5]),
-                                Type = questionType
+                                Category = (CategoryEnum)Convert.ToInt32(rowQuestion[4]),
+                                Type = questionType,
+                                ImageUrl = rowQuestion[5].ToString(),
+                                Attribute = rowQuestion[6].ToString(),
+                                IsRequired = questionIsRequierd,
+                                QuestionNumber = questionNumber
                             };
+
                             page.Questions.Add(openQuestion);
                             break;
 
@@ -248,12 +303,17 @@ namespace DAL
                             int multipleChoiceId = Convert.ToInt32(rowMultipleChoice[0]);
                             MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion
                             {
+                                Id = Convert.ToInt32(rowQuestion[0]),
                                 Value = rowQuestion[1].ToString(),
                                 Description = rowQuestion[2].ToString(),
-                                Category = (CategoryEnum)Convert.ToInt32(rowQuestion[5]),
+                                Category = (CategoryEnum)Convert.ToInt32(rowQuestion[4]),
                                 Type = questionType,
-                                AllowMutlipleAnwsers = Convert.ToBoolean(rowMultipleChoice[2]),
-                                Options = new List<MultipleChoiceOption>()
+                                MaximumNumberOfAnswers = Convert.ToInt32(rowMultipleChoice[2]),
+                                Options = new List<MultipleChoiceOption>(),
+                                ImageUrl = rowQuestion[5].ToString(),
+                                Attribute = rowQuestion[6].ToString(),
+                                IsRequired = questionIsRequierd,
+                                QuestionNumber = questionNumber
                             };
 
                             string queryOptions = "SELECT * FROM `multiplechoiceoption` WHERE multiplechoiceoption.MultipleChoiceQuestionId = @pId";
@@ -277,13 +337,18 @@ namespace DAL
 
                             SliderQuestion sliderQuestion = new SliderQuestion
                             {
+                                Id = Convert.ToInt32(rowQuestion[0]),
                                 Value = rowQuestion[1].ToString(),
                                 Description = rowQuestion[2].ToString(),
-                                Category = (CategoryEnum)Convert.ToInt32(rowQuestion[5]),
+                                Category = (CategoryEnum)Convert.ToInt32(rowQuestion[4]),
                                 Type = questionType,
                                 MaxValueText = rowSlider[2].ToString(),
                                 MinValueText = rowSlider[3].ToString(),
-                                Scale = Convert.ToInt32(rowSlider[4])
+                                Scale = Convert.ToInt32(rowSlider[4]),
+                                ImageUrl = rowQuestion[5].ToString(),
+                                Attribute = rowQuestion[6].ToString(),
+                                IsRequired = questionIsRequierd,
+                                QuestionNumber = questionNumber
 
                             };
                             page.Questions.Add(sliderQuestion);
@@ -296,12 +361,17 @@ namespace DAL
 
                             NumberQuestion numberQuestion = new NumberQuestion
                             {
+                                Id = Convert.ToInt32(rowQuestion[0]),
                                 Value = rowQuestion[1].ToString(),
                                 Description = rowQuestion[2].ToString(),
-                                Category = (CategoryEnum)Convert.ToInt32(rowQuestion[5]),
+                                Category = (CategoryEnum)Convert.ToInt32(rowQuestion[4]),
                                 Type = questionType,
                                 Maximum = Convert.ToInt32(rowNumber[2]),
                                 Minimum = Convert.ToInt32(rowNumber[3]),
+                                ImageUrl = rowQuestion[5].ToString(),
+                                Attribute = rowQuestion[6].ToString(),
+                                IsRequired = questionIsRequierd,
+                                QuestionNumber = questionNumber
                             };
                             page.Questions.Add(numberQuestion);
                             break;
@@ -342,9 +412,9 @@ namespace DAL
 
         public void DeleteSurvey(string userEmail, string title)
         {
-            string deleteSurveyQuery = "DELETE survey, page, question " +
-                                       "FROM survey, page, question " +
-                                       "WHERE page.SurveyId = survey.Id  AND page.Id = question.PageId AND survey.Title = @pTitle AND survey.CreatorEmail = @pOwner";
+            string deleteSurveyQuery = "DELETE survey, page " +
+                                       "FROM survey, page " +
+                                       "WHERE page.SurveyId = survey.Id AND survey.Title = @pTitle AND survey.CreatorEmail = @pOwner";
             List<MySqlParameter> parametersSurvey = new List<MySqlParameter>
             {
                 new MySqlParameter("@pTitle", title),
@@ -356,14 +426,14 @@ namespace DAL
         public void InsertAnswers(Survey surveyWithAnswers)
         {
             int? surveyId = GetSurveyId(surveyWithAnswers.Title);
-
             foreach (Page page in surveyWithAnswers.Pages)
             {
-                int pageId = (int)GetPageId(page.Title, (int) surveyId);
+                int pageId = (int)GetPageId(page.Title, (int)surveyId);
 
                 foreach (Question question in page.Questions)
                 {
                     int questionId = (int)GetQuestionId(question.Value, pageId);
+
                     int respondantId;
                     if (GetRespondentId(question.Answers[0].Respondant.SessionId) == null)
                     {
@@ -401,7 +471,7 @@ namespace DAL
 
                             foreach (MultipleChoiceOption option in answer.AnsweredOptions)
                             {
-                                int optionid = (int)GetMultipleChoiceOptionId((int)GetMultipleChoiceQuestionId(questionId), option.Value);
+                                int optionid = (int)GetMultipleChoiceOptionId((int)GetMultipleChoiceQuestionId(questionId), option);
                                 string queryMultipleChoice = "INSERT INTO `multiplechoiceanswer`(`MultipleChoiceOptionId`, `AnswerId`) VALUES (@pMPOptionId, @pAnswerId)";
                                 List<MySqlParameter> parametersMultipleChoice = new List<MySqlParameter>
                                 {
@@ -439,6 +509,7 @@ namespace DAL
                 }
 
             }
+
         }
 
         public int? GetRespondentId(string respondantSessionId)
@@ -464,7 +535,7 @@ namespace DAL
 
         private int? GetQuestionId(string question, int pageId)
         {
-            string query = "SELECT `Id` FROM `question` WHERE question.Question = @pQuestion AND question.PageId = @pPageId";
+            string query = "SELECT Question.Id FROM `question` INNER JOIN questiontopage ON questiontopage.QuestionId = question.Id WHERE Question.Question = @pQuestion AND questiontopage.PageId = @pPageId";
             List<MySqlParameter> parameters = new List<MySqlParameter>
             {
                 new MySqlParameter("@pQuestion", question),
@@ -494,14 +565,30 @@ namespace DAL
             return _databaseCalls.GetOneInt(query, parameters);
         }
 
-        private int? GetMultipleChoiceOptionId(int multipleQuestionId, string value)
+        private int? GetMultipleChoiceOptionId(int multipleQuestionId, MultipleChoiceOption option)
         {
-            string query = "SELECT `Id` FROM `multiplechoiceoption` WHERE multiplechoiceoption.MultipleChoiceQuestionId = @pQuestionId AND multiplechoiceoption.Value = @pValue";
-            List<MySqlParameter> parameters = new List<MySqlParameter>
+            string query = "";
+            List<MySqlParameter> parameters = new List<MySqlParameter>();
+
+            if (string.IsNullOrEmpty(option.Answer))
             {
-                new MySqlParameter("@pQuestionId", multipleQuestionId),
-                new MySqlParameter("@pValue", value)
-            };
+                query = "SELECT `Id` FROM `multiplechoiceoption` WHERE multiplechoiceoption.MultipleChoiceQuestionId = @pQuestionId AND multiplechoiceoption.ImageURL = @pValue";
+                parameters = new List<MySqlParameter>
+                {
+                    new MySqlParameter("@pQuestionId", multipleQuestionId),
+                    new MySqlParameter("@pValue", option.ImageUrl)
+                };
+            }
+            else
+            {
+                query = "SELECT `Id` FROM `multiplechoiceoption` WHERE multiplechoiceoption.MultipleChoiceQuestionId = @pQuestionId AND multiplechoiceoption.Value = @pValue";
+                parameters = new List<MySqlParameter>
+                {
+                    new MySqlParameter("@pQuestionId", multipleQuestionId),
+                    new MySqlParameter("@pValue", option.Answer)
+                };
+            }
+
             return _databaseCalls.GetOneInt(query, parameters);
         }
 
@@ -523,12 +610,12 @@ namespace DAL
 
             foreach (Page page in result.Pages)
             {
-                int pageId = (int) GetPageId(page.Title, surveyId);
+                int pageId = (int)GetPageId(page.Title, surveyId);
                 foreach (Question question in page.Questions)
                 {
                     question.Answers = new List<Answer>();
 
-                    int questionId = (int) GetQuestionId(question.Value, pageId);
+                    int questionId = (int)GetQuestionId(question.Value, pageId);
 
                     string queryAnswers = "SELECT * FROM `answer` WHERE answer.QuestionId =  @pQuestionId";
                     List<MySqlParameter> parametersAnswers = new List<MySqlParameter>
@@ -538,12 +625,14 @@ namespace DAL
 
                     foreach (DataRow rowQuestion in _databaseCalls.Select(queryAnswers, parametersAnswers).Rows)
                     {
+                        int answerId = Convert.ToInt32(rowQuestion[0].ToString());
                         List<MySqlParameter> answerIdParameter = new List<MySqlParameter>
                         {
-                            new MySqlParameter("@pAnswerId", Convert.ToInt32(rowQuestion[0])),
+                            new MySqlParameter("@pAnswerId", answerId),
                         };
 
                         Respondant respondant = GetRespondant(Convert.ToInt32(rowQuestion[2]));
+
 
                         switch (question.Type)
                         {
@@ -555,7 +644,8 @@ namespace DAL
                                 GeoAnswer answer = new GeoAnswer
                                 {
                                     GeoData = rowAnswer[0].ToString(),
-                                    Respondant = respondant
+                                    Respondant = respondant,
+                                    Id = answerId
 
                                 };
 
@@ -565,14 +655,23 @@ namespace DAL
                             case TypeEnum.OpenVraag:
 
                                 string queryAnswerOpen = "SELECT `textAnswer` FROM `textanswer` WHERE textanswer.AnswerId = @pAnswerId";
-                                DataRow rowAnswerOpen = _databaseCalls.Select(queryAnswerOpen, answerIdParameter).Rows[0];
+                                DataRowCollection rows = _databaseCalls.Select(queryAnswerOpen, answerIdParameter).Rows;
 
                                 TextAnswer answerOpen = new TextAnswer
                                 {
-                                    TextValue = rowAnswerOpen[0].ToString(),
-                                    Respondant = respondant
+                                    TextValue = "",
+                                    Respondant = respondant,
+                                    Id = answerId
 
                                 };
+
+                                if (rows.Count > 0)
+                                {
+                                    DataRow rowAnswerOpen = rows[0];
+
+                                    answerOpen.TextValue = rowAnswerOpen[0].ToString();
+                                }
+
                                 question.Answers.Add(answerOpen);
                                 break;
 
@@ -581,7 +680,8 @@ namespace DAL
                                 MultipleChoiceAnswer answerMultipleChoice = new MultipleChoiceAnswer
                                 {
                                     Respondant = respondant,
-                                    AnsweredOptions = new List<MultipleChoiceOption>()
+                                    AnsweredOptions = new List<MultipleChoiceOption>(),
+                                    Id = answerId
 
 
                                 };
@@ -608,7 +708,8 @@ namespace DAL
                                 NumberAnswer answerSlider = new NumberAnswer
                                 {
                                     NumberValue = Convert.ToInt32(rowAnswerSlider[0]),
-                                    Respondant = respondant
+                                    Respondant = respondant,
+                                    Id = answerId
 
                                 };
                                 question.Answers.Add(answerSlider);
@@ -622,7 +723,8 @@ namespace DAL
                                 NumberAnswer answerNumber = new NumberAnswer
                                 {
                                     NumberValue = Convert.ToInt32(rowAnswerNumber[0]),
-                                    Respondant = respondant
+                                    Respondant = respondant,
+                                    Id = answerId
 
                                 };
                                 question.Answers.Add(answerNumber);
@@ -630,7 +732,7 @@ namespace DAL
                         }
                     }
 
-                    
+
                 }
             }
 
@@ -672,5 +774,142 @@ namespace DAL
             result.DateTimeOfCreation = Convert.ToDateTime(row[2]);
             return result;
         }
+
+        public List<int> GetAllRespondentIdsFromSurveyId(int surveyId)
+        {
+            List<int> allRespondantIds = new List<int>();
+            string query = "SELECT RespondantId FROM `respondanttosurvey` WHERE respondanttosurvey.SurveyId = @pId";
+            List<MySqlParameter> parameter = new List<MySqlParameter>
+            {
+                new MySqlParameter("@pId", surveyId),
+            };
+
+            foreach (DataRow row in _databaseCalls.Select(query, parameter).Rows)
+            {
+                allRespondantIds.Add(Convert.ToInt32(row[0].ToString()));
+            }
+
+            return allRespondantIds;
+        }
+
+        public void UpdateSurvey(Survey surveyToUpdate)
+        {
+            string querySurvey = "UPDATE `survey` SET `Description`= @pDesc,`DateCreation`= @pDateCreation,`CreatorEmail`= @pCreator,`EndDate`= @pEnddate,`ImageURL`= @pImageUrl WHERE survey.Title = @pTitle AND survey.CreatorEmail = @pCreator ";
+            List<MySqlParameter> parametersSurvey = new List<MySqlParameter>
+            {
+                new MySqlParameter("@pTitle", surveyToUpdate.Title),
+                new MySqlParameter("@pDesc", surveyToUpdate.Description),
+                new MySqlParameter("@pDateCreation", surveyToUpdate.DateOfCreation),
+                new MySqlParameter("@pCreator", surveyToUpdate.Owner),
+                new MySqlParameter("@pEnddate", surveyToUpdate.EndDate),
+                new MySqlParameter("@pImageUrl", surveyToUpdate.ImageUrl)
+            };
+
+           _databaseCalls.Command(querySurvey, parametersSurvey);
+
+            foreach (Page page in surveyToUpdate.Pages)
+            {
+                int pageId = page.Id;
+
+                string queryPage = "UPDATE `page` SET `Title`= @pPageTitle,`Description`= @pPageDesc,`ImageURL`= @pImageUrl WHERE page.Id = @pPageId";
+                List<MySqlParameter> parametersPage = new List<MySqlParameter>
+                {
+                    new MySqlParameter("@pPageTitle", page.Title),
+                    new MySqlParameter("@pPageDesc", page.Description),
+                    new MySqlParameter("@pPageId", page.Id),
+                    new MySqlParameter("@pImageUrl", page.ImageUrl)
+                };
+
+                _databaseCalls.Command(queryPage, parametersPage);
+
+                foreach (Question question in page.Questions)
+                {
+                    string queryQuestion = "UPDATE `question` SET `Question`= @pQuestion,`Description`= @pDescription,`Category`= @pCategory,`ImageURL`= @pImageUrl WHERE question.Id = @pQuestionId";
+                    List<MySqlParameter> parametersQuestion = new List<MySqlParameter>
+                    {
+                        new MySqlParameter("@pQuestion", question.Value),
+                        new MySqlParameter("@pDescription", question.Description),
+                        new MySqlParameter("@pCategory", question.Category),
+                        new MySqlParameter("@pQuestionId", question.Id),
+                        new MySqlParameter("@pImageUrl", question.ImageUrl)
+                    };
+                    _databaseCalls.Command(queryQuestion, parametersQuestion);
+
+                    string queryQuestionToPage = "UPDATE `questiontopage` SET `IsRequierd`= @pIsRequierd WHERE questiontopage.QuestionId = @pQuestionId AND questiontopage.PageId = @pPageId ";
+                        List<MySqlParameter> parametersQuestionToPage = new List<MySqlParameter>
+                        {
+                            new MySqlParameter("@pPageId", pageId),
+                            new MySqlParameter("@pQuestionId", question.Id),
+                            new MySqlParameter("@pIsRequierd", question.IsRequired)
+                        };
+                        _databaseCalls.Command(queryQuestionToPage, parametersQuestionToPage);
+
+                        switch (question.Type)
+                        {
+                            case TypeEnum.GeoVraag:
+
+                                break;
+
+                            case TypeEnum.MeerkeuzeVraag:
+                                MultipleChoiceQuestion multipleChoiceQuestion = question as MultipleChoiceQuestion;
+
+                                string queryMCQuestion = "UPDATE `multiplechoicequestion` SET `MultipleAnswers`= @pMultipleAnswers WHERE multiplechoicequestion.QuestionId = @pQuestionId ";
+                                List<MySqlParameter> parametersMCQuestion = new List<MySqlParameter>
+                                {
+                                    new MySqlParameter("@pQuestionId", question.Id),
+                                    new MySqlParameter("@pMultipleAnswers", multipleChoiceQuestion.MaximumNumberOfAnswers)
+                                };
+
+                                int? optionId = _databaseCalls.CommandWithLastId(queryMCQuestion, parametersMCQuestion);
+
+                                foreach (MultipleChoiceOption option in multipleChoiceQuestion.Options)
+                                {
+                                    string queryOption = "UPDATE `multiplechoiceoption` SET `Value`= @pValue,`Description`= @pDesc,`ImageURL`= @pImageUrl WHERE multiplechoiceoption.MultipleChoiceQuestionId = @pMCQuestionId ";
+                                    List<MySqlParameter> parametersOption = new List<MySqlParameter>
+                                    {
+                                        new MySqlParameter("@pMCQuestionId", optionId),
+                                        new MySqlParameter("@pValue", option.Answer),
+                                        new MySqlParameter("@pDesc", option.Description),
+                                        new MySqlParameter("@pImageUrl", option.ImageUrl)
+                                    };
+                                    _databaseCalls.Command(queryOption, parametersOption);
+                                }
+                                break;
+
+                            case TypeEnum.NummerVraag:
+                                NumberQuestion numberQuestion = question as NumberQuestion;
+                                string queryNumberQuestion =
+                                    "UPDATE `numberquestion` SET `MaxValue`= @pMaxVal,`MinValue`= @pMinVal WHERE numberquestion.Id = @pQuestionId";
+                                List<MySqlParameter> parametersNumberQuestion = new List<MySqlParameter>
+                                {
+                                    new MySqlParameter("@pQuestionId", question.Id),
+                                    new MySqlParameter("@pMaxVal", numberQuestion.Maximum),
+                                    new MySqlParameter("@pMinVal", numberQuestion.Minimum)
+                                };
+
+                                _databaseCalls.Command(queryNumberQuestion, parametersNumberQuestion);
+                                break;
+
+                            case TypeEnum.SliderVraag:
+                                SliderQuestion sliderQuestion = question as SliderQuestion;
+                                string querySliderQuestion =
+                                    "UPDATE `sliderquestion` SET `MaxValueText`= @pMaxVal,`MinValueText`= @pMinVal,`Scale`= @pScale WHERE sliderquestion.QuestionId = @pQuestionId";
+                                List<MySqlParameter> parametersSliderQuestion = new List<MySqlParameter>
+                                {
+                                    new MySqlParameter("@pQuestionId", question.Id),
+                                    new MySqlParameter("@pMaxVal", sliderQuestion.MaxValueText),
+                                    new MySqlParameter("@pMinVal", sliderQuestion.MinValueText),
+                                    new MySqlParameter("@pScale", sliderQuestion.Scale)
+                                };
+
+                                _databaseCalls.Command(querySliderQuestion, parametersSliderQuestion);
+                                break;
+                        }
+                    
+                }
+
+            }
+
+        }
     }
- }
+}

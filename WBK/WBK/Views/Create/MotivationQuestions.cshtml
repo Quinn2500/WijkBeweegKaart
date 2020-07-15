@@ -5,8 +5,16 @@
 @model WBK.Models.Create.PageQuestionModel
 
 
-<div class="questionDiv">
-    <h3>Vraag @(Model.QuestionId + 1)</h3>
+<div class="motivationQuestion questionDiv">
+    <h3 style="float: left;">Vraag @(Model.QuestionId + 1)</h3>
+    <div style="float: right;" class="dropleft show">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenu_Page@(Model.PageId)_Question@(Model.QuestionId)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            =
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a style="color: red;" href="" class="motivationQuestion removeQuestionClass">Vraag verwijderen</a>
+        </div>
+    </div>
     <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Title " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Title" type="text" value="Zou u meer willen bewegen en waarom?" />
     <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Description " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Description" type="text" value="Zo niet mag u het veld leeg laten" />
     <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Attribute " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Attribute" type="text" value="reasonToMove" hidden />
@@ -26,10 +34,18 @@
     </select>
 </div>
 @{ Model.QuestionId++; }
-<div class="questionDiv">
-    <h3>Vraag @(Model.QuestionId + 1)</h3>
-    <input class="form-control" readonly="readonly" class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Title " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Title" type="text" value="Ik ga/ zou gaan sporten/bewegen omdat:" />
-    <input class="form-control" readonly="readonly" class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Attribute " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Attribute" type="text" value="motivation" hidden />
+<div class="motivationQuestion questionDiv">
+    <h3 style="float: left;">Vraag @(Model.QuestionId + 1)</h3>
+    <div style="float: right;" class="dropleft show">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenu_Page@(Model.PageId)_Question@(Model.QuestionId)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            =
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a style="color: red;" href="" class="motivationQuestion removeQuestionClass">Vraag verwijderen</a>
+        </div>
+    </div>
+    <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Title " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Title" type="text" value="Ik ga/ zou gaan sporten/bewegen omdat:" />
+    <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Attribute " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Attribute" type="text" value="motivation" hidden />
 
     <select class="form-control" readonly="readonly" data-val="true" data-val-required="The Type field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Type" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Type">
         <option value="0">GeoVraag</option>
@@ -47,7 +63,7 @@
 
     <div class=mcWrapper>
         <label>Laat meerdere antwoorden toe:</label>
-        <input class="form-control" readonly="readonly" data-val="true" data-val-required="The AllowMultipleAnswers field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__AllowMultipleAnswers" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].AllowMultipleAnswers" type="checkbox" value="true" />
+        <input readonly="readonly" style="display: inline-block;" class="form-control" data-val="true" data-val-required="The AllowMultipleAnswers field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__MaximumNumberOfAnswers" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].MaximumNumberOfAnswers" type="number" min="1" max="10" value="1" />
         <div class="MCOption">
             <label>Antwoord:</label>
             <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_0__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[0].Answer" type="text" value="ik gewicht verlies of dat mijn lichaam mooier wordt." />
@@ -56,50 +72,58 @@
 
         <div class="MCOption">
             <label>Antwoord:</label>
-            <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_0__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[1].Answer" type="text" value="ik met vrienden samen ben of nieuwe mensen leer kennen." />
+            <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_1__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[1].Answer" type="text" value="ik met vrienden samen ben of nieuwe mensen leer kennen." />
             <label for="OptionCounter" style="display: none;">1</label>
         </div>
 
         <div class="MCOption">
             <label>Antwoord:</label>
-            <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_0__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[2].Answer" type="text" value="ik in een competitie kan spelen en de kick van de overwinning voel." />
+            <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_2__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[2].Answer" type="text" value="ik in een competitie kan spelen en de kick van de overwinning voel." />
             <label for="OptionCounter" style="display: none;">2</label>
         </div>
 
         <div class="MCOption">
             <label>Antwoord:</label>
-            <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_0__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[3].Answer" type="text" value="ik er geld aan verdien" />
+            <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_3__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[3].Answer" type="text" value="ik er geld aan verdien" />
             <label for="OptionCounter" style="display: none;">3</label>
         </div>
 
         <div class="MCOption">
             <label>Antwoord:</label>
-            <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_0__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[3].Answer" type="text" value="mijn gezondheid of conditie beter wordt" />
-            <label for="OptionCounter" style="display: none;">3</label>
+            <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_4__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[3].Answer" type="text" value="mijn gezondheid of conditie beter wordt" />
+            <label for="OptionCounter" style="display: none;">4</label>
         </div>
 
         <div class="MCOption">
             <label>Antwoord:</label>
-            <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_0__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[3].Answer" type="text" value="omdat ik de hele dag zit en gewoon zin heb om te bewegen" />
-            <label for="OptionCounter" style="display: none;">3</label>
+            <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_5__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[3].Answer" type="text" value="omdat ik de hele dag zit en gewoon zin heb om te bewegen" />
+            <label for="OptionCounter" style="display: none;">5</label>
         </div>
         <div class="MCOption">
             <label>Antwoord:</label>
-            <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_0__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[3].Answer" type="text" value="ik dan minder spanning of stress voel" />
-            <label for="OptionCounter" style="display: none;">3</label>
+            <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_6__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[3].Answer" type="text" value="ik dan minder spanning of stress voel" />
+            <label for="OptionCounter" style="display: none;">6</label>
         </div>
 
         <div class="MCOption">
             <label>Antwoord:</label>
-            <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_0__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[3].Answer" type="text" value="ik er plezier aan beleef" />
-            <label for="OptionCounter" style="display: none;">3</label>
+            <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_7__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[3].Answer" type="text" value="ik er plezier aan beleef" />
+            <label for="OptionCounter" style="display: none;">7</label>
         </div>
 
     </div>
 </div>
 @{ Model.QuestionId++; }
-<div class="questionDiv">
-    <h3>Vraag @(Model.QuestionId + 1)</h3>
+<div class="motivationQuestion questionDiv">
+    <h3 style="float: left;">Vraag @(Model.QuestionId + 1)</h3>
+    <div style="float: right;" class="dropleft show">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenu_Page@(Model.PageId)_Question@(Model.QuestionId)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            =
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a style="color: red;" href="" class="motivationQuestion removeQuestionClass">Vraag verwijderen</a>
+        </div>
+    </div>
     <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Title " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Title" type="text" value="Soms zou je wel willen sporten maar lukt het niet, omdat:" />
     <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Attribute " name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Attribute" type="text" value="reasonNot" hidden />
 
@@ -119,7 +143,7 @@
 
     <div class=mcWrapper>
         <label>Laat meerdere antwoorden toe:</label>
-        <input class="form-control" readonly="readonly" data-val="true" data-val-required="The AllowMultipleAnswers field is required." id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__AllowMultipleAnswers" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].AllowMultipleAnswers" type="checkbox" value="true" />
+        <input readonly="readonly" style="display: inline-block;" class="form-control" data-val="true" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__MaximumNumberOfAnswers" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].MaximumNumberOfAnswers" type="number" min="1" max="10" value="1" />
         <div class="MCOption">
             <label>Antwoord:</label>
             <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_0__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[0].Answer" type="text" value="ik geen tijd heb." />
@@ -170,13 +194,13 @@
 
         <div class="MCOption">
             <label>Antwoord:</label>
-            <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_7__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[8].Answer" type="text" value="sporten teveel geld kost. " />
+            <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_8__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[8].Answer" type="text" value="sporten teveel geld kost. " />
             <label for="OptionCounter" style="display: none;">9</label>
         </div>
 
         <div class="MCOption">
             <label>Antwoord:</label>
-            <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_7__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[9].Answer" type="text" value="het vaak slecht weer is. " />
+            <input class="form-control" readonly="readonly" id="PagesList_@(Model.PageId)__Questions_@(Model.QuestionId)__Options_9__Answer" name="PagesList[@(Model.PageId)].Questions[@(Model.QuestionId)].Options[9].Answer" type="text" value="het vaak slecht weer is. " />
             <label for="OptionCounter" style="display: none;">10</label>
         </div>
 

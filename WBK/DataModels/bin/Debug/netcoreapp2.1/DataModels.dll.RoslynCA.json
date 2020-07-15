@@ -12,13 +12,55 @@
       },
       "results": [
         {
+          "ruleId": "S2344",
+          "level": "warning",
+          "message": "Rename this enumeration to remove the 'Enum' suffix.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/GeoTypeEnum.cs",
+                "region": {
+                  "startLine": 7,
+                  "startColumn": 17,
+                  "endLine": 7,
+                  "endColumn": 28
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2344",
+          "level": "warning",
+          "message": "Rename this enumeration to remove the 'Enum' suffix.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/CategoryEnum.cs",
+                "region": {
+                  "startLine": 7,
+                  "startColumn": 17,
+                  "endLine": 7,
+                  "endColumn": 29
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
           "ruleId": "S1128",
           "level": "warning",
           "message": "Remove this unnecessary 'using'.",
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Category.cs",
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Answer.cs",
                 "region": {
                   "startLine": 1,
                   "startColumn": 1,
@@ -39,7 +81,7 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Category.cs",
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Answer.cs",
                 "region": {
                   "startLine": 2,
                   "startColumn": 1,
@@ -60,7 +102,427 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Category.cs",
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Answer.cs",
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 1,
+                  "endLine": 3,
+                  "endColumn": 19
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Answers/GeoAnswer.cs",
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 14
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Answers/GeoAnswer.cs",
+                "region": {
+                  "startLine": 2,
+                  "startColumn": 1,
+                  "endLine": 2,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Answers/GeoAnswer.cs",
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 1,
+                  "endLine": 3,
+                  "endColumn": 19
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Answers/MultipleChoiceAnswer.cs",
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 14
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Answers/MultipleChoiceAnswer.cs",
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 1,
+                  "endLine": 3,
+                  "endColumn": 19
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Answers/NumberAnswer.cs",
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 14
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Answers/NumberAnswer.cs",
+                "region": {
+                  "startLine": 2,
+                  "startColumn": 1,
+                  "endLine": 2,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Answers/NumberAnswer.cs",
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 1,
+                  "endLine": 3,
+                  "endColumn": 19
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Answers/TextAnswer.cs",
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 14
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Answers/TextAnswer.cs",
+                "region": {
+                  "startLine": 2,
+                  "startColumn": 1,
+                  "endLine": 2,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Answers/TextAnswer.cs",
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 1,
+                  "endLine": 3,
+                  "endColumn": 19
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/CategoryEnum.cs",
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 14
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/CategoryEnum.cs",
+                "region": {
+                  "startLine": 2,
+                  "startColumn": 1,
+                  "endLine": 2,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/CategoryEnum.cs",
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 1,
+                  "endLine": 3,
+                  "endColumn": 19
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/GenderEnum.cs",
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 14
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/GenderEnum.cs",
+                "region": {
+                  "startLine": 2,
+                  "startColumn": 1,
+                  "endLine": 2,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/GenderEnum.cs",
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 1,
+                  "endLine": 3,
+                  "endColumn": 19
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/GeoTypeEnum.cs",
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 14
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/GeoTypeEnum.cs",
+                "region": {
+                  "startLine": 2,
+                  "startColumn": 1,
+                  "endLine": 2,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/GeoTypeEnum.cs",
                 "region": {
                   "startLine": 3,
                   "startColumn": 1,
@@ -138,13 +600,34 @@
           }
         },
         {
+          "ruleId": "S2344",
+          "level": "warning",
+          "message": "Rename this enumeration to remove the 'Enum' suffix.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/GenderEnum.cs",
+                "region": {
+                  "startLine": 7,
+                  "startColumn": 17,
+                  "endLine": 7,
+                  "endColumn": 27
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
           "ruleId": "S1128",
           "level": "warning",
           "message": "Remove this unnecessary 'using'.",
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Question.cs",
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Page.cs",
                 "region": {
                   "startLine": 1,
                   "startColumn": 1,
@@ -165,12 +648,96 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Question.cs",
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Page.cs",
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 1,
+                  "endLine": 3,
+                  "endColumn": 19
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/ProfileEnum.cs",
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 14
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/ProfileEnum.cs",
                 "region": {
                   "startLine": 2,
                   "startColumn": 1,
                   "endLine": 2,
                   "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/ProfileEnum.cs",
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 1,
+                  "endLine": 3,
+                  "endColumn": 19
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Question.cs",
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 14
                 }
               }
             }
@@ -356,27 +923,6 @@
               "resultFile": {
                 "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Questions/MultipleChoiceQuestion.cs",
                 "region": {
-                  "startLine": 2,
-                  "startColumn": 1,
-                  "endLine": 2,
-                  "endColumn": 34
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "S1128",
-          "level": "warning",
-          "message": "Remove this unnecessary 'using'.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Questions/MultipleChoiceQuestion.cs",
-                "region": {
                   "startLine": 3,
                   "startColumn": 1,
                   "endLine": 3,
@@ -522,7 +1068,7 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Survey.cs",
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Questions/SliderQuestion.cs",
                 "region": {
                   "startLine": 1,
                   "startColumn": 1,
@@ -543,28 +1089,7 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Type.cs",
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 14
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "S1128",
-          "level": "warning",
-          "message": "Remove this unnecessary 'using'.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Type.cs",
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Questions/SliderQuestion.cs",
                 "region": {
                   "startLine": 2,
                   "startColumn": 1,
@@ -585,12 +1110,201 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Type.cs",
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Questions/SliderQuestion.cs",
                 "region": {
                   "startLine": 3,
                   "startColumn": 1,
                   "endLine": 3,
                   "endColumn": 19
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Respondant.cs",
+                "region": {
+                  "startLine": 2,
+                  "startColumn": 1,
+                  "endLine": 2,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/Respondant.cs",
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 1,
+                  "endLine": 3,
+                  "endColumn": 19
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/SurveyOverview.cs",
+                "region": {
+                  "startLine": 2,
+                  "startColumn": 1,
+                  "endLine": 2,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/SurveyOverview.cs",
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 1,
+                  "endLine": 3,
+                  "endColumn": 19
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/TypeEnum.cs",
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 14
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/TypeEnum.cs",
+                "region": {
+                  "startLine": 2,
+                  "startColumn": 1,
+                  "endLine": 2,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1128",
+          "level": "warning",
+          "message": "Remove this unnecessary 'using'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/TypeEnum.cs",
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 1,
+                  "endLine": 3,
+                  "endColumn": 19
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2344",
+          "level": "warning",
+          "message": "Rename this enumeration to remove the 'Enum' suffix.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/ProfileEnum.cs",
+                "region": {
+                  "startLine": 7,
+                  "startColumn": 17,
+                  "endLine": 7,
+                  "endColumn": 28
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2344",
+          "level": "warning",
+          "message": "Rename this enumeration to remove the 'Enum' suffix.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/DataModels/TypeEnum.cs",
+                "region": {
+                  "startLine": 7,
+                  "startColumn": 17,
+                  "endLine": 7,
+                  "endColumn": 25
                 }
               }
             }
@@ -607,6 +1321,23 @@
           "fullDescription": "Although unnecessary using won't change anything to the produced application, removing them:",
           "defaultLevel": "warning",
           "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1128",
+          "properties": {
+            "category": "Minor Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope",
+              "TestSourceScope"
+            ]
+          }
+        },
+        "S2344": {
+          "id": "S2344",
+          "shortDescription": "Enumeration type names should not have \"Flags\" or \"Enum\" suffixes",
+          "fullDescription": "The information that an enumeration type is actually an enumeration or a set of flags should not be duplicated in its name.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-2344",
           "properties": {
             "category": "Minor Code Smell",
             "isEnabledByDefault": true,

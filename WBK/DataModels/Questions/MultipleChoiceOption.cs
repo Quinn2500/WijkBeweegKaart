@@ -6,14 +6,14 @@ namespace DataModels.Questions
 {
     public class MultipleChoiceOption
     {
-        public MultipleChoiceOption(string value, string description, string imageUrl)
+        public MultipleChoiceOption(string answer, string description, string imageUrl)
         {
-            Value = value;
+            Answer = answer;
             Description = description;
             ImageUrl = imageUrl;
         }
 
-        public string Value { get; set; }
+        public string Answer { get; set; }
         public string Description { get; set; }
         public string ImageUrl { get; set; }
     }

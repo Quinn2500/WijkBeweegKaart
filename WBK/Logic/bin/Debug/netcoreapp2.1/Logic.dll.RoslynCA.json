@@ -11,47 +11,7 @@
         "language": "nl-NL"
       },
       "results": [
-        {
-          "ruleId": "S1128",
-          "level": "warning",
-          "message": "Remove this unnecessary 'using'.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/Logic/Class1.cs",
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 14
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        }
-      ],
-      "rules": {
-        "S1128": {
-          "id": "S1128",
-          "shortDescription": "Unused \"using\" should be removed",
-          "fullDescription": "Although unnecessary using won't change anything to the produced application, removing them:",
-          "defaultLevel": "warning",
-          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1128",
-          "properties": {
-            "category": "Minor Code Smell",
-            "isEnabledByDefault": true,
-            "tags": [
-              "C#",
-              "SonarWay",
-              "MainSourceScope",
-              "TestSourceScope"
-            ]
-          }
-        }
-      }
+      ]
     }
   ]
 }

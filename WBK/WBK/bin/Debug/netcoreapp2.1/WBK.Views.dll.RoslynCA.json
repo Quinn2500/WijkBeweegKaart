@@ -21,7 +21,7 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Shared/Error.cshtml.g.cs",
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/_ViewStart.cshtml.g.cs",
                 "region": {
                   "startLine": 31,
                   "startColumn": 67,
@@ -45,7 +45,55 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/_ViewStart.cshtml.g.cs",
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/NumberQuestion.cshtml.g.cs",
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 67,
+                  "endLine": 31,
+                  "endColumn": 79
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MultipleChoiceOption.cshtml.g.cs",
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 67,
+                  "endLine": 31,
+                  "endColumn": 79
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MultipleChoiceQuestion.cshtml.g.cs",
                 "region": {
                   "startLine": 31,
                   "startColumn": 67,
@@ -75,6 +123,4134 @@
                   "startColumn": 67,
                   "endLine": 30,
                   "endColumn": 79
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/PageView.cshtml.g.cs",
+                "region": {
+                  "startLine": 340,
+                  "startColumn": 200,
+                  "endLine": 340,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/PageView.cshtml.g.cs",
+                "region": {
+                  "startLine": 362,
+                  "startColumn": 200,
+                  "endLine": 362,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/PageView.cshtml.g.cs",
+                "region": {
+                  "startLine": 384,
+                  "startColumn": 200,
+                  "endLine": 384,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/PageView.cshtml.g.cs",
+                "region": {
+                  "startLine": 406,
+                  "startColumn": 200,
+                  "endLine": 406,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/PageView.cshtml.g.cs",
+                "region": {
+                  "startLine": 428,
+                  "startColumn": 200,
+                  "endLine": 428,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/PageView.cshtml.g.cs",
+                "region": {
+                  "startLine": 483,
+                  "startColumn": 200,
+                  "endLine": 483,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/PageView.cshtml.g.cs",
+                "region": {
+                  "startLine": 506,
+                  "startColumn": 200,
+                  "endLine": 506,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/PageView.cshtml.g.cs",
+                "region": {
+                  "startLine": 528,
+                  "startColumn": 200,
+                  "endLine": 528,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/PageView.cshtml.g.cs",
+                "region": {
+                  "startLine": 550,
+                  "startColumn": 200,
+                  "endLine": 550,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/PageView.cshtml.g.cs",
+                "region": {
+                  "startLine": 572,
+                  "startColumn": 200,
+                  "endLine": 572,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/PageView.cshtml.g.cs",
+                "region": {
+                  "startLine": 594,
+                  "startColumn": 200,
+                  "endLine": 594,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Survey/SurveyCompleted.cshtml.g.cs",
+                "region": {
+                  "startLine": 110,
+                  "startColumn": 204,
+                  "endLine": 110,
+                  "endColumn": 206
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Survey/SurveyCompleted.cshtml.g.cs",
+                "region": {
+                  "startLine": 128,
+                  "startColumn": 196,
+                  "endLine": 128,
+                  "endColumn": 198
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Survey/SurveyCompleted.cshtml.g.cs",
+                "region": {
+                  "startLine": 147,
+                  "startColumn": 204,
+                  "endLine": 147,
+                  "endColumn": 206
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Survey/SurveyCompleted.cshtml.g.cs",
+                "region": {
+                  "startLine": 165,
+                  "startColumn": 204,
+                  "endLine": 165,
+                  "endColumn": 206
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Survey/SurveyCompleted.cshtml.g.cs",
+                "region": {
+                  "startLine": 183,
+                  "startColumn": 196,
+                  "endLine": 183,
+                  "endColumn": 198
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Survey/SurveyCompleted.cshtml.g.cs",
+                "region": {
+                  "startLine": 202,
+                  "startColumn": 196,
+                  "endLine": 202,
+                  "endColumn": 198
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Survey/SurveyCompleted.cshtml.g.cs",
+                "region": {
+                  "startLine": 241,
+                  "startColumn": 195,
+                  "endLine": 241,
+                  "endColumn": 197
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/QuestionView.cshtml.g.cs",
+                "region": {
+                  "startLine": 232,
+                  "startColumn": 200,
+                  "endLine": 232,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/QuestionView.cshtml.g.cs",
+                "region": {
+                  "startLine": 254,
+                  "startColumn": 200,
+                  "endLine": 254,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/QuestionView.cshtml.g.cs",
+                "region": {
+                  "startLine": 276,
+                  "startColumn": 200,
+                  "endLine": 276,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/QuestionView.cshtml.g.cs",
+                "region": {
+                  "startLine": 298,
+                  "startColumn": 200,
+                  "endLine": 298,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/QuestionView.cshtml.g.cs",
+                "region": {
+                  "startLine": 320,
+                  "startColumn": 200,
+                  "endLine": 320,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/QuestionView.cshtml.g.cs",
+                "region": {
+                  "startLine": 375,
+                  "startColumn": 200,
+                  "endLine": 375,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/QuestionView.cshtml.g.cs",
+                "region": {
+                  "startLine": 398,
+                  "startColumn": 200,
+                  "endLine": 398,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/QuestionView.cshtml.g.cs",
+                "region": {
+                  "startLine": 420,
+                  "startColumn": 200,
+                  "endLine": 420,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/QuestionView.cshtml.g.cs",
+                "region": {
+                  "startLine": 442,
+                  "startColumn": 200,
+                  "endLine": 442,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/QuestionView.cshtml.g.cs",
+                "region": {
+                  "startLine": 464,
+                  "startColumn": 200,
+                  "endLine": 464,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/QuestionView.cshtml.g.cs",
+                "region": {
+                  "startLine": 486,
+                  "startColumn": 200,
+                  "endLine": 486,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/NNGBQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 216,
+                  "startColumn": 200,
+                  "endLine": 216,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/NNGBQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 238,
+                  "startColumn": 200,
+                  "endLine": 238,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/NNGBQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 261,
+                  "startColumn": 200,
+                  "endLine": 261,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/NNGBQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 283,
+                  "startColumn": 200,
+                  "endLine": 283,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/NNGBQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 305,
+                  "startColumn": 200,
+                  "endLine": 305,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/NNGBQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 360,
+                  "startColumn": 200,
+                  "endLine": 360,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/NNGBQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 382,
+                  "startColumn": 200,
+                  "endLine": 382,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/NNGBQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 404,
+                  "startColumn": 200,
+                  "endLine": 404,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/NNGBQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 763,
+                  "startColumn": 200,
+                  "endLine": 763,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/NNGBQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 785,
+                  "startColumn": 200,
+                  "endLine": 785,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/NNGBQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 808,
+                  "startColumn": 200,
+                  "endLine": 808,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/NNGBQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 830,
+                  "startColumn": 200,
+                  "endLine": 830,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/NNGBQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 852,
+                  "startColumn": 200,
+                  "endLine": 852,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/NNGBQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 907,
+                  "startColumn": 200,
+                  "endLine": 907,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/NNGBQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 929,
+                  "startColumn": 200,
+                  "endLine": 929,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/NNGBQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 951,
+                  "startColumn": 200,
+                  "endLine": 951,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/GeoQuestion.cshtml.g.cs",
+                "region": {
+                  "startLine": 221,
+                  "startColumn": 200,
+                  "endLine": 221,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/GeoQuestion.cshtml.g.cs",
+                "region": {
+                  "startLine": 244,
+                  "startColumn": 200,
+                  "endLine": 244,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/GeoQuestion.cshtml.g.cs",
+                "region": {
+                  "startLine": 266,
+                  "startColumn": 200,
+                  "endLine": 266,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/GeoQuestion.cshtml.g.cs",
+                "region": {
+                  "startLine": 539,
+                  "startColumn": 200,
+                  "endLine": 539,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/GeoQuestion.cshtml.g.cs",
+                "region": {
+                  "startLine": 562,
+                  "startColumn": 200,
+                  "endLine": 562,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/GeoQuestion.cshtml.g.cs",
+                "region": {
+                  "startLine": 584,
+                  "startColumn": 200,
+                  "endLine": 584,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MotivationQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 216,
+                  "startColumn": 200,
+                  "endLine": 216,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MotivationQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 238,
+                  "startColumn": 200,
+                  "endLine": 238,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MotivationQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 260,
+                  "startColumn": 200,
+                  "endLine": 260,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MotivationQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 283,
+                  "startColumn": 200,
+                  "endLine": 283,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MotivationQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 305,
+                  "startColumn": 200,
+                  "endLine": 305,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MotivationQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 360,
+                  "startColumn": 200,
+                  "endLine": 360,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MotivationQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 383,
+                  "startColumn": 200,
+                  "endLine": 383,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MotivationQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 405,
+                  "startColumn": 200,
+                  "endLine": 405,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MotivationQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 546,
+                  "startColumn": 200,
+                  "endLine": 546,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MotivationQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 568,
+                  "startColumn": 200,
+                  "endLine": 568,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MotivationQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 591,
+                  "startColumn": 200,
+                  "endLine": 591,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MotivationQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 613,
+                  "startColumn": 200,
+                  "endLine": 613,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MotivationQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 635,
+                  "startColumn": 200,
+                  "endLine": 635,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MotivationQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 690,
+                  "startColumn": 200,
+                  "endLine": 690,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MotivationQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 713,
+                  "startColumn": 200,
+                  "endLine": 713,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MotivationQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 735,
+                  "startColumn": 200,
+                  "endLine": 735,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MotivationQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1214,
+                  "startColumn": 200,
+                  "endLine": 1214,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MotivationQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1236,
+                  "startColumn": 200,
+                  "endLine": 1236,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MotivationQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1259,
+                  "startColumn": 200,
+                  "endLine": 1259,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MotivationQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1281,
+                  "startColumn": 200,
+                  "endLine": 1281,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MotivationQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1303,
+                  "startColumn": 200,
+                  "endLine": 1303,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MotivationQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1358,
+                  "startColumn": 200,
+                  "endLine": 1358,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MotivationQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1381,
+                  "startColumn": 200,
+                  "endLine": 1381,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MotivationQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1403,
+                  "startColumn": 200,
+                  "endLine": 1403,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/SliderQuestion.cshtml.g.cs",
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 67,
+                  "endLine": 31,
+                  "endColumn": 79
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/Test.cshtml.g.cs",
+                "region": {
+                  "startLine": 69,
+                  "startColumn": 198,
+                  "endLine": 69,
+                  "endColumn": 200
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/Test.cshtml.g.cs",
+                "region": {
+                  "startLine": 128,
+                  "startColumn": 208,
+                  "endLine": 128,
+                  "endColumn": 210
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/Test.cshtml.g.cs",
+                "region": {
+                  "startLine": 151,
+                  "startColumn": 208,
+                  "endLine": 151,
+                  "endColumn": 210
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/Test.cshtml.g.cs",
+                "region": {
+                  "startLine": 173,
+                  "startColumn": 208,
+                  "endLine": 173,
+                  "endColumn": 210
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/Test.cshtml.g.cs",
+                "region": {
+                  "startLine": 195,
+                  "startColumn": 208,
+                  "endLine": 195,
+                  "endColumn": 210
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/Test.cshtml.g.cs",
+                "region": {
+                  "startLine": 217,
+                  "startColumn": 208,
+                  "endLine": 217,
+                  "endColumn": 210
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/Test.cshtml.g.cs",
+                "region": {
+                  "startLine": 242,
+                  "startColumn": 208,
+                  "endLine": 242,
+                  "endColumn": 210
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/Test.cshtml.g.cs",
+                "region": {
+                  "startLine": 265,
+                  "startColumn": 208,
+                  "endLine": 265,
+                  "endColumn": 210
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/Test.cshtml.g.cs",
+                "region": {
+                  "startLine": 287,
+                  "startColumn": 208,
+                  "endLine": 287,
+                  "endColumn": 210
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/Test.cshtml.g.cs",
+                "region": {
+                  "startLine": 313,
+                  "startColumn": 208,
+                  "endLine": 313,
+                  "endColumn": 210
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/Test.cshtml.g.cs",
+                "region": {
+                  "startLine": 336,
+                  "startColumn": 208,
+                  "endLine": 336,
+                  "endColumn": 210
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/Test.cshtml.g.cs",
+                "region": {
+                  "startLine": 358,
+                  "startColumn": 208,
+                  "endLine": 358,
+                  "endColumn": 210
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Dashboard/Index.cshtml.g.cs",
+                "region": {
+                  "startLine": 106,
+                  "startColumn": 204,
+                  "endLine": 106,
+                  "endColumn": 206
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Dashboard/Index.cshtml.g.cs",
+                "region": {
+                  "startLine": 124,
+                  "startColumn": 196,
+                  "endLine": 124,
+                  "endColumn": 198
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Dashboard/Index.cshtml.g.cs",
+                "region": {
+                  "startLine": 143,
+                  "startColumn": 204,
+                  "endLine": 143,
+                  "endColumn": 206
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Dashboard/Index.cshtml.g.cs",
+                "region": {
+                  "startLine": 161,
+                  "startColumn": 196,
+                  "endLine": 161,
+                  "endColumn": 198
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Dashboard/Index.cshtml.g.cs",
+                "region": {
+                  "startLine": 180,
+                  "startColumn": 196,
+                  "endLine": 180,
+                  "endColumn": 198
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Dashboard/Index.cshtml.g.cs",
+                "region": {
+                  "startLine": 219,
+                  "startColumn": 195,
+                  "endLine": 219,
+                  "endColumn": 197
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Dashboard/Index.cshtml.g.cs",
+                "region": {
+                  "startLine": 258,
+                  "startColumn": 199,
+                  "endLine": 258,
+                  "endColumn": 201
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Dashboard/Index.cshtml.g.cs",
+                "region": {
+                  "startLine": 298,
+                  "startColumn": 199,
+                  "endLine": 298,
+                  "endColumn": 201
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Dashboard/Index.cshtml.g.cs",
+                "region": {
+                  "startLine": 338,
+                  "startColumn": 199,
+                  "endLine": 338,
+                  "endColumn": 201
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Dashboard/Index.cshtml.g.cs",
+                "region": {
+                  "startLine": 378,
+                  "startColumn": 199,
+                  "endLine": 378,
+                  "endColumn": 201
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Dashboard/Index.cshtml.g.cs",
+                "region": {
+                  "startLine": 418,
+                  "startColumn": 199,
+                  "endLine": 418,
+                  "endColumn": 201
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Home/Index.cshtml.g.cs",
+                "region": {
+                  "startLine": 96,
+                  "startColumn": 204,
+                  "endLine": 96,
+                  "endColumn": 206
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Home/Index.cshtml.g.cs",
+                "region": {
+                  "startLine": 114,
+                  "startColumn": 196,
+                  "endLine": 114,
+                  "endColumn": 198
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Home/Index.cshtml.g.cs",
+                "region": {
+                  "startLine": 133,
+                  "startColumn": 204,
+                  "endLine": 133,
+                  "endColumn": 206
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Home/Index.cshtml.g.cs",
+                "region": {
+                  "startLine": 151,
+                  "startColumn": 196,
+                  "endLine": 151,
+                  "endColumn": 198
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Home/Index.cshtml.g.cs",
+                "region": {
+                  "startLine": 170,
+                  "startColumn": 196,
+                  "endLine": 170,
+                  "endColumn": 198
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Home/Index.cshtml.g.cs",
+                "region": {
+                  "startLine": 209,
+                  "startColumn": 195,
+                  "endLine": 209,
+                  "endColumn": 197
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Home/Index.cshtml.g.cs",
+                "region": {
+                  "startLine": 229,
+                  "startColumn": 199,
+                  "endLine": 229,
+                  "endColumn": 201
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Home/Index.cshtml.g.cs",
+                "region": {
+                  "startLine": 256,
+                  "startColumn": 199,
+                  "endLine": 256,
+                  "endColumn": 201
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Home/Index.cshtml.g.cs",
+                "region": {
+                  "startLine": 291,
+                  "startColumn": 195,
+                  "endLine": 291,
+                  "endColumn": 197
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 200,
+                  "endLine": 182,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 204,
+                  "startColumn": 200,
+                  "endLine": 204,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 226,
+                  "startColumn": 200,
+                  "endLine": 226,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 249,
+                  "startColumn": 200,
+                  "endLine": 249,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 271,
+                  "startColumn": 200,
+                  "endLine": 271,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 326,
+                  "startColumn": 200,
+                  "endLine": 326,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 349,
+                  "startColumn": 200,
+                  "endLine": 349,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 371,
+                  "startColumn": 200,
+                  "endLine": 371,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 522,
+                  "startColumn": 200,
+                  "endLine": 522,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 544,
+                  "startColumn": 200,
+                  "endLine": 544,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 566,
+                  "startColumn": 200,
+                  "endLine": 566,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 588,
+                  "startColumn": 200,
+                  "endLine": 588,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 610,
+                  "startColumn": 200,
+                  "endLine": 610,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 666,
+                  "startColumn": 200,
+                  "endLine": 666,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 689,
+                  "startColumn": 200,
+                  "endLine": 689,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 711,
+                  "startColumn": 200,
+                  "endLine": 711,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 962,
+                  "startColumn": 200,
+                  "endLine": 962,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 984,
+                  "startColumn": 200,
+                  "endLine": 984,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1006,
+                  "startColumn": 200,
+                  "endLine": 1006,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1029,
+                  "startColumn": 200,
+                  "endLine": 1029,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1051,
+                  "startColumn": 200,
+                  "endLine": 1051,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1106,
+                  "startColumn": 200,
+                  "endLine": 1106,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1129,
+                  "startColumn": 200,
+                  "endLine": 1129,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1151,
+                  "startColumn": 200,
+                  "endLine": 1151,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1302,
+                  "startColumn": 200,
+                  "endLine": 1302,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1324,
+                  "startColumn": 200,
+                  "endLine": 1324,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1347,
+                  "startColumn": 200,
+                  "endLine": 1347,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1369,
+                  "startColumn": 200,
+                  "endLine": 1369,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1391,
+                  "startColumn": 200,
+                  "endLine": 1391,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1446,
+                  "startColumn": 200,
+                  "endLine": 1446,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1469,
+                  "startColumn": 200,
+                  "endLine": 1469,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1491,
+                  "startColumn": 200,
+                  "endLine": 1491,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1741,
+                  "startColumn": 200,
+                  "endLine": 1741,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1763,
+                  "startColumn": 200,
+                  "endLine": 1763,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1786,
+                  "startColumn": 200,
+                  "endLine": 1786,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1808,
+                  "startColumn": 200,
+                  "endLine": 1808,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1830,
+                  "startColumn": 200,
+                  "endLine": 1830,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1885,
+                  "startColumn": 200,
+                  "endLine": 1885,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1908,
+                  "startColumn": 200,
+                  "endLine": 1908,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 1930,
+                  "startColumn": 200,
+                  "endLine": 1930,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 2285,
+                  "startColumn": 200,
+                  "endLine": 2285,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 2307,
+                  "startColumn": 200,
+                  "endLine": 2307,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 2330,
+                  "startColumn": 200,
+                  "endLine": 2330,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 2352,
+                  "startColumn": 200,
+                  "endLine": 2352,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 2374,
+                  "startColumn": 200,
+                  "endLine": 2374,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 2429,
+                  "startColumn": 200,
+                  "endLine": 2429,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 2452,
+                  "startColumn": 200,
+                  "endLine": 2452,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 2474,
+                  "startColumn": 200,
+                  "endLine": 2474,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Shared/Error.cshtml.g.cs",
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 67,
+                  "endLine": 31,
+                  "endColumn": 79
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Dashboard/AllAnswers.cshtml.g.cs",
+                "region": {
+                  "startLine": 115,
+                  "startColumn": 204,
+                  "endLine": 115,
+                  "endColumn": 206
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Dashboard/AllAnswers.cshtml.g.cs",
+                "region": {
+                  "startLine": 133,
+                  "startColumn": 196,
+                  "endLine": 133,
+                  "endColumn": 198
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Dashboard/AllAnswers.cshtml.g.cs",
+                "region": {
+                  "startLine": 152,
+                  "startColumn": 204,
+                  "endLine": 152,
+                  "endColumn": 206
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Dashboard/AllAnswers.cshtml.g.cs",
+                "region": {
+                  "startLine": 170,
+                  "startColumn": 196,
+                  "endLine": 170,
+                  "endColumn": 198
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Dashboard/AllAnswers.cshtml.g.cs",
+                "region": {
+                  "startLine": 189,
+                  "startColumn": 196,
+                  "endLine": 189,
+                  "endColumn": 198
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Dashboard/AllAnswers.cshtml.g.cs",
+                "region": {
+                  "startLine": 228,
+                  "startColumn": 195,
+                  "endLine": 228,
+                  "endColumn": 197
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Dashboard/AllAnswers.cshtml.g.cs",
+                "region": {
+                  "startLine": 258,
+                  "startColumn": 199,
+                  "endLine": 258,
+                  "endColumn": 201
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Dashboard/AnalyseGeoAnswers.cshtml.g.cs",
+                "region": {
+                  "startLine": 114,
+                  "startColumn": 204,
+                  "endLine": 114,
+                  "endColumn": 206
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Dashboard/AnalyseGeoAnswers.cshtml.g.cs",
+                "region": {
+                  "startLine": 132,
+                  "startColumn": 196,
+                  "endLine": 132,
+                  "endColumn": 198
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Dashboard/AnalyseGeoAnswers.cshtml.g.cs",
+                "region": {
+                  "startLine": 151,
+                  "startColumn": 204,
+                  "endLine": 151,
+                  "endColumn": 206
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Dashboard/AnalyseGeoAnswers.cshtml.g.cs",
+                "region": {
+                  "startLine": 169,
+                  "startColumn": 196,
+                  "endLine": 169,
+                  "endColumn": 198
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Dashboard/AnalyseGeoAnswers.cshtml.g.cs",
+                "region": {
+                  "startLine": 188,
+                  "startColumn": 196,
+                  "endLine": 188,
+                  "endColumn": 198
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Dashboard/AnalyseGeoAnswers.cshtml.g.cs",
+                "region": {
+                  "startLine": 212,
+                  "startColumn": 200,
+                  "endLine": 212,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Dashboard/AnalyseGeoAnswers.cshtml.g.cs",
+                "region": {
+                  "startLine": 277,
+                  "startColumn": 195,
+                  "endLine": 277,
+                  "endColumn": 197
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Shared/_CookieConsentPartial.cshtml.g.cs",
+                "region": {
+                  "startLine": 100,
+                  "startColumn": 195,
+                  "endLine": 100,
+                  "endColumn": 197
                 }
               }
             }
@@ -549,11 +4725,11 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/Survey.cshtml.g.cs",
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Survey/Survey.cshtml.g.cs",
                 "region": {
-                  "startLine": 96,
+                  "startLine": 121,
                   "startColumn": 200,
-                  "endLine": 96,
+                  "endLine": 121,
                   "endColumn": 202
                 }
               }
@@ -573,12 +4749,12 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/Survey.cshtml.g.cs",
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Survey/Survey.cshtml.g.cs",
                 "region": {
-                  "startLine": 115,
-                  "startColumn": 200,
-                  "endLine": 115,
-                  "endColumn": 202
+                  "startLine": 166,
+                  "startColumn": 204,
+                  "endLine": 166,
+                  "endColumn": 206
                 }
               }
             }
@@ -597,36 +4773,12 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/Survey.cshtml.g.cs",
-                "region": {
-                  "startLine": 156,
-                  "startColumn": 200,
-                  "endLine": 156,
-                  "endColumn": 202
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CS1998",
-          "level": "warning",
-          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
-          "suppressionStates": [
-            "suppressedInSource"
-          ],
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/Survey.cshtml.g.cs",
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Survey/Survey.cshtml.g.cs",
                 "region": {
                   "startLine": 184,
-                  "startColumn": 200,
+                  "startColumn": 196,
                   "endLine": 184,
-                  "endColumn": 202
+                  "endColumn": 198
                 }
               }
             }
@@ -645,12 +4797,12 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/Survey.cshtml.g.cs",
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Survey/Survey.cshtml.g.cs",
                 "region": {
-                  "startLine": 244,
-                  "startColumn": 198,
-                  "endLine": 244,
-                  "endColumn": 200
+                  "startLine": 203,
+                  "startColumn": 204,
+                  "endLine": 203,
+                  "endColumn": 206
                 }
               }
             }
@@ -669,12 +4821,12 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Home/Index.cshtml.g.cs",
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Survey/Survey.cshtml.g.cs",
                 "region": {
-                  "startLine": 104,
-                  "startColumn": 200,
-                  "endLine": 104,
-                  "endColumn": 202
+                  "startLine": 221,
+                  "startColumn": 204,
+                  "endLine": 221,
+                  "endColumn": 206
                 }
               }
             }
@@ -693,12 +4845,12 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Home/Index.cshtml.g.cs",
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Survey/Survey.cshtml.g.cs",
                 "region": {
-                  "startLine": 123,
-                  "startColumn": 200,
-                  "endLine": 123,
-                  "endColumn": 202
+                  "startLine": 239,
+                  "startColumn": 196,
+                  "endLine": 239,
+                  "endColumn": 198
                 }
               }
             }
@@ -717,59 +4869,11 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Home/Index.cshtml.g.cs",
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Survey/Survey.cshtml.g.cs",
                 "region": {
-                  "startLine": 164,
-                  "startColumn": 200,
-                  "endLine": 164,
-                  "endColumn": 202
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CS1998",
-          "level": "warning",
-          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
-          "suppressionStates": [
-            "suppressedInSource"
-          ],
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Home/Index.cshtml.g.cs",
-                "region": {
-                  "startLine": 192,
-                  "startColumn": 200,
-                  "endLine": 192,
-                  "endColumn": 202
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CS1998",
-          "level": "warning",
-          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
-          "suppressionStates": [
-            "suppressedInSource"
-          ],
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Home/Index.cshtml.g.cs",
-                "region": {
-                  "startLine": 257,
+                  "startLine": 278,
                   "startColumn": 195,
-                  "endLine": 257,
+                  "endLine": 278,
                   "endColumn": 197
                 }
               }
@@ -789,12 +4893,12 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Home/Index.cshtml.g.cs",
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Survey/Survey.cshtml.g.cs",
                 "region": {
-                  "startLine": 277,
-                  "startColumn": 199,
-                  "endLine": 277,
-                  "endColumn": 201
+                  "startLine": 1119,
+                  "startColumn": 195,
+                  "endLine": 1119,
+                  "endColumn": 197
                 }
               }
             }
@@ -813,11 +4917,155 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Shared/_CookieConsentPartial.cshtml.g.cs",
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Survey/Survey.cshtml.g.cs",
                 "region": {
-                  "startLine": 100,
+                  "startLine": 1138,
                   "startColumn": 195,
-                  "endLine": 100,
+                  "endLine": 1138,
+                  "endColumn": 197
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/Survey.cshtml.g.cs",
+                "region": {
+                  "startLine": 108,
+                  "startColumn": 200,
+                  "endLine": 108,
+                  "endColumn": 202
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/Survey.cshtml.g.cs",
+                "region": {
+                  "startLine": 153,
+                  "startColumn": 196,
+                  "endLine": 153,
+                  "endColumn": 198
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/Survey.cshtml.g.cs",
+                "region": {
+                  "startLine": 175,
+                  "startColumn": 204,
+                  "endLine": 175,
+                  "endColumn": 206
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/Survey.cshtml.g.cs",
+                "region": {
+                  "startLine": 197,
+                  "startColumn": 204,
+                  "endLine": 197,
+                  "endColumn": 206
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/Survey.cshtml.g.cs",
+                "region": {
+                  "startLine": 215,
+                  "startColumn": 196,
+                  "endLine": 215,
+                  "endColumn": 198
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/Survey.cshtml.g.cs",
+                "region": {
+                  "startLine": 260,
+                  "startColumn": 195,
+                  "endLine": 260,
                   "endColumn": 197
                 }
               }
@@ -854,6 +5102,126 @@
         {
           "ruleId": "CS0169",
           "level": "warning",
+          "message": "The field 'Views_Survey_SurveyCompleted.__tagHelperStringValueBuffer' is never used",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Survey/SurveyCompleted.cshtml.g.cs",
+                "region": {
+                  "startLine": 59,
+                  "startColumn": 24,
+                  "endLine": 59,
+                  "endColumn": 52
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 3
+          }
+        },
+        {
+          "ruleId": "CS0169",
+          "level": "warning",
+          "message": "The field 'Views_Create_ProfileQuestions.__tagHelperStringValueBuffer' is never used",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/ProfileQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 38,
+                  "startColumn": 24,
+                  "endLine": 38,
+                  "endColumn": 52
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 3
+          }
+        },
+        {
+          "ruleId": "CS0169",
+          "level": "warning",
+          "message": "The field 'Views_Create_Test.__tagHelperStringValueBuffer' is never used",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/Test.cshtml.g.cs",
+                "region": {
+                  "startLine": 41,
+                  "startColumn": 24,
+                  "endLine": 41,
+                  "endColumn": 52
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 3
+          }
+        },
+        {
+          "ruleId": "CS0169",
+          "level": "warning",
+          "message": "The field 'Views_Dashboard_AnalyseGeoAnswers.__tagHelperStringValueBuffer' is never used",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Dashboard/AnalyseGeoAnswers.cshtml.g.cs",
+                "region": {
+                  "startLine": 60,
+                  "startColumn": 24,
+                  "endLine": 60,
+                  "endColumn": 52
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 3
+          }
+        },
+        {
+          "ruleId": "CS0169",
+          "level": "warning",
+          "message": "The field 'Views_Create_PageView.__tagHelperStringValueBuffer' is never used",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/PageView.cshtml.g.cs",
+                "region": {
+                  "startLine": 39,
+                  "startColumn": 24,
+                  "endLine": 39,
+                  "endColumn": 52
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 3
+          }
+        },
+        {
+          "ruleId": "CS0169",
+          "level": "warning",
           "message": "The field 'Views_Shared__ValidationScriptsPartial.__tagHelperStringValueBuffer' is never used",
           "suppressionStates": [
             "suppressedInSource"
@@ -878,18 +5246,114 @@
         {
           "ruleId": "CS0169",
           "level": "warning",
-          "message": "The field 'Views_Create_Survey.__tagHelperStringValueBuffer' is never used",
+          "message": "The field 'Views_Create_NNGBQuestions.__tagHelperStringValueBuffer' is never used",
           "suppressionStates": [
             "suppressedInSource"
           ],
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/Survey.cshtml.g.cs",
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/NNGBQuestions.cshtml.g.cs",
                 "region": {
-                  "startLine": 44,
+                  "startLine": 38,
                   "startColumn": 24,
-                  "endLine": 44,
+                  "endLine": 38,
+                  "endColumn": 52
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 3
+          }
+        },
+        {
+          "ruleId": "CS0169",
+          "level": "warning",
+          "message": "The field 'Views_Create_MotivationQuestions.__tagHelperStringValueBuffer' is never used",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/MotivationQuestions.cshtml.g.cs",
+                "region": {
+                  "startLine": 38,
+                  "startColumn": 24,
+                  "endLine": 38,
+                  "endColumn": 52
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 3
+          }
+        },
+        {
+          "ruleId": "CS0169",
+          "level": "warning",
+          "message": "The field 'Views_Create_QuestionView.__tagHelperStringValueBuffer' is never used",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/QuestionView.cshtml.g.cs",
+                "region": {
+                  "startLine": 39,
+                  "startColumn": 24,
+                  "endLine": 39,
+                  "endColumn": 52
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 3
+          }
+        },
+        {
+          "ruleId": "CS0169",
+          "level": "warning",
+          "message": "The field 'Views_Survey_Survey.__tagHelperStringValueBuffer' is never used",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Survey/Survey.cshtml.g.cs",
+                "region": {
+                  "startLine": 63,
+                  "startColumn": 24,
+                  "endLine": 63,
+                  "endColumn": 52
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 3
+          }
+        },
+        {
+          "ruleId": "CS0169",
+          "level": "warning",
+          "message": "The field 'Views_Create_GeoQuestion.__tagHelperStringValueBuffer' is never used",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/GeoQuestion.cshtml.g.cs",
+                "region": {
+                  "startLine": 36,
+                  "startColumn": 24,
+                  "endLine": 36,
                   "endColumn": 52
                 }
               }
@@ -926,6 +5390,30 @@
         {
           "ruleId": "CS0169",
           "level": "warning",
+          "message": "The field 'Views_Create_Survey.__tagHelperStringValueBuffer' is never used",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Create/Survey.cshtml.g.cs",
+                "region": {
+                  "startLine": 61,
+                  "startColumn": 24,
+                  "endLine": 61,
+                  "endColumn": 52
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 3
+          }
+        },
+        {
+          "ruleId": "CS0169",
+          "level": "warning",
           "message": "The field 'Views_Home_Index.__tagHelperStringValueBuffer' is never used",
           "suppressionStates": [
             "suppressedInSource"
@@ -935,9 +5423,9 @@
               "resultFile": {
                 "uri": "file:///D:/GitKraken/Repos/WijkBeweegKaart/WBK/WBK/obj/Debug/netcoreapp2.1/Razor/Views/Home/Index.cshtml.g.cs",
                 "region": {
-                  "startLine": 51,
+                  "startLine": 50,
                   "startColumn": 24,
-                  "endLine": 51,
+                  "endLine": 50,
                   "endColumn": 52
                 }
               }

@@ -1,0 +1,51 @@
+﻿@{
+    Layout = "";
+}
+
+@model WBK.Models.Account.LoginViewModel
+
+<!DOCTYPE html>
+<html  lang="nl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WijkBeweegKaart</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <link href="~/lib/jqeury-ui/jquery-ui.css" rel="stylesheet" />
+    <script src="~/lib/jqeury-ui/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<body class="p-0">
+
+    <nav class="navbar navbar-light" style="background-color: #F9A11B;">
+        <a class="navbar-brand" href="#">
+            <img src="~/images/WijkBeweegKaart Logo.png" alt="WijkBeweegKaart" style="height: 80px; width: 360px;" />
+        </a>      
+    </nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-2" style="height: 250px; background-color: #f9a11b; border-radius: 5px; margin-top: 200px; padding-top: 10px;">
+            @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+            {
+            @Html.AntiForgeryToken()
+            <h1>Login!</h1>
+            @Html.ValidationMessage("Error", new {style="color:red;"})
+            @Html.TextBoxFor(x => x.Email, new {placeholder = "Email", required = "required", @class = "form-control"})
+            @Html.PasswordFor(x => x.Password, new {placeholder = "Password", required = "required", @class = "form-control"})
+            <input type="submit" name="name" value="Login!" style="margin-top: 10px;" class="btn btn-success" />
+            }
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+
+</body>
+</html>
