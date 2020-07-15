@@ -10,8 +10,6 @@ namespace WBK.Models.Create
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public string StartLocationLat { get; set; }
-        public string StartLocationLong { get; set; }
         public string EndDate { get; set; }
         public List<PageViewModel> PagesList { get; set; }
         public string ImageUrl { get; set; }

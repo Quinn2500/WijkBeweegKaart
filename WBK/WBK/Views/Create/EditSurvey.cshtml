@@ -1,0 +1,180 @@
+﻿@{
+    Layout = "";
+}
+
+@using DataModels
+@using DataModels.Questions
+@using WBK.Models.Create
+@model WBK.Models.Create.SurveyViewModel
+
+<!DOCTYPE html>
+<html lang="nl">
+<head runat=server>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WijkBeweegKaart</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    </environment>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <link href="~/css/site.css" rel="stylesheet" type="text/css" media="screen" runat="server" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <script src="https://cdn-geoweb.s3.amazonaws.com/esri-leaflet/0.0.1-beta.5/esri-leaflet.js"></script>
+    <script src="https://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.5/esri-leaflet-geocoder.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.5/esri-leaflet-geocoder.css">
+
+</head>
+
+<body class="p-0">
+    <nav class="navbar navbar-light" style="background-color: #F9A11B;">
+        <a class="navbar-brand" href="#">
+            <img src="~/images/WijkBeweegKaart Logo.png" alt="WijkBeweegKaart" style="height: 80px; width: 360px;" />
+        </a>
+    </nav>
+    <div class="container-fluid">
+        <div class="">
+            <h1>Enquête Aanmaken:</h1>
+            @using (Html.BeginForm("EditSurvey", "Create", FormMethod.Post, new { @class = "row" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="col-6 form-group" style="margin-top: 20px;">
+                    <div>
+                        <label>Titel:</label>
+                        @Html.TextBoxFor(x => x.Title, new { @readonly = "readonly", required = "required", @class = "form-control" })
+                    </div>
+                    <div>
+                        <label>Beschrijving:</label>
+                        @Html.TextAreaFor(x => x.Description, new { rows = "10", cols = "80", @class = "form-control" })
+                    </div>
+                    <div>
+                        <label>Foto URL:</label>
+                        @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        <label>Eind Datum:</label>
+                        @Html.TextBoxFor(model => model.EndDate, new { required = "required", @class = "form-control" })
+                    </div>
+
+                    <input type="submit" name="name" value="Pas Aan!" class="btn btn-success" />
+
+                </div>
+
+                <div class="col-6 form-group">
+                    <h2>Pagina's en vragen:</h2>
+                    <div id="InputsWrapper">
+                        @for (var i = 0; i < Model.PagesList.Count(); i++)
+                        {
+                            <div class="pageDiv">
+                                <div>
+                                    <h3 style="float: left;">Pagina @(i + 1)</h3>
+                                </div>
+                                @Html.TextBoxFor(x => x.PagesList[i].Title, new { placeholder = "Pagina Titel", @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.PagesList[i].Title)
+
+                                @Html.TextBoxFor(x => x.PagesList[i].ImageUrl, new { placeholder = "Foto URL", @class = "form-control" })
+
+                                @Html.TextAreaFor(x => x.PagesList[i].Description, new { placeholder = "Pagina Beschrijving", rows = "5", cols = "40", @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.PagesList[i].Description)
+                                
+                                @Html.HiddenFor(x => x.PagesList[i].Id)
+
+                                @Html.Label("PageCounter", i.ToString(), new { style = "display: none;" })
+
+                                <div class="QuestionWrapper">
+
+                                    @for (var j = 0; j < Model.PagesList[i].Questions.Count(); j++)
+                                    {
+                                    <div class="questionDiv" style="border-style: solid; border-color: darkorange; border-width: 3px; border-radius: 5px; padding: 5px; margin-top: 10px;">
+                                        <h3 style="float: left;">Vraag @(j + 1)</h3>
+
+                                        @Html.TextBoxFor(x => x.PagesList[i].Questions[j].Title, new { placeholder = "Vraag", required = "required", @class = "form-control" })
+                                        @Html.TextBoxFor(x => x.PagesList[i].Questions[j].ImageUrl, new { placeholder = "Foto URL", @class = "form-control" })
+                                        @Html.TextBoxFor(x => x.PagesList[i].Questions[j].Description, new { placeholder = "Vraag Beschrijving", @class = "form-control" })
+                                        @Html.LabelFor(x => x.PagesList[i].Questions[j].IsRequierd)
+                                        @Html.HiddenFor(x => x.PagesList[i].Questions[j].Id)
+                                        @Html.CheckBoxFor(x => x.PagesList[i].Questions[j].IsRequierd, new { @class = "form-check-input", style = "width:100px; " })
+                                        @Html.DropDownListFor(x => x.PagesList[i].Questions[j].Type, Html.GetEnumSelectList(Model.PagesList[i].Questions[j].Type.GetType()), new { @class = "form-control", @readonly = "readonly" })
+
+                                        @Html.Label("QuestionCounter", j.ToString(), new { style = "display: none;" })
+
+                                        <div class="question">
+                                            @switch (Model.PagesList[i].Questions[j].Type)
+                                            {
+                                                case TypeEnum.GeoVraag:
+                                                    <p>Dit is een geo vraag en daarom niet aan te passen.</p>
+                                                    break;
+
+                                                case TypeEnum.SliderVraag:
+                                                    <label>Tekst aan begin slider:</label>
+                                                    @Html.TextBoxFor(x => x.PagesList[i].Questions[j].SliderMinText, new { @class = "form-control" });
+
+                                                    <label>Tekst aan eind slider:</label>
+                                                    @Html.TextBoxFor(x => x.PagesList[i].Questions[j].SliderMaxText, new { @class = "form-control" });
+
+                                                    <label>Max waarde:</label>
+                                                    @Html.EditorFor(x => x.PagesList[i].Questions[j].SliderScaleVal, new { @class = "form-control" });
+                                                    <p>(De begin waarde is altijd 0. Het getal dat hierboven ingevuld wordt is de maximale waarde.)</p>
+                                                    break;
+
+                                                case TypeEnum.NummerVraag:
+                                                    <label>Minimum waarde</label>
+                                                    @Html.EditorFor(x => x.PagesList[i].Questions[j].MinValue, new { @class = "form-control" });
+
+                                                    <label>Maximum waarde</label>
+                                                    @Html.EditorFor(x => x.PagesList[i].Questions[j].MaxValue, new { @class = "form-control" });
+                                                    break;
+
+                                                case TypeEnum.MeerkeuzeVraag:
+                                                    <label style="display: inline-block;">Maximaal aantal antwoorden:</label>
+                                                    <input style="display: inline-block;" class="form-control" data-val="true" id="PagesList_@(i)__Questions_@(j)__MaximumNumberOfAnswers" name="PagesList[@(i)].Questions[@j)].MaximumNumberOfAnswers" type="number" min="1" max="10" value="1" />
+
+                                                    for (int q = 0; q < Model.PagesList[i].Questions[j].Options.Count; q++)
+                                                    {
+                                                        <div>
+                                                            <h4 style="float: left;">Optie @(q + 1):</h4>
+                                                            <input class="form-control" id="PagesList_@(i)__Questions_@(j)__Options_@(q)__Answer" name="PagesList[@(i)].Questions[@(j)].Options[@(q)].Answer" type="text" placeholder="Antwoord" value="@Model.PagesList[i].Questions[j].Options[q].Answer" />
+                                                            <input class="form-control" id="PagesList_@(i)__Questions_@(j)__Options_@(q)__Description" name="PagesList[@(i)].Questions[@(j)].Options[@(q)].Description" type="text" placeholder="Beschrijving" value="@Model.PagesList[i].Questions[j].Options[q].Description" />
+                                                            <input class="form-control" id="PagesList_@(i)__Questions_@(j)__Options_@(q)__ImageUrl" name="PagesList[@(i)].Questions[@(j)].Options[@(q)].ImageUrl" type="text" placeholder="Afbeedling URL" value="@Model.PagesList[i].Questions[j].Options[q].ImageUrl" />
+                                                        </div>
+                                                    }
+                                                    break;
+                                            }
+                                        </div>
+                                    </div>
+
+                                    }
+
+                                </div>
+
+                            </div>
+
+                        }
+                    </div>
+
+                </div>
+
+            }
+
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#EndDate').datepicker({ dateFormat: "dd-mm-yy", minDate: -0 });
+
+        });
+
+    </script>
+</body>
+</html>

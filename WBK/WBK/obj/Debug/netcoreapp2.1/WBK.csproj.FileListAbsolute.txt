@@ -37,7 +37,6 @@ D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\Razor\Views\C
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\Razor\Views\Create\QuestionView.g.cshtml.cs
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\Razor\Views\Create\SliderQuestion.g.cshtml.cs
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\Razor\Views\Create\Survey.g.cshtml.cs
-D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\Razor\Views\Create\Test.g.cshtml.cs
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\Razor\Views\Dashboard\AllAnswers.g.cshtml.cs
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\Razor\Views\Dashboard\AnalyseGeoAnswers.g.cshtml.cs
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\Razor\Views\Dashboard\Index.g.cshtml.cs
@@ -54,3 +53,4 @@ D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\Razor\Views\D
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\Razor\Views\Account\Login.g.cshtml.cs
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\Razor\Views\Account\Register.g.cshtml.cs
 D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\Razor\Views\Survey\SurveyEnded.g.cshtml.cs
+D:\GitKraken\Repos\WijkBeweegKaart\WBK\WBK\obj\Debug\netcoreapp2.1\Razor\Views\Create\EditSurvey.g.cshtml.cs

@@ -207,7 +207,7 @@ namespace Logic
 
         public void UpdateSurvey(Survey surveyToUpdate)
         {
-            //_dataBaseCalls.UpdateSurvey(surveyToUpdate);
+            _dataBaseCalls.UpdateSurvey(surveyToUpdate);
         }
     }
 }

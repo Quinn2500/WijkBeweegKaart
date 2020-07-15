@@ -41,11 +41,11 @@
         {
             <p>@overview.Title - Eindigd op: @overview.EndDate.ToShortDateString()</p>
             <a class="btn btn-danger" asp-area="" asp-route-Title="@overview.Title" asp-controller="Create" asp-action="DeleteSurvey">Delete</a>
-            <a class="btn btn-info" asp-area="" asp-route-Title="@overview.Title" asp-controller="Create" asp-action="Survey">Edit</a>
+            <a class="btn btn-info" asp-area="" asp-route-Title="@overview.Title" asp-controller="Create" asp-action="EditSurvey">Edit</a>
             <a class="btn btn-info" asp-area="" asp-route-Name="@overview.Title" asp-controller="Survey" asp-action="Survey">Open</a>
             <a class="btn btn-info" asp-area="" asp-route-SurveyTitle="@overview.Title" asp-controller="Dashboard" asp-action="AllAnswers">Answers</a>
             <a class="btn btn-info" asp-area="" asp-route-SurveyTitle="@overview.Title" asp-controller="Dashboard" asp-action="AnalyseGeoAnswers">Analyze</a>
-            <button class="btn btn-success" onclick="copyToClipboard('@Url.Action("Survey","Survey", new { Title = overview.Title}, "https")')">Copy Link!</button>
+            <button class="btn btn-success" onclick="copyToClipboard('@Url.Action("Survey","Survey", new { Name = overview.Title}, "https")')">Copy Link!</button>
         }
     </div>
     

@@ -25,6 +25,9 @@
     <Content Update="Views\Account\Login.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Create\EditSurvey.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Dashboard\AnalyseGeoAnswers.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
